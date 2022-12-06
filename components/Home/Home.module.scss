@@ -19,8 +19,8 @@
 
       .pfp {
         border-radius: 50%;
-        border: 3px solid whitesmoke;
         margin-bottom: 24px;
+        object-fit: cover;
       }
 
       .arg {
@@ -38,7 +38,25 @@
     }
   }
 
-  .introduction {
-    color: white;
+  .intro {
+    max-width: 1024px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+
+    .name {
+      font-weight: 800;
+      font-size: 48px;
+      background: linear-gradient(90deg, #4480A6 0%, #60A4DF 23%, rgba(0, 212, 255, 1) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .career {
+      font-size: 19px;
+      color: #FFFFFF;
+      font-weight: 200;
+    }
+
   }
 }
