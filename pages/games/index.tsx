@@ -1,15 +1,14 @@
 import Head from 'next/head';
-import Home from '../components/Home/Home';
 
-export default function HomePage() {
+export default function GamesPage() {
   return (
     <>
       <Head>
-        <title>Portfolio | Felipe Gorostiaga</title>
+        <title>Games | Felipe Gorostiaga</title>
         <meta name="Portfolio" content="Felipe's portfolio website" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <Home />
+      <p className="font-sans text-lg text-black">Games</p>
     </>
   );
 }

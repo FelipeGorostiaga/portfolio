@@ -1,22 +1,18 @@
-import styles from './Home.module.scss';
 import Image from 'next/image';
-import Navbar from '../Layout/Navbar/Navbar';
 
 const Home = () => {
   return (
-    <main className={styles.container}>
-      <Navbar />
-      <section className={styles.imgContainer}>
-        <div className={styles.imgWrapper}>
-          <Image src="/pfp.jpg" alt="Profile picture" width={200} height={200} className={styles.pfp} />
-          {/* <Image src="/argentina.jpg" alt="Argentina flag" width={45} height={36} className={styles.arg} />*/}
+     <main className="bg-black w-full h-screen pt-36">
+        <div className="w-100 max-w-5xl mx-auto">
+          <div className="flex flex-row gap-20 items-center">
+            <div className="flex flex-col gap-1">
+              <div className="font-sans font-semibold text-6xl text-gray-50">Felipe Gorostiaga</div>
+              <div className="font-sans font-regular text-2xl text-gray-200">Sr. Software Engineer at Banco Galicia</div>
+            </div>
+            <Image className="object-cover rounded-2xl" src={'/pfp.jpg'} height={190} width={190} alt='profile picture'/>
+          </div>
         </div>
-      </section>
-      <div className={styles.intro}>
-        <div className={styles.name}>Felipe Gorostiaga</div>
-        <div className={styles.career}>Software Engineer and Fullstack Developer</div>
-      </div>
-    </main>
+      </main>
   );
 };
 
