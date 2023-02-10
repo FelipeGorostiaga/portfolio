@@ -11,7 +11,7 @@ const Navbar = () => {
   const isDark: boolean = useMemo(() => theme === 'dark', [theme]);
 
   return (
-    <nav className="bg-black h-3 px-14 py-10 flex flex-row items-center">
+    <nav className="bg-black h-3 px-14 py-10 flex flex-row items-center border-b-2 border-gray-600">
       <ul className="flex flex-row gap-12 w-full h-full items-center">
         <li
           onMouseEnter={() => setHoveredItem(NAV_ROUTES.HOME)}

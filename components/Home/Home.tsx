@@ -1,23 +1,18 @@
 import Image from 'next/image';
-import Navbar from '../Layout/Navbar/Navbar';
 
 const Home = () => {
   return (
-    <>
-      <Navbar />
-     {/* <main className="w-full h-full bg-black">
-        <section className="">
-          <div className="relative">
-            <Image src="/pfp.jpg" alt="Profile picture" width={200} height={200} className="mb-5 object-cover aspect-square rounded-full"/>
-             <Image src="/argentina.jpg" alt="Argentina flag" width={45} height={36} className="" />
+     <main className="bg-black w-full h-screen pt-36">
+        <div className="w-100 max-w-5xl mx-auto">
+          <div className="flex flex-row gap-20 items-center">
+            <div className="flex flex-col gap-1">
+              <div className="font-sans font-semibold text-6xl text-gray-50">Felipe Gorostiaga</div>
+              <div className="font-sans font-regular text-2xl text-gray-200">Sr. Software Engineer at Banco Galicia</div>
+            </div>
+            <Image className="object-cover rounded-2xl" src={'/pfp.jpg'} height={190} width={190} alt='profile picture'/>
           </div>
-        </section>
-        <div className="">
-          <div className="font-bold text-xl">Felipe Gorostiaga</div>
-          <div className="">Sr. Software Engineer at Banco Galicia</div>
         </div>
-      </main>*/}
-    </>
+      </main>
   );
 };
 
