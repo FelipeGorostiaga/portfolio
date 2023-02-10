@@ -7,7 +7,7 @@ export default function HomePage() {
       <Head>
         <title>Portfolio | Felipe Gorostiaga</title>
         <meta name="Portfolio" content="Felipe's portfolio website" />
-        <link rel="icon" href="/rasengan.png" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <Home />
     </>
