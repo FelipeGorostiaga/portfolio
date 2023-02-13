@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 
 type ThemeType = 'dark' | 'light';
 
@@ -17,20 +17,44 @@ export const useTheme = () => {
 const ThemeProvider = ({ children }: { children: JSX.Element }) => {
   const [theme, setTheme] = useState<ThemeType>('dark');
 
-  const switchTheme = () => {
+  useEffect(() => {
+    if (window !== undefined) {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setTheme('dark');
+        document.documentElement.classList.add('dark');
+      } else {
+        setTheme('light');
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, []);
+
+  const persistTheme = (theme: 'dark' | 'light') => {
     if (theme === 'dark') {
-      setTheme('light');
-    } else {
       setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add('dark');
+    } else {
+      setTheme('light');
+      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove('dark');
     }
   }
+
+  const switchTheme = () => {
+    if (theme === 'dark') {
+      persistTheme('light');
+    } else {
+      persistTheme('dark');
+    }
+  };
 
   return (
     <ThemeContext.Provider
       value={{
         theme,
         setTheme,
-        switchTheme
+        switchTheme,
       }}
     >
       {children}
