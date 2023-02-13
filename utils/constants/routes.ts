@@ -7,9 +7,9 @@ export const routes = {
 };
 
 export enum NAV_ROUTES {
-  HOME = 'home',
-  GALLERY = 'gallery',
-  GAMES = 'games',
-  CONTACT = 'contact',
-  EXPERIENCE = 'experience',
+  HOME = 'Home',
+  GALLERY = 'Gallery',
+  GAMES = 'Games',
+  CONTACT = 'Contact',
+  EXPERIENCE = 'Experience',
 }
