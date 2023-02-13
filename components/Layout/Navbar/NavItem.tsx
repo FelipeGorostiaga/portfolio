@@ -1,27 +1,24 @@
 import React, { useMemo } from 'react';
-import { NAV_ROUTES } from '../../../utils/constants/routes';
 import Link from 'next/link';
 import { capitalize } from '../../../utils/lib/string';
 
-function parseRoute(item: NAV_ROUTES) {
+function parseRoute(item: string) {
   if (item.toLowerCase() === 'home') {
     return '';
   }
-  return item.toLowerCase();
+  return item;
 }
 
 interface NavItemProps {
-  item: NAV_ROUTES;
+  item: string;
   selected: boolean;
-  setSelectedItem: (item: NAV_ROUTES) => void;
-  setHoveredItem: (item: NAV_ROUTES | null) => void;
-  hoveredItem: NAV_ROUTES | null | undefined;
+  setSelectedItem: (item: string) => void;
 }
 
-function NavItem({ item, selected, setHoveredItem, hoveredItem, setSelectedItem }: NavItemProps) {
+function NavItem({ item, selected, setSelectedItem }: NavItemProps) {
 
   const itemName = useMemo(() => {
-    return capitalize(item.toLowerCase());
+    return capitalize(item);
   }, [item]);
 
   const itemRoute = useMemo(() => {
@@ -32,15 +29,13 @@ function NavItem({ item, selected, setHoveredItem, hoveredItem, setSelectedItem 
 
   return (
     <li
-      onMouseEnter={() => setHoveredItem(item)}
-      onMouseLeave={() => setHoveredItem(null)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       onClick={() => setSelectedItem(item)}
       className={className}>
       <Link href={`/${itemRoute}`}>{itemName}</Link>
       {!selected && <div className="bg-transparent w-full h-1"></div>}
       {selected && <div className="bg-blue-600 w-full h-1"></div>}
-      {/*{(hoveredItem !== item) && <div className="bg-transparent w-full h-1"></div>}
-      {(hoveredItem === item) && <div className="bg-blue-600 w-full h-1"></div>}*/}
     </li>
   );
 }
