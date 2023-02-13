@@ -25,12 +25,10 @@ function NavItem({ item, selected, setSelectedItem }: NavItemProps) {
     return parseRoute(item);
   }, [item]);
 
-  const className = `font-sans text-gray-200 text-lg hover:text-gray-50 cursor-pointer ${selected? '' : 'hover:text-blue-200'}`;
+  const className = `font-sans text-gray-200 text-lg hover:text-gray-50 cursor-pointer ${selected ? '' : 'hover:text-blue-200'}`;
 
   return (
     <li
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       onClick={() => setSelectedItem(item)}
       className={className}>
       <Link href={`/${itemRoute}`}>{itemName}</Link>
