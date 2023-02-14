@@ -3,7 +3,7 @@ import styles from './Home.module.scss';
 
 const Home = () => {
   return (
-    <main className="bg-gray-50 w-full pt-36 dark:bg-black h-screen">
+    <main className="bg-gray-50 w-full pt-36 dark:bg-black">
       <div className="w-100 max-w-5xl mx-auto">
         <div className="flex flex-row gap-20 items-center justify-between">
           <div className="flex flex-col gap-1">
