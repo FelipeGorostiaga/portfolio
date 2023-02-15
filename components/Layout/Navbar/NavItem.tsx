@@ -25,7 +25,7 @@ function NavItem({ item, selected, setSelectedItem }: NavItemProps) {
     return parseRoute(item);
   }, [item]);
 
-  const className = `font-sans text-gray-600 text-lg cursor-pointer dark:text-gray-200 ${selected ? '' : 'hover:text-sky-400 hover:dark:text-blue-200'}`;
+  const className = `font-sans text-gray-600 text-base font-light cursor-pointer dark:text-gray-200 ${selected ? '' : 'hover:text-sky-400 hover:dark:text-blue-300'}`;
 
   return (
     <li

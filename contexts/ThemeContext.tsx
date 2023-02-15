@@ -1,8 +1,9 @@
-import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 
 type ThemeType = 'dark' | 'light';
 
 interface ThemeContextType {
+  isDark: boolean;
   theme: ThemeType;
   setTheme: Dispatch<SetStateAction<ThemeType>>;
   switchTheme: () => void;
@@ -41,6 +42,10 @@ const ThemeProvider = ({ children }: { children: JSX.Element }) => {
     }
   }
 
+  const isDark = useMemo(() => {
+    return theme === 'dark';
+  }, [theme]);
+
   const switchTheme = () => {
     if (theme === 'dark') {
       persistTheme('light');
@@ -53,6 +58,7 @@ const ThemeProvider = ({ children }: { children: JSX.Element }) => {
     <ThemeContext.Provider
       value={{
         theme,
+        isDark,
         setTheme,
         switchTheme,
       }}

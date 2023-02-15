@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import styles from './Home.module.scss';
+import Footer from '../Layout/Footer/Footer';
 
 const Home = () => {
   return (
-    <main className="bg-gray-50 w-full pt-36 dark:bg-black">
+    <main className="bg-gray-50 w-full pt-36 dark:bg-black h-full pb-36">
       <div className="w-100 max-w-5xl mx-auto">
         <div className="flex flex-row gap-20 items-center justify-between">
           <div className="flex flex-col gap-1">
             <div
-              className={`${styles.animatedWording} animatedWording text-transparent leading-tight font-sans font-semibold text-6xl`}>
+              className={`${styles.animatedWording} animatedWording text-transparent leading-snug font-sans font-semibold text-6xl`}>
               Felipe Gorostiaga
             </div>
             <div className="text-gray-600 font-sans font-regular text-xl dark:text-gray-300">Sr. Software Engineer at
@@ -33,6 +34,7 @@ const Home = () => {
           is my purpose.
         </p>
       </div>
+      <Footer />
     </main>
   );
 };
