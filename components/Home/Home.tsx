@@ -12,19 +12,20 @@ const Home = () => {
               className={`${styles.animatedWording} animatedWording text-transparent leading-snug font-sans font-semibold text-6xl`}>
               Felipe Gorostiaga
             </div>
-            <div className="text-gray-600 font-sans font-regular text-xl dark:text-gray-300">Sr. Software Engineer at
-              Banco Galicia
+            <div className="text-gray-600 font-sans font-regular text-xl dark:text-gray-300">
+              Sr. Software Engineer at Banco Galicia
             </div>
           </div>
           <Image className="object-cover rounded-2xl shadow-2xl" src={'/pfp.jpg'} height={250} width={250}
                  alt="profile picture" />
         </div>
         <div className="w-full h-0.5 bg-gray-200 my-12 dark:bg-gray-400"></div>
-        {/*  <div className="w-full text-center dark:text-gray-50 text-4xl mt-12 font-bold">ENGINEER  -  CREATOR  -  ADVENTURER</div>*/}
         <p
-          className="font-sans italic font-extralight text-2xl text-center text-gray-600 dark:text-gray-300 m-0">&quot;He
+          className="font-sans italic font-extralight text-2xl text-center text-gray-600 dark:text-gray-300 m-0">
+          &quot;He
           who has a why to live for can
-          bear almost any how&quot;</p>
+          bear almost any how&quot;
+        </p>
         <p
           className="mt-12 font-sans text-xl font-light m-0 text-center break-normal px-16 text-gray-800 dark:text-gray-300">
           I am a Software Engineer born in Buenos Aires, Argentina. I am a technology enthusiast that is constantly
