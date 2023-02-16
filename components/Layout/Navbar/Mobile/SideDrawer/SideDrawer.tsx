@@ -15,7 +15,7 @@ const SideDrawer = () => {
 
   return (
     <div className={styles.container}>
-      <div className={`w-[40px] h-[40px] rounded-full bg-neutral-900 absolute flex items-center justify-center top-[1rem] right-[0.5rem] ${styles.elevated}`}>
+      <div className="w-[40px] h-[40px] rounded-full bg-neutral-900 absolute flex items-center justify-center top-[1rem] right-[1rem] cursor-pointer">
         <ArrowBackIosNewIcon onClick={() => setIsOpen(false)} className={styles.arrowIcon} style={{ color: 'white' }}/>
       </div>
       <div className="flex flex-row gap-4 items-center pl-8 w-full">
