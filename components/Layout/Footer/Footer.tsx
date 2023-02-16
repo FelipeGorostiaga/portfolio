@@ -12,7 +12,7 @@ const Footer = () => {
   const [isLinkedinHovered, setIsLinkedinHovered] = useState<boolean>(false);
   const [isEmailHovered, setIsEmailHovered] = useState<boolean>(false);
   const iconColor = isDark ? 'white' : '#171515';
-  const linkedinColor = isDark? 'white' : (isLinkedinHovered? '#0E76A8' : '#171515');
+  const linkedinColor = isDark ? 'white' : (isLinkedinHovered ? '#0E76A8' : '#171515');
 
   return (
     <div
@@ -26,12 +26,16 @@ const Footer = () => {
          onMouseLeave={() => setIsLinkedinHovered(false)}
       >
         <LinkedInIcon fontSize="small" style={{ color: linkedinColor }} />
-        <div className="text-sans font-light text-sm hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-50">Linkedin</div>
+        <div
+          className="text-sans font-light text-sm hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-50">Linkedin
+        </div>
       </a>
       <a className="flex flex-row gap-2 items-center" href={externalUrls.github} target="_blank"
          rel="noopener noreferrer">
         <GitHubIcon fontSize="small" style={{ color: iconColor }} />
-        <div className="text-sans font-light text-sm hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-50">Github</div>
+        <div
+          className="text-sans font-light text-sm hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-50">Github
+        </div>
       </a>
       <a className="flex flex-row gap-2 items-center" href={`mailto:${externalUrls.github}`} target="_blank"
          rel="noopener noreferrer"
