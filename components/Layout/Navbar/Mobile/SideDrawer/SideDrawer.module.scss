@@ -5,9 +5,16 @@
   background: black;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   padding-top: 40px;
-  padding-left: 40px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  border-right: 1px #2b2b2b solid;
+
+  .arrowIcon {
+    top: 1rem;
+    right: 1rem;
+  }
 
   .profileImage {
     width: 50px;
@@ -30,3 +37,5 @@
     display: block;
   }
 }
+
+

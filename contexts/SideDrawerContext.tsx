@@ -13,7 +13,7 @@ export const useSideDrawer = () => {
 
 const SideDrawerProvider = ({ children }: { children: JSX.Element }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  
+
   return (
     <SideDrawerContext.Provider
       value={{
