@@ -19,7 +19,7 @@ const Home = () => {
         </div>
         <Image className="object-cover shadow-2xl aspect-square rounded-full" src={'/pfp.jpg'} height={imgSize} width={imgSize} alt="profile picture" />
       </div>
-      <div className="w-[80%] h-0.5 bg-gray-200 my-8 dark:bg-gray-400 px-12 m-auto lg:w-full md:my-12"></div>
+      <div className="w-[80%] h-0.5 bg-gray-200 my-8 dark:bg-gray-400 px-12 m-auto md:my-12"></div>
       <p className="font-sans italic font-extralight text-lg text-center text-gray-600 dark:text-gray-300 m-0 px-16 md:text-xl">
         &quot;He
         who has a why to live for can
