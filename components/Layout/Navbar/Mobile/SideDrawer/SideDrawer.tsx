@@ -1,5 +1,4 @@
 import styles from './SideDrawer.module.scss';
-import Link from 'next/link';
 import HomeIcon from '@mui/icons-material/Home';
 import CategoryIcon from '@mui/icons-material/Category';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -8,15 +7,58 @@ import Image from 'next/image';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useSideDrawer } from '../../../../../contexts/SideDrawerContext';
+import DrawerItem from './DrawerItem';
+import { useCallback } from 'react';
+import { useRouter } from 'next/router';
+
+interface ILink {
+  route: string;
+  name: string;
+  icon: any;
+}
+
+const links: ILink[] = [
+  {
+    route: '/',
+    name: 'Home',
+    icon: <HomeIcon fontSize="medium" style={{ color: 'white' }} />,
+  },
+  {
+    route: '/gallery',
+    name: 'Gallery',
+    icon: <CategoryIcon fontSize="medium" style={{ color: 'white' }} />,
+  },
+  {
+    route: '/games',
+    name: 'Games',
+    icon: <AppsIcon fontSize="medium" style={{ color: 'white' }} />,
+  },
+  {
+    route: '/experience',
+    name: 'Experience',
+    icon: <TerminalIcon fontSize="medium" style={{ color: 'white' }} />,
+  },
+  {
+    route: '/contact',
+    name: 'Contact',
+    icon: <AccountCircleIcon fontSize="medium" style={{ color: 'white' }} />,
+  },
+];
 
 
 const SideDrawer = () => {
   const { setIsOpen } = useSideDrawer();
+  const { pathname } = useRouter();
+
+  const isSelected = useCallback((route: string): boolean => {
+    return route === pathname;
+  }, [pathname]);
 
   return (
     <div className={styles.container}>
-      <div className="w-[40px] h-[40px] rounded-full bg-neutral-900 absolute flex items-center justify-center top-[1rem] right-[1rem] cursor-pointer">
-        <ArrowBackIosNewIcon onClick={() => setIsOpen(false)} className={styles.arrowIcon} style={{ color: 'white' }}/>
+      <div
+        className="w-[40px] h-[40px] rounded-full bg-neutral-900 absolute flex items-center justify-center top-[1rem] right-[1rem] cursor-pointer">
+        <ArrowBackIosNewIcon onClick={() => setIsOpen(false)} className={styles.arrowIcon} style={{ color: 'white' }} />
       </div>
       <div className="flex flex-row gap-4 items-center pl-8 w-full">
         <Image src={'/pfp.jpg'} alt="" height={60} width={60} className={styles.profileImage} />
@@ -24,26 +66,10 @@ const SideDrawer = () => {
       </div>
       <div className="w-full bg-neutral-900 h-0.5 my-8"></div>
       <div className="flex flex-col pl-8 gap-8">
-        <Link href={'/'} className="flex flex-row gap-3 items-center justify-start cursor-pointer">
-          <HomeIcon fontSize="medium" style={{ color: 'white' }} />
-          <span className={`text-sans text-gray-100 text-lg ${styles.linkSelected}`}>Home</span>
-        </Link>
-        <Link href={'/gallery'} className="flex flex-row gap-3 items-center justify-start cursor-pointer">
-          <CategoryIcon fontSize="medium" style={{ color: 'white' }} />
-          <span className="text-sans text-gray-200 text-lg">Gallery</span>
-        </Link>
-        <Link href={'/games'} className="flex flex-row gap-3 items-center justify-start cursor-pointer">
-          <AppsIcon fontSize="medium" style={{ color: 'white' }} />
-          <span className="text-sans text-gray-200 text-lg">Games</span>
-        </Link>
-        <Link href={'/contact'} className="flex flex-row gap-3 items-center justify-start cursor-pointer">
-          <AccountCircleIcon fontSize="medium" style={{ color: 'white' }} />
-          <span className="text-sans text-gray-100 text-lg">Contact</span>
-        </Link>
-        <Link href={'/experience'} className="flex flex-row gap-3 items-center justify-start cursor-pointer">
-          <TerminalIcon fontSize="medium" style={{ color: 'white' }} />
-          <span className="text-sans text-gray-100 text-lg">Experience</span>
-        </Link>
+        {links.map((link: ILink) => {
+          return <DrawerItem key={link.name} route={link.route} name={link.name} icon={link.icon}
+                             onClick={() => setIsOpen(false)} selected={isSelected(link.route)} />;
+        })}
       </div>
     </div>
   );
