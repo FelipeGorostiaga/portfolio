@@ -25,7 +25,7 @@ const Footer = () => {
 
   return (
     <div
-      className="bg-neutral-100 w-full flex flex-row items-center gap-1 justify-around md:justify-center md:gap-20 lg:gap-60 h-16 border-t-2 border-t-neutral-200 dark:bg-neutral-900 dark:border-gray-600">
+      className="bg-neutral-100 w-full flex flex-row items-center gap-1 justify-around md:justify-center md:gap-20 lg:gap-40 2xl:gap-60 h-16 border-t-2 border-t-neutral-200 dark:bg-neutral-900 dark:border-gray-600">
       {!sm && <span className="text-sans font-light text-xs md:text-sm dark:text-gray-200">{iconTexts.inc}</span>}
       <a className="flex flex-row gap-2 items-center"
          href={externalUrls.linkedin}
