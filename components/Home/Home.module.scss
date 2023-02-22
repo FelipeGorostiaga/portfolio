@@ -5,6 +5,7 @@
                   #0ea5e9,
                   #2563eb
   );
+  line-height: 5rem;
   -webkit-background-clip: text;
   color: transparent;
   background-size: 400%;
@@ -19,5 +20,11 @@
 
   to {
     background-position: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .animatedWording {
+    line-height: 3rem;
   }
 }
