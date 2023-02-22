@@ -67,7 +67,10 @@ const SideDrawer = () => {
       <div className="w-full bg-neutral-900 h-0.5 my-8"></div>
       <div className="flex flex-col pl-8 gap-8">
         {links.map((link: ILink) => {
-          return <DrawerItem key={link.name} route={link.route} name={link.name} icon={link.icon}
+          return <DrawerItem key={link.name}
+                             route={link.route}
+                             name={link.name}
+                             icon={link.icon}
                              onClick={() => setIsOpen(false)} selected={isSelected(link.route)} />;
         })}
       </div>
