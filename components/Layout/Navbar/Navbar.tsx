@@ -4,11 +4,20 @@ import { useTheme } from '../../../contexts/ThemeContext';
 import { useMemo, useState } from 'react';
 import NavItem from './NavItem';
 import { routes } from '../../../utils/constants/routes';
+import useBreakpoints from '../../../hooks/useBreakpoints';
+import NavBarMobile from './Mobile/NavBarMobile';
 
 const Navbar = () => {
   const { theme, switchTheme } = useTheme();
+  const { sm } = useBreakpoints();
   const isDark: boolean = useMemo(() => theme === 'dark', [theme]);
   const [selectedItem, setSelectedItem] = useState<string>('home');
+
+  if (sm) {
+    return (
+     <NavBarMobile />
+    )
+  }
 
   return (
     <nav className="bg-neutral-100 h-16 px-14 flex flex-row items-center border-b-2 border-gray-300 dark:bg-neutral-900 dark:border-gray-600">

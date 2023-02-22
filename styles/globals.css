@@ -18,3 +18,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.main-grid {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  width: 100%;
+}

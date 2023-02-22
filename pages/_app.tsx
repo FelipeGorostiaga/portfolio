@@ -2,14 +2,19 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import ThemeProvider from '../contexts/ThemeContext';
 import Navbar from '../components/Layout/Navbar/Navbar';
+import SideDrawerProvider from '../contexts/SideDrawerContext';
+import Footer from '../components/Layout/Footer/Footer';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
-      <div className='bg-gray-50 dark:bg-black min-h-screen'>
-        <Navbar/>
+      <main className="bg-gray-50 dark:bg-black main-grid">
+        <SideDrawerProvider>
+          <Navbar />
+        </SideDrawerProvider>
         <Component {...pageProps} />
-      </div>
+        <Footer />
+      </main>
     </ThemeProvider>
-);
+  );
 }
