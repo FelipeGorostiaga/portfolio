@@ -4,7 +4,7 @@ import { letters } from '../../../utils/constants/strings';
 
 interface TextProps {
   children: string;
-  className: string;
+  className?: string;
 }
 
 const HackerText = ({ children, className }: TextProps) => {
