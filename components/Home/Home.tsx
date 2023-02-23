@@ -9,11 +9,11 @@ const Home = () => {
   return (
     <div className="w-full max-w-5xl mx-auto pt-12 pb-16 flex flex-col md:pt-36 md:pb-24">
       <div className="flex flex-col-reverse gap-8 items-center justify-between md:flex-row md:gap-14 md:justify-center">
-        <div className="flex flex-col gap-2 items-start justify-center">
+        <div className="flex flex-col gap-1 xs:gap-2 items-start justify-center px-4">
           <div className={`${styles.animatedWording} font-sans font-semibold text-4xl md:text-5xl lg:text-6xl`}>
             Felipe Gorostiaga
           </div>
-          <div className="text-gray-600 font-sans font-regular dark:text-gray-300 md:text-xl">
+          <div className="text-gray-600 text-center font-sans font-regular dark:text-gray-300 md:text-xl">
             Sr. Software Engineer at Banco Galicia
           </div>
         </div>
