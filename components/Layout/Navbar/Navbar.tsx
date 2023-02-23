@@ -20,14 +20,14 @@ const Navbar = () => {
 
   return (
     <nav className="bg-neutral-100 h-16 px-14 flex flex-row items-center border-b-2 border-gray-300 dark:bg-neutral-900 dark:border-gray-600">
-      <ul className="flex flex-row gap-12 w-full h-full items-center">
+      <div className="flex flex-row gap-12 w-full h-full items-center">
         {routes.map(route => {
           return <NavItem key={route}
                           item={route}
                           selected={selectedItem === route}
                           setSelectedItem={setSelectedItem} />;
         })}
-      </ul>
+      </div>
       <div
         onClick={switchTheme}
         className="bg-gray-600 w-[40px] h-[40px] flex items-center rounded-md justify-center cursor-pointer hover:bg-gray-800 hover:dark:bg-gray-900 dark:bg-darkgray">
