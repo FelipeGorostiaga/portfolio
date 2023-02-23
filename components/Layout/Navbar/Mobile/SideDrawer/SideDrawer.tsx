@@ -97,7 +97,7 @@ const SideDrawer = () => {
         <span className="text-sans text-gray-700 dark:text-gray-300 text-lg">Felipe Gorostiaga</span>
       </div>
       <div className="w-full bg-gray-300 dark:bg-neutral-900 h-0.5 my-8"></div>
-      <div className="flex flex-col pl-8 gap-8">
+      <div className="flex flex-col w-full">
         {links.map((link: ILink) => {
           return <DrawerItem key={link.name}
                              route={link.route}
