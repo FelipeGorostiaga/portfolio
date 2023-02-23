@@ -7,6 +7,7 @@ import { routes } from '../../../utils/constants/routes';
 import useBreakpoints from '../../../hooks/useBreakpoints';
 import NavBarMobile from './Mobile/NavBarMobile';
 
+
 const Navbar = () => {
   const { theme, switchTheme } = useTheme();
   const { sm } = useBreakpoints();
@@ -14,9 +15,7 @@ const Navbar = () => {
   const [selectedItem, setSelectedItem] = useState<string>('home');
 
   if (sm) {
-    return (
-     <NavBarMobile />
-    )
+    return <NavBarMobile />
   }
 
   return (
