@@ -23,8 +23,8 @@ const Home = () => {
         </div>
         <div className="w-[80%] h-0.5 bg-gray-200 my-8 dark:bg-gray-400 px-12 m-auto md:my-12 md:w-[70%]"></div>
         <p className="font-sans italic font-light text-lg text-center text-gray-600 dark:text-gray-300 m-0 px-16 md:text-xl lg:text-2xl relative
-      before:content-[open-quote] before:text-2xl sm:before:text-5xl before:font-serif before:text-blue-400
-      after:content-[close-quote] after:text-2xl sm:after:text-5xl after:font-serif after:text-blue-400">
+      before:content-[open-quote] before:text-2xl sm:before:text-5xl before:font-serif before:text-blue-400 dark:before:text-blue-600
+      after:content-[close-quote] after:text-2xl sm:after:text-5xl after:font-serif after:text-blue-400 dark:after:text-blue-600">
           He
           who has a why to live for can
           bear almost any how
