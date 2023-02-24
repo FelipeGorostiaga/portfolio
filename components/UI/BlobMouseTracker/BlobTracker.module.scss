@@ -1,0 +1,44 @@
+.blob {
+  background: deepskyblue;
+  height: 100px;
+  aspect-ratio: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  will-change: scale, rotate;
+  translate: -50% -50%;
+  border-radius: 50%;
+  animation: rotate 20s infinite;
+  filter: blur(50px);
+  z-index: 1;
+}
+
+.blobDark {
+  background: linear-gradient(
+                  to right,
+                  #67e8f9,
+                  #1d4ed8
+  );
+}
+
+.blobLight {
+  background: linear-gradient(
+                  to right,
+                  #bae6fd,
+                  #38bdf8
+  );
+}
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+
+  50% {
+    scale: 1 1.3;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
