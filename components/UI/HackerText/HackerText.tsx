@@ -1,4 +1,3 @@
-import styles from './HackerText.module.scss';
 import { useEffect, useState } from 'react';
 import { letters } from '../../../utils/constants/strings';
 
@@ -26,9 +25,7 @@ const HackerText = ({ children, className }: TextProps) => {
         setShownText(randomWord);
 
         if (iterations >= children.length) {
-          console.log('Cleared interval');
           clearInterval(interval);
-          console.log(interval);
         }
 
         iterations += 1 / 3;
@@ -42,7 +39,7 @@ const HackerText = ({ children, className }: TextProps) => {
 
   return (
     <span onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}
-          className={`${styles.hackerText} ${className} font-mono`}>
+          className={`${className} font-mono w-fit h-fit`}>
       {shownText}
     </span>
   );
