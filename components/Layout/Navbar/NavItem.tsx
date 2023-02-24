@@ -31,7 +31,7 @@ function NavItem({ item, selected, setSelectedItem }: NavItemProps) {
     <Link href={`/${itemRoute}`} onClick={() => setSelectedItem(item)} className={className}>
       {itemName}
       {!selected && <div className="bg-transparent w-full h-1"></div>}
-      {selected && <div className="bg-blue-600 w-full h-1"></div>}
+      {selected && <div className="bg-blue-400 dark:bg-blue-600 w-full h-1"></div>}
     </Link>
   );
 }
