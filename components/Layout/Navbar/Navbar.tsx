@@ -30,7 +30,7 @@ const Navbar = () => {
       </div>
       <div
         onClick={switchTheme}
-        className="bg-gray-600 w-[40px] h-[40px] flex items-center rounded-md justify-center cursor-pointer hover:bg-gray-800 hover:dark:bg-gray-900 dark:bg-darkgray">
+        className="bg-gray-600 w-[40px] h-[40px] flex items-center rounded-md justify-center cursor-pointer hover:bg-gray-800 dark:bg-darkgray hover:dark:bg-neutral-800">
         {isDark && <LightModeIcon style={{ color: 'white' }} fontSize="medium" />}
         {!isDark && <BedtimeIcon style={{ color: 'white' }} fontSize="medium" />}
       </div>
