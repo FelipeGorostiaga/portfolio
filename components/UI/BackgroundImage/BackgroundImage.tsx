@@ -7,7 +7,6 @@ interface BackgroundImageProps {
 }
 
 const BackgroundImage = () => {
-
   return (
     <div className={styles.person}>
       <div className={styles.personContainer}>

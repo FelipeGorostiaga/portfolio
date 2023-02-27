@@ -1,12 +1,10 @@
-
 .person {
   position: relative;
-  max-width: 15rem;
-  margin-inline: auto;
+  max-width: 13rem;
 }
 
 .personContainer {
-  aspect-ratio: 1 / 1.20;
+  aspect-ratio: 1 / 1.05;
   display: grid;
   align-items: end;
   border-radius: 0 0 100vw 100vw;
