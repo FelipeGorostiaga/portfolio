@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <div className="w-full max-w-5xl mx-auto pt-12 pb-16 flex flex-col md:pt-36 md:pb-24 z-10">
         <div
-          className="flex flex-col-reverse gap-8 items-center justify-between md:flex-row md:gap-14 md:justify-center lg:gap-20">
+          className="flex flex-col-reverse gap-8 items-center justify-between md:flex-row md:gap-14 md:justify-center lg:gap-24">
           <div className="flex flex-col gap-1 xs:gap-2 items-center md:items-start justify-center px-6">
             <div className={`${styles.animatedWording} font-sans font-semibold text-4xl md:text-5xl lg:text-6xl`}>
               Felipe Gorostiaga
