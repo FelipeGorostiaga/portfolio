@@ -1,0 +1,40 @@
+.person {
+  position: relative;
+  max-width: 13rem;
+}
+
+.personContainer {
+  aspect-ratio: 1 / 1.05;
+  display: grid;
+  align-items: end;
+  border-radius: 0 0 100vw 100vw;
+  overflow: hidden;
+  transition: transform 250ms ease;
+
+  &:hover {
+    transform: scale(1.05);
+
+    .personImg {
+      transform: scale(1.05) translateY(-1.3rem);
+    }
+  }
+}
+
+.circleImg {
+  aspect-ratio: 1 / 1;
+  inset: auto 0 0;
+  position: absolute;
+  object-fit: fill;
+  margin-inline: auto;
+  border-radius: 50%;
+}
+
+.personImg {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  left: 0.4rem;
+  bottom: -1rem;
+  z-index: 2;
+  transform: scale(1.05);
+  transition: transform 300ms ease;
+}
