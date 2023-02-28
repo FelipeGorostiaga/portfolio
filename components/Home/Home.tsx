@@ -1,11 +1,13 @@
 import styles from './Home.module.scss';
 import useBreakpoints from '../../hooks/useBreakpoints';
-import BlobTracker from '../UI/BlobMouseTracker/BlobTracker';
-import BackgroundImage from '../UI/BackgroundImage/BackgroundImage';
 import Button from '@ui/Button/Button';
+import BackgroundImage from '@ui/BackgroundImage/BackgroundImage';
+import BlobTracker from '@ui/BlobMouseTracker/BlobTracker';
+import { useRouter } from 'next/router';
 
 const Home = () => {
   const { md } = useBreakpoints();
+  const router = useRouter();
   return (
     <>
       <div className="w-full max-w-4xl mx-auto pt-12 pb-16 flex flex-col md:pt-32 md:pb-24 z-10">
@@ -38,7 +40,7 @@ const Home = () => {
           is my purpose.
         </p>
         <div className='flex items-center justify-start w-full gap-4 pt-4'>
-          <Button intent='primary' onClick={() => alert('clicked primary')} >Contact me</Button>
+          <Button intent='primary' onClick={() => router.push('/contact')} >Contact me</Button>
           <Button intent='secondary' onClick={() => alert('clicked secondary')}  className='my-4'>See my projects</Button>
         </div>
       </div>
