@@ -2,15 +2,13 @@ import styles from './Home.module.scss';
 import useBreakpoints from '../../hooks/useBreakpoints';
 import BlobTracker from '../UI/BlobMouseTracker/BlobTracker';
 import BackgroundImage from '../UI/BackgroundImage/BackgroundImage';
-
-// Image className="object-cover shadow-2xl aspect-square rounded-full" src={'/pfp.jpg'} height={imgSize} width={imgSize} alt="profile picture" />
-// const imgSize = xs? 130 : (md? 160 : 200);
+import Button from '@ui/Button/Button';
 
 const Home = () => {
   const { md } = useBreakpoints();
   return (
     <>
-      <div className="w-full max-w-5xl mx-auto pt-12 pb-16 flex flex-col md:pt-36 md:pb-24 z-10">
+      <div className="w-full max-w-4xl mx-auto pt-12 pb-16 flex flex-col md:pt-32 md:pb-24 z-10">
         <div
           className="flex flex-col-reverse gap-8 items-center justify-between md:flex-row md:gap-14 md:justify-center lg:gap-24">
           <div className="flex flex-col gap-1 xs:gap-2 items-center md:items-start justify-center px-6">
@@ -39,6 +37,10 @@ const Home = () => {
           create is the most noble act one can achieve, specially if something truly beautiful and useful is made. That
           is my purpose.
         </p>
+        <div className='flex items-center justify-start w-full gap-4 pt-4'>
+          <Button intent='primary' onClick={() => alert('clicked primary')} >Contact me</Button>
+          <Button intent='secondary' onClick={() => alert('clicked secondary')}  className='my-4'>See my projects</Button>
+        </div>
       </div>
       {!md && <BlobTracker />}
     </>

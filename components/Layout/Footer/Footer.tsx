@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 import useBreakpoints from '../../../hooks/useBreakpoints';
 
-
 const Footer = () => {
   const { isDark } = useTheme();
   const { sm } = useBreakpoints();
