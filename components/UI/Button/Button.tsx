@@ -1,7 +1,8 @@
 import { cva } from 'class-variance-authority';
+import { ReactNode } from 'react';
 
 interface ButtonProps {
-  children: any;
+  children: ReactNode;
   intent: 'primary' | 'secondary' | 'danger';
   fullWidth?: boolean;
   onClick: () => void;

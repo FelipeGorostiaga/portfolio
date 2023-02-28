@@ -39,9 +39,10 @@ const Home = () => {
           create is the most noble act one can achieve, specially if something truly beautiful and useful is made. That
           is my purpose.
         </p>
-        <div className='flex items-center justify-start w-full gap-4 pt-4'>
-          <Button intent='primary' onClick={() => router.push('/contact')} >Contact me</Button>
-          <Button intent='secondary' onClick={() => alert('clicked secondary')}  className='my-4'>See my projects</Button>
+        <div className="flex items-center justify-start w-full gap-4 pt-4">
+          <Button intent="primary" onClick={() => router.push('/contact')}>Contact me</Button>
+          <Button intent="secondary" onClick={() => alert('clicked secondary')} className="my-4">See my
+            projects</Button>
         </div>
       </div>
       {!md && <BlobTracker />}
