@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import BackgroundImage from '../../components/UI/BackgroundImage/BackgroundImage';
 
 export default function ExperiencePage() {
   return (
@@ -10,7 +9,7 @@ export default function ExperiencePage() {
         <link rel="icon" href="/logo.png" />
       </Head>
       <div className="h-full w-full flex items-center justify-center">
-        <BackgroundImage />
+        <p>Experience</p>
       </div>
     </>
   );
