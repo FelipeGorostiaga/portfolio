@@ -1,16 +1,20 @@
+$gradientColor1: #0ea5e9;
+$gradientColor2: #3b82f6;
+$gradientColor3: #2563eb;
+
 .animatedWording {
   background-image: linear-gradient(
-                  9deg,
-                  #7dd3fc,
-                  #0ea5e9,
-                  #2563eb
+                  45deg,
+                  $gradientColor1,
+                  $gradientColor2,
+                  $gradientColor3,
   );
   line-height: 5rem;
   -webkit-background-clip: text;
   color: transparent;
   background-size: 400%;
   background-position: -100%;
-  animation: animatedText 3s infinite alternate-reverse;
+  animation: animatedText 3s infinite alternate;
   text-align: center;
 }
 
