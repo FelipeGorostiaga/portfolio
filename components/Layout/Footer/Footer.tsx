@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 import useBreakpoints from '../../../hooks/useBreakpoints';
 
-
 const Footer = () => {
   const { isDark } = useTheme();
   const { sm } = useBreakpoints();
@@ -20,7 +19,7 @@ const Footer = () => {
     linkedin: sm ? '' : 'Linkedin',
     email: sm ? '' : 'fgorostiagabraun@gmail.com',
     github: sm ? '' : 'Github',
-    inc: sm ? '© 2023' : '© 2023 Felipe Gorostiaga',
+    inc: '© 2023 Felipe Gorostiaga',
   };
 
   return (
@@ -36,7 +35,7 @@ const Footer = () => {
       >
         <LinkedInIcon fontSize="small" style={{ color: linkedinColor }} />
         <div
-          className="text-sans font-light text-xs md:text-sm hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-50">
+          className="text-sans font-light text-xs md:text-sm text-gray-600 hover:text-neutral-900 dark:text-gray-300 dark:hover:text-gray-50">
           {iconTexts.linkedin}
         </div>
       </a>
@@ -44,7 +43,7 @@ const Footer = () => {
          rel="noopener noreferrer">
         <GitHubIcon fontSize="small" style={{ color: iconColor }} />
         <div
-          className="text-sans font-light text-xs md:text-sm hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-50">
+          className="text-sans font-light text-xs md:text-sm text-gray-600 hover:text-neutral-900 dark:text-gray-300 dark:hover:text-gray-50">
           {iconTexts.github}
         </div>
       </a>
@@ -55,7 +54,7 @@ const Footer = () => {
         {!isEmailHovered ? <EmailIcon fontSize="small" style={{ color: iconColor }} /> :
           <DraftsIcon fontSize="small" style={{ color: iconColor }} />}
         <div
-          className="text-sans font-light text-xs md:text-sm hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-50">
+          className="text-sans font-light text-xs md:text-sm text-gray-600 hover:text-neutral-900 dark:text-gray-300 dark:hover:text-gray-50">
           {iconTexts.email}
         </div>
       </a>

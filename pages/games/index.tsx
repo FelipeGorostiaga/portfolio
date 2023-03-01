@@ -7,7 +7,9 @@ export default function GamesPage() {
         <title>Games | Felipe Gorostiaga</title>
         <meta name="Games" content="Felipe's portfolio website" />
       </Head>
-      <p className="font-sans text-lg text-black">Games</p>
+      <div className="h-full w-full flex items-center justify-center">
+        <p>Games</p>
+      </div>
     </>
   );
 }

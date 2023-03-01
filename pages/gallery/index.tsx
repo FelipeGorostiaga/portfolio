@@ -8,7 +8,9 @@ export default function GalleryPage() {
         <meta name="Portfolio" content="Felipe's portfolio website" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <p className="font-sans text-lg text-black">Gallery</p>
+      <div className="h-full w-full flex items-center justify-center">
+        <p>Gallery</p>
+      </div>
     </>
   );
 }
