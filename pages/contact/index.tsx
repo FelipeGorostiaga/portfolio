@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import HackerText from '../../components/UI/HackerText/HackerText';
+import Contact from '../../components/Contact/Contact';
 
 export default function ContactPage() {
   return (
@@ -9,8 +9,9 @@ export default function ContactPage() {
         <meta name="Portfolio" content="Felipe's portfolio website" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <div className="h-full w-full flex items-center justify-center">
-        <HackerText className="text-black dark:text-gray-50 text-5xl">HACKER EFFECT</HackerText>
+      <div className="h-full w-full flex items-start justify-center">
+        {/*<HackerText className="text-black dark:text-gray-50 text-5xl">HACKER EFFECT</HackerText>*/}
+        <Contact />
       </div>
     </>
   );
