@@ -27,6 +27,7 @@ const buttonStyles = cva(
         medium: 'w-[320px]',
         small: 'w-[244px]',
         content: '',
+        pill: 'rounded-[37px]'
       },
     },
     defaultVariants: {
