@@ -27,7 +27,7 @@ const Home = () => {
         </div>
         <div className="w-full h-0.5 bg-gray-200 my-8 dark:bg-gray-400 m-auto md:my-12"></div>
         <p
-          className="font-sans text-base font-light m-0 break-normal text-neutral-900 dark:text-gray-300 md:text-xl ">
+          className="font-sans text-base font-normal m-0 break-normal text-gray-600 dark:text-gray-300 md:text-xl ">
           I am an engineer and technology enthusiast that is constantly
           learning about the world
           with the purpose of gaining new knowledge to create products and services that serve and inspire humankind. To
