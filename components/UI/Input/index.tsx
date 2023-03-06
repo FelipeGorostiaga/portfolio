@@ -29,9 +29,9 @@ const labelStyles = cva(
 );
 
 const inputStyles = cva(
-  'px-3 py-2 text-sans font-normal text-lg text-neutral-700 rounded font-base font-sans border-2 ' +
+  'px-3 py-2 text-sans font-normal text-lg text-neutral-700 rounded-lg font-base font-sans border-2 ' +
   'focus-outline-none cursor-pointer bg-gray-300 dark:bg-darkgray focus:outline-none dark:placeholder-neutral-500 ' +
-  'caret-blue-400 focus:border-2 focus:border-blue-400',
+  'caret-blue-400 focus:border-2 focus:border-blue-600',
   {
     variants: {
       error: {
