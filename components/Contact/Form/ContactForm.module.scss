@@ -1,6 +1,12 @@
 .form {
   display: grid;
   gap: 24px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   margin-top: 32px;
+}
+
+@media screen and (max-width: 1024px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
 }
