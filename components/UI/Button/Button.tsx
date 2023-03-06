@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 import { ReactNode } from 'react';
 
-export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content';
+export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content' | 'pill';
 export type ButtonIntent = 'primary' | 'secondary' | 'danger';
 
 interface ButtonProps {
@@ -17,8 +17,8 @@ const buttonStyles = cva(
   {
     variants: {
       intent: {
-        primary: 'bg-blue-600 text-gray-200 hover:bg-blue-700',
-        secondary: 'bg-transparent text-neutral-800 text-black dark:text-gray-200 dark:hover:text-white border-blue-600 border-2 hover:border-blue-700 ',
+        primary: 'bg-blue-600 text-gray-200 hover:bg-blue-700 focus:bg-blue-700',
+        secondary: 'bg-transparent text-neutral-800 text-black dark:text-gray-200 dark:hover:text-white border-blue-600 border-2 hover:border-blue-700',
         danger: 'bg-red-600 text-gray-100 hover:bg-red-700',
       },
       size: {
