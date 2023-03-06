@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 const buttonStyles = cva(
-  'flex items-center justify-center px-4 py-2 rounded font-base font-sans focus-outline-none cursor-pointer',
+  'flex items-center justify-center px-4 py-2 rounded text-sm md:text-base font-sans focus-outline-none cursor-pointer',
   {
     variants: {
       intent: {
