@@ -13,10 +13,10 @@ const Contact = () => {
     mx-3 sm:mx-6 md:mx-8
     dark:bg-black dark:border-2 dark:border-gray-500 shadow-xl">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-sans text-gray-700">Let&apos;s get in <span
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-sans text-gray-700 dark:text-gray-200">Let&apos;s get in <span
           className="font-semibold text-blue-600 underline">touch.</span>
         </h1>
-        <h3 className="text-sm md:text-base lg:text-xl font-sans text-gray-700">Looking for a developer or just want to have a conversation on
+        <h3 className="text-sm md:text-base lg:text-xl font-sans text-gray-700 dark:text-gray-300">Looking for a developer or just want to have a conversation on
           the meaning of life? Send me a message!</h3>
       </div>
       <ContactForm />
