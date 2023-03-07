@@ -20,7 +20,7 @@ export interface ButtonProps extends BaseProps {
 }
 
 const labelStyles = cva(
-  'text-xs sm:text-sm md:text-base font-sans font-normal text-neutral-900 dark:text-gray-300 leading-snug ',
+  'text-xs sm:text-sm md:text-base font-sans font-normal text-neutral-900 dark:text-neutral-400 leading-snug ',
   {
     variants: {
       error: {
@@ -35,9 +35,9 @@ const labelStyles = cva(
 );
 
 const inputStyles = cva(
-  'px-3 py-2 text-sans font-normal text-sm sm:text-base lg:text-lg text-neutral-700 rounded-lg font-sans border-2 ' +
-  'focus-outline-none cursor-pointer bg-gray-300 dark:bg-darkgray focus:outline-none dark:placeholder-neutral-500 ' +
-  'caret-blue-400 focus:border-2 focus:border-blue-600',
+  'px-3 py-2 text-sans font-normal text-sm sm:text-base lg:text-lg text-neutral-800 dark:text-neutral-300 rounded-lg font-sans border-2 dark:border-neutral-900 ' +
+  'focus-outline-none cursor-pointer bg-gray-300 dark:bg-black focus:outline-none dark:placeholder-neutral-500 ' +
+  'caret-blue-400 focus:border-2 focus:border-blue-600 dark:focus:border-blue-600',
   {
     variants: {
       error: {

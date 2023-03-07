@@ -11,16 +11,16 @@ const Contact = () => {
     px-5 sm:px-10 md:px-12 lg:px-20
     mt-3 sm:mt-5 md:mt-8 lg:mt-20
     mx-3 sm:mx-6 md:mx-8
-    dark:bg-black dark:border-2 dark:border-gray-500 shadow-xl">
+    dark:bg-[#050505] dark:border dark:border-gray-600 shadow-xl">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-sans text-gray-700 dark:text-gray-200">Let&apos;s get in <span
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-sans text-gray-700 dark:text-neutral-100">Let&apos;s get in <span
           className="font-semibold text-blue-600 underline">touch.</span>
         </h1>
-        <h3 className="text-sm md:text-base lg:text-xl font-sans text-gray-700 dark:text-gray-300">Looking for a developer or just want to have a conversation on
+        <h3 className="text-sm md:text-base lg:text-xl font-sans text-gray-700 dark:text-neutral-300">Looking for a developer or just want to have a conversation on
           the meaning of life? Send me a message!</h3>
       </div>
       <ContactForm />
-      <div className="flex w-full items-center justify-end pb-6">
+      <div className="flex w-full items-center justify-end pb-6 lg:pb-8">
         {
           sm && (<Button intent="primary" size="fullWidth" onClick={() => alert('Clicked Send')} className="mt-6 rounded-2xl">
             Send message
