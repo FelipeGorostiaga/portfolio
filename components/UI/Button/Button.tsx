@@ -3,11 +3,13 @@ import { ReactNode } from 'react';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content' | 'pill';
 export type ButtonIntent = 'primary' | 'secondary' | 'danger';
+export type ButtonType = 'button' | 'submit' | 'reset';
 
 interface ButtonProps {
   children: ReactNode;
   intent: ButtonIntent;
   size: ButtonSize;
+  type?: ButtonType;
   onClick: () => void;
   className?: string;
 }
@@ -27,7 +29,7 @@ const buttonStyles = cva(
         medium: 'w-[320px]',
         small: 'w-[244px]',
         content: '',
-        pill: 'rounded-[37px]'
+        pill: 'rounded-[37px]',
       },
     },
     defaultVariants: {
@@ -36,8 +38,10 @@ const buttonStyles = cva(
   },
 );
 
-const Button = ({ intent, size = 'medium', onClick, children, className = '' }: ButtonProps) => {
-  return <button className={`${buttonStyles({ intent, size })} ${className}`} onClick={onClick}>{children}</button>;
+const Button = ({ type = 'button', intent, size = 'medium', onClick, children, className = '' }: ButtonProps) => {
+  return <button type={type}
+                 className={`${buttonStyles({ intent, size })} ${className}`}
+                 onClick={onClick}>{children}</button>;
 };
 
 export default Button;
