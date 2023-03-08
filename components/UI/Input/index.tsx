@@ -41,7 +41,7 @@ const inputStyles = cva(
   {
     variants: {
       error: {
-        true: 'border border-red-400',
+        true: 'border border-red-400 dark:border-red-500 focus:border-red-400 dark:focus:border-red-500',
         false: '',
       },
       size: {
