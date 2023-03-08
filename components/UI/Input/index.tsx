@@ -24,7 +24,7 @@ const labelStyles = cva(
   {
     variants: {
       error: {
-        true: 'text-red-400',
+        true: 'text-red-400 dark:text-red-500',
         false: '',
       },
     },
