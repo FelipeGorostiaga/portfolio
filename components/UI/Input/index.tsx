@@ -1,11 +1,8 @@
 import { cva } from 'class-variance-authority';
+import { BaseProps } from '../../../utils/interfaces/baseProps.interface';
 
 type InputType = 'text' | 'number' | 'email' | 'phone' | 'password';
 type InputSize = 'fullWidth' | 'small';
-
-interface BaseProps {
-  [x: string]: any;
-}
 
 export interface ButtonProps extends BaseProps {
   label?: string;
@@ -16,6 +13,9 @@ export interface ButtonProps extends BaseProps {
   error?: boolean;
   errorMessage?: string;
   multiline?: boolean;
+  value: string | number | readonly string[] | undefined;
+  onChange: any;
+  onBlur?: any;
   rows?: number;
 }
 
@@ -57,6 +57,9 @@ const inputStyles = cva(
 );
 
 const Input = ({
+                 value,
+                 onChange,
+                 onBlur,
                  label,
                  type = 'text',
                  size = 'fullWidth',
@@ -76,12 +79,22 @@ const Input = ({
         {
           multiline ?
             (
-              <div className='w-full'>
-                <textarea className={`${inputStyles({ size, error })} ${className}`} rows={rows} {...props} />
+              <div className="w-full">
+                <textarea value={value}
+                          onChange={onChange}
+                          onBlur={onBlur || undefined}
+                          className={`${inputStyles({ size, error })} ${className}`}
+                          rows={rows}
+                          {...props} />
                 <span></span>
               </div>
             ) :
-            <input className={`${inputStyles({ size, error })} ${className}`} type={type} {...props} />
+            <input value={value}
+                   onChange={onChange}
+                   onBlur={onBlur || undefined}
+                   className={`${inputStyles({ size, error })} ${className}`}
+                   type={type}
+                   {...props} />
         }
         {error && <p className="text-sm text-red-400">{errorMessage}</p>}
       </div>
