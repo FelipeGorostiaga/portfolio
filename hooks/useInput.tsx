@@ -19,6 +19,7 @@ const useInput = (validateValue: ValidateFunction, defaultValue = '') => {
 
   const reset = () => {
     setValue('');
+    setTouched(false);
   }
 
   return {

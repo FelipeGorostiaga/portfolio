@@ -5,7 +5,7 @@ import useInput from '../../../hooks/useInput';
 import { z } from 'zod';
 import { validateInput } from '../../../utils/lib/string';
 import Button from '@ui/Button/Button';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, MouseEvent } from 'react';
 
 export const nameSchema = z.string().min(1).max(30);
 export const emailSchema = z.string().email();
@@ -71,7 +71,7 @@ const ContactForm = () => {
   const isFormValid: boolean = useMemo(() => nameValid && lastnameValid && emailValid && messageValid && phoneValid,
     [nameValid, lastnameValid, emailValid, phoneValid, messageValid]);
 
-  const handleSubmit = (event: SubmitEvent) => {
+  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!isFormValid) {
       setFormSubmitted(true);

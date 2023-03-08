@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content' | 'pill';
 export type ButtonIntent = 'primary' | 'secondary' | 'danger';
@@ -10,7 +10,7 @@ interface ButtonProps {
   intent: ButtonIntent;
   size: ButtonSize;
   type?: ButtonType;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   className?: string;
 }
 
