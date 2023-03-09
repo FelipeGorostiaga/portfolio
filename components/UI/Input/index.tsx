@@ -1,5 +1,6 @@
 import { cva } from 'class-variance-authority';
 import { BaseProps } from '../../../utils/interfaces/baseProps.interface';
+import { ChangeEvent } from 'react';
 
 type InputType = 'text' | 'number' | 'email' | 'phone' | 'password';
 type InputSize = 'fullWidth' | 'small';
@@ -14,7 +15,7 @@ export interface ButtonProps extends BaseProps {
   errorMessage?: string;
   multiline?: boolean;
   value: string | number | readonly string[] | undefined;
-  onChange: any;
+  onChange: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void | undefined;
   onBlur?: any;
   rows?: number;
 }
@@ -82,7 +83,7 @@ const Input = ({
               <div className="w-full">
                 <textarea value={value}
                           onChange={onChange}
-                          onBlur={onBlur || undefined}
+                          onBlur={onBlur}
                           className={`${inputStyles({ size, error })} ${className}`}
                           rows={rows}
                           {...props} />
@@ -91,7 +92,7 @@ const Input = ({
             ) :
             <input value={value}
                    onChange={onChange}
-                   onBlur={onBlur || undefined}
+                   onBlur={onBlur}
                    className={`${inputStyles({ size, error })} ${className}`}
                    type={type}
                    {...props} />
