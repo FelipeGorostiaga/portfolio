@@ -1,10 +1,6 @@
-import Button from '@ui/Button/Button';
 import ContactForm from './Form/ContactForm';
-import useBreakpoints from '../../hooks/useBreakpoints';
 
 const Contact = () => {
-  const { sm } = useBreakpoints();
-
   return (
     <div className="max-w-5xl bg-gray-200 rounded-xl md:rounded-[36px]
     pt-4 sm:pt-10 md:pt-16
@@ -22,14 +18,6 @@ const Contact = () => {
           the meaning of life? Send me a message!</h3>
       </div>
       <ContactForm />
-      {/*<div className="flex w-full items-center justify-end pb-6 lg:pb-8">
-        <Button intent="primary"
-                onClick={() => alert('Clicked Send')}
-                size={sm ? 'fullWidth' : 'pill'}
-                className={sm ? 'mt-6 rounded-2xl' : 'px-12 mt-6'}>
-          Send message
-        </Button>
-      </div>*/}
     </div>
   );
 };
