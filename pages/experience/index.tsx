@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Skills from '../../components/Skills/Skills';
 
 export default function ExperiencePage() {
   return (
@@ -9,7 +10,7 @@ export default function ExperiencePage() {
         <link rel="icon" href="/logo.png" />
       </Head>
       <div className="h-full w-full flex items-center justify-center">
-        <p>Experience</p>
+        <Skills />
       </div>
     </>
   );
