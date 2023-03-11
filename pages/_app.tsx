@@ -8,7 +8,7 @@ import Footer from '../components/Layout/Footer/Footer';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
-      <main className="bg-gray-50 dark:bg-black main-grid">
+      <main className="bg-white dark:bg-black main-grid">
         <SideDrawerProvider>
           <Navbar />
         </SideDrawerProvider>
