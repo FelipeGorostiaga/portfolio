@@ -4,13 +4,15 @@ import Image from 'next/image';
 
 const BackgroundImage = () => {
   const { isDark } = useTheme();
-  const backgroundImg = isDark? '/mountains.jpg' : '/snow.jpg';
-
+  const backgroundImg = isDark ? '/backgrounds/mountains.jpg' : '/backgrounds/snow.jpg';
   return (
     <div className={styles.person}>
       <div className={styles.personContainer}>
-        <Image src={backgroundImg} className={styles.circleImg} alt="" width={192} height={192}/>
-        <Image src={'/pfp-no-background.png'} className={styles.personImg} alt="profile picture" width={192} height={192}/>
+        <Image src={backgroundImg} className={styles.circleImg} alt="" width={192} height={192} />
+        <Image src={'/pfp-no-background.png'} className={styles.personImg}
+               alt="profile picture"
+               width={192}
+               height={192} />
       </div>
     </div>
   );
