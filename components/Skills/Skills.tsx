@@ -137,16 +137,21 @@ const Skills = () => {
   }, [isDark]);
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-20 px-20">
-      {skills.map(skill => {
-        return <SkillCard key={skill.name}
-                          imgUrl={skill.imgUrl}
-                          name={skill.name}
-                          description={skill.description}
-                          link={skill.link}
-                          percentage={skill.percentage} />;
-      })}
+    <section className="px-6 py-10 sm:py-20 sm:px-20">
+      <h1 className="text-3xl md:text-6xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-gray-50">Skills</h1>
+      <h3 className="text-base md:text-xl text-sans font-base text-neutral-800 mb-4 md:mb-10 dark:text-neutral-200">These are my weapons of choice.</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+        {skills.map(skill => {
+          return <SkillCard key={skill.name}
+                            imgUrl={skill.imgUrl}
+                            name={skill.name}
+                            description={skill.description}
+                            link={skill.link}
+                            percentage={skill.percentage} />;
+        })}
+      </div>
     </section>
+
   );
 };
 
