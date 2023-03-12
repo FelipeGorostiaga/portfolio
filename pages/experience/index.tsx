@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import UnderConstruction from '../../components/UnderConstruction/UnderConstruction';
 
 export default function ExperiencePage() {
   return (
@@ -8,8 +9,8 @@ export default function ExperiencePage() {
         <meta name="Portfolio" content="Felipe's portfolio website" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <div className="h-full w-full flex items-center justify-center">
-        <p>Experience</p>
+      <div className="h-full w-full flex items-start justify-center pt-20 md:pt-40">
+        <UnderConstruction />
       </div>
     </>
   );
