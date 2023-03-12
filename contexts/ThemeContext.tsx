@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 
-type ThemeType = 'dark' | 'light';
+export type ThemeType = 'dark' | 'light';
 
 interface ThemeContextType {
   isDark: boolean;
