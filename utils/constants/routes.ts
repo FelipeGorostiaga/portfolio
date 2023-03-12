@@ -1,2 +1,2 @@
-export const routes = ['home', 'gallery', 'games', 'experience', 'contact'];
+export const routes = ['home', 'experience', 'skills', 'gallery', 'games', 'contact'];
 

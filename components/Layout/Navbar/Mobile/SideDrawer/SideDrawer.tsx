@@ -5,47 +5,20 @@ import AppsIcon from '@mui/icons-material/Apps';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
 import TerminalIcon from '@mui/icons-material/Terminal';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import { useSideDrawer } from '../../../../../contexts/SideDrawerContext';
 import DrawerItem from './DrawerItem';
-import { useCallback, useMemo } from 'react';
+import { ReactElement, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from '../../../../../contexts/ThemeContext';
 
 interface ILink {
   route: string;
   name: string;
-  icon: any;
+  icon: ReactElement;
 }
-
-const links: ILink[] = [
-  {
-    route: '/',
-    name: 'Home',
-    icon: <HomeIcon fontSize="medium" style={{ color: 'white' }} />,
-  },
-  {
-    route: '/gallery',
-    name: 'Gallery',
-    icon: <CategoryIcon fontSize="medium" style={{ color: 'white' }} />,
-  },
-  {
-    route: '/games',
-    name: 'Games',
-    icon: <AppsIcon fontSize="medium" style={{ color: 'white' }} />,
-  },
-  {
-    route: '/experience',
-    name: 'Experience',
-    icon: <TerminalIcon fontSize="medium" style={{ color: 'white' }} />,
-  },
-  {
-    route: '/contact',
-    name: 'Contact',
-    icon: <AccountCircleIcon fontSize="medium" style={{ color: 'white' }} />,
-  },
-];
-
 
 const SideDrawer = () => {
   const { setIsOpen } = useSideDrawer();
@@ -60,6 +33,16 @@ const SideDrawer = () => {
         icon: <HomeIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
       },
       {
+        route: '/experience',
+        name: 'Experience',
+        icon: <TerminalIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
+      },
+      {
+        route: '/skills',
+        name: 'Skills',
+        icon: <ConstructionIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
+      },
+      {
         route: '/gallery',
         name: 'Gallery',
         icon: <CategoryIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
@@ -67,12 +50,7 @@ const SideDrawer = () => {
       {
         route: '/games',
         name: 'Games',
-        icon: <AppsIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
-      },
-      {
-        route: '/experience',
-        name: 'Experience',
-        icon: <TerminalIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
+        icon: <SportsEsportsIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
       },
       {
         route: '/contact',
