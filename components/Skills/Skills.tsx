@@ -150,6 +150,14 @@ function getSkillsWithTheme(isDark: boolean) {
       link: 'https://reactjs.org/',
       percentage: 70,
     },
+    {
+      name: 'Git',
+      imgUrl: '/logos/git-logo.svg',
+      description: 'An open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. It is the' +
+        ' worlds most used VCS by developers.',
+      link: 'https://reactjs.org/',
+      percentage: 100,
+    },
   ];
 }
 
