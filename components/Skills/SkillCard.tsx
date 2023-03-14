@@ -18,7 +18,7 @@ const SkillCard = ({ name, description, imgUrl }: SkillCardProps) => {
              className="h-[90px] md:h-[120px] aspect-square object-fit group-hover:opacity-80"
              alt={`${name} logo`} />
       </div>
-      <div className="px-6 py-6 flex flex-col">
+      <div className="px-6 pt-6 pb-8 flex flex-col">
         <h1 className="text-xl md:text-2xl font-semibold font-sans text-neutral-700 dark:text-gray-200">{name}</h1>
         <p className="text-sm md:text-base font-sans mt-3 text-neutral-700 dark:text-neutral-300">{description}</p>
       </div>
