@@ -120,7 +120,7 @@ const jobs: JobProps[] = [
       },
       {
         label: 'Vercel',
-        className: 'text-sm text-white dark:text-black font-base rounded-full bg-[#8026C3] dark:bg-white',
+        className: 'text-sm text-white font-base rounded-full bg-[#8026C3]',
       },
     ],
   },
@@ -154,11 +154,11 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'Python',
-        className: 'text-sm text-white dark:text-black font-base rounded-full bg-[#417FB1]',
+        className: 'text-sm text-white font-base rounded-full bg-[#417FB1]',
       },
       {
         label: 'Power BI',
-        className: 'text-sm text-white dark:text-black font-base rounded-full bg-[#F2B915]',
+        className: 'text-sm text-white font-base rounded-full bg-[#F2B915]',
       },
     ],
   },
