@@ -1,68 +1,56 @@
 import JobItem, { JobProps } from './JobItem/JobItem';
 import Timeline from './Timeline/Timeline';
+import JobDescription from './JobDescription/JobDescription';
 
-const TransactionalJob = () => {
-  return (
-    <div>
-      <p className="mb-1">Member of the transactional team of the b2b web application</p>
-      <ul className="list-disc pl-6 pt-2">
-        <li>Develop React components for the business-to-business web application that adjust to the high fidelity designs provided by the design team</li>
-        <li>Develop highly customizable components used by multiple teams in a micro frontend architecture</li>
-        <li>Develop, test and deploy microservices using NestJS with special attention to the security concerns</li>
-      </ul>
-    </div>
-  );
+
+const transactionalProps = {
+  intro: 'Member of the transactional team of the b2b web application',
+  responsibilities: [
+    'Develop React components for the business-to-business web application that adjust to the high fidelity designs provided by the design team',
+    'Develop highly customizable components used by multiple teams in a micro frontend architecture',
+    'Develop, test and deploy microservices using NestJS with special attention to the security concerns',
+  ],
 };
 
-const DomeJob = () => {
-  return (
-    <div>
-      <p>Lead developer of a 4 person team for a crypto startup</p>
-      <ul className="list-disc pl-6 pt-2">
-        <li>Design the software architecture taking into account costs, scalability and performance</li>
-        <li>Develop the backend Rest API</li>
-        <li>Develop the frontend application</li>
-        <li>Develop cron tasks</li>
-        <li>Develop serverless functions</li>
-        <li>Integrate the application with multiple web3 providers and APIs</li>
-        <li>Manage and deploy the software infrastructure</li>
-        <li>Advise in the UI/UX design</li>
-      </ul>
-    </div>
-  );
+const domeProps = {
+  intro: 'Lead developer of a 4 person team for a crypto startup',
+  responsibilities: [
+    'Design the software architecture taking into account costs, scalability and performance',
+    'Develop the backend Rest API',
+    'Develop the frontend application',
+    'Develop cron tasks',
+    'Develop serverless functions',
+    'Integrate the application with multiple web3 providers and APIs',
+    'Manage and deploy the software infrastructure',
+    'Advise in the UI/UX design',
+  ],
 };
 
-const MobileJob = () => {
-  return (
-    <div>
-      <p className="mb-1">Member of the core team of the b2b mobile application</p>
-      <ul className="list-disc pl-6 pt-2">
-        <li>Develop, test and deploy microservices using NestJS</li>
-        <li>Make decisions about the technical aspects of the BFF architecture</li>
-      </ul>
-    </div>
-  );
+const mobileProps = {
+  intro: 'Member of the core team of the b2b mobile application',
+  responsibilities: [
+    'Develop, test and deploy microservices using NestJS',
+    'Make decisions about the technical aspects of the BFF architecture',
+  ],
 };
 
-const TroncalJob = () => {
-  return (
-    <div>
-      <p className="mb-1">Member of the core team of the b2b web application</p>
-      <ul className="list-disc pl-6 pt-2">
-        <li>Develop React components for the frontend application</li>
-        <li>Develop, test and deploy microservices using NestJS</li>
-      </ul>
-    </div>
-  );
-};
-
-const BYMAJob = () => {
-  return (
-    <div>
-
-    </div>
-  )
+const troncalProps = {
+  intro: 'Member of the core team of the b2b web application',
+  responsibilities: [
+    'Develop React components for the frontend application',
+    'Develop, test and deploy microservices using NestJS',
+  ],
 }
+
+const bymaProps = {
+  intro: 'Member of the Investor relations team',
+  responsibilities: [
+    'Create interactive dashboards to provide insights on historical market activity',
+    'Develop cron tasks to parse daily market activity',
+    'Participate in the analysis and presentation of the Quarterly Reports',
+  ],
+}
+
 
 const jobs: JobProps[] = [
   {
@@ -73,7 +61,7 @@ const jobs: JobProps[] = [
     current: true,
     imgSrc: '/logos/galicia-logo.png',
     companyLink: '',
-    description: <TransactionalJob />,
+    description: <JobDescription {...transactionalProps}/>,
     pillList: [
       {
         label: 'NestJS',
@@ -102,7 +90,7 @@ const jobs: JobProps[] = [
         className: 'text-sm text-white font-base rounded-full bg-black',
       },
     ],
-    description: <MobileJob />,
+    description: <JobDescription {...mobileProps} />,
   },
   {
     title: 'Software Engineer',
@@ -111,7 +99,7 @@ const jobs: JobProps[] = [
     endDate: new Date(),
     imgSrc: '/logos/dome-logo.svg',
     companyLink: 'https://',
-    description: <DomeJob />,
+    description: <JobDescription {...domeProps} />,
     pillList: [
       {
         label: 'NestJS',
@@ -153,7 +141,7 @@ const jobs: JobProps[] = [
         className: 'text-sm text-white font-base rounded-full bg-black',
       },
     ],
-    description: <TroncalJob />,
+    description: <JobDescription {...troncalProps} />,
   },
   {
     title: 'Business Intelligence Developer',
@@ -162,7 +150,7 @@ const jobs: JobProps[] = [
     imgSrc: '/logos/byma-logo.png',
     startDate: new Date(),
     endDate: new Date(),
-    description: 'Creat interactive and visually appealing dashboards to provide insights of market activity',
+    description: <JobDescription {...bymaProps} />,
     pillList: [
       {
         label: 'Python',
