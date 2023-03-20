@@ -22,7 +22,7 @@ const domeProps = {
     'Develop serverless functions',
     'Integrate the application with multiple web3 providers and APIs',
     'Manage and deploy the software infrastructure',
-    'Advise in the UI/UX design',
+    'Advise in the UI/UX design process',
   ],
 };
 
