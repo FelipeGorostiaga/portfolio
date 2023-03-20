@@ -9,7 +9,7 @@ export default function GalleryPage() {
         <meta name="Portfolio" content="Felipe's portfolio website" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <div className="h-full w-full flex items-start justify-center pt-20 md:pt-40">
+      <div className="h-full w-full flex items-start justify-center pt-20 md:pt-40 dark:bg-black">
         <UnderConstruction />
       </div>
     </>
