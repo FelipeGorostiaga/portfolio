@@ -35,7 +35,7 @@ const JobItem = (props: JobProps) => {
           <span className=" text-base font-light dark:text-white">{`${startDate} - ${endDate}`}</span>
         </div>
         <div className="text-lg font-sans text-neutral-800 dark:text-white">{props.description}</div>
-        <div className={'w-full flex flex-row justify-start items-center gap-3 mt-8'}>
+        <div className={'w-full flex flex-row justify-start items-center gap-3 mt-8 flex-wrap'}>
           {props.pillList?.map(pill => {
             return <Pill key={pill.label} {...pill} />;
           })}
