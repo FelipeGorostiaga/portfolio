@@ -21,7 +21,7 @@ const JobItem = (props: JobProps) => {
   const startDate = useMemo(() => formatter.format(props.startDate), [props.startDate]);
   const endDate = useMemo(() => props.current ? 'Now' : formatter.format(props.endDate), [props]);
   return (
-    <section className="mb-16 flex flex-row bg-gray-100 px-10 py-10 rounded-xl shadow-xl w-full">
+    <section className="mb-16 flex flex-row bg-gray-100 px-10 py-10 rounded-xl shadow-xl w-full dark:bg-[#080808]">
       <Image src={props.imgSrc}
              className="h-[90px] md:h-[120px] aspect-square object-fit group-hover:opacity-80 rounded"
              width={120}
