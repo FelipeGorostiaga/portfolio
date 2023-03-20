@@ -9,7 +9,7 @@ export default function SkillsPage() {
         <meta name="Portfolio" content="Felipe's portfolio website" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <div className="h-full w-full flex items-center justify-center">
+      <div className="h-full w-full flex items-center justify-center bg-white dark:bg-black">
         <Skills />
       </div>
     </>
