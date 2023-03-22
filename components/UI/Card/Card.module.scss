@@ -1,0 +1,27 @@
+.card {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  background-color: #101010;
+
+  &:after {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(
+                    transparent,
+                    #2563eb,
+                    transparent
+    );
+    position: absolute;
+    left: -1px;
+    content: '';
+    top: 65%;
+    opacity: 0;
+    transition: top 600ms ease, opacity 600ms ease;
+  }
+
+  &:hover:after {
+    top: 25%;
+    opacity: 1;
+  }
+}
