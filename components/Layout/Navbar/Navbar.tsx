@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="bg-neutral-100 h-16 px-14 flex flex-row items-center border-b-2 border-gray-300 dark:bg-neutral-900 dark:border-gray-600 z-10">
+      className="bg-neutral-100 h-16 px-14 flex flex-row items-center border-b-2 border-gray-300 dark:bg-transparent dark:border-gray-600 z-10">
       <div className="flex flex-row gap-12 w-full h-full items-center">
         {routes.map(route => {
           return <NavItem key={route}
