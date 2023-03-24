@@ -76,7 +76,7 @@ const jobs: JobProps[] = [
   {
     title: 'Backend Developer',
     companyName: 'Banco Galicia',
-    startDate: new Date(2022, 11, 1),
+    startDate: new Date(2022, 10, 1),
     endDate: new Date(2023, 2, 1),
     imgSrc: '/logos/galicia-logo.png',
     companyLink: '',
@@ -95,10 +95,10 @@ const jobs: JobProps[] = [
   {
     title: 'Software Engineer',
     companyName: 'Dome.xyz',
-    startDate: new Date(2021, 0, 19),
-    endDate: new Date(),
+    startDate: new Date(2022, 3, 1),
+    endDate: new Date(2022, 11, 1),
     imgSrc: '/logos/dome-logo.svg',
-    companyLink: 'https://',
+    companyLink: 'https://www.mydome.xyz',
     description: <JobDescription {...domeProps} />,
     pillList: [
       {
@@ -127,8 +127,8 @@ const jobs: JobProps[] = [
   {
     title: 'Junior Developer',
     companyName: 'Banco Galicia',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date(2021, 11, 1),
+    endDate: new Date(2022, 10, 1),
     imgSrc: '/logos/galicia-logo.png',
     companyLink: '',
     pillList: [
