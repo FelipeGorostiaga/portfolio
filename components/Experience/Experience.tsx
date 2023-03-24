@@ -60,34 +60,34 @@ const jobs: JobProps[] = [
     endDate: new Date(),
     current: true,
     imgSrc: '/logos/galicia-logo.png',
-    companyLink: '',
+    companyLink: 'https://www.galicia.ar/empresas',
     description: <JobDescription {...transactionalProps}/>,
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
   },
   {
     title: 'Backend Developer',
     companyName: 'Banco Galicia',
-    startDate: new Date(2022, 11, 1),
+    startDate: new Date(2022, 10, 1),
     endDate: new Date(2023, 2, 1),
     imgSrc: '/logos/galicia-logo.png',
-    companyLink: '',
+    companyLink: 'https://www.galicia.ar/empresas',
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Datagrid',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
     description: <JobDescription {...mobileProps} />,
@@ -95,50 +95,50 @@ const jobs: JobProps[] = [
   {
     title: 'Software Engineer',
     companyName: 'Dome.xyz',
-    startDate: new Date(2021, 0, 19),
-    endDate: new Date(),
+    startDate: new Date(2022, 3, 1),
+    endDate: new Date(2022, 11, 1),
     imgSrc: '/logos/dome-logo.svg',
-    companyLink: 'https://',
+    companyLink: 'https://www.mydome.xyz',
     description: <JobDescription {...domeProps} />,
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
 
       {
         label: 'PostgreSQL',
-        className: 'text-sm text-white font-base rounded-full bg-[#679CC7]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#679CC7]',
       },
       {
         label: 'AWS',
-        className: 'text-sm text-white font-base rounded-full bg-[#232F3E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#232F3E]',
       },
       {
         label: 'Vercel',
-        className: 'text-sm text-white font-base rounded-full bg-[#8026C3]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#8026C3]',
       },
     ],
   },
   {
     title: 'Junior Developer',
     companyName: 'Banco Galicia',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date(2021, 11, 1),
+    endDate: new Date(2022, 10, 1),
     imgSrc: '/logos/galicia-logo.png',
-    companyLink: '',
+    companyLink: 'https://www.galicia.ar/empresas',
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
     description: <JobDescription {...troncalProps} />,
@@ -146,19 +146,19 @@ const jobs: JobProps[] = [
   {
     title: 'Business Intelligence Developer',
     companyName: 'Bolsas y Mercados Argentinos',
-    companyLink: '',
+    companyLink: 'https://www.byma.com.ar/',
     imgSrc: '/logos/byma-logo.png',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date(2020, 5, 1),
+    endDate: new Date(2020, 11, 1),
     description: <JobDescription {...bymaProps} />,
     pillList: [
       {
         label: 'Python',
-        className: 'text-sm text-white font-base rounded-full bg-[#417FB1]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#417FB1]',
       },
       {
         label: 'Power BI',
-        className: 'text-sm text-white font-base rounded-full bg-[#F2B915]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#F2B915]',
       },
     ],
   },
@@ -168,7 +168,7 @@ const Experience = () => {
   return (
     <section className="px-6 py-10 sm:py-20 sm:px-20 max-w-7xl">
       <h1
-        className="text-3xl md:text-6xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-gray-50">
+        className="text-3xl md:text-6xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-neutral-100">
         Experience
       </h1>
       <h3
@@ -179,7 +179,7 @@ const Experience = () => {
         {jobs.map((job, index) => {
           const isLast = index === (jobs.length - 1);
           return (
-            <div className="flex flex-row gap-10 w-full" key={`${job.startDate.getDate()} ${job.title}`}>
+            <div className="flex flex-row gap-2 md:gap-10 w-full" key={`${job.startDate.getDate()} ${job.title}`}>
               <Timeline showBar={!isLast} />
               <JobItem {...job} />
             </div>
