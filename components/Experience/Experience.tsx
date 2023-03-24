@@ -65,11 +65,11 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
   },
@@ -83,11 +83,11 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Datagrid',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
     description: <JobDescription {...mobileProps} />,
@@ -103,24 +103,24 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
 
       {
         label: 'PostgreSQL',
-        className: 'text-sm text-white font-base rounded-full bg-[#679CC7]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#679CC7]',
       },
       {
         label: 'AWS',
-        className: 'text-sm text-white font-base rounded-full bg-[#232F3E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#232F3E]',
       },
       {
         label: 'Vercel',
-        className: 'text-sm text-white font-base rounded-full bg-[#8026C3]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#8026C3]',
       },
     ],
   },
@@ -134,11 +134,11 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-sm text-white font-base rounded-full bg-black',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
     description: <JobDescription {...troncalProps} />,
@@ -154,11 +154,11 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'Python',
-        className: 'text-sm text-white font-base rounded-full bg-[#417FB1]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#417FB1]',
       },
       {
         label: 'Power BI',
-        className: 'text-sm text-white font-base rounded-full bg-[#F2B915]',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#F2B915]',
       },
     ],
   },
@@ -179,7 +179,7 @@ const Experience = () => {
         {jobs.map((job, index) => {
           const isLast = index === (jobs.length - 1);
           return (
-            <div className="flex flex-row gap-10 w-full" key={`${job.startDate.getDate()} ${job.title}`}>
+            <div className="flex flex-row gap-2 md:gap-10 w-full" key={`${job.startDate.getDate()} ${job.title}`}>
               <Timeline showBar={!isLast} />
               <JobItem {...job} />
             </div>
