@@ -168,7 +168,7 @@ const Experience = () => {
   return (
     <section className="px-6 py-10 sm:py-20 sm:px-20 max-w-7xl">
       <h1
-        className="text-3xl md:text-6xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-gray-50">
+        className="text-3xl md:text-6xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-neutral-100">
         Experience
       </h1>
       <h3
