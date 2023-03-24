@@ -60,7 +60,7 @@ const jobs: JobProps[] = [
     endDate: new Date(),
     current: true,
     imgSrc: '/logos/galicia-logo.png',
-    companyLink: '',
+    companyLink: 'https://www.galicia.ar/empresas',
     description: <JobDescription {...transactionalProps}/>,
     pillList: [
       {
@@ -79,7 +79,7 @@ const jobs: JobProps[] = [
     startDate: new Date(2022, 10, 1),
     endDate: new Date(2023, 2, 1),
     imgSrc: '/logos/galicia-logo.png',
-    companyLink: '',
+    companyLink: 'https://www.galicia.ar/empresas',
     pillList: [
       {
         label: 'NestJS',
@@ -130,7 +130,7 @@ const jobs: JobProps[] = [
     startDate: new Date(2021, 11, 1),
     endDate: new Date(2022, 10, 1),
     imgSrc: '/logos/galicia-logo.png',
-    companyLink: '',
+    companyLink: 'https://www.galicia.ar/empresas',
     pillList: [
       {
         label: 'NestJS',
@@ -146,10 +146,10 @@ const jobs: JobProps[] = [
   {
     title: 'Business Intelligence Developer',
     companyName: 'Bolsas y Mercados Argentinos',
-    companyLink: '',
+    companyLink: 'https://www.byma.com.ar/',
     imgSrc: '/logos/byma-logo.png',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date(2020, 5, 1),
+    endDate: new Date(2020, 11, 1),
     description: <JobDescription {...bymaProps} />,
     pillList: [
       {
