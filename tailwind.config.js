@@ -10,6 +10,9 @@ module.exports = {
       },
       aspectRatio: {
         "book": "1 / 1.6"
+      },
+      screens: {
+        "xs": "480px"
       }
     }
   },
