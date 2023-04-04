@@ -7,6 +7,9 @@ module.exports = {
       colors: {
         darkgray: "#2B2B2B",
         spacegray: "#101010"
+      },
+      aspectRatio: {
+        "book": "1 / 1.6"
       }
     }
   },
