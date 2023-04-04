@@ -1,10 +1,9 @@
 import styles from './Home.module.scss';
-import Button, { ButtonSize } from '@ui/Button/Button';
+import Button, { type ButtonSize } from '@ui/Button/Button';
 import BackgroundImage from '@ui/BackgroundImage/BackgroundImage';
 import BlobTracker from '@ui/BlobMouseTracker/BlobTracker';
 import { useRouter } from 'next/router';
 import useBreakpoints from '~/hooks/useBreakpoints';
-import { useSession } from 'next-auth/react';
 
 const Home = () => {
   const { sm, md } = useBreakpoints();
