@@ -1,5 +1,5 @@
 import { type AppType } from 'next/app';
-import ThemeProvider, { useTheme } from '../contexts/ThemeContext';
+import ThemeProviderCustom, { useTheme } from '../contexts/ThemeContext';
 import Navbar from '../components/Layout/Navbar/Navbar';
 import SideDrawerProvider from '../contexts/SideDrawerContext';
 import Footer from '../components/Layout/Footer/Footer';
@@ -7,7 +7,20 @@ import { SessionProvider } from 'next-auth/react';
 import { type Session } from 'next-auth';
 import { api } from '~/utils/api';
 import '~/styles/globals.css';
+import { createTheme, ThemeProvider } from '@mui/material';
 
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
 
 const MyApp: AppType<{ session: Session | null }> = ({
                                                        Component,
@@ -15,9 +28,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
                                                      }) => {
   return (
     <SessionProvider session={session}>
-      <ThemeProvider>
+      <ThemeProviderCustom>
         <MainLayout Component={Component} pageProps={pageProps} />
-      </ThemeProvider>
+      </ThemeProviderCustom>
     </SessionProvider>
   );
 };
@@ -25,14 +38,17 @@ const MyApp: AppType<{ session: Session | null }> = ({
 const MainLayout = ({ Component, pageProps }: any) => {
   const { isDark } = useTheme();
   return (
-    <main
-      className={`dark:bg-gradient-to-b dark:from-black dark:to-[#020714] main-grid ${isDark ? '' : 'radialBg'}`}>
-      <SideDrawerProvider>
-        <Navbar />
-      </SideDrawerProvider>
-      <Component {...pageProps} />
-      <Footer />
-    </main>
+    <ThemeProvider theme={isDark? darkTheme : lightTheme} >
+      <main
+        className={`dark:bg-gradient-to-b dark:from-black dark:to-[#020714] main-grid ${isDark ? '' : 'radialBg'}`}>
+        <SideDrawerProvider>
+          <Navbar />
+        </SideDrawerProvider>
+        <Component {...pageProps} />
+        <Footer />
+      </main>
+    </ThemeProvider>
+
   );
 };
 

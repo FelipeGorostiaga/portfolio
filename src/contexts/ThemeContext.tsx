@@ -15,7 +15,7 @@ export const useTheme = () => {
   return useContext(ThemeContext) as ThemeContextType;
 };
 
-const ThemeProvider = ({ children }: { children: JSX.Element }) => {
+const ThemeProviderCustom = ({ children }: { children: JSX.Element }) => {
   const [theme, setTheme] = useState<ThemeType>('dark');
 
   useEffect(() => {
@@ -68,4 +68,4 @@ const ThemeProvider = ({ children }: { children: JSX.Element }) => {
   );
 };
 
-export default ThemeProvider;
+export default ThemeProviderCustom;
