@@ -125,7 +125,7 @@ const Books = () => {
       <BookFilters {...filterProps} />
       <div
         className="grid grid-cols-1 place-items-center gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
-        {booksMocks.map(book => {
+        {books?.map(book => {
           return <BookItem {...book} key={book.id} />;
         })}
       </div>
