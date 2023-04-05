@@ -83,7 +83,6 @@ const booksMocks = [
     year: '2021'
   },
 ];
-//2xl:grid-cols-4 2xl:gap-10
 
 const Books = () => {
   return (
