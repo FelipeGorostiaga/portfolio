@@ -4,6 +4,7 @@ import BackgroundImage from '@ui/BackgroundImage/BackgroundImage';
 import BlobTracker from '@ui/BlobMouseTracker/BlobTracker';
 import { useRouter } from 'next/router';
 import useBreakpoints from '~/hooks/useBreakpoints';
+import Image from 'next/image';
 
 const Home = () => {
   const { sm, md } = useBreakpoints();
@@ -37,7 +38,8 @@ const Home = () => {
           is my purpose.
         </p>
         <div className="flex items-center flex-wrap justify-start w-full gap-3 md:gap-7 mt-12">
-          <Button intent="primary" size={contactButtonSize} onClick={() => void router.push('/contact')}>Contact me</Button>
+          <Button intent="primary" size={contactButtonSize} onClick={() => void router.push('/contact')}>Contact
+            me</Button>
           <Button intent="secondary" size={projectsButtonSize} onClick={() => void router.push('/experience')}>See my
             projects</Button>
         </div>

@@ -1,5 +1,5 @@
 import { type AppType } from 'next/app';
-import ThemeProvider from '../contexts/ThemeContext';
+import ThemeProvider, { useTheme } from '../contexts/ThemeContext';
 import Navbar from '../components/Layout/Navbar/Navbar';
 import SideDrawerProvider from '../contexts/SideDrawerContext';
 import Footer from '../components/Layout/Footer/Footer';
@@ -16,16 +16,23 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <ThemeProvider>
-        <main
-          className="bg-gradient-to-b from-[#E3E0E0] to-[#FFFFFF] dark:from-black dark:to-[#020714] main-grid">
-          <SideDrawerProvider>
-            <Navbar />
-          </SideDrawerProvider>
-          <Component {...pageProps} />
-          <Footer />
-        </main>
+        <MainLayout Component={Component} pageProps={pageProps} />
       </ThemeProvider>
     </SessionProvider>
+  );
+};
+
+const MainLayout = ({ Component, pageProps }: any) => {
+  const { isDark } = useTheme();
+  return (
+    <main
+      className={`dark:bg-gradient-to-b dark:from-black dark:to-[#020714] main-grid ${isDark ? '' : 'radialBg'}`}>
+      <SideDrawerProvider>
+        <Navbar />
+      </SideDrawerProvider>
+      <Component {...pageProps} />
+      <Footer />
+    </main>
   );
 };
 

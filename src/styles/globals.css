@@ -49,3 +49,7 @@ a {
   min-height: 100vh;
   width: 100%;
 }
+
+.radialBg {
+  background: radial-gradient(84.08% 84.08% at 48.84% 48.97%, #FFFFFF 0%, #E8E2DA 37.38%, #CACDCF 59.52%, #E0E7EE 100%);
+}

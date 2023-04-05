@@ -41,9 +41,12 @@ const BlobTracker = () => {
     };
   }, [handleMouseMove]);
 
+  if (!isDark) {
+    return null;
+  }
 
   return (
-    <div className={`${styles.blob} ${isDark? styles.blobDark : styles.blobLight}`} ref={blobRef}></div>
+    <div className={`${styles.blob} ${styles.blobDark}`} ref={blobRef}></div>
   );
 };
 
