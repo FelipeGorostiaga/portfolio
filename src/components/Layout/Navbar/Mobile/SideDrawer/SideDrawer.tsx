@@ -42,7 +42,7 @@ const SideDrawer = () => {
         icon: <ConstructionIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
       },
       {
-        route: '/gallery',
+        route: '/gallery/books',
         name: 'Gallery',
         icon: <CategoryIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
       },
@@ -67,7 +67,7 @@ const SideDrawer = () => {
     <div className={`${styles.container} bg-gray-50 dark:bg-black`}>
       <div
         className="w-[40px] h-[40px] rounded-full bg-gray-600 dark:bg-neutral-900 absolute flex items-center justify-center top-[1rem] right-[1rem] cursor-pointer">
-        <ArrowBackIosNewIcon onClick={() => setIsOpen(false)} className={styles.arrowIcon} style={{ color: 'white' }} />
+        <ArrowBackIosNewIcon onClick={() => setIsOpen(false)} className='mr-0.5' style={{ color: 'white' }} />
       </div>
       <div className="flex flex-row gap-4 items-center pl-8 w-full">
         <Image src={'/pfp.jpg'} alt="" height={60} width={60} className={styles.profileImage} />

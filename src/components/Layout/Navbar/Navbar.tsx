@@ -12,7 +12,7 @@ import useBreakpoints from '~/hooks/useBreakpoints';
 const Navbar = () => {
   const { theme, switchTheme } = useTheme();
   const router = useRouter();
-  const { sm } = useBreakpoints();
+  const { md } = useBreakpoints();
   const isDark: boolean = useMemo(() => theme === 'dark', [theme]);
   const [selectedItem, setSelectedItem] = useState<string>('home');
 
@@ -25,14 +25,14 @@ const Navbar = () => {
     }
   }, [router.asPath]);
 
-  if (sm) {
+  if (md) {
     return <NavBarMobile />;
   }
 
   return (
     <nav
-      className="bg-neutral-100 bg-opacity-70 h-16 px-14 flex flex-row items-center border-b-2 border-gray-300 dark:bg-transparent dark:border-gray-600 z-10">
-      <div className="flex flex-row gap-12 w-full h-full items-center">
+      className="bg-neutral-100 bg-opacity-70 h-16 px-6 md:px-14 flex flex-row items-center border-b-2 border-gray-300 dark:bg-transparent dark:border-gray-600 z-10">
+      <div className="flex flex-row gap-7 md:gap-12 w-full h-full items-center">
         {routes.map(route => {
           return <NavItem key={route}
                           item={route}
