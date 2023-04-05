@@ -1,5 +1,5 @@
 import styles from './GlowCard.module.scss';
-import { ReactElement } from 'react';
+import { type ReactElement } from 'react';
 
 interface CardProps {
   className?: string;

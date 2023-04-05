@@ -6,7 +6,7 @@ interface TextProps {
   className?: string;
 }
 
-const HackerText = ({ children, className }: TextProps) => {
+const HackerText = ({ children, className = '' }: TextProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [shownText, setShownText] = useState<string>(children);
 

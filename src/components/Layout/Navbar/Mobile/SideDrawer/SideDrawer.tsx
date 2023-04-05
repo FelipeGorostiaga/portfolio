@@ -9,7 +9,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import { useSideDrawer } from '~/contexts/SideDrawerContext';
 import DrawerItem from './DrawerItem';
-import { ReactElement, useCallback, useMemo } from 'react';
+import { type ReactElement, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from '~/contexts/ThemeContext';
 

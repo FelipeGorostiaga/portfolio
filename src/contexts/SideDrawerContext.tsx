@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
+import React, { type Dispatch, type SetStateAction, useContext, useState } from 'react';
 
 interface SideDrawerContextType {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-import { MouseEventHandler, ReactNode } from 'react';
+import { type MouseEventHandler, type ReactNode } from 'react';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content' | 'pill';
 export type ButtonIntent = 'primary' | 'secondary' | 'danger';

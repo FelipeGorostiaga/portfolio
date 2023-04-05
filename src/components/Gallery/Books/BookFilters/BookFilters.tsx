@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { KeyboardEvent, useState } from 'react';
+import { type KeyboardEvent, useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 type SortCriteria = 'rating' | 'year';
@@ -20,7 +20,7 @@ const BookFilters = () => {
   };
 
   const handleSearch = () => {
-
+    console.log('')
   };
 
   return (

@@ -37,8 +37,8 @@ const Home = () => {
           is my purpose.
         </p>
         <div className="flex items-center flex-wrap justify-start w-full gap-3 md:gap-7 mt-12">
-          <Button intent="primary" size={contactButtonSize} onClick={() => router.push('/contact')}>Contact me</Button>
-          <Button intent="secondary" size={projectsButtonSize} onClick={() => router.push('/experience')}>See my
+          <Button intent="primary" size={contactButtonSize} onClick={() => void router.push('/contact')}>Contact me</Button>
+          <Button intent="secondary" size={projectsButtonSize} onClick={() => void router.push('/experience')}>See my
             projects</Button>
         </div>
       </div>

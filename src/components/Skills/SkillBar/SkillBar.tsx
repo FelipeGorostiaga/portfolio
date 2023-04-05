@@ -1,4 +1,3 @@
-
 interface SkillBarProp {
   percentage: number;
   color?: string;
@@ -7,9 +6,9 @@ interface SkillBarProp {
 const SkillBar = ({ percentage }: SkillBarProp) => {
   return (
     <span>
-
+      {percentage}
     </span>
   );
-}
+};
 
 export default SkillBar;

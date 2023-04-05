@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
-import { BaseProps } from '~/utils/interfaces/baseProps.interface';
-import { ChangeEvent } from 'react';
+import { type BaseProps } from '~/utils/interfaces/baseProps.interface';
+import { type ChangeEvent } from 'react';
 
 type InputType = 'text' | 'number' | 'email' | 'phone' | 'password';
 type InputSize = 'fullWidth' | 'small';
@@ -16,7 +16,7 @@ export interface ButtonProps extends BaseProps {
   multiline?: boolean;
   value: string | number | readonly string[] | undefined;
   onChange: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void | undefined;
-  onBlur?: any;
+  onBlur?: (e: any) => void;
   rows?: number;
 }
 

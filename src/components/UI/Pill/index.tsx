@@ -1,4 +1,4 @@
-import { IPill } from '@ui/Pill/type';
+import { type IPill } from '@ui/Pill/type';
 
 const Pill = ({ label, className, ...rest }: IPill) => {
   return (

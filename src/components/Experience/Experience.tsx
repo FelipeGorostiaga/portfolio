@@ -1,4 +1,4 @@
-import JobItem, { JobProps } from './JobItem/JobItem';
+import JobItem, { type JobProps } from './JobItem/JobItem';
 import Timeline from './Timeline/Timeline';
 import JobDescription from './JobDescription/JobDescription';
 

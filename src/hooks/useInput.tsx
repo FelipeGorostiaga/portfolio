@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
 type ValidateFunction = (value: string) => boolean;
 
@@ -13,7 +13,7 @@ const useInput = (validateValue: ValidateFunction, defaultValue = '') => {
     setValue(event.target.value);
   };
 
-  const inputBlurHandler = (event?: FocusEvent) => {
+  const inputBlurHandler = () => {
     setTouched(true);
   };
 

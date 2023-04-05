@@ -1,4 +1,4 @@
-import { ZodString } from 'zod';
+import { type ZodString } from 'zod';
 
 export function capitalize(str: string): string {
   if (!str && str.length === 0) {

@@ -22,10 +22,11 @@ const BlobTracker = () => {
     if (heightOff <= 82) {
       top = window.innerHeight - 82;
     }
+
     if (blobRef.current) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      blobRef.current.animate({
+      blobRef?.current?.animate({
         left: `${left}px`,
         top: `${top}px`,
       }, { duration: 3000, fill: 'forwards' });

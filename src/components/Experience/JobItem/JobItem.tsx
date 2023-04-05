@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { ReactElement, useMemo } from 'react';
-import { IPill } from '@ui/Pill/type';
+import { type ReactElement, useMemo } from 'react';
+import { type IPill } from '@ui/Pill/type';
 import Pill from '@ui/Pill';
 import Card from '@ui/Card/Card';
 import Link from 'next/link';
