@@ -20,9 +20,7 @@ const BookFilters = (props: BookFilterProps) => {
 
   const handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
-      if (props.searchValue.length > 0) {
-        props.handleSearch();
-      }
+      props.handleSearch();
     }
   };
 
@@ -39,7 +37,7 @@ const BookFilters = (props: BookFilterProps) => {
                onBlur={() => setInputFocused(false)}
                onKeyDown={(e) => handleKeyPress(e)}
         />
-        {props.searchValue.length > 0 &&
+        {(props.searchValue.length > 0 || inputFocused) &&
           <SearchIcon fontSize="medium" sx={{ color: '#1976D2' }} className="cursor-pointer" onClick={() => props.handleSearch()} />}
       </div>
       <div className="grid grid-cols-2 items-center gap-4 w-[300px]">
