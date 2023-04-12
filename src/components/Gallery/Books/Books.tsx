@@ -118,7 +118,7 @@ const Books = () => {
   return (
     <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0">
       <h1
-        className="text-3xl md:text-4xl lg:text-6xl text-sans font-bold mb-1 md:mb-5 text-neutral-800 dark:text-neutral-100">
+        className="text-4xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-neutral-100">
         Books
       </h1>
       <BookFilters {...filterProps} />

@@ -28,7 +28,7 @@ const NavItemMenu = React.forwardRef(({ title, selected, dropdownItems, dropdown
       {!selected && <div className="bg-transparent w-full h-1"></div>}
       {selected && <div className="bg-blue-400 dark:bg-blue-600 w-full h-1"></div>}
       {dropdownOpen && (
-        <div className='absolute left-[1rem] top-[120%] bg-neutral-200 bg-opacity-90 rounded-xl flex flex-col  w-[150px]' ref={ref}>
+        <div className='absolute left-[1rem] top-[120%] bg-neutral-200 bg-opacity-90 rounded-xl flex flex-col w-[150px] z-50' ref={ref}>
           {
             dropdownItems.map(item => {
 
