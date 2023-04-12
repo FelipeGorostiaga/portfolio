@@ -21,13 +21,11 @@ export const booksRouter = createTRPCRouter({
               {
                 author: {
                   contains: input.value,
-                  mode: 'insensitive',
                 },
               },
               {
                 title: {
                   contains: input.value,
-                  mode: 'insensitive',
                 },
               },
             ],

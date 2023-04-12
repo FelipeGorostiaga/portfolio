@@ -4,7 +4,7 @@ import JobDescription from './JobDescription/JobDescription';
 
 
 const transactionalProps = {
-  intro: 'Member of the transactional team of the b2b web application',
+  intro: 'Member of the transactional team of the B2B web application',
   responsibilities: [
     'Develop React components for the business-to-business web application that adjust to the high fidelity designs provided by the design team',
     'Develop highly customizable components used by multiple teams in a micro frontend architecture',
@@ -27,7 +27,7 @@ const domeProps = {
 };
 
 const mobileProps = {
-  intro: 'Member of the core team of the b2b mobile application',
+  intro: 'Member of the core team of the B2B mobile application',
   responsibilities: [
     'Develop, test and deploy microservices using NestJS',
     'Make decisions about the technical aspects of the BFF architecture',
@@ -35,7 +35,7 @@ const mobileProps = {
 };
 
 const troncalProps = {
-  intro: 'Member of the core team of the b2b web application',
+  intro: 'Member of the core team of the B2B web application',
   responsibilities: [
     'Develop React components for the frontend application',
     'Develop, test and deploy microservices using NestJS',
