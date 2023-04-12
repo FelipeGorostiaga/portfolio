@@ -15,14 +15,7 @@ export const booksRouter = createTRPCRouter({
         rate: input.order,
       } : { year: input.order };
 
-      // orderBy: [
-      //             {
-      //               rate: input.order,
-      //             },
-      //           ],
-
-      return ctx.prisma.book.findMany(
-        {
+      return ctx.prisma.book.findMany({
           where: {
             OR: [
               {
@@ -39,6 +32,9 @@ export const booksRouter = createTRPCRouter({
               },
             ],
           },
+          orderBy: [
+            orderByClause,
+          ],
           take: 10,
         },
       );
