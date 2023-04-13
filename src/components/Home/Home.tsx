@@ -9,7 +9,7 @@ const Home = () => {
   const { sm, md } = useBreakpoints();
   const router = useRouter();
   const contactButtonSize: ButtonSize = sm ? 'fullWidth' : md ? 'small' : 'medium';
-  const projectsButtonSize: ButtonSize = sm ? 'fullWidth' : md ? 'small' : 'small';
+  const projectsButtonSize: ButtonSize = sm ? 'fullWidth' : 'medium';
 
   return (
     <>
@@ -40,7 +40,7 @@ const Home = () => {
           <Button intent="primary" size={contactButtonSize} onClick={() => void router.push('/contact')}>Contact
             me</Button>
           <Button intent="secondary" size={projectsButtonSize} onClick={() => void router.push('/experience')}>See my
-            projects</Button>
+            work experience</Button>
         </div>
       </div>
       {!md && <BlobTracker />}

@@ -21,18 +21,20 @@ const Navbar = () => {
 
   const handleClickOutsideDropdown = (e: any) => {
     const id = e.target?.id;
-    if (id && id === 'gallery-item') {
+    const type = e.target?.tagName;
+    if ((id && (id === 'gallery-item' || id === 'gallery-sub-item' || id === 'icon')) || type === 'path') {
       return;
+    } else if (galleryDropdownOpen) {
+      setGalleryDropdownOpen(false);
     }
-    setGalleryDropdownOpen(false);
-  }
+  };
 
   useOutsideAlerter(galleryDropdownRef, handleClickOutsideDropdown);
 
-    useEffect(() => {
-      const path = router.asPath;
-      setSelectedItem(path);
-    }, [router.asPath]);
+  useEffect(() => {
+    const path = router.asPath;
+    setSelectedItem(path);
+  }, [router.asPath]);
 
   if (md) {
     return <NavBarMobile />;
@@ -74,6 +76,11 @@ const Navbar = () => {
                  route="/skills"
                  selected={selectedItem === '/skills'}
                  setSelectedItem={setSelectedItem} />
+
+        <NavItem title="Games"
+                 route="/games"
+                 selected={selectedItem === '/games'}
+                 setSelectedItem={setSelectedItem} />
         <NavItemMenu dropdownItems={dropdownItems}
                      title="Gallery"
                      selected={gallerySelected}
@@ -82,10 +89,6 @@ const Navbar = () => {
                      setSelectedItem={setSelectedItem}
                      ref={galleryDropdownRef}
         />
-        <NavItem title="Games"
-                 route="/games"
-                 selected={selectedItem === '/games'}
-                 setSelectedItem={setSelectedItem} />
         <NavItem title="Contact"
                  route="/contact"
                  selected={selectedItem === '/contact'}
