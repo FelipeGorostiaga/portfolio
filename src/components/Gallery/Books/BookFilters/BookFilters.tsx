@@ -12,6 +12,7 @@ interface BookFilterProps {
   sortDirection: SortDirection;
   setSortDirection: Dispatch<SetStateAction<SortDirection>>;
   handleSearch: () => void;
+  disabled: boolean;
 }
 
 const BookFilters = (props: BookFilterProps) => {
@@ -48,6 +49,7 @@ const BookFilters = (props: BookFilterProps) => {
             id="demo-simple-select"
             value={props.sortCriteria}
             label="Sort by"
+            disabled={props.disabled}
             onChange={e => props.setSortCriteria(e.target.value as SortCriteria)}
           >
             <MenuItem value={'rating'}>Rating</MenuItem>
@@ -61,6 +63,7 @@ const BookFilters = (props: BookFilterProps) => {
             id="demo-simple-select"
             value={props.sortDirection}
             label="Order"
+            disabled={props.disabled}
             onChange={e => props.setSortDirection(e.target.value as SortDirection)}
           >
             <MenuItem value={'desc'}>Descending</MenuItem>
