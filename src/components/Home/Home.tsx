@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <div
-        className="w-full max-w-4xl mx-auto pt-8 pb-12 flex flex-col md:pt-32 px-6 md:px-12 lg:px-0 md:pb-24">
+        className="w-full max-w-4xl mx-auto pt-8 pb-12 flex flex-col md:pt-32 px-6 md:px-12 lg:px-0 md:pb-24 z-10">
         <div
           className="flex flex-col-reverse items-center justify-between md:flex-row md:justify-start gap-4 xs:gap-8 md:gap-14 lg:gap-24 2xl:gap-40">
           <div className="flex flex-col gap-1 xs:gap-2 items-center md:items-start justify-center">

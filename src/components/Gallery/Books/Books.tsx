@@ -3,9 +3,31 @@ import BookFilters from './BookFilters/BookFilters';
 import { api } from '~/utils/api';
 import { useState } from 'react';
 import BookItemSkeleton from '~/components/Gallery/Books/BookItem/BookItemSkeleton';
+import { inferRouterOutputs } from '@trpc/server';
+import { AppRouter } from '~/server/api/root';
 
+type RouterOutput = inferRouterOutputs<AppRouter>;
+
+type IBook = RouterOutput['books']['getAll'][0];
 export type SortCriteria = 'rating' | 'year';
 export type SortDirection = 'asc' | 'desc';
+/*
+function sortBooksByYear(bookA: Book, bookB: IBook, direction: SortDirection) {
+
+}
+
+function sortBooksByRate(bookA: Book, bookB: IBook, direction: SortDirection) {
+
+}
+
+function sortBooksByCriteria(a: IBook, b: IBook, direction: SortDirection, criteria: SortCriteria) {
+  switch(criteria) {
+    case 'rating':
+      return sortBooksByYear(a, b, direction);
+    case 'year':
+      return sortBooksByRate(a, b, direction);
+  }
+}*/
 
 const Books = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -24,7 +46,7 @@ const Books = () => {
     setActiveSearchValue(searchValue);
   };
 
-  const disabled = isLoading? true : (books? books.length <= 1 : true);
+  const disabled = isLoading ? true : (books ? books.length <= 1 : true);
 
   const filterProps = {
     searchValue,
@@ -57,6 +79,7 @@ const Books = () => {
           <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
         }
       </div>
+      <div></div>
     </section>
   );
 };
