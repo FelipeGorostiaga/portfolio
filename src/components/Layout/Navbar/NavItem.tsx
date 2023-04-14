@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { capitalize } from '~/utils/lib/string';
 
 interface NavItemProps {
   route: string;

@@ -25,7 +25,7 @@ const NotFoundPage: NextPage = () => {
           found
         </div>
         <div className="text-sm md:text-base text-neutral-500 text-center dark:text-neutral-400">The requested page
-          doesn't exist
+          doesn&apos;t exist
         </div>
       </div>
     </>

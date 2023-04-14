@@ -2,7 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { type Dispatch, type KeyboardEvent, type SetStateAction, useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useTheme } from '~/contexts/ThemeContext';
-import { SortCriteria, SortDirection } from '~/components/Gallery/Books/Books';
+import { type SortCriteria, type SortDirection } from '~/components/Gallery/Books/Books';
 
 interface BookFilterProps {
   searchValue: string;

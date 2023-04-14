@@ -10,12 +10,10 @@ import NavItemMenu from '~/components/Layout/Navbar/NavItemMenu';
 import { useOutsideAlerter } from '~/hooks/useClickOutside';
 
 
-// todo: extract func to here -> border-transparent and border-selected
 function shouldIgnoreCloseAction(id: string, type?: string): boolean {
   const idCondition = id && (id === 'gallery-item' || id === 'gallery-sub-item' || id === 'icon' || id === 'border-transparent' || id === 'border-selected');
   return idCondition || type === 'path';
 }
-
 
 const Navbar = () => {
   const { theme, switchTheme } = useTheme();

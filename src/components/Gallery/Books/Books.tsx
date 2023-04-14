@@ -13,7 +13,7 @@ const Books = () => {
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [activeSearchValue, setActiveSearchValue] = useState('');
 
-  const { data: books, refetch: refetchBooks, isLoading } = api.books.getAll.useQuery({
+  const { data: books, isLoading } = api.books.getAll.useQuery({
     value: activeSearchValue,
     criteria: sortCriteria,
     order: sortDirection,
@@ -24,6 +24,8 @@ const Books = () => {
     setActiveSearchValue(searchValue);
   };
 
+  const disabled = isLoading? true : (books? books.length > 1 : true);
+
   const filterProps = {
     searchValue,
     setSearchValue,
@@ -32,7 +34,7 @@ const Books = () => {
     sortDirection,
     setSortDirection,
     handleSearch,
-    disabled: isLoading || (books!.length <= 1),
+    disabled,
   };
 
   return (
