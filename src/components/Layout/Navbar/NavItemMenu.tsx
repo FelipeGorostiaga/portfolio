@@ -33,12 +33,12 @@ const NavItemMenu = React.forwardRef(({
          {title}
         <KeyboardArrowDownIcon fontSize="small" sx={{ color: '#4b5563' }} id='icon'/>
       </span>
-      {!selected && <div className="bg-transparent w-full h-1"></div>}
-      {selected && <div className="bg-blue-400 dark:bg-blue-600 w-[70%] h-1"></div>}
+      {!selected && <div className="bg-transparent w-full h-1" id='border-transparent'></div>}
+      {selected && <div className="bg-blue-400 dark:bg-blue-600 w-[70%] h-1" id='border-selected'></div>}
       {dropdownOpen && (
         <div
           className="absolute left-0 top-[calc(100%+1.25rem)] bg-neutral-200 rounded-lg flex flex-col w-[250px] z-50
-           dark:bg-spacegray shadow-xl dark:shadow dark:shadow-blue-800"
+           dark:bg-black shadow-xl dark:shadow dark:shadow-blue-800"
           ref={ref}>
           {
             dropdownItems.map(item => {
@@ -48,7 +48,7 @@ const NavItemMenu = React.forwardRef(({
                       href={item.route}
                       className="px-3 py-3 pl-4 font-sans text-gray-600 text-sm font-light cursor-pointer dark:text-gray-200 first:rounded-t-lg last:rounded-b-lg
                       hover:text-sky-400 hover:bg-neutral-300
-                      hover:dark:text-blue-400  dark:hover:bg-darkgray">
+                      hover:dark:text-blue-400 dark:hover:bg-spacegray">
                   <div className="w-fit">
                     {item.title}
                     {!item.selected && <div className="bg-transparent w-full h-0.5 absolute"></div>}

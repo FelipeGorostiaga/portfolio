@@ -10,6 +10,13 @@ import NavItemMenu from '~/components/Layout/Navbar/NavItemMenu';
 import { useOutsideAlerter } from '~/hooks/useClickOutside';
 
 
+// todo: extract func to here -> border-transparent and border-selected
+function shouldIgnoreCloseAction(id: string, type?: string): boolean {
+  const idCondition = id && (id === 'gallery-item' || id === 'gallery-sub-item' || id === 'icon' || id === 'border-transparent' || id === 'border-selected');
+  return idCondition || type === 'path';
+}
+
+
 const Navbar = () => {
   const { theme, switchTheme } = useTheme();
   const router = useRouter();
@@ -22,7 +29,7 @@ const Navbar = () => {
   const handleClickOutsideDropdown = (e: any) => {
     const id = e.target?.id;
     const type = e.target?.tagName;
-    if ((id && (id === 'gallery-item' || id === 'gallery-sub-item' || id === 'icon')) || type === 'path') {
+    if (shouldIgnoreCloseAction(id, type)) {
       return;
     } else if (galleryDropdownOpen) {
       setGalleryDropdownOpen(false);
@@ -62,7 +69,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="bg-neutral-100 bg-opacity-70 h-16 px-6 md:px-14 flex flex-row items-center border-b-2 border-gray-300 dark:bg-transparent dark:border-gray-600 z-10">
+      className="bg-neutral-100 bg-opacity-70 h-16 px-6 md:pl-12 md:pr-6 flex flex-row items-center border-b-2 border-gray-300 dark:bg-transparent dark:border-gray-600 z-10">
       <div className="flex flex-row gap-7 md:gap-12 w-full h-full items-center">
         <NavItem title="Home"
                  route="/"
