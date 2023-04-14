@@ -24,7 +24,7 @@ const Books = () => {
     setActiveSearchValue(searchValue);
   };
 
-  const disabled = isLoading? true : (books? books.length > 1 : true);
+  const disabled = isLoading? true : (books? books.length <= 1 : true);
 
   const filterProps = {
     searchValue,
