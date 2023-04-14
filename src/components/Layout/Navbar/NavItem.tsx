@@ -1,35 +1,20 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { capitalize } from '~/utils/lib/string';
-
-function parseRoute(item: string) {
-  if (item.toLowerCase() === 'home') {
-    return '';
-  }
-  return item;
-}
 
 interface NavItemProps {
-  item: string;
+  route: string;
+  title: string;
   selected: boolean;
   setSelectedItem: (item: string) => void;
 }
 
-function NavItem({ item, selected, setSelectedItem }: NavItemProps) {
-
-  const itemName = useMemo(() => {
-    return capitalize(item);
-  }, [item]);
-
-  const itemRoute = useMemo(() => {
-    return parseRoute(item);
-  }, [item]);
+function NavItem({ route, title, selected, setSelectedItem }: NavItemProps) {
 
   const className = `font-sans text-gray-600 text-base font-light cursor-pointer dark:text-gray-200 ${selected ? '' : 'hover:text-sky-400 hover:dark:text-blue-300'}`;
 
   return (
-    <Link href={`/${itemRoute}`} onClick={() => setSelectedItem(item)} className={className}>
-      {itemName}
+    <Link href={route} onClick={() => setSelectedItem(route)} className={className}>
+      {title}
       {!selected && <div className="bg-transparent w-full h-1"></div>}
       {selected && <div className="bg-blue-400 dark:bg-blue-600 w-full h-1"></div>}
     </Link>

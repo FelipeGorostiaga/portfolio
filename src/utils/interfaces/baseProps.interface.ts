@@ -1,3 +1,3 @@
 export interface BaseProps {
-  [x: string]: any;
+  [x: string]: unknown;
 }

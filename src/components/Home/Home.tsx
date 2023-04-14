@@ -4,18 +4,17 @@ import BackgroundImage from '@ui/BackgroundImage/BackgroundImage';
 import BlobTracker from '@ui/BlobMouseTracker/BlobTracker';
 import { useRouter } from 'next/router';
 import useBreakpoints from '~/hooks/useBreakpoints';
-import Image from 'next/image';
 
 const Home = () => {
   const { sm, md } = useBreakpoints();
   const router = useRouter();
   const contactButtonSize: ButtonSize = sm ? 'fullWidth' : md ? 'small' : 'medium';
-  const projectsButtonSize: ButtonSize = sm ? 'fullWidth' : md ? 'small' : 'small';
+  const projectsButtonSize: ButtonSize = sm ? 'fullWidth' : 'medium';
 
   return (
     <>
       <div
-        className="w-full max-w-4xl mx-auto pt-8 pb-12 flex flex-col md:pt-32 px-6 md:px-12 lg:px-0 md:pb-24 z-10">
+        className="w-full max-w-4xl mx-auto pt-8 pb-12 flex flex-col md:pt-32 px-6 md:px-12 lg:px-0 md:pb-24">
         <div
           className="flex flex-col-reverse items-center justify-between md:flex-row md:justify-start gap-4 xs:gap-8 md:gap-14 lg:gap-24 2xl:gap-40">
           <div className="flex flex-col gap-1 xs:gap-2 items-center md:items-start justify-center">
@@ -41,7 +40,7 @@ const Home = () => {
           <Button intent="primary" size={contactButtonSize} onClick={() => void router.push('/contact')}>Contact
             me</Button>
           <Button intent="secondary" size={projectsButtonSize} onClick={() => void router.push('/experience')}>See my
-            projects</Button>
+            work experience</Button>
         </div>
       </div>
       {!md && <BlobTracker />}

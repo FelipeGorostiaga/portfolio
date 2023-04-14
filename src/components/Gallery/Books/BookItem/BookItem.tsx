@@ -5,11 +5,11 @@ interface BookProps {
   title: string;
   author: string;
   imgUrl: string;
-  score: number;
+  rate: number;
   year: string;
 }
 
-const BookItem = ({ title, author, imgUrl, score, year }: BookProps) => {
+const BookItem = ({ title, author, imgUrl, rate, year }: BookProps) => {
   const { xs } = useBreakpoints();
   return (
     <div
@@ -29,7 +29,7 @@ const BookItem = ({ title, author, imgUrl, score, year }: BookProps) => {
           className="flex flex-row  items-center justify-between rounded-xl px-3 py-1 gap-1 self-end bg-spacegray bg-opacity-50
           absolute right-2 bottom-2 dark:bg-black dark:bg-opacity-100 ">
           <StarIcon style={{ color: '#FFC728', fontSize: xs ? '14px' : '18px' }} />
-          <span className="text-sm md:text-base text-neutral-300">{`${score}`}</span>
+          <span className="text-sm md:text-base text-neutral-300">{`${rate}`}</span>
         </div>
       </div>
     </div>

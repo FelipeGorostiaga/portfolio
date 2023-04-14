@@ -8,7 +8,7 @@ export function capitalize(str: string): string {
   return firstLetter + str.slice(1);
 }
 
-export function validateInput(value: any, schema: ZodString): boolean {
+export function validateInput(value: unknown, schema: ZodString): boolean {
   const parseResult = schema.safeParse(value);
   return parseResult.success;
 }
