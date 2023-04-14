@@ -1,8 +1,9 @@
+import UnderConstruction from '~/components/Layout/UnderConstruction/UnderConstruction';
 
 const Quotes = () => {
   return (
     <div>
-      Quotes
+      <UnderConstruction />
     </div>
   );
 }
