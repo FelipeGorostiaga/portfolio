@@ -3,8 +3,8 @@ import BookFilters from './BookFilters/BookFilters';
 import { api } from '~/utils/api';
 import { useState } from 'react';
 import BookItemSkeleton from '~/components/Gallery/Books/BookItem/BookItemSkeleton';
-import { inferRouterOutputs } from '@trpc/server';
-import { AppRouter } from '~/server/api/root';
+import { type inferRouterOutputs } from '@trpc/server';
+import { type AppRouter } from '~/server/api/root';
 
 type RouterOutput = inferRouterOutputs<AppRouter>;
 
