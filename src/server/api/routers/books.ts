@@ -1,41 +1,73 @@
 import { createTRPCRouter, protectedProcedure, publicProcedure } from '~/server/api/trpc';
 import { z } from 'zod';
 
+const BOOKS_PER_PAGE = 6;
+
 export const booksRouter = createTRPCRouter({
 
   getAll: publicProcedure
     .input(z.object({
       value: z.string(),
+      skip: z.number().min(0),
       order: z.enum(['desc', 'asc']),
       criteria: z.enum(['rating', 'year']),
     }))
-    .query(({ input, ctx }) => {
+    .query(async ({ input, ctx }) => {
 
       const orderByClause = input.criteria === 'rating' ? {
         rate: input.order,
       } : { year: input.order };
 
-      return ctx.prisma.book.findMany({
-          where: {
-            OR: [
-              {
-                author: {
-                  contains: input.value,
+      const [count, books] = await ctx.prisma.$transaction([
+        ctx.prisma.book.count(
+          {
+            where: {
+              OR: [
+                {
+                  author: {
+                    contains: input.value,
+                  },
                 },
-              },
-              {
-                title: {
-                  contains: input.value,
+                {
+                  title: {
+                    contains: input.value,
+                  },
                 },
-              },
-            ],
+              ],
+            },
           },
-          orderBy: [
-            orderByClause,
-          ],
-          take: 10,
+        ),
+        ctx.prisma.book.findMany({
+            where: {
+              OR: [
+                {
+                  author: {
+                    contains: input.value,
+                  },
+                },
+                {
+                  title: {
+                    contains: input.value,
+                  },
+                },
+              ],
+            },
+            orderBy: [
+              orderByClause,
+            ],
+            take: BOOKS_PER_PAGE,
+            skip: input.skip,
+          },
+        ),
+      ]);
+
+      return {
+        pagination: {
+          total: count,
         },
-      );
+        data: books,
+      };
+
     }),
 
   create: protectedProcedure
