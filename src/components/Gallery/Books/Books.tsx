@@ -1,14 +1,10 @@
 import BookItem from './BookItem/BookItem';
 import BookFilters from './BookFilters/BookFilters';
 import { api } from '~/utils/api';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import BookItemSkeleton from '~/components/Gallery/Books/BookItem/BookItemSkeleton';
-import { type inferRouterOutputs } from '@trpc/server';
-import { type AppRouter } from '~/server/api/root';
+import { Pagination } from '@mui/material';
 
-type RouterOutput = inferRouterOutputs<AppRouter>;
-
-type IBook = RouterOutput['books']['getAll'][0];
 export type SortCriteria = 'rating' | 'year';
 export type SortDirection = 'asc' | 'desc';
 /*
@@ -29,17 +25,28 @@ function sortBooksByCriteria(a: IBook, b: IBook, direction: SortDirection, crite
   }
 }*/
 
+const BOOKS_PER_PAGE = 6;
+
 const Books = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [sortCriteria, setSortCriteria] = useState<SortCriteria>('rating');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [activeSearchValue, setActiveSearchValue] = useState('');
+  const [page, setPage] = useState(1);
 
-  const { data: books, isLoading } = api.books.getAll.useQuery({
+  const skipValue = useMemo(() => {
+    return page === 1? 0 : page * BOOKS_PER_PAGE;
+  }, [page]);
+
+  const { data, isLoading } = api.books.getAll.useQuery({
     value: activeSearchValue,
     criteria: sortCriteria,
     order: sortDirection,
+    skip: skipValue,
   });
+
+  const books = data?.data;
+  const total = data?.pagination.total;
 
   const handleSearch = () => {
     // trigger search on action instead of input change (query value)
@@ -58,6 +65,19 @@ const Books = () => {
     handleSearch,
     disabled,
   };
+
+  useEffect(() => {
+    setPage(1);
+  }, [activeSearchValue]);
+
+  const totalPages = useMemo(() => {
+    if (total) {
+      return Math.floor(total / BOOKS_PER_PAGE);
+    }
+    return 0;
+  }, [data]);
+
+  console.log(page);
 
   return (
     <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0">
@@ -79,7 +99,12 @@ const Books = () => {
           <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
         }
       </div>
-      <div></div>
+      {
+        (!isLoading && total && total > BOOKS_PER_PAGE) && <div className="w-full flex flex-row items-center justify-center mt-8">
+          <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)} />
+        </div>
+      }
+
     </section>
   );
 };
