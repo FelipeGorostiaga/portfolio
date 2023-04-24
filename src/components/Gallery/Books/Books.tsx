@@ -7,24 +7,6 @@ import { Pagination } from '@mui/material';
 
 export type SortCriteria = 'rating' | 'year';
 export type SortDirection = 'asc' | 'desc';
-/*
-function sortBooksByYear(bookA: Book, bookB: IBook, direction: SortDirection) {
-
-}
-
-function sortBooksByRate(bookA: Book, bookB: IBook, direction: SortDirection) {
-
-}
-
-function sortBooksByCriteria(a: IBook, b: IBook, direction: SortDirection, criteria: SortCriteria) {
-  switch(criteria) {
-    case 'rating':
-      return sortBooksByYear(a, b, direction);
-    case 'year':
-      return sortBooksByRate(a, b, direction);
-  }
-}*/
-
 const BOOKS_PER_PAGE = 6;
 
 const Books = () => {
@@ -77,8 +59,6 @@ const Books = () => {
     return 0;
   }, [data]);
 
-  console.log(page);
-
   return (
     <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0">
       <h1
@@ -104,7 +84,6 @@ const Books = () => {
           <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)} />
         </div>
       }
-
     </section>
   );
 };
