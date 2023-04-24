@@ -1,9 +1,9 @@
 import styles from './Home.module.scss';
 import Button, { type ButtonSize } from '@ui/Button/Button';
-import BackgroundImage from '@ui/BackgroundImage/BackgroundImage';
 import BlobTracker from '@ui/BlobMouseTracker/BlobTracker';
 import { useRouter } from 'next/router';
 import useBreakpoints from '~/hooks/useBreakpoints';
+import Image from 'next/image';
 
 const Home = () => {
   const { sm, md } = useBreakpoints();
@@ -25,7 +25,7 @@ const Home = () => {
               Sr. Software Engineer at Banco Galicia
             </div>
           </div>
-          <BackgroundImage />
+          <Image src={'/pfp-smiling.jpg'} alt='profile image' height={sm? 180 : 250} width={sm? 180 : 250} className={styles.pfp}/>
         </div>
         <div className="w-full h-0.5 bg-gray-200 my-8 dark:bg-gray-400 m-auto md:my-12"></div>
         <p

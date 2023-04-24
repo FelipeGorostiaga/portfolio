@@ -18,6 +18,31 @@ $gradientColor3: #2563eb;
   text-align: center;
 }
 
+.pfp {
+  object-fit: cover;
+  border-radius: 50%;
+  transition: scale 200ms ease-in-out;
+  box-shadow: 7px 6px 65px -2px rgba(28, 46, 79, 0.7);
+  -webkit-box-shadow: 7px 6px 65px -2px rgba(28, 46, 79, 0.7);
+  -moz-box-shadow: 7px 6px 65px -2px rgba(28, 46, 79, 0.7);
+  animation: animateDown 400ms;
+
+  &:hover {
+    scale: 1.05;
+  }
+}
+
+@keyframes animateDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes animatedText {
   from {
     background-position: 0;
