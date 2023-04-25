@@ -14,7 +14,7 @@ $gradientColor3: #2563eb;
   color: transparent;
   background-size: 400%;
   background-position: -100%;
-  animation: animatedText 3s infinite alternate;
+  animation: animatedText 3s infinite alternate, animateDown 400ms;
   text-align: center;
 }
 
@@ -30,6 +30,10 @@ $gradientColor3: #2563eb;
   &:hover {
     scale: 1.05;
   }
+}
+
+.animatedSubtitle {
+  animation: animateDown 400ms;
 }
 
 @keyframes animateDown {

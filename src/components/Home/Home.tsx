@@ -21,7 +21,7 @@ const Home = () => {
             <div className={`${styles.animatedWording} font-sans font-semibold text-4xl md:text-5xl lg:text-6xl`}>
               Felipe Gorostiaga
             </div>
-            <div className="text-gray-600 text-center font-sans font-regular dark:text-gray-300 md:text-xl">
+            <div className={`${styles.animatedSubtitle} text-gray-600 text-center font-sans font-regular dark:text-gray-300 md:text-xl`}>
               Sr. Software Engineer at Banco Galicia
             </div>
           </div>
