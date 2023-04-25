@@ -39,14 +39,14 @@ const MainLayout = ({ Component, pageProps }: any) => {
   const { isDark } = useTheme();
   return (
     <ThemeProvider theme={isDark? darkTheme : lightTheme} >
-      <main
+      <div
         className={`dark:bg-gradient-to-b dark:from-black dark:to-[#020714] main-grid ${isDark ? '' : 'radialBg'}`}>
         <SideDrawerProvider>
           <Navbar />
         </SideDrawerProvider>
         <Component {...pageProps} />
         <Footer />
-      </main>
+      </div>
     </ThemeProvider>
 
   );
