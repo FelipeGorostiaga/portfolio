@@ -4,6 +4,7 @@ import { api } from '~/utils/api';
 import { useEffect, useMemo, useState } from 'react';
 import BookItemSkeleton from '~/components/Gallery/Books/BookItem/BookItemSkeleton';
 import { Pagination } from '@mui/material';
+import useBreakpoints from '~/hooks/useBreakpoints';
 
 export type SortCriteria = 'rating' | 'year';
 export type SortDirection = 'asc' | 'desc';
@@ -15,6 +16,7 @@ const Books = () => {
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
   const [activeSearchValue, setActiveSearchValue] = useState('');
   const [page, setPage] = useState(1);
+  const { sm } = useBreakpoints();
 
   const skipValue = useMemo(() => {
     return page === 1 ? 0 : ((page - 1) * BOOKS_PER_PAGE);
@@ -85,7 +87,7 @@ const Books = () => {
       {
         showPagination &&
         <div className="w-full flex flex-row items-center justify-center mt-10">
-          <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)} />
+          <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)} size={sm? 'small' : 'large'}/>
         </div>
       }
     </section>
