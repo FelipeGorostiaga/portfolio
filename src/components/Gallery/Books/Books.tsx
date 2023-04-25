@@ -17,7 +17,7 @@ const Books = () => {
   const [page, setPage] = useState(1);
 
   const skipValue = useMemo(() => {
-    return page === 1? 0 : page * BOOKS_PER_PAGE;
+    return page === 1 ? 0 : ((page - 1) * BOOKS_PER_PAGE);
   }, [page]);
 
   const { data, isLoading } = api.books.getAll.useQuery({
@@ -50,24 +50,27 @@ const Books = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [activeSearchValue]);
+  }, [activeSearchValue, sortDirection, sortCriteria]);
 
   const totalPages = useMemo(() => {
     if (total) {
-      return Math.floor(total / BOOKS_PER_PAGE);
+      return Math.ceil(total / BOOKS_PER_PAGE);
     }
     return 0;
   }, [data]);
 
+  const showEmptyState = !isLoading && books?.length === 0;
+  const showPagination = !isLoading && !!total && (total > BOOKS_PER_PAGE);
+
   return (
-    <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0">
+    <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0">
       <h1
-        className="text-4xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-neutral-100">
-        Books
+        className="text-4xl text-sans font-bold mb-1 md:mb-2 text-neutral-800 dark:text-neutral-100">
+        My Books
       </h1>
       <BookFilters {...filterProps} />
       <div
-        className="grid grid-cols-1 place-items-center gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
+        className="grid grid-cols-1 place-items-start gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px]">
         {isLoading && Array.from(Array(6)).map((n, idx) => {
           return <BookItemSkeleton key={idx} />;
         })}
@@ -75,12 +78,13 @@ const Books = () => {
           return <BookItem {...book} key={book.id} />;
         })}
         {
-          (!isLoading && books?.length === 0) &&
+          showEmptyState &&
           <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
         }
       </div>
       {
-        (!isLoading && total && total > BOOKS_PER_PAGE) && <div className="w-full flex flex-row items-center justify-center mt-8">
+        showPagination &&
+        <div className="w-full flex flex-row items-center justify-center mt-10">
           <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)} />
         </div>
       }
