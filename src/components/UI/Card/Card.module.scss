@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   transition: scale 350ms ease;
+  animation: fadeInFromLeft 400ms ease-in-out;
 
   &:after {
     width: 1px;
@@ -26,5 +27,16 @@
   &:hover:after {
     top: 25%;
     opacity: 1;
+  }
+}
+
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

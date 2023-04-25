@@ -1,3 +1,5 @@
+import styles from './SkillCard.module.scss';
+
 interface SkillCardProps {
   imgUrl: string;
   name: string;
@@ -10,9 +12,9 @@ interface SkillCardProps {
 const SkillCard = ({ name, description, imgUrl }: SkillCardProps) => {
   return (
     <div
-      className="shadow-xl rounded-2xl border border-gray-300 bg-gray-100 flex flex-col max-w-sm gap-0
-      overflow-hidden cursor-pointer 
-      hover:scale-[1.008] hover:bg-gray-200 dark:bg-neutral-900 dark:border-neutral-900 group">
+      className={"shadow-xl rounded-2xl border border-gray-300 bg-gray-100 flex flex-col max-w-sm " +
+        "gap-0 overflow-hidden cursor-pointer hover:scale-[1.008] " +
+        `hover:bg-gray-200 dark:bg-neutral-900 dark:border-neutral-900 group ${styles.card}`}>
       <div className="w-full flex items-center justify-center pt-8">
         <img src={imgUrl}
              className="h-[90px] md:h-[120px] aspect-square object-fit group-hover:opacity-80"
