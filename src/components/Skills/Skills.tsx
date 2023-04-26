@@ -9,7 +9,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: isDark ? 'logos/nextjs-logo-white.svg' : '/logos/nextjs-logo.svg',
       description: 'Fullstack web framework that extends React latest features. It provides some additional built in features like' +
         ' nested routing, middlewares, image optimization and multiple rendering strategies.',
-      link: 'https://reactjs.org/',
+      link: 'https://nextjs.org/',
       percentage: 95,
     },
     {
@@ -25,7 +25,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: '/logos/ts-logo.svg',
       description: 'Strongly typed programming language that builds on top of JavaScript that adds additional syntax and better' +
         ' tooling without additional code.',
-      link: 'https://reactjs.org/',
+      link: 'https://www.typescriptlang.org/',
       percentage: 95,
     },
     {
@@ -34,7 +34,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'A utility-first CSS framework packed with helper classes that can be composed to build any design, directly in your markup.' +
         ' It provides an out of the box design system to be consistent with color choices, spacing, typography, shadows and everything else that makes' +
         ' up a well-engineered system while still providing the capacity to be fully customizable.',
-      link: 'https://reactjs.org/',
+      link: 'https://tailwindcss.com/',
       percentage: 75,
     },
     {
@@ -43,7 +43,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'A progressive Node.js framework for building efficient, reliable and scalable server-side applications.' +
         ' Nest extends Node.js frameworks like Express or Fastify adding modular organization and a wide range of other libraries' +
         ' to take care of repetitive tasks.',
-      link: 'https://reactjs.org/',
+      link: 'https://nestjs.com/',
       percentage: 95,
     },
     {
@@ -51,7 +51,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: '/logos/nodejs-logo.svg',
       description: 'An asynchronous event-driven JavaScript runtime to build scalable network applications. Its single-threaded non-blocking' +
         ' I/O architecture makes it an excellent choice for both real-time and data streaming applications too.',
-      link: 'https://reactjs.org/',
+      link: 'https://nodejs.org/es',
       percentage: 95,
     },
     {
@@ -59,7 +59,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: '/logos/html-logo.svg',
       description: 'Stands for HyperText Markup Language. It is the web standard for markup language for web page creation.' +
         ' It allows creation and structure of sections, paragraphs, and links using building blocks such as tags and attributes.',
-      link: 'https://reactjs.org/',
+      link: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
       percentage: 100,
     },
     {
@@ -68,7 +68,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'Stands for Cascading Style Sheets language and is used to style elements written in a markup language such as HTML.' +
         ' It separates the content from the visual representation of the site. The relation between HTML and CSS is strongly tied together since HTML' +
         ' is the very foundation of a site and CSS is all of the aesthetics of an entire website.',
-      link: 'https://reactjs.org/',
+      link: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
       percentage: 90,
     },
     {
@@ -77,7 +77,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'An open source Java application framework that uses inversion of control and dependency injection to provide a quick and easy developer experience.' +
         ' It is mostly used to create microservices, fullstack and serverless applications. It provides multiple projects, quickstarts and development tools to' +
         ' build common used patterns and features faster.',
-      link: 'https://reactjs.org/',
+      link: 'https://spring.io/',
       percentage: 80,
     },
     {
@@ -85,7 +85,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: isDark ? '/logos/aws-logo-white.svg' : '/logos/aws-logo.svg',
       description: 'The worlds largest and most used cloud provider. It provides more than 200 different services for multiple use-cases available from' +
         ' data centers globally. It has more than 30 regions around the world that provide security, fault tolerance and scalability features.',
-      link: 'https://reactjs.org/',
+      link: 'https://aws.amazon.com/',
       percentage: 75,
     },
     {
@@ -93,7 +93,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: '/logos/gcp-logo.svg',
       description: 'Google\'s cloud computing platform. It provides multiple services like storage, databases, computing, security, AI and many others.' +
         ' It\'s easy to use and provides many SDK\'s for many programming languages.',
-      link: 'https://reactjs.org/',
+      link: 'https://cloud.google.com/',
       percentage: 70,
     },
     {
@@ -102,7 +102,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'Google\'s backend as a service platform for application development. ' +
         'It provides services such as authentication, authorization, databases, analytics, hosting, storage, cloud functions, messaging and many more.' +
         ' It provides SDKs for most popular programming languages and an user interface for better visualization and making integrations easier.',
-      link: 'https://reactjs.org/',
+      link: 'https://firebase.google.com/',
       percentage: 70,
     },
     {
@@ -110,7 +110,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: '/logos/postgresql-logo.svg',
       description: 'A powerful, open source object-relational database system with more than 30 years of active development that has earned a strong' +
         ' reputation for performance, reliability and robustness. It has a huge community that build plugins and products that complement the DBMS.',
-      link: 'https://reactjs.org/',
+      link: 'https://www.postgresql.org/',
       percentage: 90,
     },
     {
@@ -120,7 +120,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' indexing, real time aggregation and is a distributed database at its core, so high availability, horizontal scaling,' +
         ' and geographic distribution are built in and easy to use. It provides drivers for more than 10 languages' +
         ' and has a huge community that provides many more.',
-      link: 'https://reactjs.org/',
+      link: 'https://www.mongodb.com/',
       percentage: 60,
     },
     {
@@ -129,7 +129,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'An open-source web framework written in TypeScript and maintained by Google. It takes a component-based approach with' +
         ' well-integrated libraries that cover a wide variety of features, including routing, forms, data fetching and many more. It comes with' +
         ' a built in CLI for a better developer experience and uses a modular architecture with dependency injection.',
-      link: 'https://reactjs.org/',
+      link: 'https://angular.io/',
       percentage: 50,
     },
     {
@@ -138,7 +138,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'A software platform that allows users to build, test, and deploy applications quickly. It packages software' +
         ' into standardized units called containers that have everything the software needs to run, including libraries, system tools,' +
         ' code and runtime. It provides tools for easy managing and scaling on demand.',
-      link: 'https://reactjs.org/',
+      link: 'https://www.docker.com/',
       percentage: 60,
     },
     {
@@ -147,7 +147,7 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'A collaborative web and desktop application for interface design. It focuses on UI/UX design,' +
         ' with an emphasis on real-time collaboration using a variety of vector graphics editors and prototyping tools.' +
         ' It provides cloud-based storage for files and has very active community that shares designs and assets for public use.',
-      link: 'https://reactjs.org/',
+      link: 'https://www.figma.com/',
       percentage: 70,
     },
     {
@@ -155,7 +155,7 @@ function getSkillsWithTheme(isDark: boolean) {
       imgUrl: '/logos/git-logo.svg',
       description: 'An open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. It is the' +
         ' worlds most used VCS by developers.',
-      link: 'https://reactjs.org/',
+      link: 'https://git-scm.com/',
       percentage: 100,
     },
   ];
