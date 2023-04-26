@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './DrawerItem.module.scss';
 import React from 'react';
-import { ILink } from '~/components/Layout/Navbar/Mobile/SideDrawer/SideDrawer';
+import { type ILink } from '~/components/Layout/Navbar/Mobile/SideDrawer/SideDrawer';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 

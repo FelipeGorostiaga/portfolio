@@ -6,8 +6,7 @@ export default function ExperiencePage() {
     <>
       <Head>
         <title>Experience | Felipe Gorostiaga</title>
-        <meta name="Portfolio" content="Felipe's portfolio website" />
-        <link rel="icon" href="/logo.png" />
+        <meta name="Experience" content="Felipe's portfolio website" />
       </Head>
       <div className="h-full w-full flex items-center justify-center dark:bg-black">
         <Experience />

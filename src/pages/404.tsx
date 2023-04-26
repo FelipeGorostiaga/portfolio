@@ -9,7 +9,6 @@ const NotFoundPage: NextPage = () => {
     <>
       <Head>
         <title>404 | Felipe Gorostiaga</title>
-        <link rel="icon" href="/logo.png" />
         <meta name="title" content="404 | Felipe Gorostiaga" />
       </Head>
       <div

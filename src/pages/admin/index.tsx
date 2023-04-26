@@ -8,8 +8,7 @@ export default function AdminPage() {
     <>
       <Head>
         <title>Admin | Felipe Gorostiaga</title>
-        <meta name="Portfolio" content="Felipe's portfolio website" />
-        <link rel="icon" href="/logo.png" />
+        <meta name="Admin" content="Felipe's portfolio website" />
       </Head>
       <div className="h-full w-full flex items-center lg:items-start justify-center pb-3">
         <p className="text-center text-2xl text-white">

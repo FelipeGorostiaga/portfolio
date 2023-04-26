@@ -112,7 +112,7 @@ const SideDrawer = () => {
         },
       },
     ];
-  }, [isDark, pathname]);
+  }, [isDark, pathname, setIsOpen]);
 
   return (
     <div className={`${styles.container} ${isDark ? styles.containerDark : styles.containerLight}`}>

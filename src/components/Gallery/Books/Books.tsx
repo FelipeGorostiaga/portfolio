@@ -29,8 +29,8 @@ const Books = () => {
     skip: skipValue,
   });
 
-  const books = data?.data;
-  const total = data?.pagination.total;
+  const books = useMemo(() => data?.data, [data]);
+  const total = useMemo(() => data?.pagination.total, [data]);
 
   const handleSearch = () => {
     // trigger search on action instead of input change (query value)
@@ -59,7 +59,7 @@ const Books = () => {
       return Math.ceil(total / BOOKS_PER_PAGE);
     }
     return 0;
-  }, [data]);
+  }, [data, total]);
 
   const showEmptyState = !isLoading && books?.length === 0;
   const showPagination = !isLoading && !!total && (total > BOOKS_PER_PAGE);
