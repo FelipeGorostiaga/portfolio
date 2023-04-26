@@ -30,11 +30,10 @@ const SideDrawer = () => {
   const { setIsOpen } = useSideDrawer();
   const { pathname } = useRouter();
   const { isDark } = useTheme();
-  const [ isGalleryOpen, setIsGalleryOpen ] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   const links: ILink[] = useMemo(() => {
-
-    const iconStyle = { color: isDark ? 'white' : '#2b2b2b' }
+    const iconStyle = { color: isDark ? 'white' : '#2b2b2b' };
     return [
       {
         route: '/',
@@ -116,7 +115,7 @@ const SideDrawer = () => {
   }, [isDark, pathname]);
 
   return (
-    <div className={`${styles.container} bg-gray-50 dark:bg-black`}>
+    <div className={`${styles.container} ${isDark ? styles.containerDark : styles.containerLight}`}>
       <div
         className="w-[40px] h-[40px] rounded-full bg-gray-600 dark:bg-neutral-900 absolute flex items-center justify-center top-[1rem] right-[1rem] cursor-pointer">
         <ArrowBackIosNewIcon onClick={() => setIsOpen(false)} className="mr-0.5" style={{ color: 'white' }} />
@@ -130,9 +129,9 @@ const SideDrawer = () => {
         {links.map((link: ILink) => {
           let onClick;
           if (link.multilevel) {
-           onClick = () => setIsGalleryOpen(prev => !prev);
+            onClick = () => setIsGalleryOpen(prev => !prev);
           } else {
-            onClick = () => setIsOpen(false)
+            onClick = () => setIsOpen(false);
           }
           return <DrawerItem key={link.name}
                              route={link.route}

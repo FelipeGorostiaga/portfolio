@@ -8,7 +8,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   position: relative;
-  background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+
 
   .profileImage {
     width: 50px;
@@ -30,6 +30,14 @@
     bottom: -0.5rem;
     display: block;
   }
+}
+
+.containerDark {
+  background: radial-gradient(circle at 24.1% 68.8%, rgb(30, 30, 30) 0%, rgb(0, 0, 0) 99.4%);
+}
+
+.containerLight {
+  background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
 }
 
 
