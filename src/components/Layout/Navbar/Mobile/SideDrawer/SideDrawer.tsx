@@ -1,10 +1,10 @@
 import styles from './SideDrawer.module.scss';
-import HomeIcon from '@mui/icons-material/Home';
-import CategoryIcon from '@mui/icons-material/Category';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import CategoryRoundedIcon from '@mui/icons-material/CategoryRounded';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
-import TerminalIcon from '@mui/icons-material/Terminal';
-import ConstructionIcon from '@mui/icons-material/Construction';
+import TerminalRoundedIcon from '@mui/icons-material/TerminalRounded';
+import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
@@ -38,7 +38,7 @@ const SideDrawer = () => {
       {
         route: '/',
         name: 'Home',
-        icon: <HomeIcon fontSize="medium" style={iconStyle} />,
+        icon: <HomeRoundedIcon fontSize="medium" style={iconStyle} />,
         get selected() {
           return this.route === pathname;
         },
@@ -46,7 +46,7 @@ const SideDrawer = () => {
       {
         route: '/experience',
         name: 'Experience',
-        icon: <TerminalIcon fontSize="medium" style={iconStyle} />,
+        icon: <TerminalRoundedIcon fontSize="medium" style={iconStyle} />,
         get selected() {
           return this.route === pathname;
         },
@@ -54,7 +54,7 @@ const SideDrawer = () => {
       {
         route: '/skills',
         name: 'Skills',
-        icon: <ConstructionIcon fontSize="medium" style={iconStyle} />,
+        icon: <ConstructionRoundedIcon fontSize="medium" style={iconStyle} />,
         get selected() {
           return this.route === pathname;
         },
@@ -64,7 +64,7 @@ const SideDrawer = () => {
         name: 'Gallery',
         multilevel: true,
         selected: pathname.includes('gallery'),
-        icon: <CategoryIcon fontSize="medium" style={iconStyle} />,
+        icon: <CategoryRoundedIcon fontSize="medium" style={iconStyle} />,
         subItems: [
           {
             route: '/gallery/books',
