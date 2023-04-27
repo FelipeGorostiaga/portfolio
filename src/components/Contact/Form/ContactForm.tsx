@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { validateInput } from '~/utils/lib/string';
 import Button from '@ui/Button/Button';
 import { useMemo, useState, type MouseEvent } from 'react';
+import axios from 'axios';
 
 export const nameSchema = z.string().min(1).max(30);
 export const emailSchema = z.string().email();
@@ -71,7 +72,7 @@ const ContactForm = () => {
   const isFormValid: boolean = useMemo(() => nameValid && lastnameValid && emailValid && messageValid && phoneValid,
     [nameValid, lastnameValid, emailValid, phoneValid, messageValid]);
 
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!isFormValid) {
       setFormSubmitted(true);
@@ -84,8 +85,9 @@ const ContactForm = () => {
       email,
       phone: phone || null,
     };
-    // TODO
-    console.log('Submitting payload', payload);
+
+    const res = await axios.post('/api/contact', payload);
+    // todo: show success/error alert
 
     setFormSubmitted(false);
     resetForm();
