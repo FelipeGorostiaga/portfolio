@@ -15,7 +15,7 @@ interface ButtonProps {
 }
 
 const buttonStyles = cva(
-  'flex items-center justify-center px-4 py-2 rounded text-sm md:text-base font-sans focus-outline-none cursor-pointer',
+  'flex items-center justify-center px-4 py-2 rounded-lg text-sm md:text-base font-sans focus-outline-none cursor-pointer',
   {
     variants: {
       intent: {
@@ -29,7 +29,7 @@ const buttonStyles = cva(
         medium: 'w-[320px]',
         small: 'w-[244px]',
         content: '',
-        pill: 'rounded-[37px]',
+        pill: 'rounded-[40px]',
       },
     },
     defaultVariants: {
