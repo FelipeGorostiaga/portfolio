@@ -173,7 +173,7 @@ const Experience = () => {
       </h1>
       <h3
         className="text-base md:text-xl text-sans font-base text-neutral-800 mb-4 md:mb-12 dark:text-neutral-200">
-        My jobs through the years.
+        My jobs through the years
       </h3>
       <div className="flex flex-col items-start w-full">
         {jobs.map((job, index) => {

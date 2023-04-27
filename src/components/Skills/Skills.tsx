@@ -1,6 +1,7 @@
 import SkillCard from './SkillCard';
 import { useTheme } from '~/contexts/ThemeContext';
 import { useMemo } from 'react';
+import HackerText from '@ui/HackerText/HackerText';
 
 function getSkillsWithTheme(isDark: boolean) {
   return [
@@ -10,7 +11,8 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'Fullstack web framework that extends React latest features. It provides some additional built in features like' +
         ' nested routing, middlewares, image optimization and multiple rendering strategies.',
       link: 'https://nextjs.org/',
-      percentage: 95,
+      percentage: 100,
+      color: isDark ? '#fff' : '#000',
     },
     {
       name: 'React',
@@ -18,7 +20,8 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'A JavaScript library for building user interfaces. It takes a component-based approach in which encapsulated components' +
         ' are composed in a tree structure to make complex UIs.',
       link: 'https://reactjs.org/',
-      percentage: 95,
+      percentage: 100,
+      color: '#61DBFB',
     },
     {
       name: 'Typescript',
@@ -26,16 +29,8 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'Strongly typed programming language that builds on top of JavaScript that adds additional syntax and better' +
         ' tooling without additional code.',
       link: 'https://www.typescriptlang.org/',
-      percentage: 95,
-    },
-    {
-      name: 'Tailwind CSS',
-      imgUrl: '/logos/tailwind-logo.svg',
-      description: 'A utility-first CSS framework packed with helper classes that can be composed to build any design, directly in your markup.' +
-        ' It provides an out of the box design system to be consistent with color choices, spacing, typography, shadows and everything else that makes' +
-        ' up a well-engineered system while still providing the capacity to be fully customizable.',
-      link: 'https://tailwindcss.com/',
-      percentage: 75,
+      percentage: 90,
+      color: '#3178C6',
     },
     {
       name: 'NestJS',
@@ -44,7 +39,8 @@ function getSkillsWithTheme(isDark: boolean) {
         ' Nest extends Node.js frameworks like Express or Fastify adding modular organization and a wide range of other libraries' +
         ' to take care of repetitive tasks.',
       link: 'https://nestjs.com/',
-      percentage: 95,
+      percentage: 90,
+      color: '#E0234E',
     },
     {
       name: 'Node.js',
@@ -52,7 +48,18 @@ function getSkillsWithTheme(isDark: boolean) {
       description: 'An asynchronous event-driven JavaScript runtime to build scalable network applications. Its single-threaded non-blocking' +
         ' I/O architecture makes it an excellent choice for both real-time and data streaming applications too.',
       link: 'https://nodejs.org/es',
-      percentage: 95,
+      percentage: 90,
+      color: '#8CC84B',
+    },
+    {
+      name: 'Tailwind CSS',
+      imgUrl: '/logos/tailwind-logo.svg',
+      description: 'A utility-first CSS framework packed with helper classes that can be composed to build any design, directly in your markup.' +
+        ' It provides an out of the box design system to be consistent with color choices, spacing, typography, shadows and everything else that makes' +
+        ' up a well-engineered system while still providing the capacity to be fully customizable.',
+      link: 'https://tailwindcss.com/',
+      percentage: 85,
+      color: '#06B6D4',
     },
     {
       name: 'HTML',
@@ -61,6 +68,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' It allows creation and structure of sections, paragraphs, and links using building blocks such as tags and attributes.',
       link: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
       percentage: 100,
+      color: '#E34F26',
     },
     {
       name: 'CSS',
@@ -69,7 +77,8 @@ function getSkillsWithTheme(isDark: boolean) {
         ' It separates the content from the visual representation of the site. The relation between HTML and CSS is strongly tied together since HTML' +
         ' is the very foundation of a site and CSS is all of the aesthetics of an entire website.',
       link: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
-      percentage: 90,
+      percentage: 92,
+      color: '#1B73BA',
     },
     {
       name: 'Spring',
@@ -79,6 +88,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' build common used patterns and features faster.',
       link: 'https://spring.io/',
       percentage: 80,
+      color: '#77BC1F',
     },
     {
       name: 'AWS',
@@ -87,6 +97,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' data centers globally. It has more than 30 regions around the world that provide security, fault tolerance and scalability features.',
       link: 'https://aws.amazon.com/',
       percentage: 75,
+      color: '#FF9900',
     },
     {
       name: 'GCP',
@@ -95,6 +106,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' It\'s easy to use and provides many SDK\'s for many programming languages.',
       link: 'https://cloud.google.com/',
       percentage: 70,
+      color: '#4285F4',
     },
     {
       name: 'Firebase',
@@ -104,6 +116,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' It provides SDKs for most popular programming languages and an user interface for better visualization and making integrations easier.',
       link: 'https://firebase.google.com/',
       percentage: 70,
+      color: '#FFCA28',
     },
     {
       name: 'Postgres',
@@ -112,6 +125,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' reputation for performance, reliability and robustness. It has a huge community that build plugins and products that complement the DBMS.',
       link: 'https://www.postgresql.org/',
       percentage: 90,
+      color: '#336791',
     },
     {
       name: 'MongoDB',
@@ -121,7 +135,8 @@ function getSkillsWithTheme(isDark: boolean) {
         ' and geographic distribution are built in and easy to use. It provides drivers for more than 10 languages' +
         ' and has a huge community that provides many more.',
       link: 'https://www.mongodb.com/',
-      percentage: 60,
+      percentage: 65,
+      color: '#6CAC48',
     },
     {
       name: 'Angular',
@@ -130,7 +145,8 @@ function getSkillsWithTheme(isDark: boolean) {
         ' well-integrated libraries that cover a wide variety of features, including routing, forms, data fetching and many more. It comes with' +
         ' a built in CLI for a better developer experience and uses a modular architecture with dependency injection.',
       link: 'https://angular.io/',
-      percentage: 50,
+      percentage: 60,
+      color: '#E23237',
     },
     {
       name: 'Docker',
@@ -140,6 +156,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' code and runtime. It provides tools for easy managing and scaling on demand.',
       link: 'https://www.docker.com/',
       percentage: 60,
+      color: '#469FBC',
     },
     {
       name: 'Figma',
@@ -148,7 +165,8 @@ function getSkillsWithTheme(isDark: boolean) {
         ' with an emphasis on real-time collaboration using a variety of vector graphics editors and prototyping tools.' +
         ' It provides cloud-based storage for files and has very active community that shares designs and assets for public use.',
       link: 'https://www.figma.com/',
-      percentage: 70,
+      percentage: 75,
+      color: '#A259FF',
     },
     {
       name: 'Git',
@@ -157,6 +175,7 @@ function getSkillsWithTheme(isDark: boolean) {
         ' worlds most used VCS by developers.',
       link: 'https://git-scm.com/',
       percentage: 100,
+      color: '#F03C2E',
     },
   ];
 }
@@ -173,15 +192,10 @@ const Skills = () => {
         className="text-3xl md:text-6xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-neutral-100">Skills</h1>
       <h3
         className="text-base md:text-xl text-sans font-base text-neutral-800 mb-4 md:mb-10 dark:text-neutral-200">These
-        are my weapons of choice.</h3>
+        are my weapons of choice</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {skills.map(skill => {
-          return <SkillCard key={skill.name}
-                            imgUrl={skill.imgUrl}
-                            name={skill.name}
-                            description={skill.description}
-                            link={skill.link}
-                            percentage={skill.percentage} />;
+          return <SkillCard key={skill.name} {...skill} />;
         })}
       </div>
     </section>
