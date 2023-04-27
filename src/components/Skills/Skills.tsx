@@ -119,7 +119,7 @@ function getSkillsWithTheme(isDark: boolean) {
       color: '#FFCA28',
     },
     {
-      name: 'Postgres',
+      name: 'PostgreSQL',
       imgUrl: '/logos/postgresql-logo.svg',
       description: 'A powerful, open source object-relational database system with more than 30 years of active development that has earned a strong' +
         ' reputation for performance, reliability and robustness. It has a huge community that build plugins and products that complement the DBMS.',
