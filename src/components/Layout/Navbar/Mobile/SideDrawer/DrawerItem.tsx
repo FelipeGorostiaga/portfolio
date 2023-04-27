@@ -37,7 +37,7 @@ const DrawerItem = ({
   }
 
   return (
-    <div className="flex flex-col gap-1 items-start justify-start cursor-pointerpl-8">
+    <div className="flex flex-col gap-1 items-start justify-start">
       <div className="h-14">
         <div className="flex flex-row gap-3 items-center justify-start cursor-pointer h-14 pl-8"
              onClick={onClick}>
@@ -51,13 +51,13 @@ const DrawerItem = ({
           </div>
         </div>
       </div>
-      <div className={`flex flex-col items-start justify-start pl-12 gap-2 ${multilevelOpen? 'visible' : 'hidden'} ${styles.dropdown}`}>
+      <div className={`flex flex-col items-start justify-start pl-12 gap-2 w-full ${multilevelOpen? 'visible' : 'hidden'} ${styles.dropdown}`}>
         {
           subItems && subItems.map(item => {
             return (
               <Link href={item.route}
                     key={item.name}
-                    className="flex flex-row gap-3 items-center justify-start cursor-pointer h-10 pl-8"
+                    className="flex flex-row gap-3 items-center justify-start cursor-pointer h-10 pl-8 w-full"
                     onClick={item.onClick}>
                 {item.icon}
                 <span
