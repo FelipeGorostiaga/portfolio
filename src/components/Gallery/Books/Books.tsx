@@ -59,7 +59,7 @@ const Books = () => {
       return Math.ceil(total / BOOKS_PER_PAGE);
     }
     return 0;
-  }, [data, total]);
+  }, [total]);
 
   const showEmptyState = !isLoading && books?.length === 0;
   const showPagination = !isLoading && !!total && (total > BOOKS_PER_PAGE);

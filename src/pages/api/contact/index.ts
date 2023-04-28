@@ -1,5 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { type NextApiRequest, type NextApiResponse } from 'next';
+import { type SentMessageInfo } from 'nodemailer';
 
+/* eslint-disable */
 const nodemailer = require('nodemailer');
 
 export default async function handler(
@@ -14,25 +16,25 @@ export default async function handler(
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'feligoros@gmail.com',
+        user: process.env.GMAIL_API_USERNAME,
         pass: process.env.GMAIL_API_PASSWORD,
       },
     });
+
+    const mailBody = `${message} \n\n\nEmail: ${email}\n${phone ? `Phone: ${phone}` : ''}`;
 
     const mailOptions = {
       from: email,
       to: 'feligoros@gmail.com',
       subject: `Hey! ${name} wants to talk to you...`,
-      text: phone? `${message} \n\nContact me via: ${phone}` : message,
+      text: mailBody,
     };
 
-    transporter.sendMail(mailOptions, function(error: any, info: any) {
+    transporter.sendMail(mailOptions, function(error: Error | null, info: SentMessageInfo) {
       if (error) {
-        console.log(error);
-        res.status(500);
+        res.status(500).json({ errorMessage: error.message || 'Error sending email' });
       } else {
-        res.status(201);
-        console.log('Email sent: ' + info.response);
+        res.status(201).json({ status: 'OK', message: info.response });
       }
     });
   }
