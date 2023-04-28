@@ -4,6 +4,10 @@
   initial-value: 0;
 }
 
+.wrapper {
+  display: block;
+}
+
 .pie {
   --p: 20;
   --b: 22px;
@@ -37,10 +41,18 @@
   inset: calc(50% - var(--b) / 2);
   background: var(--c);
   transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
+  -moz-transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
+  -ms-transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
+  -o-transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
+  -webkit-transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
 }
 
 .animate {
-  animation: p 1s .25s both;
+  -webkit-animation:  p 1s .25s both;
+  -moz-animation:  p 1s .25s both;
+  -o-animation:  p 1s .25s both;
+  -ms-animation:  p 1s .25s both;
+  animation:  p 1s .25s both;
 }
 
 .no-round:before {
@@ -52,6 +64,27 @@
 }
 
 @keyframes p {
+  from {
+    --p: 0
+  }
+}
+
+@-webkit-keyframes p {
+  from {
+    --p: 0
+  }
+}
+@-moz-keyframes p {
+  from {
+    --p: 0
+  }
+}
+@-o-keyframes p {
+  from {
+    --p: 0
+  }
+}
+@-ms-keyframes p {
   from {
     --p: 0
   }
