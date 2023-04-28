@@ -8,6 +8,7 @@ import { type Session } from 'next-auth';
 import { api } from '~/utils/api';
 import '~/styles/globals.css';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { Toaster } from 'react-hot-toast';
 
 
 const darkTheme = createTheme({
@@ -29,7 +30,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <ThemeProviderCustom>
-        <MainLayout Component={Component} pageProps={pageProps} />
+        <>
+          <Toaster position='top-center' />
+          <MainLayout Component={Component} pageProps={pageProps} />
+        </>
       </ThemeProviderCustom>
     </SessionProvider>
   );
@@ -48,7 +52,6 @@ const MainLayout = ({ Component, pageProps }: any) => {
         <Footer />
       </div>
     </ThemeProvider>
-
   );
 };
 
