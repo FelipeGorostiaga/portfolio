@@ -11,12 +11,13 @@ export default async function handler(
   if (req.method === 'POST') {
 
     const { name, email, message, phone = '' } = req.body;
+    const gmailAccount = process.env.GMAIL_API_USERNAME;
 
     // Gmail account info
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_API_USERNAME,
+        user: gmailAccount,
         pass: process.env.GMAIL_API_PASSWORD,
       },
     });
@@ -25,7 +26,7 @@ export default async function handler(
 
     const mailOptions = {
       from: email,
-      to: 'feligoros@gmail.com',
+      to: gmailAccount,
       subject: `Hey! ${name} wants to talk to you...`,
       text: mailBody,
     };

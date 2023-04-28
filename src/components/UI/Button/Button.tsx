@@ -1,6 +1,7 @@
 import { cva } from 'class-variance-authority';
 import { type MouseEventHandler, type ReactNode } from 'react';
 import { CircularProgress } from '@mui/material';
+import { useTheme } from '~/contexts/ThemeContext';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content' | 'pill';
 export type ButtonIntent = 'primary' | 'secondary' | 'danger';
@@ -18,7 +19,7 @@ interface ButtonProps {
 }
 
 const buttonStyles = cva(
-  'flex items-center justify-center px-4 py-2 rounded-lg text-sm md:text-base font-sans focus-outline-none',
+  'flex items-center justify-center px-4 py-2 text-sm md:text-base font-sans focus-outline-none',
   {
     variants: {
       intent: {
@@ -27,17 +28,17 @@ const buttonStyles = cva(
         danger: 'bg-red-600 text-gray-100 hover:bg-red-700',
       },
       size: {
-        fullWidth: 'w-full',
-        large: 'w-[377px]',
-        medium: 'w-[320px]',
-        small: 'w-[244px]',
-        content: '',
+        fullWidth: 'w-full  rounded-lg',
+        large: 'w-[377px]  rounded-lg',
+        medium: 'w-[320px]  rounded-lg',
+        small: 'w-[244px]  rounded-lg',
+        content: 'rounded-lg',
         pill: 'rounded-[40px]',
       },
       loading: {
         true: 'cursor-progress',
-        false: 'cursor-pointer'
-      }
+        false: 'cursor-pointer',
+      },
     },
     defaultVariants: {
       intent: 'primary',
@@ -55,12 +56,15 @@ const Button = ({
                   loading = false,
                   disabled = false,
                 }: ButtonProps) => {
+  const { isDark } = useTheme();
   return (
     <button type={type} className={`${buttonStyles({ intent, size, loading })} ${className}`} onClick={onClick}
             disabled={disabled}>
       <div className="flex items-center justify-center gap-3">
-        {loading && <CircularProgress size="12px" />}
-        {children}
+        {loading && <CircularProgress size="12px" sx={{ color: isDark ? 'primary' : 'white' }} />}
+        <span className="-mt-0.5">
+          {children}
+        </span>
       </div>
     </button>
   );

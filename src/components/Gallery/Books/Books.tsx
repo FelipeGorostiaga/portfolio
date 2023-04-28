@@ -87,7 +87,8 @@ const Books = () => {
       {
         showPagination &&
         <div className="w-full flex flex-row items-center justify-center mt-10">
-          <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)} size={sm? 'small' : 'large'}/>
+          <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)}
+                      size={sm ? 'small' : 'large'} />
         </div>
       }
     </section>
