@@ -1,5 +1,6 @@
 import { cva } from 'class-variance-authority';
 import { type MouseEventHandler, type ReactNode } from 'react';
+import { CircularProgress } from '@mui/material';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content' | 'pill';
 export type ButtonIntent = 'primary' | 'secondary' | 'danger';
@@ -12,10 +13,12 @@ interface ButtonProps {
   type?: ButtonType;
   onClick: MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  loading?: boolean;
+  disabled?: boolean;
 }
 
 const buttonStyles = cva(
-  'flex items-center justify-center px-4 py-2 rounded-lg text-sm md:text-base font-sans focus-outline-none cursor-pointer',
+  'flex items-center justify-center px-4 py-2 rounded-lg text-sm md:text-base font-sans focus-outline-none',
   {
     variants: {
       intent: {
@@ -31,6 +34,10 @@ const buttonStyles = cva(
         content: '',
         pill: 'rounded-[40px]',
       },
+      loading: {
+        true: 'cursor-progress',
+        false: 'cursor-pointer'
+      }
     },
     defaultVariants: {
       intent: 'primary',
@@ -38,10 +45,25 @@ const buttonStyles = cva(
   },
 );
 
-const Button = ({ type = 'button', intent, size = 'medium', onClick, children, className = '' }: ButtonProps) => {
-  return <button type={type}
-                 className={`${buttonStyles({ intent, size })} ${className}`}
-                 onClick={onClick}>{children}</button>;
+const Button = ({
+                  type = 'button',
+                  intent,
+                  size = 'medium',
+                  onClick,
+                  children,
+                  className = '',
+                  loading = false,
+                  disabled = false,
+                }: ButtonProps) => {
+  return (
+    <button type={type} className={`${buttonStyles({ intent, size, loading })} ${className}`} onClick={onClick}
+            disabled={disabled}>
+      <div className="flex items-center justify-center gap-3">
+        {loading && <CircularProgress size="12px" />}
+        {children}
+      </div>
+    </button>
+  );
 };
 
 export default Button;
