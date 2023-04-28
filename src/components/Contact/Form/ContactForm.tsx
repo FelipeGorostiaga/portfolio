@@ -6,6 +6,9 @@ import { z } from 'zod';
 import { validateInput } from '~/utils/lib/string';
 import Button from '@ui/Button/Button';
 import { useMemo, useState, type MouseEvent } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useTheme } from '~/contexts/ThemeContext';
 
 export const nameSchema = z.string().min(1).max(30);
 export const emailSchema = z.string().email();
@@ -68,25 +71,40 @@ const ContactForm = () => {
     reset: resetMessage,
   } = useInput((value) => validateInput(value, messageSchema));
 
+  const [sendingMessage, setSendingMessage] = useState(false);
+  const { isDark } = useTheme();
+
   const isFormValid: boolean = useMemo(() => nameValid && lastnameValid && emailValid && messageValid && phoneValid,
     [nameValid, lastnameValid, emailValid, phoneValid, messageValid]);
 
-  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
+  const toastStyle = useMemo(() => {
+    return isDark ? { color: '#f3f4f6', backgroundColor: '#171717' } : {};
+  }, [isDark]);
+
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!isFormValid) {
       setFormSubmitted(true);
       return;
     }
-
     const payload = {
       name: `${name} ${lastname}`,
       message,
       email,
       phone: phone || null,
     };
-    // TODO
-    console.log('Submitting payload', payload);
-
+    try {
+      setSendingMessage(true);
+      await axios.post('/api/contact', payload);
+      toast.success('Message sent', {
+        style: toastStyle,
+      });
+    } catch (e) {
+      toast.error('Error sending message: contact me directly at fgorostiagabraun@gmail.com', {
+        style: toastStyle,
+      });
+    }
+    setSendingMessage(false);
     setFormSubmitted(false);
     resetForm();
   };
@@ -148,12 +166,14 @@ const ContactForm = () => {
              rows={3} />
       <div className={`${!lg ? 'col-span-2' : ''} flex w-full items-center justify-end pb-6 lg:pb-8`}>
         <Button
+          loading={sendingMessage}
+          disabled={sendingMessage}
           type="submit"
           intent="primary"
           onClick={handleSubmit}
           size={sm ? 'fullWidth' : 'pill'}
           className={sm ? 'rounded-2xl' : 'px-12'}>
-          Send message
+          {sendingMessage ? 'Sending...' : 'Send message'}
         </Button>
       </div>
     </form>

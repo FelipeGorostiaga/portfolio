@@ -59,7 +59,7 @@ const Books = () => {
       return Math.ceil(total / BOOKS_PER_PAGE);
     }
     return 0;
-  }, [data, total]);
+  }, [total]);
 
   const showEmptyState = !isLoading && books?.length === 0;
   const showPagination = !isLoading && !!total && (total > BOOKS_PER_PAGE);
@@ -87,7 +87,8 @@ const Books = () => {
       {
         showPagination &&
         <div className="w-full flex flex-row items-center justify-center mt-10">
-          <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)} size={sm? 'small' : 'large'}/>
+          <Pagination count={totalPages} page={page} onChange={(e, page) => setPage(page)}
+                      size={sm ? 'small' : 'large'} />
         </div>
       }
     </section>

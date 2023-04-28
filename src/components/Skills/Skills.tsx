@@ -1,7 +1,6 @@
 import SkillCard from './SkillCard';
 import { useTheme } from '~/contexts/ThemeContext';
 import { useMemo } from 'react';
-import HackerText from '@ui/HackerText/HackerText';
 
 function getSkillsWithTheme(isDark: boolean) {
   return [

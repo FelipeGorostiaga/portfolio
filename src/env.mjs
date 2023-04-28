@@ -19,7 +19,9 @@ const server = z.object({
     process.env.VERCEL ? z.string().min(1) : z.string().url()
   ),
   GITHUB_ID: z.string(),
-  GITHUB_SECRET: z.string()
+  GITHUB_SECRET: z.string(),
+  GMAIL_API_USERNAME: z.string(),
+  GMAIL_API_PASSWORD: z.string(),
 });
 
 /**
@@ -42,7 +44,9 @@ const processEnv = {
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   GITHUB_ID: process.env.GITHUB_ID,
-  GITHUB_SECRET: process.env.GITHUB_SECRET
+  GITHUB_SECRET: process.env.GITHUB_SECRET,
+  GMAIL_API_USERNAME: process.env.GMAIL_API_USERNAME,
+  GMAIL_API_PASSWORD: process.env.GMAIL_API_PASSWORD,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
