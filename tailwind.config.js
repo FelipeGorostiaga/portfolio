@@ -14,6 +14,9 @@ module.exports = {
       screens: {
         "xs": "480px"
       }
+      , fontFamily: {
+        "mono-game": ["VT323", "monospace"]
+      }
     }
   },
   plugins: []
