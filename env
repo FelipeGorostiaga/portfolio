@@ -1,0 +1,7 @@
+DATABASE_URL="mysql://mqc50oh0k3uff0t9umoi:pscale_pw_JEBxn3UhkqKNgCR6Id4O4api3G9I8Xi2evoxMEHgtcE@aws.connect.psdb.cloud/portfoliodb?sslaccept=strict"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="kajslkdjaksjdkas="
+GITHUB_ID="a9f693360a1083b7d264"
+GITHUB_SECRET="e46adb65efc2f207b0ee82b120fadfc1c47c5163"
+GMAIL_API_USERNAME="fgorostiagabraun@gmail.com"
+GMAIL_API_PASSWORD="jfnsmnussjioooaw"

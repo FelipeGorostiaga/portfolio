@@ -1,0 +1,16 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(16, 40px);
+}
+
+@media screen and (width < 640px) {
+  .gridContainer {
+    grid-template-columns: repeat(16, 24px);
+  }
+}
+
+@media screen and (width < 480px) {
+  .gridContainer {
+    grid-template-columns: repeat(16, 18px);
+  }
+}
