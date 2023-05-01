@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 import Controls from '~/components/Games/GameOfLife/Controls/Controls';
 import HackerText from '@ui/HackerText/HackerText';
+import styles from './GameOfLife.module.scss';
 
 
 const operations = [
@@ -47,7 +48,7 @@ interface CellProp {
 const GridCell = ({ alive, position, onClick, className = '' }: CellProp) => {
   return (
     <div onClick={() => onClick(...position)}
-         className={`w-[40px] h-[40px] border border-neutral-400 dark:border-neutral-800 cursor-pointer 
+         className={`w-[18px] h-[18px] xs:w-[24px] xs:h-[24px] sm:w-[35px] sm:h-[35px] border border-neutral-400 dark:border-neutral-800 cursor-pointer 
          ${alive ? 'bg-blue-600 dark:bg-blue-800' : 'bg-neutral-200 dark:bg-spacegray'} transition-colors ${className}`} />
   );
 };
@@ -114,12 +115,9 @@ const GameOfLife = () => {
   };
 
   return (
-    <div className="max-w-6xl w-full flex flex-col items-start gap-3">
-      <HackerText className="text-3xl dark:text-slate-200">GAME OF LIFE</HackerText>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${cols}, 40px)`,
-      }}>
+    <div className="max-w-6xl w-full flex flex-col items-center gap-4 mx-auto">
+      <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game ">GAME OF LIFE</HackerText>
+      <div className={styles.gridContainer}>
         {
           grid.map((rows, i) => rows.map((col, j) =>
             <GridCell key={`${i}-${j}`}
@@ -130,14 +128,16 @@ const GameOfLife = () => {
           ))
         }
       </div>
-      <Controls running={running}
-                onPlay={() => {
-                  setRunning(prev => !prev);
-                  runningRef.current = true;
-                  simulate();
-                }}
-                onClear={clearGrid}
-                onRandomize={randomizeGrid} />
+      <div className='w-[288px] sm:w-[560px]'>
+        <Controls running={running}
+                  onPlay={() => {
+                    setRunning(prev => !prev);
+                    runningRef.current = true;
+                    simulate();
+                  }}
+                  onClear={clearGrid}
+                  onRandomize={randomizeGrid} />
+      </div>
     </div>
   );
 };
