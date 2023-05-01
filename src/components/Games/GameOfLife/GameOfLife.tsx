@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 import Controls from '~/components/Games/GameOfLife/Controls/Controls';
 import HackerText from '@ui/HackerText/HackerText';
 import styles from './GameOfLife.module.scss';
+import {createEmptyGrid} from "~/utils/lib/grid";
 
 
 const operations = [
@@ -34,10 +35,6 @@ function getRoundedProperty(i: number, j: number): string {
   return '';
 }
 
-function createEmptyGrid() {
-  return Array.from({ length: rows }, () => Array.from({ length: cols }, () => 0));
-}
-
 interface CellProp {
   alive: boolean;
   position: [number, number];
@@ -54,7 +51,7 @@ const GridCell = ({ alive, position, onClick, className = '' }: CellProp) => {
 };
 
 const GameOfLife = () => {
-  const [grid, setGrid] = useState(() => createEmptyGrid());
+  const [grid, setGrid] = useState(() => createEmptyGrid(rows, cols, () => 0));
   const [running, setRunning] = useState(false);
   const runningRef = useRef(running);
   runningRef.current = running;
@@ -94,7 +91,7 @@ const GameOfLife = () => {
   }, []);
 
   const clearGrid = () => {
-    setGrid(createEmptyGrid());
+    setGrid(createEmptyGrid(rows, cols, () => 0));
     setRunning(false);
   };
 
