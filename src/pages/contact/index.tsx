@@ -8,7 +8,7 @@ export default function ContactPage() {
         <title>Contact | Felipe Gorostiaga</title>
         <meta name="Contact" content="Felipe's portfolio website" />
       </Head>
-      <div className="h-full w-full flex items-center lg:items-start justify-center pb-3">
+      <div className="h-full w-full flex items-center lg:items-start justify-center">
         <Contact />
       </div>
     </>
