@@ -100,7 +100,7 @@ const ContactForm = () => {
         style: toastStyle,
       });
     } catch (e) {
-      toast.error('Error sending message: contact me directly at fgorostiagabraun@gmail.com', {
+      toast.error('Error: contact me directly at fgorostiagabraun@gmail.com', {
         style: toastStyle,
       });
     }
