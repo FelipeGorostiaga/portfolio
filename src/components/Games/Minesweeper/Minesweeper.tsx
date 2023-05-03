@@ -1,61 +1,144 @@
 import styles from './Minesweeper.module.scss';
-import {type MouseEvent, useState} from "react";
-import {createGrid} from "~/utils/lib/grid";
-import GridItem from "~/components/Games/Minesweeper/GridItem";
-import HackerText from "@ui/HackerText/HackerText";
+import { type MouseEvent, useState } from 'react';
+import { createGrid, neighbourOperations } from '~/utils/lib/grid';
+import GridItem from '~/components/Games/Minesweeper/GridItem';
+import HackerText from '@ui/HackerText/HackerText';
 
 
 const rows = 16;
 const cols = 16;
+const bombs = 50;
 
 export interface GridPosition {
-    hasBomb: boolean;
-    uncovered: boolean
-    bombNeighbours: number;
+  hasBomb: boolean;
+  hasFlag: boolean;
+  uncovered: boolean;
+  bombNeighbours: number;
 }
 
-function createEmptyMinesweeperGrid() {
-    const mappingFn = (): GridPosition => {
-        return {
-            hasBomb: false,
-            uncovered: false,
-            bombNeighbours: 0,
-
-        }
+function countNeighbourBombs(grid: GridPosition[][], i: number, j: number): number {
+  let neighbourBombs = 0;
+  neighbourOperations.forEach(([x, y]) => {
+    const newRow = i + x;
+    const newCol = j + y;
+    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+      if (grid[newRow][newCol].hasBomb) {
+        neighbourBombs += 1;
+      }
     }
-    const grid = createGrid(rows, cols, mappingFn);
-    // TODO: place bombs
-    return grid;
+  });
+  return neighbourBombs;
+}
+
+function addBombNeighbourData(grid: GridPosition[][]) {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      grid[i][j].bombNeighbours = countNeighbourBombs(grid, i, j);
+    }
+  }
+}
+
+function createMinesweeperGrid() {
+  const mappingFn = (): GridPosition => {
+    return {
+      hasBomb: false,
+      hasFlag: false,
+      uncovered: false,
+      bombNeighbours: 0,
+    };
+  };
+  const grid = createGrid(rows, cols, mappingFn);
+  let usedBombs = 0;
+  while (usedBombs < bombs) {
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        if (!grid[i][j].hasBomb) {
+          const rand = Math.random();
+          if (rand < 0.25) {
+            grid[i][j].hasBomb = true;
+            usedBombs++;
+          }
+        }
+      }
+    }
+  }
+  addBombNeighbourData(grid);
+  return grid;
 }
 
 function hasWon(): boolean {
-    return false;
+  return false;
 }
 
 const Minesweeper = () => {
-    const [grid, setGrid] = useState<GridPosition[][]>(() => createEmptyMinesweeperGrid());
+  const [grid, setGrid] = useState<GridPosition[][]>(() => createMinesweeperGrid());
+  const [remainingFlags, setRemainingFlags] = useState(bombs);
 
-    const handleClear = () => {
-        // todo: clear all
+  const handleClear = () => {
+    const newGrid = createMinesweeperGrid();
+    setGrid(newGrid);
+  };
+
+  const handleClick = (e: MouseEvent<HTMLDivElement>, i: number, j: number) => {
+
+    // todo: check what happens when you click on a flash with left click, remove flag? do nothing? remove flag and touch position?
+
+    if (grid[i][j].uncovered) {
+      return;
+    }
+    setGrid(prevGrid => {
+      const newGrid = structuredClone(prevGrid);
+      newGrid[i][j].uncovered = true;
+      return newGrid;
+    });
+  };
+
+  const handlePlaceFlag = (e: MouseEvent<HTMLDivElement>, i: number, j: number) => {
+    // prevent open browser right-click menu
+    e.preventDefault();
+    // clicks on uncovered item -> do nothing
+    if (grid[i][j].uncovered) {
+      return;
     }
 
-    const handleClick = (e: MouseEvent<HTMLDivElement>, i: number, j: number) => {
-        // todo: click on grid item
+    // Clicks on item with a flag -> remove flag
+    if (grid[i][j].hasFlag) {
+      setRemainingFlags(prev => prev + 1);
+      setGrid(prevGrid => {
+        const newGrid = structuredClone(prevGrid);
+        newGrid[i][j].hasFlag = false;
+        return newGrid;
+      });
+      return;
     }
 
-    return (
-        <div className="max-w-6xl w-full flex flex-col items-center gap-4 mx-auto">
-            <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game">MINESWEEPER</HackerText>
-            <div className={styles.gridContainer}>
-                {
-                    grid.map((rows, i) => rows.map((element, j) => {
-                        return <GridItem key={`${i}-${j}`} position={[i, j]} onClick={handleClick} {...element} />
-                    }))
-                }
-            </div>
-        </div>
+    if (remainingFlags > 0) {
+      setRemainingFlags(prev => prev - 1);
+      setGrid(prevGrid => {
+        const newGrid = structuredClone(prevGrid);
+        newGrid[i][j].hasFlag = true;
+        return newGrid;
+      });
+      return;
+    }
+  };
 
-    );
-}
+  return (
+    <div className="max-w-6xl w-full flex flex-col items-center gap-4 mx-auto">
+      <HackerText
+        className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game">MINESWEEPER</HackerText>
+      <div className={styles.gridContainer}>
+        {
+          grid.map((rows, i) => rows.map((element, j) => {
+            return <GridItem key={`${i}-${j}`} position={[i, j]} onClick={handleClick} {...element}
+                             onRightClick={handlePlaceFlag} />;
+          }))
+        }
+      </div>
+      {/* TODO: add controls: clear, remaining flags, highscore, elapsed time, etc... */}
+    </div>
+
+  );
+};
 
 export default Minesweeper;
