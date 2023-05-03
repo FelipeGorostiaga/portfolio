@@ -57,7 +57,7 @@ const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNei
   }
 
   if (bombNeighbours === 0) {
-    return <div className={`${baseClasses} bg-red-300 dark:bg-black`}
+    return <div className={`${baseClasses} bg-slate-300 dark:bg-black`}
                 onClick={(e) => onClick(e, ...position)}
                 onContextMenu={(e) => onRightClick(e, ...position)}></div>;
   }
