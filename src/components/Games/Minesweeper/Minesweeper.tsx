@@ -1,6 +1,6 @@
 import styles from './Minesweeper.module.scss';
 import {type MouseEvent, useState} from "react";
-import {createEmptyGrid} from "~/utils/lib/grid";
+import {createGrid} from "~/utils/lib/grid";
 import GridItem from "~/components/Games/Minesweeper/GridItem";
 import HackerText from "@ui/HackerText/HackerText";
 
@@ -23,7 +23,7 @@ function createEmptyMinesweeperGrid() {
 
         }
     }
-    const grid = createEmptyGrid(rows, cols, mappingFn);
+    const grid = createGrid(rows, cols, mappingFn);
     // TODO: place bombs
     return grid;
 }
