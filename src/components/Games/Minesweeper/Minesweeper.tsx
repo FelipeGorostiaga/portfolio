@@ -16,6 +16,21 @@ export interface GridPosition {
   bombNeighbours: number;
 }
 
+function uncoverNeighbours(grid: GridPosition[][], i: number, j: number, visited: Set<[number, number]>) {
+  if (i < 0 || j < 0 || i > rows || j > cols || visited.has([i, j]) || grid[i][j].uncovered) {
+    return;
+  }
+  visited.add([i, j]);
+  grid[i][j].uncovered = true;
+  if (grid[i][j].bombNeighbours === 0) {
+    for (let opIdx = 0; opIdx < neighbourOperations.length; opIdx++) {
+      const newRow = i + neighbourOperations[opIdx][0];
+      const newCol = j + neighbourOperations[opIdx][1];
+      uncoverNeighbours(grid, newRow, newCol, visited);
+    }
+  }
+}
+
 function countNeighbourBombs(grid: GridPosition[][], i: number, j: number): number {
   let neighbourBombs = 0;
   neighbourOperations.forEach(([x, y]) => {
@@ -66,13 +81,24 @@ function createMinesweeperGrid() {
   return grid;
 }
 
-function hasWon(): boolean {
-  return false;
+function hasWon(grid: GridPosition[][]): boolean {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (!grid[i][j].uncovered || !grid[i][j].hasFlag) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 const Minesweeper = () => {
   const [grid, setGrid] = useState<GridPosition[][]>(() => createMinesweeperGrid());
   const [remainingFlags, setRemainingFlags] = useState(bombs);
+  const [lost, setLost] = useState(false);
+  const [won, setWon] = useState(false);
+
+  const finished = lost || won;
 
   const handleClear = () => {
     const newGrid = createMinesweeperGrid();
@@ -80,17 +106,44 @@ const Minesweeper = () => {
   };
 
   const handleClick = (e: MouseEvent<HTMLDivElement>, i: number, j: number) => {
-
-    // todo: check what happens when you click on a flash with left click, remove flag? do nothing? remove flag and touch position?
-
-    if (grid[i][j].uncovered) {
+    const position = grid[i][j];
+    if (position.uncovered || position.hasFlag) {
       return;
     }
-    setGrid(prevGrid => {
-      const newGrid = structuredClone(prevGrid);
-      newGrid[i][j].uncovered = true;
-      return newGrid;
-    });
+
+    if (position.hasBomb) {
+      setLost(true);
+      setGrid(prevGrid => {
+        const newGrid = structuredClone(prevGrid);
+        // uncover all bombs
+        for (let k = 0; k < rows; k++) {
+          for (let m = 0; m < cols; m++) {
+            if (grid[k][m].hasBomb) {
+              newGrid[k][m].uncovered = true;
+            }
+          }
+        }
+        return newGrid;
+      });
+      return;
+    }
+
+    if (position.bombNeighbours === 0) {
+      // iterate recursively through all 0 bomb neighbours and uncover them
+      setGrid(prevGrid => {
+        const newGrid = structuredClone(prevGrid);
+        const visited = new Set<[number, number]>();
+        visited.add([i, j]);
+        uncoverNeighbours(newGrid, i, j, visited);
+        return newGrid;
+      });
+    } else {
+      setGrid(prevGrid => {
+        const newGrid = structuredClone(prevGrid);
+        newGrid[i][j].uncovered = true;
+        return newGrid;
+      });
+    }
   };
 
   const handlePlaceFlag = (e: MouseEvent<HTMLDivElement>, i: number, j: number) => {
@@ -137,7 +190,6 @@ const Minesweeper = () => {
       </div>
       {/* TODO: add controls: clear, remaining flags, highscore, elapsed time, etc... */}
     </div>
-
   );
 };
 
