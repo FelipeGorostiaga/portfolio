@@ -109,6 +109,8 @@ const ContactForm = () => {
     resetForm();
   };
 
+  console.log(isFormValid);
+
   const resetForm = () => {
     resetName();
     resetLastname();
@@ -167,7 +169,7 @@ const ContactForm = () => {
       <div className={`${!lg ? 'col-span-2' : ''} flex w-full items-center justify-end pb-6 lg:pb-8`}>
         <Button
           loading={sendingMessage}
-          disabled={sendingMessage}
+          disabled={sendingMessage || !isFormValid}
           type="submit"
           intent="primary"
           onClick={handleSubmit}
