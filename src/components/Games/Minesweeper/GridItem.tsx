@@ -1,5 +1,6 @@
 import { type MouseEvent } from 'react';
 import Image from 'next/image';
+import useBreakpoints from '~/hooks/useBreakpoints';
 
 
 interface ItemProps {
@@ -27,8 +28,9 @@ function getColorByNeighboursAmount(bombNeighbours: number): string {
 }
 
 const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNeighbours, hasFlag, className }: ItemProps) => {
-
-  const baseClasses = `w-[40px] h-[40px] transition-colors border border-green-900 dark:border-slate-800 ${className}`;
+  const { xs, sm, md } = useBreakpoints();
+  const baseClasses = `w-[18px] h-[18px] xs:w-[24px] xs:h-[24px] sm:w-[35px] sm:h-[35px] transition-colors border border-green-900 dark:border-slate-800 ${className}`;
+  const imgSize = xs? 12: sm? 16 : 24;
 
   if (!uncovered) {
     if (hasFlag) {
@@ -37,7 +39,7 @@ const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNei
         onClick={(e) => onClick(e, ...position)}
         onContextMenu={(e) => onRightClick(e, ...position)}
       >
-        <Image src="/flag.png" width={24} height={24} alt="flag" />
+        <Image src="/flag.png" width={imgSize} height={imgSize} alt="flag" />
       </div>;
     }
     return <div onClick={(e) => onClick(e, ...position)}
@@ -53,7 +55,7 @@ const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNei
       onClick={(e) => onClick(e, ...position)}
       onContextMenu={(e) => onRightClick(e, ...position)}
     >
-      <Image src="/explosion.png" width={24} height={24} alt="flag" />
+      <Image src="/explosion.png" width={imgSize} height={imgSize} alt="flag" />
     </div>;
   }
 
@@ -65,7 +67,7 @@ const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNei
 
   return (
     <div
-      className={`${baseClasses} bg-slate-300 dark:bg-black text-2xl ${getColorByNeighboursAmount(bombNeighbours)} flex items-center justify-center`}
+      className={`${baseClasses} bg-slate-300 dark:bg-black text-base sm:text-lg md:text-2xl ${getColorByNeighboursAmount(bombNeighbours)} flex items-center justify-center`}
       onClick={(e) => onClick(e, ...position)}
       onContextMenu={(e) => onRightClick(e, ...position)}>{bombNeighbours}</div>
   );

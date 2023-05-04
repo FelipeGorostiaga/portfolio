@@ -19,7 +19,7 @@ export interface GridPosition {
 }
 
 function uncoverNeighbours(grid: GridPosition[][], i: number, j: number, visited: Set<[number, number]>) {
-  if (i < 0 || j < 0 || i > rows || j > cols || visited.has([i, j]) || grid[i][j].uncovered) {
+  if (i < 0 || j < 0 || i >= rows || j >= cols || visited.has([i, j]) || grid[i][j].uncovered) {
     return;
   }
   visited.add([i, j]);
@@ -55,6 +55,10 @@ function addBombNeighbourData(grid: GridPosition[][]) {
   }
 }
 
+function randomIntFromInterval(min: number, max: number) { // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function createMinesweeperGrid() {
   const mappingFn = (): GridPosition => {
     return {
@@ -66,19 +70,14 @@ function createMinesweeperGrid() {
   };
   const grid = createGrid(rows, cols, mappingFn);
   let usedBombs = 0;
-  while (usedBombs < bombs) {
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < cols; j++) {
-        if (!grid[i][j].hasBomb) {
-          const rand = Math.random();
-          if (rand < 0.25) {
-            grid[i][j].hasBomb = true;
-            usedBombs++;
-          }
-        }
-      }
+  do {
+    const randomRow = randomIntFromInterval(0, rows - 1);
+    const randomCol = randomIntFromInterval(0, cols - 1);
+    if (!grid[randomRow][randomCol].hasBomb) {
+        grid[randomRow][randomCol].hasBomb = true;
+        usedBombs += 1;
     }
-  }
+  } while (usedBombs < bombs);
   addBombNeighbourData(grid);
   return grid;
 }
@@ -86,7 +85,7 @@ function createMinesweeperGrid() {
 function hasWon(grid: GridPosition[][]): boolean {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      if (!grid[i][j].uncovered || !grid[i][j].hasFlag) {
+      if (!grid[i][j].uncovered && !grid[i][j].hasFlag) {
         return false;
       }
     }
@@ -98,9 +97,8 @@ const Minesweeper = () => {
   const [grid, setGrid] = useState<GridPosition[][]>(() => createMinesweeperGrid());
   const [remainingFlags, setRemainingFlags] = useState(bombs);
   const [lost, setLost] = useState(false);
-  const [won, setWon] = useState(true);
+  const [won, setWon] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
-
   const finished = lost || won;
 
   const handleClear = () => {
@@ -208,16 +206,16 @@ const Minesweeper = () => {
             <div className={styles.resultContainer}>
               {
                 lost && (
-                  <div className="bg-neutral-200 dark:bg-[#0c0c0c] w-[240px] h-[130px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900  rounded-xl gap-1">
-                    <h1 className="text-2xl text-neutral-800 dark:text-neutral-100 font-bold">GAME OVER!</h1>
-                    <Button size="fullWidth" intent="primary" onClick={handleClear}><span className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
+                  <div className="bg-neutral-200 dark:bg-[#0c0c0c] w-[200px] h-[120px] sm:w-[240px] sm:h-[130px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900  rounded-xl gap-1">
+                    <h1 className="text-lg sm:text-2xl text-neutral-800 dark:text-neutral-100 font-bold">GAME OVER!</h1>
+                    <Button size="content" intent="primary" onClick={handleClear}><span className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
                   </div>
                 )
               }
               {
                 won && (
                   <div className="bg-neutral-200 dark:bg-[#0c0c0c] w-[240px] h-[150px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900 rounded-xl">
-                    <h1 className="text-2xl text-neutral-800 dark:text-neutral-100 font-bold">VICTORY!</h1>
+                    <h1 className="text-lg sm:text-2xl text-neutral-800 dark:text-neutral-100 font-bold">VICTORY!</h1>
                     <span className='text-base text-neutral-700 dark:text-neutral-300'>Your score: {16}s</span>
                     <Button size="fullWidth" intent="primary" onClick={handleClear}><span className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
                   </div>
