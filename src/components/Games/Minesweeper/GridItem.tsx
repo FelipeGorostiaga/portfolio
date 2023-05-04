@@ -10,24 +10,25 @@ interface ItemProps {
   hasBomb: boolean;
   hasFlag: boolean;
   bombNeighbours: number;
+  className?: string;
 }
 
 function getColorByNeighboursAmount(bombNeighbours: number): string {
   switch (bombNeighbours) {
     case 1:
-      return 'text-green-200';
+      return 'text-green-500 dark:text-green-200';
     case 2:
-      return 'text-green-300';
+      return 'text-green-600 dark:text-green-300';
     case 3:
-      return 'text-green-400';
+      return 'text-green-700 dark:text-green-400';
     default:
-      return 'text-green-500';
+      return 'text-green-950 dark:text-green-500';
   }
 }
 
-const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNeighbours, hasFlag }: ItemProps) => {
+const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNeighbours, hasFlag, className }: ItemProps) => {
 
-  const baseClasses = 'w-[40px] h-[40px] transition-colors border border-neutral-400 dark:border-slate-800';
+  const baseClasses = `w-[40px] h-[40px] transition-colors border border-green-900 dark:border-slate-800 ${className}`;
 
   if (!uncovered) {
     if (hasFlag) {

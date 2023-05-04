@@ -1,8 +1,10 @@
 import styles from './Minesweeper.module.scss';
 import { type MouseEvent, useState } from 'react';
-import { createGrid, neighbourOperations } from '~/utils/lib/grid';
+import { createGrid, getRoundedProperty, neighbourOperations } from '~/utils/lib/grid';
 import GridItem from '~/components/Games/Minesweeper/GridItem';
 import HackerText from '@ui/HackerText/HackerText';
+import Button from '@ui/Button/Button';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 
 const rows = 16;
@@ -96,18 +98,23 @@ const Minesweeper = () => {
   const [grid, setGrid] = useState<GridPosition[][]>(() => createMinesweeperGrid());
   const [remainingFlags, setRemainingFlags] = useState(bombs);
   const [lost, setLost] = useState(false);
-  const [won, setWon] = useState(false);
+  const [won, setWon] = useState(true);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
   const finished = lost || won;
 
   const handleClear = () => {
     const newGrid = createMinesweeperGrid();
+    setWon(false);
+    setElapsedTime(0);
+    setLost(false);
+    setRemainingFlags(bombs);
     setGrid(newGrid);
   };
 
   const handleClick = (e: MouseEvent<HTMLDivElement>, i: number, j: number) => {
     const position = grid[i][j];
-    if (position.uncovered || position.hasFlag) {
+    if (finished || position.uncovered || position.hasFlag) {
       return;
     }
 
@@ -135,12 +142,18 @@ const Minesweeper = () => {
         const visited = new Set<[number, number]>();
         visited.add([i, j]);
         uncoverNeighbours(newGrid, i, j, visited);
+        if (hasWon(newGrid)) {
+          setWon(true);
+        }
         return newGrid;
       });
     } else {
       setGrid(prevGrid => {
         const newGrid = structuredClone(prevGrid);
         newGrid[i][j].uncovered = true;
+        if (hasWon(newGrid)) {
+          setWon(true);
+        }
         return newGrid;
       });
     }
@@ -170,6 +183,9 @@ const Minesweeper = () => {
       setGrid(prevGrid => {
         const newGrid = structuredClone(prevGrid);
         newGrid[i][j].hasFlag = true;
+        if (hasWon(newGrid)) {
+          setWon(true);
+        }
         return newGrid;
       });
       return;
@@ -182,10 +198,33 @@ const Minesweeper = () => {
         className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game">MINESWEEPER</HackerText>
       <div className={styles.gridContainer}>
         {
-          grid.map((rows, i) => rows.map((element, j) => {
+          grid.map((r, i) => r.map((element, j) => {
             return <GridItem key={`${i}-${j}`} position={[i, j]} onClick={handleClick} {...element}
-                             onRightClick={handlePlaceFlag} />;
+                             onRightClick={handlePlaceFlag} className={getRoundedProperty(i, j, rows, cols)}/>;
           }))
+        }
+        {
+          finished && (
+            <div className={styles.resultContainer}>
+              {
+                lost && (
+                  <div className="bg-neutral-200 dark:bg-[#0c0c0c] w-[240px] h-[130px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900  rounded-xl gap-1">
+                    <h1 className="text-2xl text-neutral-800 dark:text-neutral-100 font-bold">GAME OVER!</h1>
+                    <Button size="fullWidth" intent="primary" onClick={handleClear}><span className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
+                  </div>
+                )
+              }
+              {
+                won && (
+                  <div className="bg-neutral-200 dark:bg-[#0c0c0c] w-[240px] h-[150px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900 rounded-xl">
+                    <h1 className="text-2xl text-neutral-800 dark:text-neutral-100 font-bold">VICTORY!</h1>
+                    <span className='text-base text-neutral-700 dark:text-neutral-300'>Your score: {16}s</span>
+                    <Button size="fullWidth" intent="primary" onClick={handleClear}><span className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
+                  </div>
+                )
+              }
+            </div>
+          )
         }
       </div>
       {/* TODO: add controls: clear, remaining flags, highscore, elapsed time, etc... */}
