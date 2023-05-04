@@ -1,10 +1,13 @@
 import styles from './Minesweeper.module.scss';
-import { type MouseEvent, useState } from 'react';
+import { type MouseEvent, useMemo, useState } from 'react';
 import { createGrid, getRoundedProperty, neighbourOperations } from '~/utils/lib/grid';
 import GridItem from '~/components/Games/Minesweeper/GridItem';
 import HackerText from '@ui/HackerText/HackerText';
 import Button from '@ui/Button/Button';
 import ReplayIcon from '@mui/icons-material/Replay';
+import useStopwatch from '~/hooks/useStopwatch';
+import Image from 'next/image';
+import useBreakpoints from '~/hooks/useBreakpoints';
 
 
 const rows = 16;
@@ -56,7 +59,7 @@ function addBombNeighbourData(grid: GridPosition[][]) {
 }
 
 function randomIntFromInterval(min: number, max: number) { // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min)
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function createMinesweeperGrid() {
@@ -74,8 +77,8 @@ function createMinesweeperGrid() {
     const randomRow = randomIntFromInterval(0, rows - 1);
     const randomCol = randomIntFromInterval(0, cols - 1);
     if (!grid[randomRow][randomCol].hasBomb) {
-        grid[randomRow][randomCol].hasBomb = true;
-        usedBombs += 1;
+      grid[randomRow][randomCol].hasBomb = true;
+      usedBombs += 1;
     }
   } while (usedBombs < bombs);
   addBombNeighbourData(grid);
@@ -98,16 +101,36 @@ const Minesweeper = () => {
   const [remainingFlags, setRemainingFlags] = useState(bombs);
   const [lost, setLost] = useState(false);
   const [won, setWon] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const finished = lost || won;
+  const {
+    milliseconds,
+    seconds,
+    minutes,
+    start: startTimer,
+    stop: stopTimer,
+    reset: resetTimer,
+    running,
+  } = useStopwatch();
+
+  const { xs, sm, md} = useBreakpoints();
+
+  const finished = useMemo(() => lost || won, [lost, won]);
 
   const handleClear = () => {
     const newGrid = createMinesweeperGrid();
     setWon(false);
-    setElapsedTime(0);
     setLost(false);
     setRemainingFlags(bombs);
     setGrid(newGrid);
+    resetTimer();
+  };
+
+  const handleFinished = (won: boolean) => {
+    if (won) {
+      setWon(true);
+    } else {
+      setLost(true);
+    }
+    stopTimer();
   };
 
   const handleClick = (e: MouseEvent<HTMLDivElement>, i: number, j: number) => {
@@ -116,8 +139,12 @@ const Minesweeper = () => {
       return;
     }
 
+    if (!running) {
+      startTimer();
+    }
+
     if (position.hasBomb) {
-      setLost(true);
+      handleFinished(false);
       setGrid(prevGrid => {
         const newGrid = structuredClone(prevGrid);
         // uncover all bombs
@@ -141,7 +168,7 @@ const Minesweeper = () => {
         visited.add([i, j]);
         uncoverNeighbours(newGrid, i, j, visited);
         if (hasWon(newGrid)) {
-          setWon(true);
+          handleFinished(true);
         }
         return newGrid;
       });
@@ -150,7 +177,7 @@ const Minesweeper = () => {
         const newGrid = structuredClone(prevGrid);
         newGrid[i][j].uncovered = true;
         if (hasWon(newGrid)) {
-          setWon(true);
+          handleFinished(true);
         }
         return newGrid;
       });
@@ -161,8 +188,12 @@ const Minesweeper = () => {
     // prevent open browser right-click menu
     e.preventDefault();
     // clicks on uncovered item -> do nothing
-    if (grid[i][j].uncovered) {
+    if (finished || grid[i][j].uncovered) {
       return;
+    }
+
+    if (!running) {
+      startTimer();
     }
 
     // Clicks on item with a flag -> remove flag
@@ -182,7 +213,7 @@ const Minesweeper = () => {
         const newGrid = structuredClone(prevGrid);
         newGrid[i][j].hasFlag = true;
         if (hasWon(newGrid)) {
-          setWon(true);
+          handleFinished(true);
         }
         return newGrid;
       });
@@ -194,11 +225,22 @@ const Minesweeper = () => {
     <div className="max-w-6xl w-full flex flex-col items-center gap-4 mx-auto">
       <HackerText
         className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game">MINESWEEPER</HackerText>
+      <div className="flex flex-row items-center w-[288px] sm:w-[560px] justify-center">
+        <div className="flex flex-row items-center gap-2">
+          <Image src="/smile.png" width={24} height={24} alt="smile" onClick={handleClear} className='mr-2 cursor-pointer'/>
+          <Image src="/stopwatch.png" width={24} height={24} alt="stopwatch" />
+          <div className="text-xs sm:text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-mono">
+            <span>{('0' + minutes).slice(-2)}:</span>
+            <span>{('0' + seconds).slice(-2)}.</span>
+            <span>{('0' + milliseconds).slice(-2)}</span>
+          </div>
+        </div>
+      </div>
       <div className={styles.gridContainer}>
         {
           grid.map((r, i) => r.map((element, j) => {
             return <GridItem key={`${i}-${j}`} position={[i, j]} onClick={handleClick} {...element}
-                             onRightClick={handlePlaceFlag} className={getRoundedProperty(i, j, rows, cols)}/>;
+                             onRightClick={handlePlaceFlag} className={getRoundedProperty(i, j, rows, cols)} />;
           }))
         }
         {
@@ -206,18 +248,22 @@ const Minesweeper = () => {
             <div className={styles.resultContainer}>
               {
                 lost && (
-                  <div className="bg-neutral-200 dark:bg-[#0c0c0c] w-[200px] h-[120px] sm:w-[240px] sm:h-[130px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900  rounded-xl gap-1">
+                  <div
+                    className="bg-neutral-200 dark:bg-[#0c0c0c] w-[200px] h-[120px] sm:w-[240px] sm:h-[130px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900  rounded-xl gap-1">
                     <h1 className="text-lg sm:text-2xl text-neutral-800 dark:text-neutral-100 font-bold">GAME OVER!</h1>
-                    <Button size="content" intent="primary" onClick={handleClear}><span className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
+                    <Button size="content" intent="primary" onClick={handleClear}><span
+                      className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
                   </div>
                 )
               }
               {
                 won && (
-                  <div className="bg-neutral-200 dark:bg-[#0c0c0c] w-[240px] h-[150px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900 rounded-xl">
+                  <div
+                    className="bg-neutral-200 dark:bg-[#0c0c0c] w-[240px] h-[150px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900 rounded-xl">
                     <h1 className="text-lg sm:text-2xl text-neutral-800 dark:text-neutral-100 font-bold">VICTORY!</h1>
-                    <span className='text-base text-neutral-700 dark:text-neutral-300'>Your score: {16}s</span>
-                    <Button size="fullWidth" intent="primary" onClick={handleClear}><span className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
+                    <span className="text-base text-neutral-700 dark:text-neutral-300">Score: {(minutes * 60 ) + seconds}s</span>
+                    <Button size="fullWidth" intent="primary" onClick={handleClear}><span
+                      className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
                   </div>
                 )
               }
@@ -225,7 +271,6 @@ const Minesweeper = () => {
           )
         }
       </div>
-      {/* TODO: add controls: clear, remaining flags, highscore, elapsed time, etc... */}
     </div>
   );
 };
