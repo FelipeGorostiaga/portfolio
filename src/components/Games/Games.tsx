@@ -39,7 +39,7 @@ const Games = () => {
                  className={`object-cover w-[${imgSize}px] h-[${imgSize}px] aspect-square self-center sm:self-auto`} />
           <div className="flex flex-col gap-5 px-2">
             <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl sm:text-4xl font-bold mt-2">Minesweeper</h1>
-            <p className="text-sm sm:text-base text-neutral-800 dark:text-neutral-300">A logic puzzle video game. The game features a grid of clickable squares, with hidden "mines" scattered
+            <p className="text-sm sm:text-base text-neutral-800 dark:text-neutral-300">A logic puzzle video game. The game features a grid of clickable squares, with hidden mines scattered
               throughout the board. The objective is to clear the board without detonating any mines, with help from
               clues about the number of neighboring mines in each field.</p>
           </div>

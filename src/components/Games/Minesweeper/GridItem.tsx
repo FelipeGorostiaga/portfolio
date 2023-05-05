@@ -28,7 +28,7 @@ function getColorByNeighboursAmount(bombNeighbours: number): string {
 }
 
 const GridItem = ({ position, onClick, onRightClick, uncovered, hasBomb, bombNeighbours, hasFlag, className }: ItemProps) => {
-  const { xs, sm, md } = useBreakpoints();
+  const { xs, sm } = useBreakpoints();
   const baseClasses = `w-[18px] h-[18px] xs:w-[24px] xs:h-[24px] sm:w-[35px] sm:h-[35px] transition-colors border border-green-900 dark:border-slate-800 ${className}`;
   const imgSize = xs? 12: sm? 16 : 24;
 

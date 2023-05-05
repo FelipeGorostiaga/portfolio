@@ -111,8 +111,6 @@ const Minesweeper = () => {
     running,
   } = useStopwatch();
 
-  const { xs, sm, md} = useBreakpoints();
-
   const finished = useMemo(() => lost || won, [lost, won]);
 
   const handleClear = () => {
