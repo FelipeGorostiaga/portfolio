@@ -13,7 +13,7 @@ const Games = () => {
         <Link href="/games/game-of-life"
               className="flex flex-col sm:flex-row gap-6 p-8 bg-gray-100 dark:bg-darkgray rounded-xl dark:hover:bg-neutral-800 hover:scale-[1.005] hover:bg-gray-200">
           <Image src="/game-of-life.png" alt="game of life" height={imgSize} width={imgSize}
-                 className={`object-cover w-[${imgSize}px] h-[${imgSize}px] aspect-square self-center sm:self-auto`} />
+                 className={`object-cover w-[96px] h-[96px] sm:w-[128px] sm:h-[128px] aspect-square self-center sm:self-auto`} />
           <div className="flex flex-col gap-5 px-2">
             <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl sm:text-4xl font-bold mt-2">Game of Life</h1>
             <p className="text-sm sm:text-base text-neutral-800 dark:text-neutral-300">A cellular automaton devised by the British
@@ -36,7 +36,7 @@ const Games = () => {
         <Link href="/games/minesweeper"
               className="flex flex-col sm:flex-row gap-6 p-8 bg-gray-100 dark:bg-darkgray rounded-xl dark:hover:bg-neutral-800 hover:scale-[1.005] hover:bg-gray-200">
           <Image src="/explosion.svg" alt="game of life" height={imgSize} width={imgSize}
-                 className={`object-cover w-[${imgSize}px] h-[${imgSize}px] aspect-square self-center sm:self-auto`} />
+                 className={`object-cover w-[96px] h-[96px] sm:w-[128px] sm:h-[128px] aspect-square self-center sm:self-auto`} />
           <div className="flex flex-col gap-5 px-2">
             <h1 className="text-neutral-800 dark:text-neutral-200 text-2xl sm:text-4xl font-bold mt-2">Minesweeper</h1>
             <p className="text-sm sm:text-base text-neutral-800 dark:text-neutral-300">A logic puzzle video game. The game features a grid of clickable squares, with hidden mines scattered
