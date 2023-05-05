@@ -2,38 +2,11 @@ import { useCallback, useRef, useState } from 'react';
 import Controls from '~/components/Games/GameOfLife/Controls/Controls';
 import HackerText from '@ui/HackerText/HackerText';
 import styles from './GameOfLife.module.scss';
-import {createEmptyGrid} from "~/utils/lib/grid";
+import { createGrid, getRoundedProperty, neighbourOperations } from '~/utils/lib/grid';
 
-
-const operations = [
-  [-1, -1],
-  [-1, 0],
-  [-1, 1],
-  [0, -1],
-  [0, 1],
-  [1, -1],
-  [1, 0],
-  [1, 1],
-];
 
 const rows = 16;
 const cols = 16;
-
-function getRoundedProperty(i: number, j: number): string {
-  if (i === 0 && j === 0) {
-    return 'rounded-ss';
-  }
-  if (i === (rows - 1) && j === (cols - 1)) {
-    return 'rounded-ee';
-  }
-  if (i === (rows - 1) && j === 0) {
-    return 'rounded-es';
-  }
-  if (i === 0 && j === (cols - 1)) {
-    return 'rounded-se';
-  }
-  return '';
-}
 
 interface CellProp {
   alive: boolean;
@@ -51,7 +24,7 @@ const GridCell = ({ alive, position, onClick, className = '' }: CellProp) => {
 };
 
 const GameOfLife = () => {
-  const [grid, setGrid] = useState(() => createEmptyGrid(rows, cols, () => 0));
+  const [grid, setGrid] = useState(() => createGrid(rows, cols, () => 0));
   const [running, setRunning] = useState(false);
   const runningRef = useRef(running);
   runningRef.current = running;
@@ -70,7 +43,7 @@ const GameOfLife = () => {
       for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
           let aliveNeighbours = 0;
-          operations.forEach(([x, y]) => {
+          neighbourOperations.forEach(([x, y]) => {
             const newRow = i + x;
             const newCol = j + y;
             if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
@@ -91,15 +64,15 @@ const GameOfLife = () => {
   }, []);
 
   const clearGrid = () => {
-    setGrid(createEmptyGrid(rows, cols, () => 0));
+    setGrid(createGrid(rows, cols, () => 0));
     setRunning(false);
   };
 
   const randomizeGrid = () => {
-    const randomGrid = Array.from({ length: rows }, () => Array.from({ length: cols }, () => {
+    const randomGrid = createGrid(rows, cols, () => {
       const rand = Math.random();
       return rand < 0.3 ? 1 : 0;
-    }));
+    });
     setGrid(randomGrid);
     setRunning(false);
   };
@@ -113,19 +86,20 @@ const GameOfLife = () => {
 
   return (
     <div className="max-w-6xl w-full flex flex-col items-center gap-4 mx-auto">
-      <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game ">GAME OF LIFE</HackerText>
+      <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game ">GAME OF
+        LIFE</HackerText>
       <div className={styles.gridContainer}>
         {
-          grid.map((rows, i) => rows.map((col, j) =>
+          grid.map((r, i) => r.map((col, j) =>
             <GridCell key={`${i}-${j}`}
                       alive={!!grid[i][j]}
                       position={[i, j]}
                       onClick={handleCellClick}
-                      className={getRoundedProperty(i, j)} />,
+                      className={getRoundedProperty(i, j, rows, cols)} />,
           ))
         }
       </div>
-      <div className='w-[288px] sm:w-[560px]'>
+      <div className="w-[288px] sm:w-[560px]">
         <Controls running={running}
                   onPlay={() => {
                     setRunning(prev => !prev);

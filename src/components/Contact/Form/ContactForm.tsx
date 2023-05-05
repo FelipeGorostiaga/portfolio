@@ -100,7 +100,7 @@ const ContactForm = () => {
         style: toastStyle,
       });
     } catch (e) {
-      toast.error('Error sending message: contact me directly at fgorostiagabraun@gmail.com', {
+      toast.error('Error: contact me directly at fgorostiagabraun@gmail.com', {
         style: toastStyle,
       });
     }
@@ -108,6 +108,8 @@ const ContactForm = () => {
     setFormSubmitted(false);
     resetForm();
   };
+
+  console.log(isFormValid);
 
   const resetForm = () => {
     resetName();
@@ -167,7 +169,7 @@ const ContactForm = () => {
       <div className={`${!lg ? 'col-span-2' : ''} flex w-full items-center justify-end pb-6 lg:pb-8`}>
         <Button
           loading={sendingMessage}
-          disabled={sendingMessage}
+          disabled={sendingMessage || !isFormValid}
           type="submit"
           intent="primary"
           onClick={handleSubmit}
