@@ -1,7 +1,8 @@
 import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
 import { z } from 'zod';
+import { MOVIES_PER_PAGE } from '~/utils/constants/gallery';
 
-const MOVIES_PER_PAGE = 8;
+
 
 export const moviesRouter = createTRPCRouter({
   getAll: publicProcedure

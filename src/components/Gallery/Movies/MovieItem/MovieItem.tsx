@@ -13,10 +13,9 @@ interface MovieProps {
 const MovieItem = ({ title, director, imgUrl, rate, year }: MovieProps) => {
   const { xs } = useBreakpoints();
   return (
-    <div
-      className="flex flex-col justify-start w-full gap-3 rounded-lg bg-neutral-100 relative shadow md:shadow-xl hover:scale-[1.01]
-       dark:bg-spacegray dark:bg-opacity-50">
-      <div className="w-full aspect-[3.2/5] relative">
+    <div className="flex flex-col items-start rounded-xl bg-neutral-100 dark:bg-spacegray dark:bg-opacity-50
+      w-full min-h-[240px] shadow md:shadow-xl hover:scale-[1.01] relative gap-3 h-full">
+      <div className="w-full aspect-movie relative">
         <Image src={imgUrl} fill alt={`${title} cover`} className="overflow-hidden rounded-t-lg" />
       </div>
       <div className="px-4 flex flex-col gap-1">

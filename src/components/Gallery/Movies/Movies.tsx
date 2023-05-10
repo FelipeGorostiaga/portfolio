@@ -1,4 +1,3 @@
-import styles from './Movies.module.scss';
 import MovieItem from '~/components/Gallery/Movies/MovieItem/MovieItem';
 import { useEffect, useMemo, useState } from 'react';
 import useBreakpoints from '~/hooks/useBreakpoints';
@@ -70,8 +69,8 @@ const Movies = () => {
         Movies
       </h1>
       <Filters {...filterProps} />
-      <div className={styles.gridContainer}>
-        {movies?.slice(1).map(movie => <MovieItem key={movie.id} {...movie} />)}
+      <div className='grid grid-cols-1 xs:grid-cols-2 place-items-start gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 min-h-[504px]'>
+        {movies?.map(movie => <MovieItem key={movie.id} {...movie} />)}
         {
           showEmptyState &&
           <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
