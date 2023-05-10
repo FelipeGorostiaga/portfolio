@@ -21,20 +21,26 @@ const Home = () => {
             <div className={`${styles.animatedWording} font-sans font-semibold text-4xl md:text-5xl lg:text-6xl`}>
               Felipe Gorostiaga
             </div>
-            <div className={`${styles.animatedSubtitle} text-gray-600 text-center font-sans font-regular dark:text-gray-300 md:text-xl`}>
+            <div
+              className={`${styles.animatedSubtitle} text-gray-600 text-center font-sans font-regular dark:text-gray-300 md:text-xl`}>
               Sr. Software Engineer at Banco Galicia
             </div>
           </div>
-          <Image src={'/pfp-smiling.jpg'} alt='profile image' height={sm? 180 : 250} width={sm? 180 : 250} className={styles.pfp}/>
+          <Image src={'/pfp-smiling.jpg'}
+                 alt="profile image"
+                 height={sm ? 180 : 250}
+                 width={sm ? 180 : 250}
+                 className={styles.pfp} />
         </div>
         <div className="w-full h-0.5 bg-gray-200 my-8 dark:bg-gray-400 m-auto md:my-12"></div>
         <p
           className="font-sans text-base font-normal m-0 break-normal text-gray-600 dark:text-gray-300 md:text-xl ">
-          I am an engineer and technology enthusiast that is constantly
-          learning about the world
-          with the purpose of gaining new knowledge to create products and services that serve and inspire humankind. To
-          create is the most noble act one can achieve, specially if something truly beautiful and useful is made. That
-          is my purpose.
+          I am an innovative engineer and passionate technology enthusiast, constantly seeking to expand my knowledge
+          and understanding of the world. I harness this driving force to create exceptional products and services that
+          not only serve humanity but also empower individuals to
+          unleash their full potential. The act of creation, for me, is a noble endeavor, where the pursuit of knowledge
+          and the desire to make a lasting impact converge in the most profound and transformative ways, that is my
+          purpose.
         </p>
         <div className="flex items-center flex-wrap justify-start w-full gap-3 md:gap-7 mt-12">
           <Button intent="primary" size={contactButtonSize} onClick={() => void router.push('/contact')}>Contact
