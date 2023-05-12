@@ -5,6 +5,7 @@ import { api } from '~/utils/api';
 import { MOVIES_PER_PAGE, type SortCriteria, type SortDirection } from '~/utils/constants/gallery';
 import { Pagination } from '@mui/material';
 import Filters from '~/components/Gallery/Filters/Filters';
+import MovieItemSkeleton from '@components/Gallery/Movies/MovieItem/MovieItemSkeleton';
 
 
 const Movies = () => {
@@ -69,8 +70,11 @@ const Movies = () => {
         Movies
       </h1>
       <Filters {...filterProps} />
-      <div className='grid grid-cols-1 xs:grid-cols-2 place-items-start gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 min-h-[504px]'>
-        {movies?.map(movie => <MovieItem key={movie.id} {...movie} />)}
+      <div className='grid grid-cols-1 xs:grid-cols-2 place-items-start gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+        {isLoading && Array.from(Array(10)).map((n, idx) => {
+          return <MovieItemSkeleton key={idx} />;
+        })}
+        {!isLoading && movies?.map(movie => <MovieItem key={movie.id} {...movie} />)}
         {
           showEmptyState &&
           <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
