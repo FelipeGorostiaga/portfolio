@@ -224,8 +224,13 @@ const Minesweeper = () => {
       <HackerText
         className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game">MINESWEEPER</HackerText>
       <div className="flex flex-row items-center w-[288px] sm:w-[560px] justify-center">
+        <div className='flex flex-row items-center gap-2 mr-3'>
+          <Image src="/flag.png" width={24} height={24} alt="flag" />
+          <span className='text-xs sm:text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-mono font-semibold'>{remainingFlags}</span>
+
+        </div>
+        <Image src="/smile.png" width={24} height={24} alt="smile" onClick={handleClear} className='mr-2 cursor-pointer'/>
         <div className="flex flex-row items-center gap-2">
-          <Image src="/smile.png" width={24} height={24} alt="smile" onClick={handleClear} className='mr-2 cursor-pointer'/>
           <Image src="/stopwatch.png" width={24} height={24} alt="stopwatch" />
           <div className="text-xs sm:text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-mono">
             <span>{('0' + minutes).slice(-2)}:</span>

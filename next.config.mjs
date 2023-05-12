@@ -18,5 +18,19 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'm.media-amazon.com',
+
+      },
+      {
+        hostname: 'pics.filmaffinity.com',
+      },
+      {
+        hostname: 'd1w7fb2mkkr3kw.cloudfront.net'
+      }
+    ],
+  },
 };
 export default config;

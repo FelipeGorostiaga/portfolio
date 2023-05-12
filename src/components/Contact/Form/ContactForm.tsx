@@ -109,8 +109,6 @@ const ContactForm = () => {
     resetForm();
   };
 
-  console.log(isFormValid);
-
   const resetForm = () => {
     resetName();
     resetLastname();

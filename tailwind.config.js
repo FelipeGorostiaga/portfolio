@@ -9,7 +9,8 @@ module.exports = {
         spacegray: "#101010"
       },
       aspectRatio: {
-        "book": "1 / 1.6"
+        "book": "1 / 1.6",
+        "movie": "3.2 / 5"
       },
       screens: {
         "xs": "480px"

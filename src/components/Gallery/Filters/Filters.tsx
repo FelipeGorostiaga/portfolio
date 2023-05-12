@@ -2,9 +2,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { type Dispatch, type KeyboardEvent, type SetStateAction, useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useTheme } from '~/contexts/ThemeContext';
-import { type SortCriteria, type SortDirection } from '~/components/Gallery/Books/Books';
+import { type SortCriteria, type SortDirection } from '~/utils/constants/gallery';
 
 interface BookFilterProps {
+  searchPlaceholder: string;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
   sortCriteria: SortCriteria;
@@ -15,7 +16,7 @@ interface BookFilterProps {
   disabled: boolean;
 }
 
-const BookFilters = (props: BookFilterProps) => {
+const Filters = (props: BookFilterProps) => {
   const [inputFocused, setInputFocused] = useState(false);
   const { isDark } = useTheme();
 
@@ -33,7 +34,7 @@ const BookFilters = (props: BookFilterProps) => {
         <input value={props.searchValue}
                onChange={e => props.setSearchValue(e.target.value)}
                className="outline-none bg-transparent font-sans w-full caret-blue-400 text-lg text-neutral-700 dark:text-neutral-300"
-               placeholder="Search by title, author..."
+               placeholder={props.searchPlaceholder}
                onFocus={() => setInputFocused(true)}
                onBlur={() => setInputFocused(false)}
                onKeyDown={(e) => handleKeyPress(e)}
@@ -76,4 +77,4 @@ const BookFilters = (props: BookFilterProps) => {
   );
 };
 
-export default BookFilters;
+export default Filters;

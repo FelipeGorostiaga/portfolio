@@ -1,14 +1,12 @@
 import BookItem from './BookItem/BookItem';
-import BookFilters from './BookFilters/BookFilters';
 import { api } from '~/utils/api';
 import { useEffect, useMemo, useState } from 'react';
 import BookItemSkeleton from '~/components/Gallery/Books/BookItem/BookItemSkeleton';
 import { Pagination } from '@mui/material';
 import useBreakpoints from '~/hooks/useBreakpoints';
+import { BOOKS_PER_PAGE, type SortCriteria, type SortDirection } from '~/utils/constants/gallery';
+import Filters from '~/components/Gallery/Filters/Filters';
 
-export type SortCriteria = 'rating' | 'year';
-export type SortDirection = 'asc' | 'desc';
-const BOOKS_PER_PAGE = 6;
 
 const Books = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -48,6 +46,7 @@ const Books = () => {
     setSortDirection,
     handleSearch,
     disabled,
+    searchPlaceholder: "Search by title, author...",
   };
 
   useEffect(() => {
@@ -67,10 +66,10 @@ const Books = () => {
   return (
     <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0">
       <h1
-        className="text-4xl text-sans font-bold mb-1 md:mb-2 text-neutral-800 dark:text-neutral-100">
-        My Books
+        className="text-4xl text-sans font-bold text-neutral-800 dark:text-neutral-100">
+        Books
       </h1>
-      <BookFilters {...filterProps} />
+      <Filters {...filterProps} />
       <div
         className="grid grid-cols-1 place-items-start gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px]">
         {isLoading && Array.from(Array(6)).map((n, idx) => {
