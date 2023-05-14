@@ -64,14 +64,14 @@ const Books = () => {
   const showPagination = !isLoading && !!total && (total > BOOKS_PER_PAGE);
 
   return (
-    <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0">
+    <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0 overflow-auto">
       <h1
         className="text-4xl text-sans font-bold text-neutral-800 dark:text-neutral-100">
         Books
       </h1>
       <Filters {...filterProps} />
       <div
-        className="grid grid-cols-1 place-items-start gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px]">
+        className="flex flex-col place-items-start gap-4 md:gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px]">
         {isLoading && Array.from(Array(6)).map((n, idx) => {
           return <BookItemSkeleton key={idx} />;
         })}

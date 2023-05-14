@@ -9,7 +9,7 @@ export default function BooksPage() {
         <meta name="Portfolio" content="Felipe's portfolio website" />
         <link rel="icon" href="/logo.png" />
       </Head>
-      <div className="h-full w-full flex items-start justify-center pt-8 md:pt-12 lg:pt-16 pb-10 dark:bg-black">
+      <div className="h-full min-w-full flex items-start justify-center pt-8 md:pt-12 lg:pt-16 pb-10 dark:bg-black">
         <Books />
       </div>
     </>
