@@ -66,12 +66,12 @@ const Books = () => {
   return (
     <section className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0 overflow-auto">
       <h1
-        className="text-4xl text-sans font-bold text-neutral-800 dark:text-neutral-100">
-        Books
+        className="text-3xl md:text-4xl md:mb-1 font-semibold font-sans text-neutral-800 dark:text-neutral-100">
+        Library
       </h1>
       <Filters {...filterProps} />
       <div
-        className="flex flex-col place-items-start gap-4 md:gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px]">
+        className="flex flex-col place-items-start gap-4 md:gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px] md:mt-2">
         {isLoading && Array.from(Array(6)).map((n, idx) => {
           return <BookItemSkeleton key={idx} />;
         })}

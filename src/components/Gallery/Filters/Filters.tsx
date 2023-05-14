@@ -27,13 +27,13 @@ const Filters = (props: BookFilterProps) => {
   };
 
   return (
-    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-5 my-3 py-4">
+    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-5 my-3">
       <div
-        className={`py-3 px-5 bg-neutral-50 dark:bg-transparent flex flex-row items-center justify-items-start
-        gap-2 rounded-xl w-full md:w-[50%] lg:w-[400px] border-2 ${inputFocused ? 'border-[#1976D2]' : (isDark ? 'border-neutral-700' : 'border-neutral-200')}`}>
+        className={`py-3 px-5 bg-transparent dark:bg-transparent flex flex-row items-center justify-items-start
+        gap-2 rounded-xl w-full md:w-[50%] lg:w-[400px] border ${inputFocused ? 'border-[#1976D2]' : (isDark ? 'border-neutral-700' : 'border-neutral-400')}`}>
         <input value={props.searchValue}
                onChange={e => props.setSearchValue(e.target.value)}
-               className="outline-none bg-transparent font-sans w-full caret-blue-400 text-lg text-neutral-700 dark:text-neutral-300"
+               className="outline-none bg-transparent font-sans w-full caret-blue-400 text-lg text-neutral-700 dark:text-neutral-300 placeholder:text-neutral-500"
                placeholder={props.searchPlaceholder}
                onFocus={() => setInputFocused(true)}
                onBlur={() => setInputFocused(false)}

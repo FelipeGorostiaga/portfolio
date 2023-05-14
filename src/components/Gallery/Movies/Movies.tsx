@@ -64,13 +64,13 @@ const Movies = () => {
   const showPagination = !isLoading && !!total && (total > MOVIES_PER_PAGE);
 
   return (
-    <div className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0 pt-12 pb-12">
+    <div className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0 pt-8 md:pt-12 lg:pt-16 pb-10">
       <h1
-        className="text-4xl text-sans font-bold text-neutral-800 dark:text-neutral-100">
+        className="text-3xl md:text-4xl md:mb-1 font-semibold font-sans text-neutral-800 dark:text-neutral-100">
         Movies
       </h1>
       <Filters {...filterProps} />
-      <div className='flex flex-col xs:grid xs:place-items-start xs:grid-cols-2 gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+      <div className='flex flex-col xs:grid xs:place-items-start xs:grid-cols-2 gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:mt-2'>
         {isLoading && Array.from(Array(10)).map((n, idx) => {
           return <MovieItemSkeleton key={idx} />;
         })}
