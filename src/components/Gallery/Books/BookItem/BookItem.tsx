@@ -1,5 +1,6 @@
 import StarIcon from '@mui/icons-material/Star';
 import useBreakpoints from '~/hooks/useBreakpoints';
+import Image from 'next/image';
 
 interface BookProps {
   title: string;
@@ -16,7 +17,7 @@ const BookItem = ({ title, author, imgUrl, rate, year }: BookProps) => {
       className="flex flex-row items-start rounded-xl bg-neutral-100 dark:bg-spacegray w-full min-h-[240px] aspect-video
       shadow md:shadow-xl hover:scale-[1.01] relative dark:border dark:border-neutral-900">
       <div className="h-full aspect-book relative">
-        <img src={imgUrl} alt="Book cover" className="rounded-l-xl h-full w-full" />
+        <Image src={imgUrl} alt="Book cover" fill className="rounded-l-xl h-full w-full" />
       </div>
       <div className="flex flex-col items-start py-2 px-3 md:px-4 justify-between h-full w-full">
         <div className="flex flex-col gap-0 w-full">
