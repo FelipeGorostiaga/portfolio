@@ -70,7 +70,7 @@ const Movies = () => {
         Movies
       </h1>
       <Filters {...filterProps} />
-      <div className='grid grid-cols-1 xs:grid-cols-2 place-items-start gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+      <div className='flex flex-col xs:grid xs:place-items-start xs:grid-cols-2 gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {isLoading && Array.from(Array(10)).map((n, idx) => {
           return <MovieItemSkeleton key={idx} />;
         })}
