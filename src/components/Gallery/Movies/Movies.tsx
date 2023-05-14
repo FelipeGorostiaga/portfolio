@@ -75,11 +75,12 @@ const Movies = () => {
           return <MovieItemSkeleton key={idx} />;
         })}
         {!isLoading && movies?.map(movie => <MovieItem key={movie.id} {...movie} />)}
-        {
-          showEmptyState &&
-          <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
-        }
+
       </div>
+      {
+        showEmptyState &&
+        <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
+      }
       {
         showPagination &&
         <div className="w-full flex flex-row items-center justify-center mt-10">
