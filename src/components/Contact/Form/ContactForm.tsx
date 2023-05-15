@@ -10,10 +10,35 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useTheme } from '~/contexts/ThemeContext';
 
-export const nameSchema = z.string().min(1).max(30);
+const MIN_NAME = 1;
+const MAX_NAME = 30;
+const MIN_MESSAGE = 20;
+const MAX_MESSAGE = 300;
+
+export const nameSchema = z.string().min(MIN_NAME).max(MAX_NAME);
 export const emailSchema = z.string().email();
-export const messageSchema = z.string().min(20).max(300);
+export const messageSchema = z.string().min(MIN_MESSAGE).max(MAX_MESSAGE);
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+function getEmailErrorMessage(value: string) {
+  if (!value || !value.length) {
+    return 'Required';
+  }
+  return 'Invalid email';
+}
+
+function getStringErrorMessage(value: string, min?: number, max?: number): string {
+  if (!value || !value.length) {
+    return 'Required';
+  }
+  if (min && value.length < min) {
+    return `Min. ${min} characters`;
+  }
+  if (max && value.length > max) {
+    return `Max. ${max} characters`;
+  }
+  return '';
+}
 
 function validatePhone(phone: string): boolean {
   if (!phone || phone === '') {
@@ -117,6 +142,36 @@ const ContactForm = () => {
     resetMessage();
   };
 
+  const nameErrorMessage = useMemo(() => {
+    if (nameError) {
+      return getStringErrorMessage(name, MIN_NAME, MAX_NAME);
+    }
+  }, [nameError, name]);
+
+  const lastNameErrorMessage = useMemo(() => {
+    if (lastnameError) {
+      return getStringErrorMessage(lastname, MIN_NAME, MAX_NAME);
+    }
+  }, [lastnameError, lastname]);
+
+  const emailErrorMessage = useMemo(() => {
+    if (emailError) {
+      return getEmailErrorMessage(email);
+    }
+  }, [emailError, email]);
+
+  const messageErrorMessage = useMemo(() => {
+    if (messageError) {
+      return getStringErrorMessage(message, MIN_MESSAGE, MAX_MESSAGE);
+    }
+  }, [messageError, message]);
+
+  const phoneErrorMessage = useMemo(() => {
+    if (phoneError) {
+      return 'Invalid format';
+    }
+  }, [phoneError]);
+
   return (
     <form className={styles.form}>
       <Input value={name}
@@ -126,6 +181,7 @@ const ContactForm = () => {
              type="text"
              label="Name"
              size="fullWidth"
+             errorMessage={nameErrorMessage}
              placeholder="Enter first name"
       />
       <Input value={lastname}
@@ -135,6 +191,7 @@ const ContactForm = () => {
              type="text"
              label="Last name"
              size="fullWidth"
+             errorMessage={lastNameErrorMessage}
              placeholder="Enter last name" />
       <Input value={email}
              onChange={onChangeEmail}
@@ -143,6 +200,7 @@ const ContactForm = () => {
              type="email"
              label="Email"
              size="fullWidth"
+             errorMessage={emailErrorMessage}
              placeholder="Enter email" />
       <Input value={phone}
              onChange={onChangePhone}
@@ -150,6 +208,7 @@ const ContactForm = () => {
              error={phoneError || (formSubmitted && !phoneValid)}
              type="phone"
              label="Phone"
+             errorMessage={phoneErrorMessage}
              size="fullWidth"
              placeholder="Enter telephone (optional)" />
       <Input value={message}
@@ -162,6 +221,8 @@ const ContactForm = () => {
              placeholder="Enter message"
              containerClassName={!lg ? 'col-span-2' : ''}
              className="resize-none"
+             errorMessage={messageErrorMessage}
+             maxCharacters={300}
              multiline
              rows={3} />
       <div className={`${!lg ? 'col-span-2' : ''} flex w-full items-center justify-end pb-6 lg:pb-8`}>

@@ -18,6 +18,7 @@ export interface ButtonProps extends BaseProps {
   onChange: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void | undefined;
   onBlur?: (e: any) => void;
   rows?: number;
+  maxCharacters?: number;
 }
 
 const labelStyles = cva(
@@ -70,25 +71,30 @@ const Input = ({
                  containerClassName = '',
                  multiline = false,
                  rows = 1,
+                 maxCharacters,
                  ...props
                }: ButtonProps) => {
 
   return (
     <div className={`flex flex-col items-start gap-0.5 justify-start ${containerClassName}`}>
-      {label && <label className={labelStyles({ error })}>{label}</label>}
+      {label && (
+        maxCharacters ? (
+          <div className="w-full flex flex-row items-center justify-between">
+            <label className={labelStyles({ error })}>{label}</label>
+            <span className={labelStyles({ error })}>{`${(value as string).length}/${maxCharacters}`}</span>
+          </div>) : (<label className={labelStyles({ error })}>{label}</label>)
+      )}
       <div className="w-full flex flex-col items-start">
         {
           multiline ?
             (
-              <div className="w-full">
-                <textarea value={value}
-                          onChange={onChange}
-                          onBlur={onBlur}
-                          className={`${inputStyles({ size, error })} ${className}`}
-                          rows={rows}
-                          {...props} />
-                <span></span>
-              </div>
+              <textarea value={value}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        className={`${inputStyles({ size, error })} ${className}`}
+                        rows={rows}
+                        maxLength={maxCharacters}
+                        {...props} />
             ) :
             <input value={value}
                    onChange={onChange}
@@ -97,7 +103,7 @@ const Input = ({
                    type={type}
                    {...props} />
         }
-        {error && <p className="text-sm text-red-400">{errorMessage}</p>}
+        {error && <p className="text-sm text-red-400 mt-0.5">{errorMessage}</p>}
       </div>
     </div>
   );
