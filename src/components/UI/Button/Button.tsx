@@ -54,12 +54,10 @@ const Button = ({
                   children,
                   className = '',
                   loading = false,
-                  disabled = false,
                 }: ButtonProps) => {
   const { isDark } = useTheme();
   return (
-    <button type={type} className={`${buttonStyles({ intent, size, loading })} ${className}`} onClick={onClick}
-            disabled={disabled}>
+    <button type={type} className={`${buttonStyles({ intent, size, loading })} ${className}`} onClick={onClick}>
       <div className="flex items-center justify-center gap-3">
         {loading && <CircularProgress size="12px" sx={{ color: isDark ? 'primary' : 'white' }} />}
         <span className="-mt-0.5">
