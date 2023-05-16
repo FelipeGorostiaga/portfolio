@@ -7,7 +7,6 @@ const Contact = () => {
     px-5 sm:px-10 md:px-12 lg:px-20
     mx-3 sm:mx-6 md:mx-8
     dark:md:border
-
      dark:md:border-gray-600 md:shadow-xl">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-sans text-gray-700 dark:text-neutral-100">Let&apos;s get
