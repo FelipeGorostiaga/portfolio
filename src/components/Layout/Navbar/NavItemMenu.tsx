@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import styles from './NavItemMenu.module.scss';
 
 interface NavDropdownItem {
@@ -43,12 +44,14 @@ const NavItemMenu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => 
     <div id="gallery-item"
          className="font-sans text-gray-600 relative text-base font-light cursor-pointer dark:text-gray-200 hover:text-sky-400 hover:dark:text-blue-300"
          onClick={props.onClick}>
-      <span className="flex items-center gap-1">
+      <span className="relative">
          {props.title}
-        <KeyboardArrowDownIcon fontSize="small" sx={{ color: '#4b5563' }} />
+        <KeyboardArrowDownIcon
+          className={`absolute top-[0.85px] -right-5 ${props.dropdownOpen ? 'rotate-180' : 'rotate-0'} transition-transform`}
+          fontSize="small" sx={{ color: '#4b5563' }} />
       </span>
       {!props.selected && <div className="bg-transparent w-full h-1"></div>}
-      {props.selected && <div className="bg-blue-400 dark:bg-blue-600 w-[70%] h-1"></div>}
+      {props.selected && <div className="bg-blue-400 dark:bg-blue-600 w-[100%] h-1"></div>}
       <div id="ref-id"
            className={`bg-neutral-200 rounded-lg z-30 dark:bg-black shadow-xl 
            dark:shadow dark:shadow-blue-800 ${styles.dropdownMenu} ${props.dropdownOpen ? styles.active : ''}`}
@@ -58,7 +61,6 @@ const NavItemMenu = React.forwardRef<HTMLDivElement, MenuProps>((props, ref) => 
                                                         setSelectedItem={props.setSelectedItem} />)
         }
       </div>
-
     </div>
   );
 });
