@@ -22,16 +22,21 @@ export interface ButtonProps extends BaseProps {
 }
 
 const labelStyles = cva(
-  'text-xs sm:text-sm font-sans font-normal text-neutral-900 dark:text-neutral-400 leading-snug',
+  'font-sans font-normal text-neutral-900 dark:text-neutral-400 ',
   {
     variants: {
       error: {
         true: 'text-red-400 dark:text-red-500',
         false: '',
       },
+      size: {
+        small: 'text-xs leading-tight',
+        regular: 'text-xs sm:text-sm leading-snug',
+      }
     },
     defaultVariants: {
       error: false,
+      size: 'regular',
     },
   },
 );
@@ -79,9 +84,9 @@ const Input = ({
     <div className={`flex flex-col items-start gap-0.5 justify-start ${containerClassName}`}>
       {label && (
         maxCharacters ? (
-          <div className="w-full flex flex-row items-center justify-between">
+          <div className="w-full flex flex-row items-end justify-between">
             <label className={labelStyles({ error })}>{label}</label>
-            <span className={labelStyles({ error })}>{`${(value as string).length}/${maxCharacters}`}</span>
+            <span className={labelStyles({ error, size: 'small' })}>{`${(value as string).length}/${maxCharacters}`}</span>
           </div>) : (<label className={labelStyles({ error })}>{label}</label>)
       )}
       <div className="w-full flex flex-col items-start">
