@@ -45,13 +45,14 @@ const DrawerItem = ({
           <div className="flex flex-row gap-0.5 items-center">
             <span
               className={`text-sans text-gray-600 dark:text-gray-100 text-lg ${selected ? styles.selected : ''}`}>{name}</span>
-            {!multilevelOpen && <KeyboardArrowDownIcon fontSize="small" sx={{ color: '#4b5563' }} className="mt-1" />}
-            {multilevelOpen &&
-              <KeyboardArrowUpRoundedIcon fontSize="small" sx={{ color: '#4b5563' }} className="mt-1" />}
+            <KeyboardArrowDownIcon fontSize="small"
+                                   sx={{ color: '#4b5563' }}
+                                   className={`mt-1 ${multilevelOpen ? 'rotate-180' : 'rotate-0'} transition-transform `} />
           </div>
         </div>
       </div>
-      <div className={`flex flex-col items-start justify-start pl-12 gap-2 w-full ${multilevelOpen? 'visible' : 'hidden'} ${styles.dropdown}`}>
+      <div
+        className={`flex flex-col items-start justify-start pl-12 gap-2 w-full ${multilevelOpen ? 'visible' : 'hidden'} ${styles.dropdown}`}>
         {
           subItems && subItems.map(item => {
             return (
