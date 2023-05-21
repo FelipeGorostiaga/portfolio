@@ -66,7 +66,7 @@ const Movies = () => {
   return (
     <div className="px-8 max-w-7xl w-full md:px-14 2xl:px-0 flex flex-col gap-0 pt-8 md:pt-12 lg:pt-16 pb-10">
       <h1
-        className="text-3xl md:text-4xl md:mb-1 font-semibold font-sans text-neutral-800 dark:text-neutral-100">
+        className="text-2xl md:text-4xl md:mb-1 font-semibold font-sans text-neutral-800 dark:text-neutral-100">
         Movies
       </h1>
       <Filters {...filterProps} />
