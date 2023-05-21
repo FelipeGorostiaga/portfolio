@@ -33,7 +33,7 @@ const QuoteItem = ({ text, author, reference }: QuoteProps) => {
       className="flex flex-col gap-4 bg-neutral-200 dark:bg-spacegray bg-opacity-80
        dark:border-neutral-800 md:border-l-0 md:rounded-xl px-8 pt-6 pb-4 shadow-lg rounded-xl">
       <p
-        className="text-base md:text-lg font-sans text-neutral-800 dark:text-neutral-200">{shownText}</p>
+        className="text-base md:text-lg lg:text-xl font-sans text-neutral-800 dark:text-neutral-200">{shownText}</p>
       {showAuthor && (
         <div className="flex flex-row justify-end w-full">
           <span className="text-sm italic text-neutral-600 dark:text-neutral-400">{authorText}</span>
