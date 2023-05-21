@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <div
-        className="h-full w-full max-w-4xl mx-auto py-8 flex flex-col px-6 md:px-12 lg:px-0 z-10 justify-center">
+        className="h-full w-full max-w-4xl mx-auto py-8 flex flex-col px-6 md:px-12 lg:px-0 z-10 justify-start md:justify-center">
         <div
           className="flex flex-col-reverse items-center justify-between md:flex-row md:justify-start gap-4 xs:gap-8 md:gap-14 lg:gap-24 2xl:gap-40">
           <div className="flex flex-col gap-1 xs:gap-2 items-center md:items-start justify-center">
@@ -33,16 +33,6 @@ const Home = () => {
                  className={styles.pfp} />
         </div>
         <div className="w-full h-0.5 bg-neutral-400 sm:bg-neutral-300 my-8 dark:bg-gray-400 m-auto md:my-12"></div>
-{/*        <div className='w-full grid grid-cols-2 gap-10 my-12'>
-          <div className='border border-neutral-500 p-8 relative rounded-lg'>anding of the world. I harness this driving force to create exceptional products and services that
-            not only serve humanity but also empower individuals to
-            unleash their full potential. The act of
-            <div className='absolute -top-7 left-1 p-1 bg-transparent'>About me</div>
-          </div>
-          <div className='border border-neutral-500 p-8 relative rounded-lg'>anding of the world. I harness this driving force to create exceptional products and services that
-            not only serve humanity but also empower individuals to
-            unleash their full potential. The act of</div>
-        </div>*/}
         <p
           className="font-sans text-base font-normal m-0 break-normal text-gray-600 dark:text-gray-300 md:text-large">
           I am an innovative engineer and passionate technology enthusiast, constantly seeking to expand my knowledge
