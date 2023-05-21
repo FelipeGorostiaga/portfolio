@@ -19,7 +19,7 @@ const GridCell = ({ alive, position, onClick, className = '' }: CellProp) => {
   return (
     <div onClick={() => onClick(...position)}
          className={`w-[18px] h-[18px] xs:w-[24px] xs:h-[24px] sm:w-[35px] sm:h-[35px] border border-neutral-400 dark:border-neutral-800 cursor-pointer 
-         ${alive ? 'bg-blue-600 dark:bg-blue-800' : 'bg-neutral-200 dark:bg-spacegray'} transition-colors ${className}`} />
+         ${alive ? 'bg-blue-600 dark:bg-blue-800' : 'bg-neutral-200 hover:bg-neutral-300 dark:bg-spacegray dark:hover:bg-[#0c0c0c]'} transition-colors ${className}`} />
   );
 };
 
