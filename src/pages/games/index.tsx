@@ -8,7 +8,7 @@ export default function GamesPage() {
         <title>Games | Felipe Gorostiaga</title>
         <meta name="Games" content="Felipe's portfolio website" />
       </Head>
-      <div className="h-full w-full flex items-start justify-center py-8 md:pt-20 dark:bg-black">
+      <div className="h-full w-full flex items-start justify-center py-8 md:py-20 dark:bg-black">
        <Games />
       </div>
     </>
