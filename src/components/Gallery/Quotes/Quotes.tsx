@@ -1,5 +1,5 @@
 import { api } from '~/utils/api';
-import { KeyboardEvent, useMemo, useState } from 'react';
+import { type KeyboardEvent, useMemo, useState } from 'react';
 import { QUOTES_PER_PAGE } from '~/utils/constants/gallery';
 import QuoteItem from '@components/Gallery/Quotes/QuoteItem';
 import SearchIcon from '@mui/icons-material/Search';
@@ -42,7 +42,6 @@ const Quotes = () => {
     setActiveSearchValue(searchValue);
   };
 
-
   const totalPages = useMemo(() => {
     if (total) {
       return Math.ceil(total / QUOTES_PER_PAGE);
@@ -79,7 +78,7 @@ const Quotes = () => {
       {
         isLoading && (
           <div className="flex items-center justify-center w-full mt-6 md:mt-12">
-            <CircularProgress size={sm? '24px' : '32px'} sx={{
+            <CircularProgress size={sm ? '24px' : '32px'} sx={{
               color: '#3b82f6',
             }} />
           </div>

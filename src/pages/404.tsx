@@ -20,7 +20,7 @@ const NotFoundPage: NextPage = () => {
           width={!md ? 100 : 60}
           height={!md ? 100 : 60}
         />
-        <div className="text-2xl md:text-3xl text-neutral-600 font-bold text-center dark:text-neutral-200">404 - Page not
+        <div className="text-2xl md:text-3xl text-neutral-600 font-bold text-center dark:text-neutral-200">404 | Page not
           found
         </div>
         <div className="text-sm md:text-base text-neutral-500 text-center dark:text-neutral-400">The requested page

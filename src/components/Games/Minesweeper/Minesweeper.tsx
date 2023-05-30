@@ -7,8 +7,6 @@ import Button from '@ui/Button/Button';
 import ReplayIcon from '@mui/icons-material/Replay';
 import useStopwatch from '~/hooks/useStopwatch';
 import Image from 'next/image';
-import useBreakpoints from '~/hooks/useBreakpoints';
-
 
 const rows = 16;
 const cols = 16;
