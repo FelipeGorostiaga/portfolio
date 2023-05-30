@@ -22,6 +22,7 @@ const DIRECTIONS = {
 
 export const Snake = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
   const [snake, setSnake] = useState(SNAKE_START);
   const [apple, setApple] = useState(APPLE_START);
   const [dir, setDir] = useState([0, -1]);
@@ -32,6 +33,12 @@ export const Snake = () => {
   const { isDark } = useTheme();
 
   useInterval(() => gameLoop(), speed);
+
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.focus();
+    }
+  }, []);
 
   const endGame = () => {
     setSpeed(null);
@@ -138,7 +145,7 @@ export const Snake = () => {
   // tabIndex is used so that the div is actionable and the onKeyDown event is captured
   return (
     <div className="max-w-6xl w-full flex flex-col items-center mx-auto focus:outline-none gap-3"
-         onKeyDown={(e) => moveSnake(e)} tabIndex={-1}>
+         onKeyDown={(e) => moveSnake(e)} tabIndex={-1} ref={divRef}>
       <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game ">SNAKE</HackerText>
       <div className="flex flex-row items-center w-[288px] sm:w-[560px] justify-center">
         <div className="flex flex-row items-center gap-2 mr-3">
