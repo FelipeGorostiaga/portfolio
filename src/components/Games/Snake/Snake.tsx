@@ -1,14 +1,9 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import HackerText from '@ui/HackerText/HackerText';
 import useInterval from '~/hooks/useInterval';
 import styles from '../Minesweeper/Minesweeper.module.scss';
 import Image from 'next/image';
 import { useTheme } from '~/contexts/ThemeContext';
-import Button from '@ui/Button/Button';
-import ReplayIcon from '@mui/icons-material/Replay';
-
-const rows = 16;
-const cols = 16;
 
 const CANVAS_SIZE = [500, 500];
 const SNAKE_START = [
@@ -23,19 +18,6 @@ const DIRECTIONS = {
   40: [0, 1], // down
   37: [-1, 0], // left
   39: [1, 0], // right
-};
-
-interface CellProp {
-  hasSnake: boolean;
-  hasApple: boolean;
-  className?: string;
-}
-
-const GridCell = ({ hasSnake, hasApple, className = '' }: CellProp) => {
-  return (
-    <div className={`w-[18px] h-[18px] xs:w-[24px] xs:h-[24px] sm:w-[35px] sm:h-[35px] border border-neutral-400 dark:border-neutral-800  
-         ${hasSnake ? 'bg-green-600 dark:bg-green-800' : hasApple ? 'bg-red-600' : 'bg-neutral-200 dark:bg-spacegray'} transition-colors ${className}`} />
-  );
 };
 
 export const Snake = () => {
@@ -61,8 +43,32 @@ export const Snake = () => {
       startGame();
     }
     const keyCode = e.keyCode;
-    // @ts-ignore
-    keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode]);
+    switch (keyCode) {
+      case 37: // left
+        // only if prev is not right
+        if (!(dir[0] === 1 && dir[1] === 0)) {
+          setDir(DIRECTIONS[keyCode]);
+        }
+        break;
+      case 38: // up
+        // only if prev is not down
+        if (!(dir[0] === 0 && dir[1] === 1)) {
+          setDir(DIRECTIONS[keyCode]);
+        }
+        break;
+      case 39: // right
+        // only if prev is not left
+        if (!(dir[0] === -1 && dir[1] === 0)) {
+          setDir(DIRECTIONS[keyCode]);
+        }
+        break;
+      case 40: // down
+        // only if prev is not up
+        if (!(dir[0] === 0 && dir[1] === -1)) {
+          setDir(DIRECTIONS[keyCode]);
+        }
+        break;
+    }
   };
 
   const createApple = () => apple.map((_a, i) => Math.floor(Math.random() * (CANVAS_SIZE[i] / SCALE)));
@@ -121,8 +127,7 @@ export const Snake = () => {
       if (context) {
         context.setTransform(SCALE, 0, 0, SCALE, 0, 0);
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        const colorFill = isDark ? '#166534' : '#16a34a';
-        context.fillStyle = colorFill;
+        context.fillStyle = isDark ? '#166534' : '#16a34a';
         snake.forEach(([x, y]) => context.fillRect(x, y, 1, 1));
         context.drawImage(fruit, apple[0], apple[1], 1, 1);
       }
