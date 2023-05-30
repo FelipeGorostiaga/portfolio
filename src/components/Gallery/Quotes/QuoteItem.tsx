@@ -20,7 +20,7 @@ const QuoteItem = ({ text, author, reference }: QuoteProps) => {
       return 800;
     }
     return 500;
-  }, [text, sm, md, lg]);
+  }, [md, lg]);
 
   const requiresShowMore = text.length > charactersToShow;
   const authorText = `${author}${reference ? `, ${reference}` : ''}`;

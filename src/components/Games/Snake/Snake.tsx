@@ -127,7 +127,7 @@ export const Snake = () => {
   };
 
   useEffect(() => {
-    let fruit = document.getElementById('fruit') as HTMLCanvasElement;
+    const fruit = document.getElementById('fruit') as HTMLCanvasElement;
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       const context = canvas.getContext('2d');
