@@ -2,6 +2,7 @@ import { cva } from 'class-variance-authority';
 import { type MouseEventHandler, type ReactNode } from 'react';
 import { CircularProgress } from '@mui/material';
 import { useTheme } from '~/contexts/ThemeContext';
+import Link from 'next/link';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth' | 'content' | 'pill';
 export type ButtonIntent = 'primary' | 'secondary' | 'danger';
@@ -12,10 +13,11 @@ interface ButtonProps {
   intent: ButtonIntent;
   size: ButtonSize;
   type?: ButtonType;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   loading?: boolean;
   disabled?: boolean;
+  href?: string;
 }
 
 const buttonStyles = cva(
@@ -54,8 +56,23 @@ const Button = ({
                   children,
                   className = '',
                   loading = false,
+                  href,
                 }: ButtonProps) => {
   const { isDark } = useTheme();
+
+  if (href) {
+    return (
+      <Link href={href} type={type} className={`${buttonStyles({ intent, size, loading })} ${className}`}>
+        <div className="flex items-center justify-center gap-3">
+          {loading && <CircularProgress size="12px" sx={{ color: isDark ? 'primary' : 'white' }} />}
+          <span className="-mt-0.5">
+          {children}
+        </span>
+        </div>
+      </Link>
+    );
+  }
+
   return (
     <button type={type} className={`${buttonStyles({ intent, size, loading })} ${className}`} onClick={onClick}>
       <div className="flex items-center justify-center gap-3">
