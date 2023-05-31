@@ -50,6 +50,9 @@ export const Snake = () => {
       startGame();
     }
     const keyCode = e.keyCode;
+    if (keyCode >= 37 && keyCode <= 40) {
+      e.preventDefault();
+    }
     switch (keyCode) {
       case 37: // left
         // only if prev is not right
