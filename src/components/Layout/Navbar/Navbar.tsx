@@ -55,7 +55,8 @@ const Navbar = () => {
     },
   ];
 
-  const gallerySelected = selectedItem.includes('gallery');
+  const gallerySelected = useMemo(() => selectedItem.includes('gallery'), [selectedItem]);
+  const gamesSelected = useMemo(() => selectedItem.includes('games'), [selectedItem]);
 
   return (
     <nav
@@ -76,7 +77,7 @@ const Navbar = () => {
 
         <NavItem title="Games"
                  route="/games"
-                 selected={selectedItem === '/games'}
+                 selected={gamesSelected}
                  setSelectedItem={setSelectedItem} />
         <NavItemMenu dropdownItems={dropdownItems}
                      title="Gallery"
