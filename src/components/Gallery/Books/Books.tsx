@@ -80,7 +80,7 @@ const Books = () => {
         })}
         {
           showEmptyState &&
-          <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
+          <div className="pt-6 pl-2 text-base md:text-lg text-slate-800 dark:text-neutral-300 w-full lg:text-xl">No results were found...</div>
         }
       </div>
       {
