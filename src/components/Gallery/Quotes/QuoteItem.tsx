@@ -10,7 +10,7 @@ interface QuoteProps {
 
 const QuoteItem = ({ text, author, reference }: QuoteProps) => {
   const [showingMore, setShowingMore] = useState(false);
-  const { sm, md, lg } = useBreakpoints();
+  const { md, lg } = useBreakpoints();
 
   const charactersToShow = useMemo(() => {
     if (!lg) {
@@ -40,7 +40,8 @@ const QuoteItem = ({ text, author, reference }: QuoteProps) => {
         </div>
       )}
       {(requiresShowMore) && (
-        <div className="relative w-auto text-blue-800 cursor-pointer text-sm" onClick={() => setShowingMore(prev => !prev)}>
+        <div className="relative w-auto text-blue-800 cursor-pointer text-sm"
+             onClick={() => setShowingMore(prev => !prev)}>
           {viewMoreText}
           <KeyboardArrowDownIcon
             className={`absolute top-[0.85px] -right-5 ${showingMore ? 'rotate-180' : 'rotate-0'} transition-transform`}

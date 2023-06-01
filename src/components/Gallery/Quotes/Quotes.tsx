@@ -28,6 +28,7 @@ const Quotes = () => {
   const quotes = useMemo(() => data?.data, [data]);
   const total = useMemo(() => data?.pagination.total, [data]);
 
+  // TODO: show empty state
   const showEmptyState = !isLoading && quotes?.length === 0;
   const showPagination = !isLoading && !!total && (total > QUOTES_PER_PAGE);
 
