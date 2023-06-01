@@ -43,9 +43,9 @@ const Home = () => {
           purpose.
         </p>
         <div className="flex items-center flex-wrap justify-start w-full gap-3 md:gap-7 mt-12">
-          <Button intent="primary" size={contactButtonSize} onClick={() => void router.push('/contact')}>Contact
+          <Button intent="primary" size={contactButtonSize}  href='/contact'>Contact
             me</Button>
-          <Button intent="secondary" size={projectsButtonSize} onClick={() => void router.push('/experience')}>See my
+          <Button intent="secondary" size={projectsButtonSize} href='/experience'>See my
             work experience</Button>
         </div>
       </div>
