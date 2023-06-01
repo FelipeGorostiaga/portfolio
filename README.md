@@ -1,8 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio website
 
-## Getting Started
+This is a project that showcases my skills, projects, and experience as a developer. It serves as a personal portfolio website to highlight my work and provide information about my background and expertise. This README file provides an overview of the project and instructions for setting it up.
 
-First, run the development server:
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Setup](#setup)
+
+## Features
+
+The developer portfolio project includes the following features:
+
+- **Home**: An introduction to who I am and a summary of my skills and experience.
+- **Experience**: Details about my work experience and past projects.
+- **Skills**: A list of my technical skills and proficiency levels.
+- **Games**: A collection of games I have developed.
+- **Gallery**: Subsections for books, movies, and quotes that I find interesting and want to share.
+- **Contact**: A page that allows visitors to get in touch with me via a contact form or links to my social media profiles.
+
+## Technologies
+
+Developed using the [T3 Stack](https://create.t3.gg/)
+
+The portfolio website is built using the following technologies:
+
+- **Next.js**: The best fullstack web framework in the market.
+- **Typescript**: Ensure typesafe and clean code.
+- **Tailwind CSS**: CSS made easy.
+- **TRPC**: Provide end-to-end typesafe APIs from back to front.
+- **Planetscale**: Simple and scalable SQL Database
+- **Prisma**: ORM with a great developer experience.
+- **Vercel**: Used to deploy the application and provide analytics.
+
+## Setup
+
+Clone the repository to your local machine.
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -12,23 +46,10 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+For an optimized production build:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run build
+# or
+yarn build
+```

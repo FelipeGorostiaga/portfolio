@@ -28,6 +28,7 @@ const Quotes = () => {
   const quotes = useMemo(() => data?.data, [data]);
   const total = useMemo(() => data?.pagination.total, [data]);
 
+  // TODO: show empty state
   const showEmptyState = !isLoading && quotes?.length === 0;
   const showPagination = !isLoading && !!total && (total > QUOTES_PER_PAGE);
 
@@ -74,6 +75,12 @@ const Quotes = () => {
         {!isLoading && quotes?.map(quote => {
           return <QuoteItem key={quote.id} {...quote} />;
         })}
+        {
+          showEmptyState &&
+          (
+            <div className="pt-6 pl-2 text-base md:text-lg text-slate-800 dark:text-neutral-300 w-full lg:text-xl">No results were found...</div>
+          )
+        }
       </div>
       {
         isLoading && (

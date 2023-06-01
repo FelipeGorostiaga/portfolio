@@ -7,7 +7,6 @@ import { Pagination } from '@mui/material';
 import Filters from '~/components/Gallery/Filters/Filters';
 import MovieItemSkeleton from '@components/Gallery/Movies/MovieItem/MovieItemSkeleton';
 
-
 const Movies = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [sortCriteria, setSortCriteria] = useState<SortCriteria>('rating');
@@ -46,7 +45,7 @@ const Movies = () => {
     setSortDirection,
     handleSearch,
     disabled,
-    searchPlaceholder: 'Search by title, director...'
+    searchPlaceholder: 'Search by title, director...',
   };
 
   useEffect(() => {
@@ -70,16 +69,17 @@ const Movies = () => {
         Movies
       </h1>
       <Filters {...filterProps} />
-      <div className='flex flex-col xs:grid xs:place-items-start xs:grid-cols-2 gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:mt-2'>
+      <div
+        className="flex flex-col xs:grid xs:place-items-start xs:grid-cols-2 gap-4 md:gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:mt-2">
         {isLoading && Array.from(Array(10)).map((n, idx) => {
           return <MovieItemSkeleton key={idx} />;
         })}
         {!isLoading && movies?.map(movie => <MovieItem key={movie.id} {...movie} />)}
-
       </div>
       {
         showEmptyState &&
-        <div className="pt-6 pl-2 text-slate-800 dark:text-neutral-300 w-full text-2xl">No results were found...</div>
+        <div className="pt-6 pl-2 text-base md:text-lg text-slate-800 dark:text-neutral-300 w-full lg:text-xl">No
+          results were found...</div>
       }
       {
         showPagination &&
