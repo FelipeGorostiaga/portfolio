@@ -16,7 +16,7 @@ const MovieItem = ({ title, director, imgUrl, rate, year }: MovieProps) => {
     <div className="flex flex-col items-start rounded-xl bg-neutral-100 dark:bg-spacegray dark:bg-opacity-50
       w-full min-h-[240px] shadow md:shadow-xl hover:scale-[1.01] relative gap-3 h-full">
       <div className="w-full aspect-movie relative">
-        <Image src={imgUrl} fill alt={`${title} cover`} className="overflow-hidden rounded-t-lg" />
+        <Image src={imgUrl} fill alt={`${title} cover`} className="overflow-hidden rounded-t-lg" sizes="400px" quality={100}/>
       </div>
       <div className="px-4 flex flex-col gap-1">
         <h3 className="text-lg font-bold text-neutral-700 leading-tight dark:text-neutral-200">{title}</h3>
