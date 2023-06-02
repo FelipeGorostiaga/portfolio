@@ -150,7 +150,7 @@ export const Snake = () => {
     <div className="max-w-6xl w-full flex flex-col items-center mx-auto focus:outline-none gap-3"
          onKeyDown={(e) => moveSnake(e)} tabIndex={-1} ref={divRef}>
       <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game ">SNAKE</HackerText>
-      <div className="flex flex-row items-center w-[288px] sm:w-[560px] justify-center">
+      <div className="flex flex-row items-center w-[288px] sm:w-[504px] justify-center">
         <div className="flex flex-row items-center gap-2 mr-3">
           <Image id="fruit" src="/apple.svg" width={30} height={30} alt="fruit" />
           <span
