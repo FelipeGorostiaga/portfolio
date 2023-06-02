@@ -228,19 +228,23 @@ const Minesweeper = () => {
       <div className="flex flex-row items-center w-[288px] xs:w-[384px] sm:w-[560px] justify-center relative">
         {
           !xs && (
-            <Link className='flex flex-row items-center justify-start cursor-pointer group absolute left-0 top-1' href='/games'>
-              <ArrowBackIosRoundedIcon className='text-gray-700 group-hover:text-blue-600 transition-colors' sx={{
-                fontSize: sm? '12px' : '14px'
-              }}/>
-              <span className='text-sm sm:text-base group-hover:underline group-hover:text-blue-600 transition-colors'>Back</span>
+            <Link className="flex flex-row items-center justify-start cursor-pointer group absolute left-0 top-1"
+                  href="/games">
+              <ArrowBackIosRoundedIcon className="text-gray-700 group-hover:text-blue-600 transition-colors" sx={{
+                fontSize: sm ? '12px' : '14px',
+              }} />
+              <span
+                className="text-sm sm:text-base group-hover:underline group-hover:text-blue-600 transition-colors">Back</span>
             </Link>
           )
         }
-        <div className='flex flex-row items-center gap-2 mr-3'>
+        <div className="flex flex-row items-center gap-2 mr-3">
           <Image src="/flag.png" width={24} height={24} alt="flag" />
-          <span className='text-xs sm:text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-mono font-semibold'>{remainingFlags}</span>
+          <span
+            className="text-xs sm:text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-mono font-semibold">{remainingFlags}</span>
         </div>
-        <Image src="/smile.png" width={24} height={24} alt="smile" onClick={handleClear} className='mr-2 cursor-pointer'/>
+        <Image src="/smile.png" width={24} height={24} alt="smile" onClick={handleClear}
+               className="mr-2 cursor-pointer" />
         <div className="flex flex-row items-center gap-2">
           <Image src="/stopwatch.png" width={24} height={24} alt="stopwatch" />
           <div className="text-xs sm:text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-mono">
@@ -275,7 +279,8 @@ const Minesweeper = () => {
                   <div
                     className="bg-neutral-200 dark:bg-[#0c0c0c] w-[240px] h-[150px] px-6 py-5 flex flex-col justify-between items-center border border-neutral-500 dark:border-neutral-900 rounded-xl">
                     <h1 className="text-lg sm:text-2xl text-neutral-800 dark:text-neutral-100 font-bold">VICTORY!</h1>
-                    <span className="text-base text-neutral-700 dark:text-neutral-300">Score: {(minutes * 60 ) + seconds}s</span>
+                    <span
+                      className="text-base text-neutral-700 dark:text-neutral-300">Score: {(minutes * 60) + seconds}s</span>
                     <Button size="fullWidth" intent="primary" onClick={handleClear}><span
                       className="flex flex-row gap-1 items-center"><ReplayIcon />Replay</span></Button>
                   </div>

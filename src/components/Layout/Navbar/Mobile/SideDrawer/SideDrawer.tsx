@@ -100,7 +100,7 @@ const SideDrawer = () => {
         name: 'Games',
         icon: <SportsEsportsIcon fontSize="medium" style={{ color: isDark ? 'white' : '#2b2b2b' }} />,
         get selected() {
-          return this.route === pathname;
+          return pathname.includes(this.route);
         },
       },
       {

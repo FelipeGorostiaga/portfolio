@@ -146,7 +146,6 @@ export const Snake = () => {
         context.drawImage(fruit, apple[0], apple[1], 1, 1);
       }
     }
-
   }, [snake, apple, gameOver, isDark]);
 
   // tabIndex is used so that the div is actionable and the onKeyDown event is captured
@@ -155,11 +154,13 @@ export const Snake = () => {
          onKeyDown={(e) => moveSnake(e)} tabIndex={-1} ref={divRef}>
       <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game ">SNAKE</HackerText>
       <div className="flex flex-row items-start w-[288px] sm:w-[504px] justify-center relative">
-        <Link className='flex flex-row items-center justify-start cursor-pointer group absolute left-0 top-2' href='/games'>
-          <ArrowBackIosRoundedIcon className='text-gray-700 group-hover:text-blue-600 transition-colors' sx={{
-            fontSize: sm? '12px' : '14px'
-          }}/>
-          <span className='text-sm sm:text-base group-hover:underline group-hover:text-blue-600 transition-colors'>Back</span>
+        <Link className="flex flex-row items-center justify-start cursor-pointer group absolute left-0 top-2"
+              href="/games">
+          <ArrowBackIosRoundedIcon className="text-gray-700 group-hover:text-blue-600 transition-colors" sx={{
+            fontSize: sm ? '12px' : '14px',
+          }} />
+          <span
+            className="text-sm sm:text-base group-hover:underline group-hover:text-blue-600 transition-colors">Back</span>
         </Link>
         <div className="flex flex-row items-center gap-2 mr-3">
           <Image id="fruit" src="/apple.svg" width={30} height={30} alt="fruit" />
