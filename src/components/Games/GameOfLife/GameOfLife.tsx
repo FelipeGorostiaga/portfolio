@@ -1,8 +1,11 @@
-import { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Controls from '~/components/Games/GameOfLife/Controls/Controls';
 import HackerText from '@ui/HackerText/HackerText';
 import styles from './GameOfLife.module.scss';
 import { createGrid, getRoundedProperty, neighbourOperations } from '~/utils/lib/grid';
+import Link from 'next/link';
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import useBreakpoints from '~/hooks/useBreakpoints';
 
 
 const rows = 16;
@@ -24,6 +27,7 @@ const GridCell = ({ alive, position, onClick, className = '' }: CellProp) => {
 };
 
 const GameOfLife = () => {
+  const { sm } = useBreakpoints();
   const [grid, setGrid] = useState(() => createGrid(rows, cols, () => 0));
   const [running, setRunning] = useState(false);
   const runningRef = useRef(running);
@@ -85,9 +89,17 @@ const GameOfLife = () => {
   };
 
   return (
-    <div className="max-w-6xl w-full flex flex-col items-center gap-4 mx-auto">
+    <div className="max-w-6xl w-full flex flex-col items-center gap-3 mx-auto">
       <HackerText className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game ">GAME OF
         LIFE</HackerText>
+      <div className="flex flex-row items-center w-[288px] xs:w-[384px] sm:w-[560px] justify-center relative h-[15px]">
+        <Link className='flex flex-row items-center justify-start cursor-pointer group absolute left-0 -top-1' href='/games'>
+          <ArrowBackIosRoundedIcon className='text-gray-700 group-hover:text-blue-600 transition-colors' sx={{
+            fontSize: sm? '12px' : '14px'
+          }}/>
+          <span className='text-sm sm:text-base group-hover:underline group-hover:text-blue-600 transition-colors'>Back</span>
+        </Link>
+      </div>
       <div className={styles.gridContainer}>
         {
           grid.map((r, i) => r.map((col, j) =>

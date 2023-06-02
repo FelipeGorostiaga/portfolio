@@ -1,5 +1,5 @@
 import styles from './Minesweeper.module.scss';
-import { type MouseEvent, useMemo, useState } from 'react';
+import React, { type MouseEvent, useMemo, useState } from 'react';
 import { createGrid, getRoundedProperty, neighbourOperations } from '~/utils/lib/grid';
 import GridItem from '~/components/Games/Minesweeper/GridItem';
 import HackerText from '@ui/HackerText/HackerText';
@@ -7,6 +7,9 @@ import Button from '@ui/Button/Button';
 import ReplayIcon from '@mui/icons-material/Replay';
 import useStopwatch from '~/hooks/useStopwatch';
 import Image from 'next/image';
+import Link from 'next/link';
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import useBreakpoints from '~/hooks/useBreakpoints';
 
 const rows = 16;
 const cols = 16;
@@ -108,6 +111,7 @@ const Minesweeper = () => {
     reset: resetTimer,
     running,
   } = useStopwatch();
+  const { xs, sm } = useBreakpoints();
 
   const finished = useMemo(() => lost || won, [lost, won]);
 
@@ -221,11 +225,20 @@ const Minesweeper = () => {
     <div className="max-w-6xl w-full flex flex-col items-center gap-4 mx-auto">
       <HackerText
         className="text-4xl sm:text-6xl dark:text-slate-200 text-slate-800 font-mono-game">MINESWEEPER</HackerText>
-      <div className="flex flex-row items-center w-[288px] sm:w-[560px] justify-center">
+      <div className="flex flex-row items-center w-[288px] xs:w-[384px] sm:w-[560px] justify-center relative">
+        {
+          !xs && (
+            <Link className='flex flex-row items-center justify-start cursor-pointer group absolute left-0 top-1' href='/games'>
+              <ArrowBackIosRoundedIcon className='text-gray-700 group-hover:text-blue-600 transition-colors' sx={{
+                fontSize: sm? '12px' : '14px'
+              }}/>
+              <span className='text-sm sm:text-base group-hover:underline group-hover:text-blue-600 transition-colors'>Back</span>
+            </Link>
+          )
+        }
         <div className='flex flex-row items-center gap-2 mr-3'>
           <Image src="/flag.png" width={24} height={24} alt="flag" />
           <span className='text-xs sm:text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-mono font-semibold'>{remainingFlags}</span>
-
         </div>
         <Image src="/smile.png" width={24} height={24} alt="smile" onClick={handleClear} className='mr-2 cursor-pointer'/>
         <div className="flex flex-row items-center gap-2">
