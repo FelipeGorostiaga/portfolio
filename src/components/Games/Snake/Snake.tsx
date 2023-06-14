@@ -156,7 +156,7 @@ export const Snake = () => {
       <div className="flex flex-row items-start w-[288px] sm:w-[504px] justify-center relative">
         <Link className="flex flex-row items-center justify-start cursor-pointer group absolute left-0 top-2"
               href="/games">
-          <ArrowBackIosRoundedIcon className="text-gray-700 group-hover:text-blue-600 transition-colors" sx={{
+          <ArrowBackIosRoundedIcon className="text-gray-700 group-hover:text-blue-600 transition-colors mt-[1px]" sx={{
             fontSize: sm ? '12px' : '14px',
           }} />
           <span

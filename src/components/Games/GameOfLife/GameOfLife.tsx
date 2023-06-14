@@ -95,7 +95,7 @@ const GameOfLife = () => {
       <div className="flex flex-row items-center w-[288px] xs:w-[384px] sm:w-[560px] justify-center relative h-[15px]">
         <Link className="flex flex-row items-center justify-start cursor-pointer group absolute left-0 -top-1"
               href="/games">
-          <ArrowBackIosRoundedIcon className="text-gray-700 group-hover:text-blue-600 transition-colors" sx={{
+          <ArrowBackIosRoundedIcon className="text-gray-700 group-hover:text-blue-600 transition-colors mt-[1px]" sx={{
             fontSize: sm ? '12px' : '14px',
           }} />
           <span
