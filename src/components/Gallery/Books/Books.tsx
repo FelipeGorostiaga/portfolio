@@ -71,7 +71,7 @@ const Books = () => {
       </h1>
       <Filters {...filterProps} />
       <div
-        className="flex flex-col place-items-start gap-4 md:gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px] md:mt-2">
+        className="flex flex-col place-items-start gap-4 md:gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 min-h-[504px] md:mt-2 overflow-hidden">
         {isLoading && Array.from(Array(6)).map((n, idx) => {
           return <BookItemSkeleton key={idx} />;
         })}
