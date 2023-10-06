@@ -2,6 +2,14 @@ import JobItem, { type JobProps } from './JobItem/JobItem';
 import Timeline from './Timeline/Timeline';
 import JobDescription from './JobDescription/JobDescription';
 
+const scaleProps = {
+  intro: 'Freelancer - Reviewer and Task writer',
+  responsibilities: [
+    'Review LLM responses for computer science and STEM related prompts',
+    'Rewrite LLM responses to comply with the highest standards',
+    'Assess the quality of prompt/responses identifying weak points that need improvement',
+  ],
+};
 
 const transactionalProps = {
   intro: 'Member of the transactional team of the B2B web application',
@@ -13,7 +21,7 @@ const transactionalProps = {
 };
 
 const domeProps = {
-  intro: 'Lead developer of a 4 person team for a crypto startup',
+  intro: 'Freelancer - Lead developer of a four person team for a crypto startup',
   responsibilities: [
     'Design the software architecture taking into account costs, scalability and performance',
     'Develop the backend Rest API',
@@ -53,6 +61,26 @@ const bymaProps = {
 
 
 const jobs: JobProps[] = [
+  {
+    title: 'Prompt Engineer/Reviewer',
+    companyName: 'Scale AI',
+    startDate: new Date(2023, 5, 1),
+    endDate: new Date(),
+    current: true,
+    imgSrc: '/logos/scale-logo.svg',
+    companyLink: 'https://scale.com/',
+    description: <JobDescription {...scaleProps}/>,
+    pillList: [
+      {
+        label: 'AI',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#06b6d4]',
+      },
+      {
+        label: 'Computer Science',
+        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#16a34a]',
+      },
+    ],
+  },
   {
     title: 'Senior Fullstack Developer',
     companyName: 'Banco Galicia',
