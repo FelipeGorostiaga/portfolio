@@ -62,7 +62,7 @@ const bymaProps = {
 
 const jobs: JobProps[] = [
   {
-    title: 'Prompt Engineer/Reviewer',
+    title: 'Prompt Engineer',
     companyName: 'Scale AI',
     startDate: new Date(2023, 5, 1),
     endDate: new Date(),
