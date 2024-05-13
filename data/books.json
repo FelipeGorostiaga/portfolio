@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Homo Deus",
+    "author": "Yuval",
+    "imgUrl": "https://m.media-amazon.com/images/I/414JWlgTXGL._SY445_SX342_.jpg",
+    "score": 8,
+    "year": 2015
+  },
+  {
+    "id": 2,
+    "title": "Sapiens",
+    "author": "Yuval",
+    "imgUrl": "https://m.media-amazon.com/images/I/51Pe5D36rML._SY445_SX342_.jpg",
+    "score": 9,
+    "year": 2011
+  }
+]

@@ -9,7 +9,7 @@ import { api } from '~/utils/api';
 import '~/styles/globals.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const darkTheme = createTheme({
   palette: {
@@ -23,18 +23,22 @@ const lightTheme = createTheme({
   },
 });
 
+const queryClient = new QueryClient();
+
 const MyApp: AppType<{ session: Session | null }> = ({
-                                                       Component,
-                                                       pageProps: { session, ...pageProps },
-                                                     }) => {
+  Component,
+  pageProps: { session, ...pageProps },
+}) => {
   return (
     <SessionProvider session={session}>
-      <ThemeProviderCustom>
-        <>
-          <Toaster position='top-center' />
-          <MainLayout Component={Component} pageProps={pageProps} />
-        </>
-      </ThemeProviderCustom>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProviderCustom>
+          <>
+            <Toaster position="top-center" />
+            <MainLayout Component={Component} pageProps={pageProps} />
+          </>
+        </ThemeProviderCustom>
+      </QueryClientProvider>
     </SessionProvider>
   );
 };
@@ -42,9 +46,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
 const MainLayout = ({ Component, pageProps }: any) => {
   const { isDark } = useTheme();
   return (
-    <ThemeProvider theme={isDark? darkTheme : lightTheme} >
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <div
-        className={`dark:bg-gradient-to-b dark:from-black dark:to-[#020714] main-grid ${isDark ? '' : 'radialBg'}`}>
+        className={`main-grid dark:bg-gradient-to-b dark:from-black dark:to-[#020714] ${
+          isDark ? '' : 'radialBg'
+        }`}
+      >
         <SideDrawerProvider>
           <Navbar />
         </SideDrawerProvider>

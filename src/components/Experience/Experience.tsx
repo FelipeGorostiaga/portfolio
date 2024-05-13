@@ -2,6 +2,14 @@ import JobItem, { type JobProps } from './JobItem/JobItem';
 import Timeline from './Timeline/Timeline';
 import JobDescription from './JobDescription/JobDescription';
 
+const humandProps = {
+  intro: 'Front end developer for the Humand platform',
+  responsibilities: [
+    'Develop responsive and accessible components for the Humand platform using React and Material-UI',
+    'Review PRs and provide feedback to the team members to ensure the quality of the codebase',
+  ],
+};
+
 const scaleProps = {
   intro: 'Freelancer - Reviewer and Task writer',
   responsibilities: [
@@ -21,7 +29,8 @@ const transactionalProps = {
 };
 
 const domeProps = {
-  intro: 'Freelancer - Lead developer of a four person team for a crypto startup',
+  intro:
+    'Freelancer - Lead developer of a four person team for a crypto startup',
   responsibilities: [
     'Design the software architecture taking into account costs, scalability and performance',
     'Develop the backend Rest API',
@@ -48,7 +57,7 @@ const troncalProps = {
     'Develop React components for the frontend application',
     'Develop, test and deploy microservices using NestJS',
   ],
-}
+};
 
 const bymaProps = {
   intro: 'Member of the Investor relations team',
@@ -57,10 +66,31 @@ const bymaProps = {
     'Develop cron tasks to parse daily market activity',
     'Participate in the analysis and presentation of the Quarterly Reports',
   ],
-}
-
+};
 
 const jobs: JobProps[] = [
+  {
+    title: 'React Software Engineer',
+    companyName: 'Humand',
+    startDate: new Date(2024, 1, 14),
+    endDate: new Date(),
+    current: true,
+    imgSrc: '/humand.png',
+    companyLink: 'https://humand.co/',
+    description: <JobDescription {...humandProps} />,
+    pillList: [
+      {
+        label: 'React',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#149ECA]',
+      },
+      {
+        label: 'Material UI',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#007FFF]',
+      },
+    ],
+  },
   {
     title: 'Prompt Engineer',
     companyName: 'Scale AI',
@@ -69,15 +99,17 @@ const jobs: JobProps[] = [
     current: true,
     imgSrc: '/logos/scale-logo.svg',
     companyLink: 'https://scale.com/',
-    description: <JobDescription {...scaleProps}/>,
+    description: <JobDescription {...scaleProps} />,
     pillList: [
       {
         label: 'AI',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#06b6d4]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#06b6d4]',
       },
       {
         label: 'Computer Science',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#16a34a]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#16a34a]',
       },
     ],
   },
@@ -89,15 +121,17 @@ const jobs: JobProps[] = [
     current: true,
     imgSrc: '/logos/galicia-logo.png',
     companyLink: 'https://www.galicia.ar/empresas',
-    description: <JobDescription {...transactionalProps}/>,
+    description: <JobDescription {...transactionalProps} />,
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
   },
@@ -111,11 +145,13 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Datagrid',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
     description: <JobDescription {...mobileProps} />,
@@ -131,24 +167,29 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
 
       {
         label: 'PostgreSQL',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#679CC7]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#679CC7]',
       },
       {
         label: 'AWS',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#232F3E]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#232F3E]',
       },
       {
         label: 'Vercel',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#8026C3]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#8026C3]',
       },
     ],
   },
@@ -162,11 +203,13 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'NestJS',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#E0234E]',
       },
       {
         label: 'Next.js',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-black',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-black',
       },
     ],
     description: <JobDescription {...troncalProps} />,
@@ -182,11 +225,13 @@ const jobs: JobProps[] = [
     pillList: [
       {
         label: 'Python',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#417FB1]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#417FB1]',
       },
       {
         label: 'Power BI',
-        className: 'text-xs md:text-sm text-white font-base rounded-full bg-[#F2B915]',
+        className:
+          'text-xs md:text-sm text-white font-base rounded-full bg-[#F2B915]',
       },
     ],
   },
@@ -194,20 +239,21 @@ const jobs: JobProps[] = [
 
 const Experience = () => {
   return (
-    <section className="px-6 py-10 sm:py-20 sm:px-20 max-w-7xl">
-      <h1
-        className="text-3xl md:text-6xl text-sans font-bold mb-1 md:mb-3 text-neutral-800 dark:text-neutral-100">
+    <section className="max-w-7xl px-6 py-10 sm:px-20 sm:py-20">
+      <h1 className="text-sans mb-1 text-3xl font-bold text-neutral-800 dark:text-neutral-100 md:mb-3 md:text-6xl">
         Experience
       </h1>
-      <h3
-        className="text-base md:text-xl text-sans font-base text-neutral-800 mb-4 md:mb-12 dark:text-neutral-200">
+      <h3 className="text-sans font-base mb-4 text-base text-neutral-800 dark:text-neutral-200 md:mb-12 md:text-xl">
         My jobs through the years
       </h3>
-      <div className="flex flex-col items-start w-full">
+      <div className="flex w-full flex-col items-start">
         {jobs.map((job, index) => {
-          const isLast = index === (jobs.length - 1);
+          const isLast = index === jobs.length - 1;
           return (
-            <div className="flex flex-row gap-2 md:gap-10 w-full" key={`${job.startDate.getDate()} ${job.title}`}>
+            <div
+              className="flex w-full flex-row gap-2 md:gap-10"
+              key={`${job.startDate.getDate()} ${job.title}`}
+            >
               <Timeline showBar={!isLast} />
               <JobItem {...job} />
             </div>

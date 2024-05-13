@@ -6,31 +6,41 @@ interface BookProps {
   title: string;
   author: string;
   imgUrl: string;
-  rate: number;
-  year: string;
+  score: number;
+  year?: number;
 }
 
-const BookItem = ({ title, author, imgUrl, rate, year }: BookProps) => {
+const BookItem = ({ title, author, imgUrl, score, year }: BookProps) => {
   const { xs } = useBreakpoints();
+  const yearText = year ? `(${year})` : '';
   return (
     <div
-      className="flex flex-row items-start rounded-xl bg-neutral-100 dark:bg-spacegray w-full min-h-[240px] aspect-video
-      shadow md:shadow-xl hover:scale-[1.01] relative dark:border dark:border-neutral-900">
-      <div className="h-full aspect-book relative min-h-max">
-        <Image src={imgUrl} alt="Book cover" fill className="rounded-l-xl h-full w-full"/>
+      className="relative flex aspect-video min-h-[240px] w-full flex-row items-start rounded-xl bg-neutral-100
+      shadow hover:scale-[1.01] dark:border dark:border-neutral-900 dark:bg-spacegray md:shadow-xl"
+    >
+      <div className="relative aspect-book h-full min-h-max">
+        <Image
+          src={imgUrl}
+          alt="Book cover"
+          fill
+          className="h-full w-full rounded-l-xl"
+        />
       </div>
-      <div className="flex flex-col items-start py-2 px-3 md:px-4 justify-between h-full w-full">
-        <div className="flex flex-col gap-0 w-full">
-          <span
-            className="text-base xs:text-xl sm:text-base lg:text-lg font-bold sm:leading-tight dark:text-neutral-200 text-neutral-700">{title}</span>
-          <span
-            className="text-xs xs:text-sm dark:text-neutral-400 text-neutral-500 font-semibold">{`${author} (${year})`}</span>
+      <div className="flex h-full w-full flex-col items-start justify-between px-3 py-2 md:px-4">
+        <div className="flex w-full flex-col gap-0">
+          <span className="text-base font-bold text-neutral-700 dark:text-neutral-200 xs:text-xl sm:text-base sm:leading-tight lg:text-lg">
+            {title}
+          </span>
+          <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 xs:text-sm">{`${author} ${yearText}`}</span>
         </div>
         <div
-          className="flex flex-row  items-center justify-between rounded-xl px-3 py-1 gap-1 self-end bg-spacegray bg-opacity-50
-          absolute right-2 bottom-2 dark:bg-black dark:bg-opacity-100 ">
-          <StarIcon style={{ color: '#FFC728', fontSize: xs ? '14px' : '18px' }} />
-          <span className="text-sm md:text-base text-neutral-300">{`${rate}`}</span>
+          className="absolute bottom-2  right-2 flex flex-row items-center justify-between gap-1 self-end rounded-xl bg-spacegray
+          bg-opacity-50 px-3 py-1 dark:bg-black dark:bg-opacity-100 "
+        >
+          <StarIcon
+            style={{ color: '#FFC728', fontSize: xs ? '14px' : '18px' }}
+          />
+          <span className="text-sm text-neutral-300 md:text-base">{`${score}`}</span>
         </div>
       </div>
     </div>

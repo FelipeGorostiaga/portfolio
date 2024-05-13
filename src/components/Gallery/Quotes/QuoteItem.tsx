@@ -5,7 +5,7 @@ import useBreakpoints from '~/hooks/useBreakpoints';
 interface QuoteProps {
   text: string;
   author: string;
-  reference: string | null;
+  reference?: string;
 }
 
 const QuoteItem = ({ text, author, reference }: QuoteProps) => {
@@ -24,28 +24,43 @@ const QuoteItem = ({ text, author, reference }: QuoteProps) => {
 
   const requiresShowMore = text.length > charactersToShow;
   const authorText = `${author}${reference ? `, ${reference}` : ''}`;
-  const shownText = (text.length <= charactersToShow) ? text : showingMore ? text : (text.slice(0, charactersToShow) + '...');
+  const shownText =
+    text.length <= charactersToShow
+      ? text
+      : showingMore
+      ? text
+      : text.slice(0, charactersToShow) + '...';
   const viewMoreText = showingMore ? 'View Less' : 'View More';
-  const showAuthor = (requiresShowMore && showingMore) || (!requiresShowMore);
+  const showAuthor = (requiresShowMore && showingMore) || !requiresShowMore;
 
   return (
     <div
-      className="flex flex-col gap-4 bg-neutral-200 dark:bg-spacegray bg-opacity-80
-       dark:border-neutral-800 md:border-l-0 md:rounded-xl px-8 pt-6 pb-4 shadow-lg rounded-xl">
-      <p
-        className="text-base md:text-lg lg:text-xl font-sans text-neutral-800 dark:text-neutral-200">{shownText}</p>
+      className="flex flex-col gap-4 rounded-xl border-2 bg-neutral-200
+       bg-opacity-80 px-8 pb-4 pt-6 shadow-lg dark:border-neutral-800 dark:bg-[#010003] md:rounded-xl"
+    >
+      <p className="font-sans text-base text-neutral-800 dark:text-neutral-100 md:text-lg">
+        {shownText}
+      </p>
       {showAuthor && (
-        <div className="flex flex-row justify-end w-full">
-          <span className="text-sm italic text-neutral-600 dark:text-neutral-400">{authorText}</span>
+        <div className="flex w-full flex-row justify-end">
+          <span className="text-sm italic text-neutral-600 dark:text-neutral-400">
+            {authorText}
+          </span>
         </div>
       )}
-      {(requiresShowMore) && (
-        <div className="relative w-auto text-blue-800 cursor-pointer text-sm"
-             onClick={() => setShowingMore(prev => !prev)}>
+      {requiresShowMore && (
+        <div
+          className="relative w-auto cursor-pointer text-sm text-blue-800"
+          onClick={() => setShowingMore((prev) => !prev)}
+        >
           {viewMoreText}
           <KeyboardArrowDownIcon
-            className={`absolute top-[0.85px] -right-5 ${showingMore ? 'rotate-180' : 'rotate-0'} transition-transform`}
-            fontSize="small" sx={{ color: '#4b5563' }} />
+            className={`absolute -right-5 top-[0.85px] ${
+              showingMore ? 'rotate-180' : 'rotate-0'
+            } transition-transform`}
+            fontSize="small"
+            sx={{ color: '#4b5563' }}
+          />
         </div>
       )}
     </div>
@@ -53,5 +68,3 @@ const QuoteItem = ({ text, author, reference }: QuoteProps) => {
 };
 
 export default QuoteItem;
-
-
