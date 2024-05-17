@@ -2,17 +2,97 @@
   {
     "id": 1,
     "title": "Homo Deus",
-    "author": "Yuval",
+    "author": "Yuval Noah Harari",
     "imgUrl": "https://m.media-amazon.com/images/I/414JWlgTXGL._SY445_SX342_.jpg",
-    "score": 8,
+    "score": 7.7,
     "year": 2015
   },
   {
     "id": 2,
     "title": "Sapiens",
-    "author": "Yuval",
+    "author": "Yuval Noah Harari",
     "imgUrl": "https://m.media-amazon.com/images/I/51Pe5D36rML._SY445_SX342_.jpg",
     "score": 9,
     "year": 2011
+  },
+  {
+    "id": 3,
+    "title": "21 Lessons for the 21st Century",
+    "author": "Yuval Noah Harari",
+    "imgUrl": "https://m.media-amazon.com/images/I/41+uVWlucWL._SY445_SX342_.jpg",
+    "score": 6,
+    "year": 2018
+  },
+  {
+    "id": 4,
+    "title": "The Schopenhauer Cure",
+    "author": "Irvin Yalom",
+    "imgUrl": "https://m.media-amazon.com/images/I/71JK9eIvm-L._SL1500_.jpg",
+    "score": 7.5,
+    "year": 2005
+  },
+  {
+    "id": 5,
+    "title": "When Nietzsche Wept",
+    "author": "Irvin Yalom",
+    "imgUrl": "https://m.media-amazon.com/images/I/91ninp7uuAL._SL1500_.jpg",
+    "score": 8,
+    "year": 1992
+  },
+  {
+    "id": 6,
+    "title": "The Spinoza Problem",
+    "author": "Irvin Yalom",
+    "imgUrl": "https://m.media-amazon.com/images/I/51wB+vy-D1L._SY445_SX342_.jpg",
+    "score": 7,
+    "year": 2012
+  },
+  {
+    "id": 7,
+    "title": "Thus Spoke Zarathustra",
+    "author": "Friedrich Nietzsche",
+    "imgUrl": "https://m.media-amazon.com/images/I/81uJNoHnXvL._SL1500_.jpg",
+    "score": 10,
+    "year": 1883
+  },
+  {
+    "id": 8,
+    "title": "On the Genealogy of Morals",
+    "author": "Friedrich Nietzsche",
+    "imgUrl": "https://m.media-amazon.com/images/I/71pr6iIkBiL._SL1200_.jpg",
+    "score": 7.5,
+    "year": 1887
+  },
+  {
+    "id": 9,
+    "title": "The Anti-Christ",
+    "author": "Friedrich Nietzsche",
+    "imgUrl": "https://m.media-amazon.com/images/I/61Ew+U7fGqL._SL1500_.jpg",
+    "score": 8.2,
+    "year": 1895
+  },
+  {
+    "id": 10,
+    "title": "Beyond Good and Evil",
+    "author": "Friedrich Nietzsche",
+    "imgUrl": "https://m.media-amazon.com/images/I/71x02312+QL._SL1000_.jpg",
+    "score": 9.4,
+    "year": 1886
+  },
+  {
+    "id": 11,
+    "title": "The Twilight of the Idols",
+    "author": "Friedrich Nietzsche",
+    "imgUrl": "https://m.media-amazon.com/images/I/61MPejvoZjL._SL1200_.jpg",
+    "score": 8,
+    "year": 1889
+  },
+  {
+    "id": 12,
+    "title": "Ecce Homo",
+    "author": "Friedrich Nietzsche",
+    "imgUrl": "https://m.media-amazon.com/images/I/61MPejvoZjL._SL1200_.jpg",
+    "score": 8.2,
+    "year": 1908
   }
 ]
