@@ -12,7 +12,32 @@ export type SortOrder = 'desc' | 'asc';
 /** Quotes longer than this get a smaller blockquote. */
 export const LONG_QUOTE = 220;
 
-const TABS: readonly LibraryTab[] = ['books', 'movies', 'quotes'];
+export const TABS: readonly LibraryTab[] = ['books', 'movies', 'quotes'];
+
+// Typographic cover gradients from docs/design/Library.dc.html.
+const COVER_PAIRS: ReadonlyArray<[string, string]> = [
+  ['#166534', '#052E16'],
+  ['#27272A', '#09090B'],
+  ['#15803D', '#14532D'],
+  ['#3F3F46', '#18181B'],
+  ['#065F46', '#022C22'],
+  ['#44403C', '#0C0A09'],
+];
+
+/** Cover colors keyed by id, so a book keeps its color whatever the sort order. */
+export function coverColors(id: number): [string, string] {
+  return COVER_PAIRS[(((id - 1) % COVER_PAIRS.length) + COVER_PAIRS.length) % COVER_PAIRS.length];
+}
+
+const NOUNS: Record<LibraryTab, [string, string]> = {
+  books: ['book', 'books'],
+  movies: ['movie', 'movies'],
+  quotes: ['quote', 'quotes'],
+};
+
+export function countLabel(tab: LibraryTab, count: number): string {
+  return `${count} ${NOUNS[tab][count === 1 ? 0 : 1]}`;
+}
 
 export function fromBook(book: RawBook): RatedItem {
   return { id: book.id, title: book.title, creator: book.author, year: book.year, score: book.score };

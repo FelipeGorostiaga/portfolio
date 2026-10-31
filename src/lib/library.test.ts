@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import books from '../../data/books.json';
 import quotes from '../../data/quotes.json';
-import { filterQuotes, filterRated, fromBook, parseTab, sortRated } from '~/lib/library';
+import { countLabel, coverColors, filterQuotes, filterRated, fromBook, parseTab, sortRated } from '~/lib/library';
 
 const items = books.map(fromBook);
 
@@ -50,6 +50,22 @@ describe('filterQuotes', () => {
     expect(withRef).toBeDefined();
     const reference = (withRef as { reference: string }).reference;
     expect(filterQuotes(quotes, reference.toUpperCase())).toContainEqual(withRef);
+  });
+});
+
+describe('countLabel', () => {
+  it('uses the singular for one item', () => {
+    expect(countLabel('books', 12)).toBe('12 books');
+    expect(countLabel('movies', 1)).toBe('1 movie');
+    expect(countLabel('quotes', 0)).toBe('0 quotes');
+  });
+});
+
+describe('coverColors', () => {
+  it('cycles the six design gradients by id', () => {
+    expect(coverColors(1)).toEqual(['#166534', '#052E16']);
+    expect(coverColors(6)).toEqual(['#44403C', '#0C0A09']);
+    expect(coverColors(7)).toEqual(coverColors(1));
   });
 });
 
