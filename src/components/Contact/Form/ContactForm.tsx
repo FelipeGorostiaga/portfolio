@@ -6,7 +6,6 @@ import { z } from 'zod';
 import { validateInput } from '~/utils/lib/string';
 import Button from '@ui/Button/Button';
 import { useMemo, useState, type MouseEvent } from 'react';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useTheme } from '~/contexts/ThemeContext';
 
@@ -120,7 +119,14 @@ const ContactForm = () => {
     };
     try {
       setSendingMessage(true);
-      await axios.post('/api/contact', payload);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        throw new Error(`Contact request failed with ${response.status}`);
+      }
       toast.success('Message sent', {
         style: toastStyle,
       });

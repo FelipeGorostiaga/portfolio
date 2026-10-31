@@ -3,9 +3,6 @@ import ThemeProviderCustom, { useTheme } from '../contexts/ThemeContext';
 import Navbar from '../components/Layout/Navbar/Navbar';
 import SideDrawerProvider from '../contexts/SideDrawerContext';
 import Footer from '../components/Layout/Footer/Footer';
-import { SessionProvider } from 'next-auth/react';
-import { type Session } from 'next-auth';
-import { api } from '~/utils/api';
 import '~/styles/globals.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
@@ -25,21 +22,16 @@ const lightTheme = createTheme({
 
 const queryClient = new QueryClient();
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <SessionProvider session={session}>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProviderCustom>
-          <>
-            <Toaster position="top-center" />
-            <MainLayout Component={Component} pageProps={pageProps} />
-          </>
-        </ThemeProviderCustom>
-      </QueryClientProvider>
-    </SessionProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProviderCustom>
+        <>
+          <Toaster position="top-center" />
+          <MainLayout Component={Component} pageProps={pageProps} />
+        </>
+      </ThemeProviderCustom>
+    </QueryClientProvider>
   );
 };
 
@@ -62,4 +54,4 @@ const MainLayout = ({ Component, pageProps }: any) => {
   );
 };
 
-export default api.withTRPC(MyApp);
+export default MyApp;

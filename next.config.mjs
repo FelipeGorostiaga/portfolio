@@ -7,30 +7,26 @@
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-
-  /**
-   * If you have the "experimental: { appDir: true }" setting enabled, then you
-   * must comment the below `i18n` config out.
-   *
-   * @see https://github.com/vercel/next.js/issues/41980
-   */
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
   images: {
-    remotePatterns: [
+    // The image optimizer is disabled: the site only serves small local images,
+    // and Next 13's optimizer carries advisories that are fixed only in 16.x.
+    unoptimized: true,
+  },
+  async headers() {
+    return [
       {
-        hostname: 'm.media-amazon.com',
-
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "DENY" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
       },
-      {
-        hostname: 'pics.filmaffinity.com',
-      },
-      {
-        hostname: 'd1w7fb2mkkr3kw.cloudfront.net'
-      }
-    ],
+    ];
   },
 };
 export default config;
