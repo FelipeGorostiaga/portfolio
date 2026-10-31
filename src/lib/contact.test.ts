@@ -6,6 +6,7 @@ import {
   createRateLimiter,
   firstErrors,
   handleContact,
+  validateContact,
   type ContactDeps,
 } from '~/lib/contact';
 
@@ -77,6 +78,19 @@ describe('contactOutcome', () => {
     expect(contactOutcome(400)).toBe('invalid');
     expect(contactOutcome(429)).toBe('error');
     expect(contactOutcome(500)).toBe('error');
+  });
+});
+
+describe('validateContact', () => {
+  it('accepts valid input', () => {
+    expect(validateContact(valid)).toEqual({ ok: true });
+  });
+
+  it('returns the first message per invalid field', () => {
+    expect(validateContact({ ...valid, email: 'nope', message: 'short' })).toEqual({
+      ok: false,
+      fieldErrors: { email: 'Enter a valid email', message: 'At least 20 characters' },
+    });
   });
 });
 

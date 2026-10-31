@@ -1,8 +1,8 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { z } from 'zod';
 import { ArrowUpRight } from '~/components/layout/icons';
 import { site } from '~/content/site';
-import { CONTACT_LIMITS, contactOutcome, contactSchema, firstErrors, type ContactInput } from '~/lib/contact';
+import { type ContactInput } from '~/lib/contact';
+import { CONTACT_LIMITS, contactOutcome, firstErrors } from '~/lib/contactForm';
 import styles from './Contact.module.css';
 import sectionStyles from './Section.module.css';
 
@@ -34,9 +34,11 @@ export default function Contact() {
     event.preventDefault();
     if (status === 'sending') return;
 
-    const parsed = contactSchema.safeParse(values);
-    if (!parsed.success) {
-      setErrors(firstErrors(z.flattenError(parsed.error).fieldErrors));
+    // zod is loaded on first submit so it stays out of the home page bundle.
+    const { validateContact } = await import('~/lib/contact');
+    const result = validateContact(values);
+    if (!result.ok) {
+      setErrors(result.fieldErrors);
       return;
     }
 
@@ -109,7 +111,14 @@ export default function Contact() {
           </div>
         </div>
 
-        <form className={`spot still reveal ${styles.form}`} noValidate onSubmit={onSubmit}>
+        {/* method/action only matter before hydration: they keep a native submit from putting the fields in the URL. */}
+        <form
+          className={`spot still reveal ${styles.form}`}
+          method="post"
+          action="/api/contact"
+          noValidate
+          onSubmit={onSubmit}
+        >
           <div className={styles.fields}>
             <label className={styles.field}>
               <span className={styles.label}>Name</span>

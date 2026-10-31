@@ -1,11 +1,7 @@
 import { z } from 'zod';
+import { CONTACT_LIMITS, firstErrors } from './contactForm';
 
-export const CONTACT_LIMITS = {
-  name: 30,
-  messageMin: 20,
-  messageMax: 300,
-  phoneMax: 20,
-} as const;
+export { CONTACT_LIMITS, contactOutcome, firstErrors, type ContactOutcome } from './contactForm';
 
 const PHONE_PATTERN = /^\+?[0-9\s().-]{6,20}$/;
 
@@ -86,22 +82,13 @@ export type ContactResult = {
   body: { ok: boolean; error?: string; fieldErrors?: Record<string, string[]> };
 };
 
-export type ContactOutcome = 'sent' | 'invalid' | 'error';
-
-/** How the contact form should react to the API's status code. */
-export function contactOutcome(status: number): ContactOutcome {
-  if (status === 201 || status === 200) return 'sent';
-  if (status === 400) return 'invalid';
-  return 'error';
-}
-
-/** The first message of each field's error list, for showing under the input. */
-export function firstErrors(fieldErrors: Record<string, string[] | undefined>): Record<string, string> {
-  const result: Record<string, string> = {};
-  for (const [field, messages] of Object.entries(fieldErrors)) {
-    if (messages?.[0]) result[field] = messages[0];
-  }
-  return result;
+/** Client-side check before sending: the first message per invalid field. */
+export function validateContact(
+  input: ContactInput,
+): { ok: true } | { ok: false; fieldErrors: Record<string, string> } {
+  const parsed = contactSchema.safeParse(input);
+  if (parsed.success) return { ok: true };
+  return { ok: false, fieldErrors: firstErrors(z.flattenError(parsed.error).fieldErrors) };
 }
 
 export async function handleContact(
