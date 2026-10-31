@@ -1,8 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   buildMail,
+  contactOutcome,
   contactSchema,
   createRateLimiter,
+  firstErrors,
   handleContact,
   type ContactDeps,
 } from '~/lib/contact';
@@ -62,6 +64,25 @@ describe('buildMail', () => {
   it('adds the phone line when given', () => {
     const mail = buildMail(contactSchema.parse({ ...valid, phone: '+54 11 1234 5678' }));
     expect(mail.text).toContain('Phone: +54 11 1234 5678');
+  });
+});
+
+describe('contactOutcome', () => {
+  it('treats 201 and 200 (honeypot) as sent', () => {
+    expect(contactOutcome(201)).toBe('sent');
+    expect(contactOutcome(200)).toBe('sent');
+  });
+
+  it('maps 400 to invalid and everything else to error', () => {
+    expect(contactOutcome(400)).toBe('invalid');
+    expect(contactOutcome(429)).toBe('error');
+    expect(contactOutcome(500)).toBe('error');
+  });
+});
+
+describe('firstErrors', () => {
+  it('keeps the first message per field and drops empty lists', () => {
+    expect(firstErrors({ email: ['Enter a valid email', 'x'], phone: [] })).toEqual({ email: 'Enter a valid email' });
   });
 });
 

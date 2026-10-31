@@ -1,3 +1,4 @@
+import Contact from '~/components/home/Contact';
 import Experience from '~/components/home/Experience';
 import Hero from '~/components/home/Hero';
 import OffTheClock from '~/components/home/OffTheClock';
@@ -22,6 +23,7 @@ export default function HomePage() {
           <Projects />
           <Skills />
           <OffTheClock />
+          <Contact />
         </main>
       </SiteShell>
     </>
