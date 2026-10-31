@@ -296,23 +296,38 @@ export default function HeroField({ intensity = 1, spacing = 30, className }: He
       if (ripples.length > MAX_RIPPLES) ripples.shift();
     };
 
+    // The loop only runs while the hero is on screen.
+    let onScreen = true;
     const loop = (now: number) => {
+      if (!onScreen) {
+        raf = 0;
+        return;
+      }
       if (!document.hidden) frame(now);
       raf = requestAnimationFrame(loop);
+    };
+    const start = () => {
+      if (!reduce && !raf) raf = requestAnimationFrame(loop);
     };
 
     const section = canvas.parentElement;
     resize();
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
+    const visibility = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (onScreen) start();
+    });
+    visibility.observe(canvas);
     window.addEventListener('pointermove', onMove);
     section?.addEventListener('pointerdown', onDown);
     redrawRef.current = reduce ? () => frame(performance.now()) : null;
-    if (!reduce) raf = requestAnimationFrame(loop);
+    start();
 
     return () => {
       cancelAnimationFrame(raf);
       observer.disconnect();
+      visibility.disconnect();
       window.removeEventListener('pointermove', onMove);
       section?.removeEventListener('pointerdown', onDown);
       redrawRef.current = null;

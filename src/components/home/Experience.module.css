@@ -1,0 +1,210 @@
+.section {
+  padding-top: 120px;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-left: 40px;
+}
+
+/* Vertical line with a light travelling down it. */
+.line {
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(var(--line-2), var(--line));
+  overflow: hidden;
+}
+.line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -180px;
+  width: 2px;
+  height: 180px;
+  background: linear-gradient(transparent, var(--a1), var(--a2), transparent);
+  animation: travel 4.5s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+.job {
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  left: -40px;
+  top: 38px;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+}
+.dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--faint);
+}
+.dot.live::after {
+  background: var(--a1);
+}
+.dot.live::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1px solid var(--a1);
+  animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.card {
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 28px;
+}
+
+/* 64px company tile: logo when there is one, letters otherwise. */
+.mark {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-family: 'Geist Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  border: 1px solid var(--line-2);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--a1) 24%, transparent),
+    color-mix(in srgb, var(--a2) 18%, transparent)
+  );
+}
+.mark img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.body {
+  flex: 1 1 480px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+.role {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.when {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dates {
+  font-size: 13px;
+  color: var(--faint);
+}
+
+.now {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: var(--a1);
+  background: color-mix(in srgb, var(--a1) 12%, transparent);
+}
+
+.summary {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.company {
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+}
+.company:hover {
+  color: var(--a1);
+}
+
+.bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.bullets li {
+  position: relative;
+  padding-left: 22px;
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.72em;
+  width: 9px;
+  height: 1.5px;
+  background: var(--a1);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@keyframes travel {
+  to {
+    top: 100%;
+  }
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
