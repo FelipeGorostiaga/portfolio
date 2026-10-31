@@ -1,56 +1,483 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+ * Design tokens and shared classes, ported as-is from docs/design/*.dc.html.
+ * Component-specific styles live in the component's CSS Module.
+ */
 
-html,
+:root {
+  --bg: #060807;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --text: #f2f5f3;
+  --muted: #a3ada7;
+  --faint: #7e8983;
+  --a1: #4ade80;
+  --a2: #d9f99d;
+  --a3: #22c55e;
+  --btn-text: #04130a;
+  --glow-o: 0.5;
+  --blob-o: 0.5;
+  --shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+:root.light {
+  --bg: #f6f7f6;
+  --surface: rgba(255, 255, 255, 0.62);
+  --surface-2: rgba(255, 255, 255, 0.92);
+  --line: rgba(15, 23, 42, 0.09);
+  --line-2: rgba(15, 23, 42, 0.17);
+  --text: #0a0d0b;
+  --muted: #3f4842;
+  --faint: #5d6660;
+  --a1: #15803d;
+  --a2: #4d7c0f;
+  --a3: #166534;
+  --btn-text: #ffffff;
+  --glow-o: 0.22;
+  --blob-o: 0.3;
+  --shadow: 0 30px 70px -35px rgba(16, 24, 20, 0.28);
+  color-scheme: light;
+}
+
+/* Route pages (library, games, 404) use softer aurora blobs. */
+.route {
+  --blob-o: 0.42;
+}
+:root.light .route {
+  --blob-o: 0.26;
+}
+
+/* ---------- Base ---------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  padding: 0;
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Geist', system-ui, sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  -webkit-font-smoothing: antialiased;
 }
-body::-webkit-scrollbar {
+
+a,
+a:hover {
+  color: inherit;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--a1) 35%, transparent);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+canvas:focus-visible {
+  outline: 2px solid var(--a1);
+  outline-offset: 3px;
+}
+
+.mono {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+}
+
+.serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+}
+
+/* The single serif-italic accent word in a heading. */
+.accent {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Global effects ---------- */
+
+.cursor-glow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 680px;
+  height: 680px;
+  margin: -340px 0 0 -340px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--a1) 50%, transparent) 0%,
+    color-mix(in srgb, var(--a2) 22%, transparent) 32%,
+    transparent 66%
+  );
+  opacity: var(--glow-o);
+  transform: translate3d(var(--mx, -2000px), var(--my, -2000px), 0);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.enter {
+  animation: fadeup 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.grad {
+  background-image: linear-gradient(100deg, var(--a1), var(--a2), var(--a3), var(--a1));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: slide 9s linear infinite;
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+}
+
+/* ---------- Shared components ---------- */
+
+.eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.eyebrow b {
+  font-weight: 500;
+  color: var(--a1);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  width: fit-content;
+}
+
+.pulse {
   width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--a3);
+  animation: pulse 2s infinite;
 }
 
-/* Track */
-body::-webkit-scrollbar-track {
-  background: transparent;
+/* Spotlight card: glass surface whose border and glow follow the pointer (--x/--y). */
+.spot {
+  position: relative;
+  isolation: isolate;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+  transition: translate 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background-color 0.4s,
+    box-shadow 0.45s;
+}
+.spot::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(380px circle at var(--x, 50%) var(--y, 0%), var(--a1), var(--a2) 35%, transparent 65%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+.spot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    520px circle at var(--x, 50%) var(--y, 0%),
+    color-mix(in srgb, var(--a1) 13%, transparent),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+  z-index: -1;
+}
+.spot:hover {
+  translate: 0 -6px;
+  border-color: color-mix(in srgb, var(--a1) 30%, transparent);
+  background-color: var(--surface-2);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--a1) 14%, transparent),
+    0 28px 70px -28px color-mix(in srgb, var(--a1) 38%, transparent);
+}
+/* Glows but never lifts (contact form, Game of Life panel). */
+.spot.still:hover {
+  translate: none;
+}
+.spot:hover::before,
+.spot:hover::after {
+  opacity: 1;
 }
 
-/* Handle */
-body::-webkit-scrollbar-thumb {
-  border-radius: 36px;
-  background: #cbd5e1;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  box-sizing: border-box;
+  transition: translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.3s,
+    background-color 0.3s;
+}
+/* Compact variant used on the games page. */
+.btn-sm {
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+.btn:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+.btn-primary {
+  color: var(--btn-text);
+  background-image: linear-gradient(110deg, var(--a1), var(--a2), var(--a1));
+  background-size: 200% 100%;
+  box-shadow: 0 12px 40px -12px color-mix(in srgb, var(--a1) 75%, transparent);
+  animation: slide 6s linear infinite;
+}
+.btn-primary:hover {
+  translate: 0 -2px;
+  color: var(--btn-text);
+  box-shadow: 0 20px 50px -12px color-mix(in srgb, var(--a2) 85%, transparent);
+}
+.btn-ghost {
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.btn-ghost:hover {
+  translate: 0 -2px;
+  color: var(--text);
+  border-color: var(--a1);
 }
 
-/* Handle on hover */
-body::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+.tag {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  color: var(--muted);
+  background: var(--surface);
 }
 
-img {
-  max-width: 100%;
+.in {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 50px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.in::placeholder {
+  color: var(--faint);
+}
+.in:focus {
+  border-color: var(--a1);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--a1) 22%, transparent);
+}
+
+.lbl {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.stat b {
+  font-family: 'Geist Mono', monospace;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Minesweeper cells (games preview and the game itself). */
+.ms {
+  width: 26px;
+  height: 26px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+}
+.ms.c,
+.ms.f {
+  background: var(--surface-2);
+  border: 1px solid var(--line-2);
+}
+.ms.f::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 9px solid #f43f5e;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  margin-left: 3px;
+}
+.ms.r {
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+.n1 {
+  color: var(--a1);
+}
+.n2 {
+  color: var(--a3);
+}
+.n3 {
+  color: var(--a2);
+}
+
+/* Main content column on route pages. */
+.route-main {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 96px 24px 100px;
+}
+
+/* Theme toggle shows the icon for the theme you would switch to. */
+.icon-moon {
+  display: none;
+}
+:root.light .icon-sun {
+  display: none;
+}
+:root.light .icon-moon {
   display: block;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* ---------- Keyframes ---------- */
 
-* {
-  box-sizing: border-box;
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
-
-.main-grid {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-  width: 100%;
+@keyframes up {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
 }
-
-.radialBg {
-  background: radial-gradient(84.08% 84.08% at 48.84% 48.97%, #FFFFFF 0%, #E8E2DA 37.38%, #CACDCF 59.52%, #E0E7EE 100%);
+@keyframes slide {
+  to {
+    background-position: 200% 0;
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--a3) 60%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(48px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

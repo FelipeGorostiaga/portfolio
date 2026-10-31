@@ -1,0 +1,62 @@
+.shell {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* Route pages: two soft blobs behind the header area. */
+.aurora {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 640px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: var(--blob-o);
+}
+
+.b1 {
+  width: 560px;
+  height: 560px;
+  left: -120px;
+  top: -220px;
+  background: radial-gradient(circle, var(--a2), transparent 62%);
+  animation: drift1 20s ease-in-out infinite alternate;
+}
+
+.b2 {
+  width: 520px;
+  height: 520px;
+  right: -80px;
+  top: -160px;
+  background: radial-gradient(circle, var(--a1), transparent 62%);
+  animation: drift2 24s ease-in-out infinite alternate;
+}
+
+/* Games page swaps the blob colors (docs/design/Games.dc.html). */
+.games .b1 {
+  background: radial-gradient(circle, var(--a3), transparent 62%);
+}
+.games .b2 {
+  background: radial-gradient(circle, var(--a2), transparent 62%);
+}
+
+@keyframes drift1 {
+  to {
+    transform: translate(220px, 90px) scale(1.15);
+  }
+}
+
+@keyframes drift2 {
+  to {
+    transform: translate(-200px, 110px) scale(0.9);
+  }
+}

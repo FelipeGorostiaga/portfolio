@@ -1,0 +1,29 @@
+.button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  margin-left: 4px;
+  padding: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
+}
+
+.button:hover {
+  transform: rotate(25deg);
+}
+
+.button svg {
+  animation: pop 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pop {
+  from {
+    transform: rotate(-120deg) scale(0.3);
+    opacity: 0;
+  }
+}

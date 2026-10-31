@@ -68,8 +68,8 @@ export function reveal(board: Board, r: number, c: number): { board: Board; hitM
     return { board: next, hitMine: true };
   }
   const queue: Array<[number, number]> = [[r, c]];
-  while (queue.length > 0) {
-    const [row, col] = queue.pop()!;
+  for (let item = queue.pop(); item; item = queue.pop()) {
+    const [row, col] = item;
     const cell = next[row][col];
     if (cell.revealed || cell.flagged || cell.mine) continue;
     cell.revealed = true;
