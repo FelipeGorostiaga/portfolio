@@ -1,0 +1,122 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.newGame {
+  min-height: 100%;
+}
+
+/* On phones the timer doesn't fit a third of the row: readouts side by side, button below. */
+@media (max-width: 479px) {
+  .hud {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .newGame {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+}
+
+.boardWrap {
+  position: relative;
+}
+
+/* Cell size steps up with the viewport (17 / 24 / 32px); 17px keeps the board inside a 375px phone. */
+.board {
+  --cell: 17px;
+  display: grid;
+  grid-template-columns: repeat(16, var(--cell));
+  gap: 2px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+@media (min-width: 480px) {
+  .board {
+    --cell: 24px;
+  }
+}
+
+@media (min-width: 640px) {
+  .board {
+    --cell: 32px;
+  }
+}
+
+/* Overrides the 26px preview size of the global .ms cells. */
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  padding: 0;
+  font-size: calc(var(--cell) * 0.5);
+  color: inherit;
+  cursor: pointer;
+}
+.cell[aria-disabled='true'] {
+  cursor: default;
+}
+
+.covered:hover:not([aria-disabled='true']) {
+  border-color: var(--a1);
+}
+
+.mine::before {
+  content: '';
+  width: 45%;
+  height: 45%;
+  border-radius: 50%;
+  background: #f43f5e;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.6);
+}
+
+.result {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  border-radius: 16px;
+}
+
+.resultCard {
+  border-radius: 22px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.resultTitle {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.resultText {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.help {
+  font-size: 12px;
+  color: var(--faint);
+  text-align: center;
+}

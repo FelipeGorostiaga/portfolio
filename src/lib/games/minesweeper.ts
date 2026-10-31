@@ -100,6 +100,53 @@ export function countFlags(board: Board): number {
   return board.reduce((sum, row) => sum + row.filter((cell) => cell.flagged).length, 0);
 }
 
+export type MsStatus = 'ready' | 'playing' | 'won' | 'lost';
+
+export type MsGame = {
+  board: Board;
+  status: MsStatus;
+  /** ms timestamps; the clock starts on the first reveal. */
+  startedAt: number | null;
+  endedAt: number | null;
+};
+
+export function newGame(rows = MS_ROWS, cols = MS_COLS): MsGame {
+  return { board: createEmptyBoard(rows, cols), status: 'ready', startedAt: null, endedAt: null };
+}
+
+const isOver = (game: MsGame) => game.status === 'won' || game.status === 'lost';
+
+/** Reveal a cell. The first reveal places the mines, so it can never lose. */
+export function revealAt(
+  game: MsGame,
+  r: number,
+  c: number,
+  now: number,
+  random = Math.random,
+  mines = MS_MINES,
+): MsGame {
+  if (isOver(game)) return game;
+  let { board, startedAt } = game;
+  if (game.status === 'ready') {
+    board = placeMines(board.length, board[0].length, mines, [r, c], random);
+    startedAt = now;
+  }
+  const result = reveal(board, r, c);
+  if (result.hitMine) {
+    return { board: revealMines(result.board), status: 'lost', startedAt, endedAt: now };
+  }
+  if (hasWon(result.board)) {
+    return { board: result.board, status: 'won', startedAt, endedAt: now };
+  }
+  return { board: result.board, status: 'playing', startedAt, endedAt: null };
+}
+
+/** Toggle a flag; only while a game is in progress. */
+export function flagAt(game: MsGame, r: number, c: number): MsGame {
+  if (game.status !== 'playing') return game;
+  return { ...game, board: toggleFlag(game.board, r, c) };
+}
+
 const pad = (value: number) => String(value).padStart(2, '0');
 
 export function formatElapsed(ms: number): string {

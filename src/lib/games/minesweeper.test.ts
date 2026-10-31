@@ -2,13 +2,17 @@ import { describe, expect, it } from 'vitest';
 import {
   boardFromMines,
   countFlags,
+  flagAt,
   formatElapsed,
   hasWon,
+  newGame,
   placeMines,
   reveal,
+  revealAt,
   revealMines,
   toggleFlag,
   type Board,
+  type MsGame,
 } from '~/lib/games/minesweeper';
 
 const seeded = (seed: number) => () => {
@@ -79,6 +83,43 @@ describe('revealMines', () => {
     const b = revealMines(boardFromMines(3, 3, [[0, 0], [2, 2]]));
     expect(b[0][0].revealed && b[2][2].revealed).toBe(true);
     expect(revealedCount(b)).toBe(2);
+  });
+});
+
+describe('game flow', () => {
+  const playing = (board: Board): MsGame => ({ board, status: 'playing', startedAt: 0, endedAt: null });
+
+  it('places mines on the first reveal, away from the click, and starts the clock', () => {
+    const game = revealAt(newGame(), 8, 8, 1000, seeded(7));
+    expect(game.status).toBe('playing');
+    expect(game.startedAt).toBe(1000);
+    expect(game.board[8][8].revealed).toBe(true);
+    expect(game.board.flat().filter((c) => c.mine)).toHaveLength(50);
+  });
+
+  it('loses on a mine and uncovers every mine', () => {
+    const game = revealAt(playing(boardFromMines(3, 3, [[0, 0], [2, 2]])), 0, 0, 500);
+    expect(game.status).toBe('lost');
+    expect(game.endedAt).toBe(500);
+    expect(game.board[2][2].revealed).toBe(true);
+  });
+
+  it('wins when the last safe cell opens', () => {
+    const game = revealAt(playing(boardFromMines(1, 2, [[0, 0]])), 0, 1, 900);
+    expect(game.status).toBe('won');
+    expect(game.endedAt).toBe(900);
+  });
+
+  it('ignores every move once the game is over', () => {
+    const lost = revealAt(playing(boardFromMines(3, 3, [[0, 0]])), 0, 0, 500);
+    expect(revealAt(lost, 2, 2, 600)).toBe(lost);
+    expect(flagAt(lost, 2, 2)).toBe(lost);
+  });
+
+  it('only flags while playing', () => {
+    const fresh = newGame();
+    expect(flagAt(fresh, 0, 0)).toBe(fresh);
+    expect(flagAt(playing(boardFromMines(2, 2, [[0, 0]])), 0, 0).board[0][0].flagged).toBe(true);
   });
 });
 
