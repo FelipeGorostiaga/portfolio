@@ -210,7 +210,7 @@ export default function HeroField({ intensity = 1, spacing = 30, className }: He
         ctx.stroke();
       }
 
-      // HUD: dashed guides, ring, crosshair ticks and a coordinates chip.
+      // HUD: dashed guides, ring and crosshair ticks.
       const hx = Math.round(ptr.x);
       const hy = Math.round(ptr.y);
       ctx.save();
@@ -238,18 +238,6 @@ export default function HeroField({ intensity = 1, spacing = 30, className }: He
       ctx.moveTo(hx, hy + 8);
       ctx.lineTo(hx, hy + 24);
       ctx.stroke();
-      const label = `x ${hx}   y ${hy}`;
-      ctx.font = '500 11px "Geist Mono", ui-monospace, monospace';
-      const tw = ctx.measureText(label).width;
-      ctx.fillStyle = `rgba(${pal.chip},0.85)`;
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(hx + 18, hy + 18, tw + 18, 24, 7);
-      else ctx.rect(hx + 18, hy + 18, tw + 18, 24);
-      ctx.fill();
-      ctx.strokeStyle = `rgba(${pal.hud},0.14)`;
-      ctx.stroke();
-      ctx.fillStyle = `rgba(${pal.hud},0.92)`;
-      ctx.fillText(label, hx + 27, hy + 34);
       ctx.restore();
     };
 

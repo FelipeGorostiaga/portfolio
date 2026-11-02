@@ -138,7 +138,7 @@
   color: var(--a1);
 }
 
-/* All role words share one grid cell and take turns (12.5s loop). */
+/* All role words share one grid cell and take turns: 3 words × 3.75s = 11.25s loop (ROLES in Hero.tsx). */
 .roles {
   display: inline-grid;
   vertical-align: bottom;
@@ -150,7 +150,7 @@
   grid-area: 1 / 1;
   white-space: nowrap;
   opacity: 0;
-  animation: word 12.5s cubic-bezier(0.16, 1, 0.3, 1) infinite both;
+  animation: word 11.25s cubic-bezier(0.16, 1, 0.3, 1) infinite both;
 }
 
 .roleWord:first-child {
@@ -219,34 +219,6 @@
 
 /* ---------- Corners and scroll cue ---------- */
 
-.meta {
-  position: absolute;
-  bottom: 36px;
-  z-index: 3;
-  font-family: 'Geist Mono', monospace;
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  color: var(--faint);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.metaLeft {
-  left: 32px;
-}
-
-.metaRight {
-  right: 32px;
-}
-
-.kbd {
-  padding: 3px 7px;
-  border-radius: 6px;
-  border: 1px solid var(--line-2);
-  background: var(--surface);
-}
-
 .scrollCue {
   position: absolute;
   left: 50%;
@@ -286,12 +258,6 @@
   animation: wheel 1.8s ease-in-out infinite;
 }
 
-@media (max-width: 720px) {
-  .meta {
-    display: none;
-  }
-}
-
 /* ---------- Keyframes (local to this module) ---------- */
 
 @keyframes drift1 {
@@ -322,19 +288,20 @@
     background-position: 200% 0;
   }
 }
+/* Per 3.75s turn: 0.5s in, hold, 0.5s out overlapping the next word's entry by 0.125s. */
 @keyframes word {
   0% {
     opacity: 0;
     transform: translateY(60%);
     filter: blur(10px);
   }
-  4%,
-  17% {
+  4.4%,
+  30% {
     opacity: 1;
     transform: none;
     filter: blur(0);
   }
-  21%,
+  34.4%,
   100% {
     opacity: 0;
     transform: translateY(-60%);

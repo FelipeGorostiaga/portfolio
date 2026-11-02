@@ -9,10 +9,8 @@ type Palette = {
   /** Idle dot color ("r,g,b") and its alpha. */
   base: string;
   baseA: number;
-  /** HUD strokes and text. */
+  /** HUD strokes. */
   hud: string;
-  /** HUD label background. */
-  chip: string;
 };
 
 // Canvas colors from docs/design/HANDOFF.md ("Theme palettes for the canvas").
@@ -24,7 +22,6 @@ export const PALETTES: Record<Theme, Palette> = {
     base: '150,160,154',
     baseA: 0.28,
     hud: '232,240,235',
-    chip: '8,10,9',
   },
   light: {
     a1: [21, 128, 61],
@@ -33,7 +30,6 @@ export const PALETTES: Record<Theme, Palette> = {
     base: '60,68,63',
     baseA: 0.24,
     hud: '10,13,11',
-    chip: '255,255,255',
   },
 };
 

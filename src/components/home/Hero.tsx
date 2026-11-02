@@ -3,8 +3,9 @@ import { ArrowUpRight } from '~/components/layout/icons';
 import HeroField from './HeroField';
 import styles from './Hero.module.css';
 
-const ROLES = ['Builder.', 'Engineer.', 'Creator.', 'Problem solver.', 'Lifelong learner.'];
-const ROLE_INTERVAL_S = 2.5;
+// The CSS loop in Hero.module.css (.roleWord / @keyframes word) is sized for 3 words × 3.75s.
+const ROLES = ['Engineer.', 'Builder.', 'Creator.'];
+const ROLE_INTERVAL_S = 3.75;
 
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
@@ -38,7 +39,7 @@ export default function Hero() {
             </span>
           </h1>
           <p className={`enter ${styles.roleLine}`} style={delay(420)}>
-            <span className="sr-only">Builder, engineer, creator, problem solver, lifelong learner.</span>
+            <span className="sr-only">Engineer, builder, creator.</span>
             <span className={styles.roles} aria-hidden="true">
               {ROLES.map((role, i) => (
                 <span
@@ -76,11 +77,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className={`${styles.meta} ${styles.metaLeft}`}>
-        <span className={styles.kbd}>move</span>bend the field<span className={styles.kbd}>click</span>send a
-        shockwave
-      </div>
-      <div className={`${styles.meta} ${styles.metaRight}`}>canvas 2D · spring physics</div>
       <a href="#experience" aria-label="Scroll to experience" className={styles.scrollCue}>
         <span className={styles.mouse} aria-hidden="true">
           <span className={styles.wheel} />
