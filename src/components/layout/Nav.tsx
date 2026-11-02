@@ -13,8 +13,9 @@ export type NavProps = {
 export default function Nav({ variant, current, showProjects = false }: NavProps) {
   const brand = (
     <>
-      <span className={styles.logoMark} aria-hidden="true">
-        FG
+      <span className={styles.logoTile} aria-hidden="true">
+        fg
+        <span className={styles.logoCursor} />
       </span>
       <span className={styles.brandName}>{site.name}</span>
     </>
