@@ -53,8 +53,8 @@ export default function Hero() {
             </span>
           </p>
           <p className={`enter ${styles.bio}`} style={delay(520)}>
-            An engineer driven by curiosity. I make products that are useful to people and help them reach their
-            full potential — for me, creating is where learning and lasting impact meet.
+            An engineer driven by passion and creativity. I build products used by millions of people, and I still
+            love that moment when an idea turns into something real.
           </p>
           <div className={`enter ${styles.ctas}`} style={delay(620)}>
             <a className="btn btn-primary" href="#contact">
