@@ -7,7 +7,7 @@ import styles from './SiteShell.module.css';
 type SiteShellProps = NavProps & { children: ReactNode };
 
 export default function SiteShell({ variant, current, showProjects, children }: SiteShellProps) {
-  const { onMouseMove } = usePointerVars();
+  const { glowRef, onMouseMove } = usePointerVars();
   const isRoute = variant === 'route';
   const isGames = current === 'games';
   const className = [styles.shell, isRoute && 'route', isGames && styles.games]
@@ -17,7 +17,7 @@ export default function SiteShell({ variant, current, showProjects, children }: 
   return (
     <div className={className} onMouseMove={onMouseMove}>
       {/* No glow chasing the pointer on the game pages: the games are played with it. */}
-      {!isGames && <div className="cursor-glow" aria-hidden="true" />}
+      {!isGames && <div ref={glowRef} className="cursor-glow" aria-hidden="true" />}
       {isRoute && (
         <div className={styles.aurora} aria-hidden="true">
           <div className={`${styles.blob} ${styles.b1}`} />
