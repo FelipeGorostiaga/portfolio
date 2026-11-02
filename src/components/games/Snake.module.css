@@ -65,6 +65,17 @@
   text-align: center;
 }
 
+/* "Your highscore: …" under the HUD, once a game has scored (saved in localStorage). */
+.best {
+  margin: -6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.best b {
+  font-weight: 500;
+  color: var(--a1);
+}
+
 .noKeyboard {
   display: none;
   margin: 0;

@@ -143,3 +143,14 @@
   color: var(--faint);
   text-align: center;
 }
+
+/* "Your highscore: …" under the HUD, once the player has won a game (saved in localStorage). */
+.best {
+  margin: -6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.best b {
+  font-weight: 500;
+  color: var(--a1);
+}
