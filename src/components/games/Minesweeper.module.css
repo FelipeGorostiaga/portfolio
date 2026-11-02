@@ -26,6 +26,7 @@
   .newGame {
     grid-column: 1 / -1;
     order: 3;
+    min-height: 46px; /* alone in its row, 100% would collapse below the touch target */
   }
 }
 
@@ -57,13 +58,18 @@
   }
 }
 
-/* Overrides the 26px preview size of the global .ms cells. */
+/*
+ * Overrides the 26px preview size of the global .ms cells. Cells are <button>s while the
+ * design's .ms rules were written for spans: reset the button border (covered/flagged cells
+ * get theirs back from the two-class .ms.c/.ms.f rules) and leave `color` alone so the
+ * global .n1–.n3 number colours apply.
+ */
 .cell {
   width: var(--cell);
   height: var(--cell);
   padding: 0;
+  border: 0;
   font-size: calc(var(--cell) * 0.5);
-  color: inherit;
   cursor: pointer;
 }
 .cell[aria-disabled='true'] {
