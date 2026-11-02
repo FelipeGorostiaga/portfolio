@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useTheme } from '~/hooks/useTheme';
+import { idleTarget } from '~/lib/heroField';
 import { accentLut, PALETTES } from '~/lib/palette';
 import { type Theme } from '~/lib/theme';
 
@@ -91,8 +92,9 @@ export default function HeroField({ intensity = 1, spacing = 30, className }: He
 
       // Follow the real pointer, or drift along a Lissajous path when idle.
       const live = ptr.inside && now - ptr.last < IDLE_MS;
-      const tx = live ? ptr.tx : w * (0.56 + 0.3 * Math.sin(t * 0.37));
-      const ty = live ? ptr.ty : h * (0.46 + 0.25 * Math.sin(t * 0.61 + 1.1));
+      const idle = live ? null : idleTarget(t, w, h);
+      const tx = idle ? idle.x : ptr.tx;
+      const ty = idle ? idle.y : ptr.ty;
       const ease = live ? 0.22 : 0.035;
       ptr.x += (tx - ptr.x) * ease;
       ptr.y += (ty - ptr.y) * ease;
@@ -252,8 +254,10 @@ export default function HeroField({ intensity = 1, spacing = 30, className }: He
       w = cw;
       h = ch;
       if (ptr.x < 0) {
-        ptr.x = w * 0.6;
-        ptr.y = h * 0.45;
+        // Start where the idle path begins (also the still frame under reduced motion).
+        const start = idleTarget(0, w, h);
+        ptr.x = start.x;
+        ptr.y = start.y;
       }
       build();
       if (reduce) frame(performance.now());
