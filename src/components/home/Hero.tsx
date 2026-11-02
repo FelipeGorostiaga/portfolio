@@ -77,12 +77,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <a href="#experience" aria-label="Scroll to experience" className={styles.scrollCue}>
-        <span className={styles.mouse} aria-hidden="true">
-          <span className={styles.wheel} />
-        </span>
-        <span className={`mono ${styles.scrollLabel}`}>Scroll</span>
-      </a>
     </section>
   );
 }

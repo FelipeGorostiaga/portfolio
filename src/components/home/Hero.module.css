@@ -3,7 +3,9 @@
 .hero {
   position: relative;
   z-index: 2;
-  min-height: 900px;
+  /* The field covers at least the whole first screen (taller when the content needs it). */
+  min-height: 100vh;
+  min-height: 100svh;
   margin-top: -74px; /* sits under the sticky nav */
   padding: 150px 24px 120px;
   box-sizing: border-box;
@@ -217,47 +219,6 @@
   transform: scale(1.08);
 }
 
-/* ---------- Corners and scroll cue ---------- */
-
-.scrollCue {
-  position: absolute;
-  left: 50%;
-  bottom: 30px;
-  translate: -50% 0;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--faint);
-}
-
-.scrollLabel {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.mouse {
-  width: 24px;
-  height: 38px;
-  border: 1.5px solid var(--line-2);
-  border-radius: 14px;
-  display: flex;
-  justify-content: center;
-  padding-top: 7px;
-  box-sizing: border-box;
-}
-
-.wheel {
-  width: 3px;
-  height: 7px;
-  border-radius: 2px;
-  background: var(--a1);
-  animation: wheel 1.8s ease-in-out infinite;
-}
-
 /* ---------- Keyframes (local to this module) ---------- */
 
 @keyframes drift1 {
@@ -311,18 +272,5 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
-  }
-}
-@keyframes wheel {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  70% {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
   }
 }
