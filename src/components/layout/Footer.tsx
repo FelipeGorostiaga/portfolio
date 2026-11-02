@@ -5,7 +5,7 @@ import styles from './Footer.module.css';
 export default function Footer({ variant }: { variant: 'home' | 'route' }) {
   const copyright = (
     <span className={`mono ${styles.copyright}`}>
-      © {new Date().getFullYear()} {site.name}
+      © {process.env.BUILD_YEAR} {site.name}
     </span>
   );
 

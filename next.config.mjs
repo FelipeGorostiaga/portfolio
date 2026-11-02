@@ -9,6 +9,11 @@ const config = {
   reactStrictMode: true,
   // Don't advertise the framework/version in an X-Powered-By header.
   poweredByHeader: false,
+  // Inlined into both the server and client bundles at build time, so the footer year can
+  // never differ between static HTML and hydration (it updates on each deploy).
+  env: {
+    BUILD_YEAR: String(new Date().getFullYear()),
+  },
   images: {
     // The image optimizer is disabled: the site only serves small local images,
     // and Next 13's optimizer carries advisories that are fixed only in 16.x.
