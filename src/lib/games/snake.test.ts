@@ -52,7 +52,14 @@ describe('stepSnake', () => {
 
 describe('keyToDirection', () => {
   it('maps arrow keys only', () => {
-    expect(keyToDirection('ArrowLeft')).toBe('left');
-    expect(keyToDirection('a')).toBeNull();
+    expect(keyToDirection({ key: 'ArrowLeft' })).toBe('left');
+    expect(keyToDirection({ key: 'a' })).toBeNull();
+  });
+
+  it('leaves browser shortcuts alone (Alt+← is Back, Ctrl/Cmd+arrows move the page)', () => {
+    expect(keyToDirection({ key: 'ArrowLeft', altKey: true })).toBeNull();
+    expect(keyToDirection({ key: 'ArrowUp', ctrlKey: true })).toBeNull();
+    expect(keyToDirection({ key: 'ArrowDown', metaKey: true })).toBeNull();
+    expect(keyToDirection({ key: 'ArrowRight', shiftKey: true })).toBe('right');
   });
 });

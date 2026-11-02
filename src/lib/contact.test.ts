@@ -151,3 +151,21 @@ describe('handleContact', () => {
     expect((await handleContact('POST', valid, '1.1.1.1', d)).status).toBe(201);
   });
 });
+
+describe('createRateLimiter', () => {
+  it('allows `limit` requests per window and then refuses', () => {
+    const limiter = createRateLimiter(2, 1000);
+    expect(limiter.hit('a', 0)).toBe(true);
+    expect(limiter.hit('a', 10)).toBe(true);
+    expect(limiter.hit('a', 20)).toBe(false);
+    expect(limiter.hit('a', 1015)).toBe(true); // the first request has left the window
+  });
+
+  it('forgets visitors whose requests have all expired', () => {
+    const limiter = createRateLimiter(5, 1000);
+    for (let i = 0; i < 50; i++) limiter.hit(`10.0.0.${i}`, 0);
+    expect(limiter.size()).toBe(50);
+    limiter.hit('10.0.1.1', 1500);
+    expect(limiter.size()).toBe(1);
+  });
+});

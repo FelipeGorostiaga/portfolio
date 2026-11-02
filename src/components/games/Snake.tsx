@@ -83,7 +83,7 @@ export default function Snake() {
   // Arrow keys steer; the first one starts the game.
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      const direction = keyToDirection(event.key);
+      const direction = keyToDirection(event);
       if (!direction) return;
       event.preventDefault(); // keep the page from scrolling
       setStarted(true);

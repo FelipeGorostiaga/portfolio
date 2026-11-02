@@ -76,6 +76,8 @@ export default function LifePanel() {
   const lifeRef = useRef<LifeState | null>(null);
   const runningRef = useRef(true);
   const hoverRef = useRef(-1);
+  // The board is only redrawn when something on it changed (a step, a paint, hover, resize, theme).
+  const dirtyRef = useRef(true);
   const paintRef = useRef<{ active: boolean; value: boolean }>({ active: false, value: true });
   const { theme } = useTheme();
   const themeRef = useRef<Theme>(theme);
@@ -84,9 +86,16 @@ export default function LifePanel() {
 
   themeRef.current = theme;
 
+  // Marks the board for a redraw and re-renders the stats only when they differ.
   const sync = useCallback(() => {
     const s = lifeRef.current;
-    if (s) setStats({ generation: s.generation, population: s.population });
+    if (!s) return;
+    dirtyRef.current = true;
+    setStats((prev) =>
+      prev.generation === s.generation && prev.population === s.population
+        ? prev
+        : { generation: s.generation, population: s.population },
+    );
   }, []);
 
   const run = (value: boolean) => {
@@ -124,8 +133,10 @@ export default function LifePanel() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       w = cw;
       h = ch;
+      dirtyRef.current = true;
     };
 
+    let drawnTheme: Theme | null = null;
     const loop = (now: number) => {
       if (!onScreen) {
         raf = 0;
@@ -137,7 +148,11 @@ export default function LifePanel() {
           stepLife(life);
           sync();
         }
-        draw(ctx, life, w, h, themeRef.current, hoverRef.current);
+        if (dirtyRef.current || drawnTheme !== themeRef.current) {
+          draw(ctx, life, w, h, themeRef.current, hoverRef.current);
+          dirtyRef.current = false;
+          drawnTheme = themeRef.current;
+        }
       }
       raf = requestAnimationFrame(loop);
     };
@@ -172,14 +187,20 @@ export default function LifePanel() {
   const paint = (k: number) => {
     const s = lifeRef.current;
     if (!s || k < 0) return;
-    setCell(s, k, paintRef.current.value);
-    sync();
+    if (setCell(s, k, paintRef.current.value)) sync();
+  };
+
+  const setHover = (k: number) => {
+    if (hoverRef.current === k) return;
+    hoverRef.current = k;
+    dirtyRef.current = true;
   };
 
   const onPointerDown = (event: PointerEvent<HTMLCanvasElement>) => {
     const s = lifeRef.current;
     const k = cellAt(event);
-    if (!s || k < 0) return;
+    // Primary button only (mouse left, touch, pen): right/middle clicks keep their usual meaning.
+    if (!s || k < 0 || event.button !== 0) return;
     event.currentTarget.setPointerCapture(event.pointerId);
     // Drawing toggles based on the first cell: start on a live cell to erase.
     paintRef.current = { active: true, value: !s.cells[k] };
@@ -188,7 +209,7 @@ export default function LifePanel() {
 
   const onPointerMove = (event: PointerEvent<HTMLCanvasElement>) => {
     const k = cellAt(event);
-    hoverRef.current = k;
+    setHover(k);
     if (paintRef.current.active) paint(k);
   };
 
@@ -219,7 +240,7 @@ export default function LifePanel() {
             onPointerCancel={stopPainting}
             onPointerLeave={() => {
               stopPainting();
-              hoverRef.current = -1;
+              setHover(-1);
             }}
           />
         </div>

@@ -54,12 +54,23 @@ export function buildMail(input: ContactData): MailMessage {
 export type RateLimiter = {
   /** Records a request for `key` and returns whether it is allowed. */
   hit(key: string, now: number): boolean;
+  /** How many visitors are being tracked. */
+  size(): number;
 };
 
 export function createRateLimiter(limit = 5, windowMs = 3_600_000): RateLimiter {
   const requests = new Map<string, number[]>();
+  let nextSweep = 0;
   return {
     hit(key, now) {
+      // At most once per window, forget visitors whose requests have all expired, so a
+      // long-lived instance doesn't keep every IP it has ever seen.
+      if (now >= nextSweep) {
+        for (const [visitor, times] of requests) {
+          if (now - times[times.length - 1] >= windowMs) requests.delete(visitor);
+        }
+        nextSweep = now + windowMs;
+      }
       const recent = (requests.get(key) ?? []).filter((time) => now - time < windowMs);
       if (recent.length >= limit) {
         requests.set(key, recent);
@@ -69,6 +80,7 @@ export function createRateLimiter(limit = 5, windowMs = 3_600_000): RateLimiter 
       requests.set(key, recent);
       return true;
     },
+    size: () => requests.size,
   };
 }
 

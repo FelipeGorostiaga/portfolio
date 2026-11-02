@@ -165,6 +165,12 @@
   gap: 18px;
 }
 
+/* A ?tab= link hides the pre-rendered Books tab until the router knows the tab (pages/library.tsx). */
+:global(html.library-pending) .controls,
+:global(html.library-pending) .panel {
+  visibility: hidden;
+}
+
 .count {
   font-size: 12px;
   color: var(--faint);

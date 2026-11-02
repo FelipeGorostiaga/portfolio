@@ -1,5 +1,5 @@
 .section {
-  padding-top: 120px;
+  --pad-top: 120px;
 }
 
 .timeline {

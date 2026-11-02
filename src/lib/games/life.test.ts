@@ -82,3 +82,19 @@ describe('seeds', () => {
     expect(s.generation).toBe(0);
   });
 });
+
+describe('setCell', () => {
+  it('reports a change and leaves an already-set cell untouched', () => {
+    const s = createLife();
+    const k = cellIndex(s, 5, 5);
+    expect(setCell(s, k, true)).toBe(true);
+    stepLife(s); // a lone cell dies...
+    expect(setCell(s, k, true)).toBe(true); // ...so painting it again is a change
+    s.age[k] = 4;
+    expect(setCell(s, k, true)).toBe(false); // repainting a live cell keeps its age
+    expect(s.age[k]).toBe(4);
+    expect(s.population).toBe(1);
+    expect(setCell(s, k, false)).toBe(true);
+    expect(s.population).toBe(0);
+  });
+});
