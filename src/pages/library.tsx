@@ -1,6 +1,6 @@
 import { type GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import booksData from '../../data/books.json';
 import moviesData from '../../data/movies.json';
 import quotesData from '../../data/quotes.json';
@@ -29,6 +29,14 @@ import {
 
 type LibraryProps = { books: RatedItem[]; movies: RatedItem[]; quotes: Quote[] };
 
+/**
+ * The pre-rendered page always holds the Books tab: the query isn't known at build time, and the
+ * router only reads it after hydration. For a ?tab=movies/quotes link this runs before first paint
+ * and hides the tab area until then, so the wrong list never flashes. The timeout un-hides it if
+ * the app's JavaScript never loads.
+ */
+const PENDING_TAB_SCRIPT = `(function(){var t=new URLSearchParams(location.search).get('tab');if(t!=='movies'&&t!=='quotes')return;var c=document.documentElement.classList;c.add('library-pending');setTimeout(function(){c.remove('library-pending');},4000);})();`;
+
 // The library is small and static: read it at build time and filter in the browser.
 export const getStaticProps: GetStaticProps<LibraryProps> = async () => ({
   props: {
@@ -44,6 +52,15 @@ export default function LibraryPage({ books, movies, quotes }: LibraryProps) {
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState<SortKey>('rating');
   const [order, setOrder] = useState<SortOrder>('desc');
+  // Once the router knows the tab: show the tab area and let the count announce changes
+  // (not the initial switch from the pre-rendered Books tab).
+  const [settled, setSettled] = useState(false);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    document.documentElement.classList.remove('library-pending');
+    setSettled(true);
+  }, [router.isReady]);
 
   const setTab = (next: LibraryTab) => {
     void router.replace({ query: next === 'books' ? {} : { tab: next } }, undefined, { shallow: true, scroll: false });
@@ -75,6 +92,7 @@ export default function LibraryPage({ books, movies, quotes }: LibraryProps) {
             lead="Books, movies and quotes that shaped how I think, rated honestly out of ten."
           />
 
+          <script dangerouslySetInnerHTML={{ __html: PENDING_TAB_SCRIPT }} />
           <div className={`enter ${styles.controls}`}>
             <LibraryTabs tab={tab} onChange={setTab} />
             <LibraryControls
@@ -89,7 +107,7 @@ export default function LibraryPage({ books, movies, quotes }: LibraryProps) {
           </div>
 
           <div id={PANEL_ID} role="tabpanel" aria-labelledby={tabId(tab)} className={styles.panel}>
-            <span className={`mono ${styles.count}`} aria-live="polite">
+            <span className={`mono ${styles.count}`} aria-live={settled ? 'polite' : 'off'}>
               {countLabel(tab, count)}
             </span>
             <div className={styles.grid}>
