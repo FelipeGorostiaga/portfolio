@@ -45,12 +45,15 @@ export function cellIndex(s: LifeState, x: number, y: number): number {
   return row * s.cols + col;
 }
 
-export function setCell(s: LifeState, index: number, alive: boolean): void {
+/** Sets one cell; returns false (and leaves its age alone) when it already had that value. */
+export function setCell(s: LifeState, index: number, alive: boolean): boolean {
   const value = alive ? 1 : 0;
+  if (s.cells[index] === value) return false;
   s.population += value - s.cells[index];
   s.cells[index] = value;
   s.age[index] = 0;
   if (alive) s.heat[index] = 1;
+  return true;
 }
 
 export function clearLife(s: LifeState): void {
