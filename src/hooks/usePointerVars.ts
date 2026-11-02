@@ -1,14 +1,20 @@
-import { useCallback, type MouseEvent } from 'react';
+import { useCallback, useRef, type MouseEvent } from 'react';
 
 /**
- * Feeds the cursor glow (--mx/--my on the shell) and the spotlight cards
+ * Feeds the cursor glow (--mx/--my on the glow itself) and the spotlight cards
  * (--x/--y on the hovered `.spot`).
  */
 export function usePointerVars() {
+  const glowRef = useRef<HTMLDivElement>(null);
+
   const onMouseMove = useCallback((event: MouseEvent<HTMLElement>) => {
-    const root = event.currentTarget;
-    root.style.setProperty('--mx', `${event.clientX}px`);
-    root.style.setProperty('--my', `${event.clientY}px`);
+    // Not on the shell: a custom property there restyles the whole page on every move, and a
+    // window Chrome feeds more moves than frames (300+/s) then starves the hero canvas.
+    const glow = glowRef.current;
+    if (glow) {
+      glow.style.setProperty('--mx', `${event.clientX}px`);
+      glow.style.setProperty('--my', `${event.clientY}px`);
+    }
 
     const target = event.target as Element | null;
     const card = target?.closest<HTMLElement>('.spot');
@@ -21,5 +27,5 @@ export function usePointerVars() {
     }
   }, []);
 
-  return { onMouseMove };
+  return { glowRef, onMouseMove };
 }
