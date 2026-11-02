@@ -27,8 +27,9 @@ export const contactSchema = z.object({
     .trim()
     .min(CONTACT_LIMITS.messageMin, `At least ${CONTACT_LIMITS.messageMin} characters`)
     .max(CONTACT_LIMITS.messageMax, `Max. ${CONTACT_LIMITS.messageMax} characters`),
-  // Honeypot: hidden from people, filled in by bots.
-  company: z.string().optional(),
+  // Honeypot: hidden from people, filled in by bots. Deliberately a name with no
+  // autofill meaning (not "company"/"website"), so browsers never fill it for real visitors.
+  trap: z.string().optional(),
 });
 
 export type ContactInput = z.input<typeof contactSchema>;
@@ -112,7 +113,7 @@ export async function handleContact(
     }
     return { status: 400, body: { ok: false, error: 'Invalid input', fieldErrors } };
   }
-  if (parsed.data.company) {
+  if (parsed.data.trap) {
     return { status: 200, body: { ok: true } };
   }
 

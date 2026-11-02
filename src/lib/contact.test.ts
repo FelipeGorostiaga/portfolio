@@ -16,7 +16,7 @@ const valid = {
   email: 'ada@example.com',
   phone: '',
   message: 'I would love to talk about engines.',
-  company: '',
+  trap: '',
 };
 
 const deps = (over: Partial<ContactDeps> = {}): ContactDeps => ({
@@ -115,9 +115,16 @@ describe('handleContact', () => {
 
   it('silently drops honeypot submissions', async () => {
     const d = deps();
-    const res = await handleContact('POST', { ...valid, company: 'Spam Inc' }, '1.1.1.1', d);
+    const res = await handleContact('POST', { ...valid, trap: 'Spam Inc' }, '1.1.1.1', d);
     expect(res.status).toBe(200);
     expect(d.send).not.toHaveBeenCalled();
+  });
+
+  it('still sends when autofill fills a company field', async () => {
+    const d = deps();
+    const res = await handleContact('POST', { ...valid, company: 'Acme Inc' }, '1.1.1.1', d);
+    expect(res.status).toBe(201);
+    expect(d.send).toHaveBeenCalledOnce();
   });
 
   it('sends and returns 201', async () => {

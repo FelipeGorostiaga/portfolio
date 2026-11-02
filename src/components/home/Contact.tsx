@@ -10,7 +10,7 @@ type Values = Required<ContactInput>;
 type Field = keyof Values;
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
-const EMPTY: Values = { firstName: '', lastName: '', email: '', phone: '', message: '', company: '' };
+const EMPTY: Values = { firstName: '', lastName: '', email: '', phone: '', message: '', trap: '' };
 
 const ROWS = [
   { label: 'Email', text: site.email, href: `mailto:${site.email}` },
@@ -161,8 +161,8 @@ export default function Contact() {
           </label>
           <div className={styles.trap} aria-hidden="true">
             <label>
-              Company
-              <input type="text" tabIndex={-1} autoComplete="off" {...fieldProps('company')} />
+              Leave this field empty
+              <input type="text" tabIndex={-1} autoComplete="off" {...fieldProps('trap')} />
             </label>
           </div>
           <div className={styles.footer}>
