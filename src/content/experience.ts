@@ -17,19 +17,20 @@ export type Job = {
 // Newest first. Copy drafted in docs/superpowers/specs/2026-10-31-portfolio-redesign-design.md §4.
 export const jobs: Job[] = [
   {
-    role: 'React Software Engineer',
+    role: 'Senior React Software Engineer',
     company: 'Humand',
     companyUrl: 'https://humand.co/',
     logo: '/humand.png',
     mark: 'hu',
     start: '2024-02',
     end: null,
-    summary: 'Front-end engineer on the Humand employee-experience platform.',
+    summary: 'Senior front-end engineer on the Humand employee-experience platform.',
     bullets: [
-      'Build responsive, accessible features for the web and admin apps with React, TypeScript and Material UI.',
-      'Contribute to the shared design system that both apps are built on.',
+      'Drive key technical decisions for the Service Management, Forms and Surveys modules, used by millions of people around the world.',
+      'Build responsive, accessible features for the web and admin apps with React, TypeScript and Material UI, and contribute to the design system they share.',
       'Lead framework upgrades across the apps, such as the move from React Query v3 to v5.',
-      'Review pull requests and give feedback that keeps the codebase healthy.',
+      'Mentor colleagues and review pull requests to keep the codebase healthy.',
+      'Interview engineering candidates and help grow the team.',
     ],
     tags: ['React', 'TypeScript', 'Material UI', 'React Query'],
   },
