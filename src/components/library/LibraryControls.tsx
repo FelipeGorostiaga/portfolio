@@ -80,7 +80,7 @@ export default function LibraryControls({
         type="button"
         className={`${styles.orderButton} ${descending ? '' : styles.ascending}`}
         aria-label={
-          descending ? 'Sorted high to low — switch to low to high' : 'Sorted low to high — switch to high to low'
+          descending ? 'Sorted high to low, switch to low to high' : 'Sorted low to high, switch to high to low'
         }
         disabled={quotes}
         onClick={onToggleOrder}

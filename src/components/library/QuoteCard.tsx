@@ -10,7 +10,7 @@ export default function QuoteCard({ quote }: { quote: Quote }) {
       </span>
       <blockquote className={`serif ${styles.blockquote} ${long ? styles.blockquoteLong : ''}`}>{quote.text}</blockquote>
       <figcaption className={`mono ${styles.caption}`}>
-        — {quote.author}
+        {quote.author}
         {quote.reference ? `, ${quote.reference}` : ''}
       </figcaption>
     </figure>

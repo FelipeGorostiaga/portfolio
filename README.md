@@ -6,9 +6,9 @@ Live at [felipegorostiaga.com](https://www.felipegorostiaga.com).
 
 ## What's inside
 
-- **Home (`/`)** — one-page scroll: an interactive canvas hero, experience timeline, projects, skills and a contact form.
-- **Library (`/library`)** — books, movies and quotes I keep coming back to, with search and sorting.
-- **Games (`/games`)** — a live Game of Life you can draw on, plus Minesweeper and Snake, all built from scratch.
+- **Home (`/`)**: a one-page scroll with an interactive canvas hero, experience timeline, projects, skills and a contact form.
+- **Library (`/library`)**: books, movies and quotes I keep coming back to, with search and sorting.
+- **Games (`/games`)**: a live Game of Life you can draw on, plus Minesweeper and Snake, all built from scratch.
 
 ## Stack
 

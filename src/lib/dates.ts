@@ -8,5 +8,5 @@ function formatMonth(value: string): string {
 
 /** A job's date range; a missing end means the job is current. */
 export function formatRange(start: string, end: string | null): string {
-  return `${formatMonth(start)} — ${end ? formatMonth(end) : 'Now'}`;
+  return `${formatMonth(start)} – ${end ? formatMonth(end) : 'Now'}`;
 }

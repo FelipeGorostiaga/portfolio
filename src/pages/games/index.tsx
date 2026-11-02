@@ -13,7 +13,7 @@ export default function GamesPage() {
   return (
     <>
       <Seo
-        title="Games — Felipe Gorostiaga"
+        title="Games | Felipe Gorostiaga"
         description="Game of Life, Minesweeper and Snake, rebuilt from scratch and playable in the browser."
         path="/games"
       />
@@ -26,7 +26,7 @@ export default function GamesPage() {
                 Play <span className="accent grad">something</span>
               </>
             }
-            lead="Three classics I rebuilt from scratch. The Game of Life is already running — draw on it."
+            lead="Three classics I rebuilt from scratch. The Game of Life is already running, so go ahead and draw on it."
           />
 
           <LifePanel />

@@ -59,8 +59,8 @@ export default function LibraryPage({ books, movies, quotes }: LibraryProps) {
   return (
     <>
       <Seo
-        title="Library — Felipe Gorostiaga"
-        description="Books, movies and quotes that shaped how I think — rated honestly, out of ten."
+        title="Library | Felipe Gorostiaga"
+        description="Books, movies and quotes that shaped how I think, rated honestly out of ten."
         path="/library"
       />
       <SiteShell variant="route" current="library">
@@ -72,7 +72,7 @@ export default function LibraryPage({ books, movies, quotes }: LibraryProps) {
                 The <span className="accent grad">library</span>
               </>
             }
-            lead="Books, movies and quotes that shaped how I think — rated honestly, out of ten."
+            lead="Books, movies and quotes that shaped how I think, rated honestly out of ten."
           />
 
           <div className={`enter ${styles.controls}`}>

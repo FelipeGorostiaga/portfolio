@@ -13,7 +13,7 @@ export default function Projects() {
         eyebrow="Projects"
         title="Things I've"
         accent="shipped"
-        aside="Side projects I've designed and built — live and open to explore."
+        aside="Side projects I've designed and built, live and open to explore."
       />
       <div className={styles.list}>
         {visibleProjects.map((project, i) => {

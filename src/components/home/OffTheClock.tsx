@@ -54,7 +54,7 @@ export default function OffTheClock() {
           <span className="eyebrow">/library</span>
           <h3 className={styles.title}>Library</h3>
           <p className={styles.description}>
-            Books, movies and the quotes I keep coming back to — rated, sorted and searchable.
+            Books, movies and the quotes I keep coming back to, all rated and searchable.
           </p>
           <span className={styles.go}>
             Open the library <ArrowRight />
@@ -69,7 +69,7 @@ export default function OffTheClock() {
           <span className="eyebrow">/games</span>
           <h3 className={styles.title}>Games</h3>
           <p className={styles.description}>
-            Game of Life, Minesweeper and Snake — built from scratch and playable in the browser.
+            Game of Life, Minesweeper and Snake, built from scratch and playable in the browser.
           </p>
           <span className={styles.go}>
             Play something <ArrowRight />

@@ -6,7 +6,7 @@ import SiteShell from '~/components/layout/SiteShell';
 export default function NotFoundPage() {
   return (
     <>
-      <Seo title="Page not found — Felipe Gorostiaga" description="That page doesn't exist." path="/404" noindex />
+      <Seo title="Page not found | Felipe Gorostiaga" description="That page doesn't exist." path="/404" noindex />
       <SiteShell variant="route">
         <main className="route-main">
           <RouteHeader
@@ -16,7 +16,7 @@ export default function NotFoundPage() {
                 Page not <span className="accent grad">found</span>
               </>
             }
-            lead="That page doesn't exist — it may have moved."
+            lead="That page doesn't exist. It may have moved."
           />
           <Link className="btn btn-primary" href="/">
             Back home

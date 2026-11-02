@@ -147,7 +147,7 @@ export default function Snake() {
         </div>
         <span className={`mono ${styles.help}`}>Press an arrow key to start · steer with the arrow keys</span>
       </div>
-      <p className={styles.noKeyboard}>Snake needs a keyboard — try it on a larger screen.</p>
+      <p className={styles.noKeyboard}>Snake needs a keyboard. Try it on a larger screen.</p>
     </>
   );
 }

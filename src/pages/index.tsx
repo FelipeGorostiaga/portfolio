@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        title="Felipe Gorostiaga — Software Engineer"
+        title="Felipe Gorostiaga | Software Engineer"
         description="Felipe Gorostiaga, software engineer and fullstack developer: experience, skills, side projects and a few games built from scratch."
         path="/"
       />

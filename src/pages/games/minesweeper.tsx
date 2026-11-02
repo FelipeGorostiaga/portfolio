@@ -7,7 +7,7 @@ export default function MinesweeperPage() {
   return (
     <>
       <Seo
-        title="Minesweeper — Felipe Gorostiaga"
+        title="Minesweeper | Felipe Gorostiaga"
         description="Minesweeper, rebuilt from scratch. Clear the board without hitting a mine."
         path="/games/minesweeper"
       />

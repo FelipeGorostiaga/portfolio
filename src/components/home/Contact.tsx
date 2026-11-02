@@ -83,7 +83,7 @@ export default function Contact() {
             Let&apos;s get in <span className={styles.touch}>touch.</span>
           </h2>
           <p className={styles.lead}>
-            Looking for a developer — or just want to talk about the meaning of life? Send me a message.
+            Looking for a developer, or just want to talk about the meaning of life? Send me a message.
           </p>
           <div className={styles.rows}>
             {ROWS.map((row) => (
@@ -159,9 +159,9 @@ export default function Contact() {
           </div>
           <div className={styles.footer}>
             <span role="status">
-              {status === 'sent' && <span className={styles.status}>Thanks — I&apos;ll get back to you soon.</span>}
+              {status === 'sent' && <span className={styles.status}>Thanks! I&apos;ll get back to you soon.</span>}
               {status === 'error' && (
-                <span className={styles.statusError}>Couldn&apos;t send it — email me at {site.email}.</span>
+                <span className={styles.statusError}>Couldn&apos;t send it. Email me at {site.email} instead.</span>
               )}
               {(status === 'idle' || status === 'sending') && (
                 <span className={`mono ${styles.hint}`}>I usually reply within 1–2 business days.</span>

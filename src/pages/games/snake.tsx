@@ -7,7 +7,7 @@ export default function SnakePage() {
   return (
     <>
       <Seo
-        title="Snake — Felipe Gorostiaga"
+        title="Snake | Felipe Gorostiaga"
         description="The arcade classic, rebuilt from scratch: eat the apples, avoid the walls and your own tail."
         path="/games/snake"
       />
