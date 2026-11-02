@@ -225,6 +225,86 @@
   transform: scale(1.08);
 }
 
+/* ---------- Stacked (tablet and phone) ---------- */
+
+/*
+ * Below the width that fits text and portrait side by side (560 + 64 + 340 + padding), the
+ * portrait becomes an avatar above the text and the content sits at the top; the field still
+ * fills the first screen. Sizes from the 768/390 mockup.
+ */
+@media (max-width: 1023px) {
+  .hero {
+    align-items: flex-start;
+    padding: 120px 24px 88px;
+  }
+
+  .content {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .intro {
+    flex: none;
+    width: 100%;
+  }
+
+  .portrait {
+    order: -1;
+    width: 110px;
+    margin: 0;
+  }
+
+  .ringSoft {
+    filter: blur(12px);
+  }
+
+  .ringGap {
+    inset: 3px;
+  }
+
+  .photo {
+    inset: 5px;
+  }
+
+  .name {
+    font-size: clamp(56px, 15vw, 120px);
+  }
+
+  .roleLine {
+    font-size: clamp(24px, calc(5.3vw + 5px), 48px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 112px 20px 72px;
+  }
+
+  .portrait {
+    width: 90px;
+  }
+
+  .intro {
+    gap: 24px;
+  }
+
+  /* Keeps the role chip on one line down to 360px. */
+  .intro :global(.chip) {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+
+  .bio {
+    font-size: 16px;
+  }
+
+  .ctas > * {
+    flex: 1 1 0;
+  }
+}
+
 /* ---------- Keyframes (local to this module) ---------- */
 
 @keyframes drift1 {

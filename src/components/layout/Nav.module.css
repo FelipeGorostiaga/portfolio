@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 8px 2px;
   flex-wrap: wrap;
   padding: 6px 6px 6px 8px;
   border-radius: 30px;
@@ -84,6 +84,27 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 2px;
+  margin-left: auto;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Same circle as the theme toggle; only shown while the nav is collapsed. */
+.menuButton {
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
 }
 
 .link {
@@ -110,4 +131,68 @@
   height: 20px;
   background: var(--line-2);
   margin: 0 6px;
+}
+
+/*
+ * Collapsed nav (below the ~820px the home links need on one row): brand, theme toggle and a
+ * menu button. The links drop down in a panel under the bar, so the bar keeps its height.
+ */
+@media (max-width: 859px) {
+  .header {
+    flex-wrap: nowrap;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brandName {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .menuButton {
+    display: grid;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .header[data-open] .links {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    /* Opaque: a backdrop-filter inside the bar's would not blur the page behind. */
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    animation: drop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .header[data-open] .link {
+    min-height: 48px;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+
+  .header[data-open] .separator {
+    width: auto;
+    height: 1px;
+    margin: 6px 16px;
+  }
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
 }
