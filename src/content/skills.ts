@@ -60,9 +60,9 @@ export const skills: Skill[] = [
   },
   {
     number: '08',
-    category: 'AI coding',
-    symbol: 'Cc',
-    name: 'Claude Code',
-    description: 'AI-first engineering: agents do the legwork, my taste decides what ships.',
+    category: 'AI',
+    symbol: 'Ai',
+    name: 'AI-first engineering',
+    description: 'Coding agents do the legwork, my taste decides what ships.',
   },
 ];
