@@ -286,12 +286,14 @@ export default function HeroField({ intensity = 1, spacing = 30, className }: He
 
     // The loop only runs while the hero is on screen.
     let onScreen = true;
-    const loop = (now: number) => {
+    const loop = () => {
       if (!onScreen) {
         raf = 0;
         return;
       }
-      if (!document.hidden) frame(now);
+      // Same clock as the ripple and pointer stamps: the rAF timestamp is when the frame began,
+      // which can be earlier than a click handled in that frame (a negative ripple age throws in arc()).
+      if (!document.hidden) frame(performance.now());
       raf = requestAnimationFrame(loop);
     };
     const start = () => {
