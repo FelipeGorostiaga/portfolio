@@ -1,4 +1,10 @@
+/*
+ * flow-root keeps the nav's top margin inside the shell. Without it the margin collapsed through,
+ * pushing the shell (and the route pages' aurora at its top) 16px down and leaving a dark strip
+ * above the nav.
+ */
 .shell {
+  display: flow-root;
   position: relative;
   min-height: 100vh;
   overflow-x: clip;
