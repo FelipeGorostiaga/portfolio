@@ -38,7 +38,12 @@ export default function Minesweeper() {
 
   const elapsed = game.startedAt === null ? 0 : (game.endedAt ?? now) - game.startedAt;
 
-  const onReveal = (r: number, c: number) => setGame((current) => revealAt(current, r, c, Date.now()));
+  // One stamp for both the game and the clock: a stale `now` before the start time shows a negative timer.
+  const onReveal = (r: number, c: number) => {
+    const at = Date.now();
+    setGame((current) => revealAt(current, r, c, at));
+    setNow(at);
+  };
 
   const onFlag = (event: MouseEvent, r: number, c: number) => {
     event.preventDefault(); // no browser context menu on the board
