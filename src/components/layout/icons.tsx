@@ -53,3 +53,19 @@ export function MoonIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function MenuIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...stroke} strokeWidth={1.8} aria-hidden="true" className={className}>
+      <path d="M5 9h14M5 15h14" />
+    </svg>
+  );
+}
+
+export function CloseIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...stroke} strokeWidth={1.8} aria-hidden="true" className={className}>
+      <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  );
+}
