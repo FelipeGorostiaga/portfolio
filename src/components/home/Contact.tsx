@@ -58,7 +58,10 @@ export default function Contact() {
     }
   };
 
+  // Each field is a div: a <label> may not contain the error <p>, and wrapping it made screen
+  // readers read the error twice (in the label and again through aria-describedby).
   const fieldProps = (field: Field) => ({
+    id: `contact-${field}`,
     name: field,
     value: values[field],
     onChange,
@@ -112,32 +115,40 @@ export default function Contact() {
           onSubmit={onSubmit}
         >
           <div className={styles.fields}>
-            <label className={styles.field}>
-              <span className={styles.label}>Name</span>
+            <div className={styles.field}>
+              <label htmlFor="contact-firstName" className={styles.label}>
+                Name
+              </label>
               <input type="text" placeholder="First name" autoComplete="given-name" {...fieldProps('firstName')} />
               {errorFor('firstName')}
-            </label>
-            <label className={styles.field}>
-              <span className={styles.label}>Last name</span>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="contact-lastName" className={styles.label}>
+                Last name
+              </label>
               <input type="text" placeholder="Last name" autoComplete="family-name" {...fieldProps('lastName')} />
               {errorFor('lastName')}
-            </label>
-            <label className={styles.field}>
-              <span className={styles.label}>Email</span>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="contact-email" className={styles.label}>
+                Email
+              </label>
               <input type="email" placeholder="you@company.com" autoComplete="email" {...fieldProps('email')} />
               {errorFor('email')}
-            </label>
-            <label className={styles.field}>
-              <span className={styles.label}>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="contact-phone" className={styles.label}>
                 Phone <span className={styles.optional}>(optional)</span>
-              </span>
+              </label>
               <input type="tel" placeholder="+54 …" autoComplete="tel" {...fieldProps('phone')} />
               {errorFor('phone')}
-            </label>
+            </div>
           </div>
-          <label className={styles.field}>
+          <div className={styles.field}>
             <span className={styles.messageHead}>
-              <span className={styles.label}>Message</span>
+              <label htmlFor="contact-message" className={styles.label}>
+                Message
+              </label>
               <span className={`mono ${styles.counter}`}>
                 {values.message.length} / {CONTACT_LIMITS.messageMax}
               </span>
@@ -150,7 +161,7 @@ export default function Contact() {
               className={`${fieldProps('message').className} ${styles.textarea}`}
             />
             {errorFor('message')}
-          </label>
+          </div>
           <div className={styles.trap} aria-hidden="true">
             <label>
               Leave this field empty
