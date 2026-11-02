@@ -13,6 +13,16 @@
   gap: 14px;
 }
 
+/* Linked eyebrow ("/games" on a game's page): same look, brightens on hover. */
+.eyebrowLink {
+  align-self: flex-start;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.eyebrowLink:hover {
+  color: var(--text);
+}
+
 .title {
   margin: 0;
   font-size: clamp(52px, 7.4vw, 104px);

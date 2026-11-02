@@ -15,6 +15,7 @@ export default function SnakePage() {
         <main className="route-main">
           <RouteHeader
             eyebrow="games"
+            eyebrowHref="/games"
             title={<span className="accent grad">Snake</span>}
             lead="The arcade classic: eat as many apples as you can without hitting the walls or your own growing tail."
           />

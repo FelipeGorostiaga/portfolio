@@ -15,6 +15,7 @@ export default function MinesweeperPage() {
         <main className="route-main">
           <RouteHeader
             eyebrow="games"
+            eyebrowHref="/games"
             title={
               <>
                 Mine<span className="accent grad">sweeper</span>
