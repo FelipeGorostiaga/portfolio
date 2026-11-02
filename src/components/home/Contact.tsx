@@ -1,8 +1,8 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import { ArrowUpRight } from '~/components/layout/icons';
 import { site } from '~/content/site';
 import { type ContactInput } from '~/lib/contact';
-import { CONTACT_LIMITS, contactOutcome, firstErrors } from '~/lib/contactForm';
+import { CONTACT_LIMITS, submitContact, type SubmitDeps } from '~/lib/contactForm';
 import styles from './Contact.module.css';
 import sectionStyles from './Section.module.css';
 
@@ -11,6 +11,12 @@ type Field = keyof Values;
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 const EMPTY: Values = { firstName: '', lastName: '', email: '', phone: '', message: '', trap: '' };
+
+const SUBMIT_DEPS: SubmitDeps = {
+  // zod is loaded on first submit so it stays out of the home page bundle.
+  loadValidator: () => import('~/lib/contact').then((module) => module.validateContact),
+  post: (body) => fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body }),
+};
 
 const ROWS = [
   { label: 'Email', text: site.email, href: `mailto:${site.email}` },
@@ -22,6 +28,8 @@ export default function Contact() {
   const [values, setValues] = useState<Values>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [status, setStatus] = useState<Status>('idle');
+  // Set synchronously, so a second submit can't slip in before React re-renders.
+  const submitting = useRef(false);
 
   const onChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const field = event.target.name as Field;
@@ -32,37 +40,21 @@ export default function Contact() {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (status === 'sending') return;
-
-    // zod is loaded on first submit so it stays out of the home page bundle.
-    const { validateContact } = await import('~/lib/contact');
-    const result = validateContact(values);
-    if (!result.ok) {
-      setErrors(result.fieldErrors);
-      return;
-    }
-
-    setErrors({});
+    if (submitting.current) return;
+    submitting.current = true;
     setStatus('sending');
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
-      const outcome = contactOutcome(response.status);
-      if (outcome === 'sent') {
-        setValues(EMPTY);
-        setStatus('sent');
-      } else if (outcome === 'invalid') {
-        const body = (await response.json().catch(() => ({}))) as { fieldErrors?: Record<string, string[]> };
-        setErrors(firstErrors(body.fieldErrors ?? {}));
-        setStatus('idle');
-      } else {
-        setStatus('error'); // values are kept so nothing typed is lost
-      }
-    } catch {
-      setStatus('error');
+
+    const result = await submitContact(values, SUBMIT_DEPS);
+    submitting.current = false;
+    if (result.kind === 'sent') {
+      setErrors({});
+      setValues(EMPTY);
+      setStatus('sent');
+    } else if (result.kind === 'invalid') {
+      setErrors(result.fieldErrors);
+      setStatus('idle');
+    } else {
+      setStatus('error'); // values are kept so nothing typed is lost
     }
   };
 

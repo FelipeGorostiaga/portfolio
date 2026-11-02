@@ -85,7 +85,7 @@ export type ContactResult = {
 
 /** Client-side check before sending: the first message per invalid field. */
 export function validateContact(
-  input: ContactInput,
+  input: unknown,
 ): { ok: true } | { ok: false; fieldErrors: Record<string, string> } {
   const parsed = contactSchema.safeParse(input);
   if (parsed.success) return { ok: true };
