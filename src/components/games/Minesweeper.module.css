@@ -14,8 +14,15 @@
   max-width: 560px;
 }
 
+/* Rectangular like the stat tiles beside it (not the global pill), outlined in the accent green. */
 .newGame {
   min-height: 100%;
+  border-radius: 14px;
+  border-color: var(--a1);
+}
+.newGame:hover {
+  translate: none;
+  background: color-mix(in srgb, var(--a1) 12%, var(--surface));
 }
 
 /* On phones the timer doesn't fit a third of the row: readouts side by side, button below. */
