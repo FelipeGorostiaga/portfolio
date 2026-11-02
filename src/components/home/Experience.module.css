@@ -76,7 +76,7 @@
   gap: 24px 28px;
 }
 
-/* 64px company tile: logo when there is one, letters otherwise. */
+/* 64px company tile: logo when there is one, letters otherwise. Neutral, so it doesn't fight the logo's colors. */
 .mark {
   width: 64px;
   height: 64px;
@@ -89,11 +89,7 @@
   font-weight: 500;
   color: var(--text);
   border: 1px solid var(--line-2);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--a1) 24%, transparent),
-    color-mix(in srgb, var(--a2) 18%, transparent)
-  );
+  background: var(--surface-2);
 }
 .mark img {
   width: 40px;
