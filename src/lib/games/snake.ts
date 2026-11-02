@@ -46,7 +46,11 @@ export function createSnake(): SnakeState {
   };
 }
 
-export function keyToDirection(key: string): Direction | null {
+type KeyPress = Pick<KeyboardEvent, 'key'> & Partial<Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey'>>;
+
+/** Arrow keys steer; with Alt, Ctrl or Meta held they belong to the browser (Alt+← is Back). */
+export function keyToDirection({ key, altKey, ctrlKey, metaKey }: KeyPress): Direction | null {
+  if (altKey || ctrlKey || metaKey) return null;
   return KEYS[key] ?? null;
 }
 
