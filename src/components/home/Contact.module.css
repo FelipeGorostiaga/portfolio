@@ -123,9 +123,11 @@
   color: var(--faint);
 }
 
+/* Resizable, but capped: 320px holds the full 300-character message even on a phone. */
 .textarea {
   resize: vertical;
   min-height: 140px;
+  max-height: 320px;
   line-height: 1.55;
 }
 

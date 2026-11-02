@@ -164,7 +164,7 @@ export default function Contact() {
                 <span className={styles.statusError}>Couldn&apos;t send it — email me at {site.email}.</span>
               )}
               {(status === 'idle' || status === 'sending') && (
-                <span className={`mono ${styles.hint}`}>I read every message.</span>
+                <span className={`mono ${styles.hint}`}>I usually reply within 1–2 business days.</span>
               )}
             </span>
             <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
