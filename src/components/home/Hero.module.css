@@ -125,9 +125,15 @@
   animation: up 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* "Gorostiaga": the global .grad gradient plus the line entrance. */
+/*
+ * "Gorostiaga": the global .grad gradient plus the line entrance. background-clip: text only
+ * paints inside the box, which the 0.9 line-height ends above the descender of the "g": the
+ * padding extends the painted box to the .line mask's edge and the margin keeps the layout.
+ */
 .surname {
   display: inline-block;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
   animation: up 1.1s cubic-bezier(0.16, 1, 0.3, 1) both, slide 9s linear infinite;
 }
 
