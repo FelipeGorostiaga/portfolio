@@ -47,7 +47,7 @@ export const jobs: Job[] = [
       'Rewrite weak responses into reference-quality answers.',
       'Write prompts and evaluation criteria that expose where models fail.',
     ],
-    tags: ['AI', 'LLM evaluation', 'Computer Science'],
+    tags: ['AI', 'Prompt Engineering', 'LLM evaluation', 'Computer Science'],
   },
   {
     role: 'Senior Fullstack Developer',
