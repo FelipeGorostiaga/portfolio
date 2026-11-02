@@ -6,12 +6,7 @@ import styles from './Skills.module.css';
 export default function Skills() {
   return (
     <section id="skills" className={sectionStyles.section}>
-      <SectionHeading
-        eyebrow="Skills"
-        title="My weapons"
-        accent="of choice"
-        aside="The periodic table I build with — from the first component to the last API route."
-      />
+      <SectionHeading eyebrow="Skills" title="My weapons" accent="of choice" />
       <div className={styles.grid}>
         {skills.map((skill) => (
           <article key={skill.symbol} className={`spot reveal ${styles.tile}`}>
