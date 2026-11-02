@@ -17,6 +17,12 @@
   animation-delay: 120ms;
 }
 
+/* The board is drawn on with the pointer: drop the spotlight's border sheen and wash that follow it. */
+.panel::before,
+.panel::after {
+  content: none;
+}
+
 .boardColumn {
   flex: 1 1 640px;
   min-width: 0;
