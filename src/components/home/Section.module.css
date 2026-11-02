@@ -1,11 +1,17 @@
 /* Shared by the home page sections (docs/design/Main.dc.html). */
 
+/*
+ * Anchor jumps stop with the heading 24px below the sticky nav (16px from the top, --nav-h tall,
+ * published by Nav). The top padding usually clears it already, so the offset is 0 on desktop.
+ */
 .section {
+  --pad-top: 100px;
   position: relative;
   z-index: 2;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 100px 24px;
+  padding: var(--pad-top) 24px 100px;
+  scroll-margin-top: max(0px, calc(16px + var(--nav-h, 58px) + 24px - var(--pad-top)));
 }
 
 .heading {
