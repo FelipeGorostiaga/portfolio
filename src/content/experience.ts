@@ -24,7 +24,7 @@ export const jobs: Job[] = [
     mark: 'hu',
     start: '2024-02',
     end: null,
-    summary: 'Senior front-end engineer on the Humand employee-experience platform.',
+    summary: 'Senior front-end engineer on the Humand platform.',
     bullets: [
       'Drive key technical decisions for the Service Management, Forms and Surveys modules, used by millions of people around the world.',
       'Build responsive, accessible features for the web and admin apps with React, TypeScript and Material UI, and contribute to the design system they share.',
@@ -32,7 +32,7 @@ export const jobs: Job[] = [
       'Mentor colleagues and review pull requests to keep the codebase healthy.',
       'Interview engineering candidates and help grow the team.',
     ],
-    tags: ['React', 'TypeScript', 'Material UI', 'React Query'],
+    tags: ['React', 'TypeScript', 'Material UI', 'React Query', 'Zod'],
   },
   {
     role: 'Prompt Engineer',
@@ -48,7 +48,7 @@ export const jobs: Job[] = [
       'Rewrote weak responses into reference-quality answers.',
       'Wrote prompts and evaluation criteria that expose where models fail.',
     ],
-    tags: ['AI', 'Prompt Engineering', 'LLM evaluation', 'Computer Science'],
+    tags: ['AI', 'Prompt Engineering', 'Fine-tuning', 'LLM evaluation', 'Computer Science'],
   },
   {
     role: 'Senior Fullstack Developer',

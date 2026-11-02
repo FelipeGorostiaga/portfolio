@@ -1,4 +1,5 @@
 import { useEffect, useState, type MouseEvent } from 'react';
+import { useHighscore } from '~/hooks/useHighscore';
 import {
   countFlags,
   flagAt,
@@ -38,6 +39,14 @@ export default function Minesweeper() {
 
   const elapsed = game.startedAt === null ? 0 : (game.endedAt ?? now) - game.startedAt;
 
+  // Only wins count; the highscore is the fastest winning time.
+  const { best, record } = useHighscore('minesweeper');
+  useEffect(() => {
+    if (game.status === 'won' && game.startedAt !== null && game.endedAt !== null) {
+      record(game.endedAt - game.startedAt);
+    }
+  }, [game.status, game.startedAt, game.endedAt, record]);
+
   // One stamp for both the game and the clock: a stale `now` before the start time shows a negative timer.
   const onReveal = (r: number, c: number) => {
     const at = Date.now();
@@ -70,6 +79,11 @@ export default function Minesweeper() {
           <b>{formatElapsed(elapsed)}</b>
         </div>
       </div>
+      {best !== null && (
+        <p className={`mono ${styles.best}`}>
+          Your highscore: <b>{formatElapsed(best)}</b>
+        </p>
+      )}
 
       <div className={styles.boardWrap}>
         <div className={styles.board} role="group" aria-label="Minesweeper board">

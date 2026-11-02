@@ -14,8 +14,25 @@
   max-width: 560px;
 }
 
+/*
+ * Rectangular like the stat tiles beside it (not the global pill). A faint green edge that blends
+ * into the background, with a soft glow carrying the accent; both brighten a little on hover.
+ */
 .newGame {
   min-height: 100%;
+  border-radius: 14px;
+  border-color: color-mix(in srgb, var(--a1) 30%, transparent);
+  box-shadow:
+    0 0 26px -10px color-mix(in srgb, var(--a1) 55%, transparent),
+    inset 0 0 22px -14px color-mix(in srgb, var(--a1) 60%, transparent);
+}
+.newGame:hover {
+  translate: none;
+  border-color: color-mix(in srgb, var(--a1) 50%, transparent);
+  background: color-mix(in srgb, var(--a1) 6%, var(--surface));
+  box-shadow:
+    0 0 34px -8px color-mix(in srgb, var(--a1) 65%, transparent),
+    inset 0 0 24px -12px color-mix(in srgb, var(--a1) 70%, transparent);
 }
 
 /* On phones the timer doesn't fit a third of the row: readouts side by side, button below. */
@@ -125,4 +142,15 @@
   font-size: 12px;
   color: var(--faint);
   text-align: center;
+}
+
+/* "Your highscore: …" under the HUD, once the player has won a game (saved in localStorage). */
+.best {
+  margin: -6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.best b {
+  font-weight: 500;
+  color: var(--a1);
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useHighscore } from '~/hooks/useHighscore';
 import { useInterval } from '~/hooks/useInterval';
 import { useTheme } from '~/hooks/useTheme';
 import {
@@ -78,6 +79,12 @@ export default function Snake() {
   const [started, setStarted] = useState(false);
   const running = started && !game.over;
 
+  // The highscore is the best final score (a game that scored nothing doesn't count).
+  const { best, record } = useHighscore('snake');
+  useEffect(() => {
+    if (game.over) record(game.score);
+  }, [game.over, game.score, record]);
+
   useInterval(() => setGame((current) => stepSnake(current)), running ? SNAKE_TICK_MS : null);
 
   // Arrow keys steer; the first one starts the game.
@@ -124,6 +131,11 @@ export default function Snake() {
             <b>{game.over ? 'Over' : running ? 'Playing' : 'Ready'}</b>
           </div>
         </div>
+        {best !== null && (
+          <p className={`mono ${styles.best}`}>
+            Your highscore: <b>{best}</b>
+          </p>
+        )}
         <div className={styles.boardWrap}>
           <canvas
             ref={canvasRef}
