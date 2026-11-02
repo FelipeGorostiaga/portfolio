@@ -4,24 +4,17 @@ import { z } from "zod";
  * Specify your server-side environment variables schema here. This way you can ensure the app isn't
  * built with invalid env vars.
  */
+// Gmail credentials are only required in production; in development the
+// contact endpoint logs the message instead of sending it.
+const gmailCredential =
+  process.env.NODE_ENV === "production"
+    ? z.string().min(1)
+    : z.string().min(1).optional();
+
 const server = z.object({
-  DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
-  NEXTAUTH_SECRET:
-    process.env.NODE_ENV === "production"
-      ? z.string().min(1)
-      : z.string().min(1).optional(),
-  NEXTAUTH_URL: z.preprocess(
-    // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
-    // Since NextAuth.js automatically uses the VERCEL_URL if present.
-    (str) => process.env.VERCEL_URL ?? str,
-    // VERCEL_URL doesn't include `https` so it cant be validated as a URL
-    process.env.VERCEL ? z.string().min(1) : z.string().url()
-  ),
-  GITHUB_ID: z.string(),
-  GITHUB_SECRET: z.string(),
-  GMAIL_API_USERNAME: z.string(),
-  GMAIL_API_PASSWORD: z.string(),
+  GMAIL_API_USERNAME: gmailCredential,
+  GMAIL_API_PASSWORD: gmailCredential,
 });
 
 /**
@@ -39,12 +32,7 @@ const client = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
-  DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
-  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-  GITHUB_ID: process.env.GITHUB_ID,
-  GITHUB_SECRET: process.env.GITHUB_SECRET,
   GMAIL_API_USERNAME: process.env.GMAIL_API_USERNAME,
   GMAIL_API_PASSWORD: process.env.GMAIL_API_PASSWORD,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
@@ -57,7 +45,7 @@ const merged = server.merge(client);
 
 /** @typedef {z.input<typeof merged>} MergedInput */
 /** @typedef {z.infer<typeof merged>} MergedOutput */
-/** @typedef {z.SafeParseReturnType<MergedInput, MergedOutput>} MergedSafeParseReturn */
+/** @typedef {z.ZodSafeParseResult<MergedOutput>} MergedSafeParseReturn */
 
 let env = /** @type {MergedOutput} */ (process.env);
 
@@ -73,7 +61,7 @@ if (!!process.env.SKIP_ENV_VALIDATION == false) {
   if (parsed.success === false) {
     console.error(
       "❌ Invalid environment variables:",
-      parsed.error.flatten().fieldErrors
+      z.flattenError(parsed.error).fieldErrors
     );
     throw new Error("Invalid environment variables");
   }

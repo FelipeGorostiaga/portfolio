@@ -1,0 +1,192 @@
+/* Contact section — ported from docs/design/Main.dc.html (lines 118–124, 434–464). */
+
+.section {
+  padding-bottom: 120px;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 56px;
+}
+
+.intro {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+/* "touch." — Geist with the moving green gradient (not serif). */
+.touch {
+  background-image: linear-gradient(100deg, var(--a1), var(--a2), var(--a3), var(--a1));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: slide 9s linear infinite;
+}
+
+.lead {
+  margin: 0;
+  max-width: 420px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--text);
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s;
+}
+.row:hover {
+  padding-left: 10px;
+  color: var(--a1);
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 16px;
+}
+
+/* Field and row labels (home variant of .lbl). */
+.label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.optional {
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--faint);
+}
+
+.form {
+  flex: 1 1 520px;
+  min-width: 0;
+  box-sizing: border-box;
+  border-radius: 28px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.messageHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.counter {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+/* Resizable, but capped: 320px holds the full 300-character message even on a phone. */
+.textarea {
+  resize: vertical;
+  min-height: 140px;
+  max-height: 320px;
+  line-height: 1.55;
+}
+
+.invalid,
+.invalid:focus {
+  border-color: #fb7185;
+}
+
+.error {
+  margin: 0;
+  font-size: 13px;
+  color: #fb7185;
+}
+:global(:root.light) .error {
+  color: #be123c;
+}
+:global(:root.light) .invalid,
+:global(:root.light) .invalid:focus {
+  border-color: #be123c;
+}
+
+/* Honeypot: off-screen for people, still filled in by bots. */
+.trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.status {
+  font-size: 14px;
+  color: var(--a1);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.statusError {
+  font-size: 14px;
+  color: #fb7185;
+}
+:global(:root.light) .statusError {
+  color: #be123c;
+}
+
+@keyframes slide {
+  to {
+    background-position: 200% 0;
+  }
+}

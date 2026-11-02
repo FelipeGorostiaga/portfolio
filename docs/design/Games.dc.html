@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Felipe Gorostiaga — Games</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+.pf{--bg:#060807;--surface:rgba(255,255,255,0.035);--surface-2:rgba(255,255,255,0.07);--line:rgba(255,255,255,0.09);--line-2:rgba(255,255,255,0.16);--text:#F2F5F3;--muted:#A3ADA7;--faint:#7E8983;--a1:#4ADE80;--a2:#D9F99D;--a3:#22C55E;--btn-text:#04130A;--glow-o:0.5;--blob-o:0.42;--shadow:0 30px 80px -30px rgba(0,0,0,0.8);color-scheme:dark;background:var(--bg);color:var(--text);font-family:'Geist',system-ui,sans-serif;transition:background-color .5s ease,color .5s ease;-webkit-font-smoothing:antialiased}
+.pf.light{--bg:#F6F7F6;--surface:rgba(255,255,255,0.62);--surface-2:rgba(255,255,255,0.92);--line:rgba(15,23,42,0.09);--line-2:rgba(15,23,42,0.17);--text:#0A0D0B;--muted:#3F4842;--faint:#5D6660;--a1:#15803D;--a2:#4D7C0F;--a3:#166534;--btn-text:#FFFFFF;--glow-o:0.22;--blob-o:0.26;--shadow:0 30px 70px -35px rgba(16,24,20,0.28);color-scheme:light}
+.pf a:focus-visible,.pf button:focus-visible{outline:2px solid var(--a1);outline-offset:3px}
+.mono{font-family:'Geist Mono',ui-monospace,monospace}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+.cursor-glow{position:fixed;left:0;top:0;width:680px;height:680px;margin:-340px 0 0 -340px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--a1) 50%,transparent) 0%,color-mix(in srgb,var(--a2) 22%,transparent) 32%,transparent 66%);opacity:var(--glow-o);transform:translate3d(var(--mx,-2000px),var(--my,-2000px),0);transition:transform .45s cubic-bezier(.16,1,.3,1);pointer-events:none;z-index:1}
+.aurora{position:absolute;left:0;right:0;top:0;height:640px;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--blob-o)}
+.b1{width:560px;height:560px;left:-120px;top:-220px;background:radial-gradient(circle,var(--a3),transparent 62%);animation:drift1 20s ease-in-out infinite alternate}
+.b2{width:520px;height:520px;right:-80px;top:-160px;background:radial-gradient(circle,var(--a2),transparent 62%);animation:drift2 24s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(220px,90px) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-200px,110px) scale(.9)}}
+.nav{background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);box-shadow:var(--shadow)}
+.logo-mark{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;color:var(--btn-text);background:linear-gradient(135deg,var(--a1),var(--a2))}
+.nlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;text-decoration:none;color:var(--muted);font-size:14px;transition:color .2s,background-color .2s}
+.nlink:hover{color:var(--text);background:var(--surface-2)}
+.nlink.on{color:var(--text);background:var(--surface-2)}
+.theme-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);display:grid;place-items:center;cursor:pointer;margin-left:4px;padding:0;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.theme-btn:hover{transform:rotate(25deg)}
+.theme-btn svg{animation:pop .55s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{from{transform:rotate(-120deg) scale(.3);opacity:0}}
+.eyebrow{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.eyebrow b{font-weight:500;color:var(--a1)}
+.enter{animation:fadeup 1s cubic-bezier(.16,1,.3,1) both}
+@keyframes fadeup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.grad{background-image:linear-gradient(100deg,var(--a1),var(--a2),var(--a3),var(--a1));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slide 9s linear infinite}
+@keyframes slide{to{background-position:200% 0}}
+.spot{position:relative;isolation:isolate;background:var(--surface);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);transition:border-color .3s,background-color .4s,box-shadow .45s}
+.spot::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(380px circle at var(--x,50%) var(--y,0%),var(--a1),var(--a2) 35%,transparent 65%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(520px circle at var(--x,50%) var(--y,0%),color-mix(in srgb,var(--a1) 12%,transparent),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
+.spot:hover{border-color:color-mix(in srgb,var(--a1) 30%,transparent);background-color:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--a1) 14%,transparent),0 28px 70px -28px color-mix(in srgb,var(--a1) 38%,transparent)}
+.spot:hover::before,.spot:hover::after{opacity:1}
+.live{display:inline-flex;align-items:center;gap:8px;width:fit-content;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px;color:var(--a3);background:color-mix(in srgb,var(--a3) 12%,transparent)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--a3);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.board-wrap{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg) 70%,transparent)}
+.life{display:block;width:100%;aspect-ratio:64 / 36;cursor:crosshair;touch-action:none}
+.rules{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;counter-reset:r}
+.rules li{counter-increment:r;display:flex;gap:12px;font-size:14px;line-height:1.5;color:var(--muted)}
+.rules li::before{content:counter(r,decimal-leading-zero);flex:0 0 auto;font-family:'Geist Mono',monospace;font-size:12px;line-height:21px;color:var(--a1)}
+.stat{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.stat b{font-family:'Geist Mono',monospace;font-size:24px;font-weight:500;letter-spacing:-0.02em;color:var(--text);font-variant-numeric:tabular-nums}
+.lbl{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 18px;border-radius:999px;font-family:inherit;font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;border:0;box-sizing:border-box;transition:translate .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .3s}
+.btn-primary{color:var(--btn-text);background-image:linear-gradient(110deg,var(--a1),var(--a2),var(--a1));background-size:200% 100%;box-shadow:0 12px 40px -12px color-mix(in srgb,var(--a1) 75%,transparent);animation:slide 6s linear infinite}
+.btn-primary:hover{translate:0 -2px;color:var(--btn-text)}
+.btn-ghost{color:var(--text);background:var(--surface);border:1px solid var(--line-2)}
+.btn-ghost:hover{translate:0 -2px;color:var(--text);border-color:var(--a1)}
+.ms{width:26px;height:26px;box-sizing:border-box;border-radius:6px;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:12px;font-weight:500}
+.ms.c,.ms.f{background:var(--surface-2);border:1px solid var(--line-2)}
+.ms.f::before{content:"";width:0;height:0;border-left:9px solid #F43F5E;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:3px}
+.ms.r{background:color-mix(in srgb,var(--text) 3%,transparent)}
+.n1{color:var(--a1)}.n2{color:var(--a3)}.n3{color:var(--a2)}
+.sn{width:18px;height:18px;border-radius:4px;background:var(--surface)}
+.sn.body{background:linear-gradient(135deg,var(--a1),var(--a2))}
+.sn.head{background:linear-gradient(135deg,var(--a3),var(--a1));box-shadow:0 0 16px color-mix(in srgb,var(--a3) 70%,transparent)}
+.sn.apple{background:#F43F5E;border-radius:50%;box-shadow:0 0 14px rgba(244,63,94,.6);animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(.72)}}
+.flink{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--muted);font-size:14px}
+.flink:hover{color:var(--text)}
+@media (prefers-reduced-motion:reduce){.pf *,.pf *::before,.pf *::after{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+<div class="{{ rootClass }}" onMouseMove="{{ onMove }}" style="position: relative; min-height: 100%; overflow-x: clip">
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+
+<header class="nav" style="position: sticky; top: 16px; z-index: 50; box-sizing: border-box; width: calc(100% - 32px); max-width: 1180px; margin: 16px auto 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 6px 6px 6px 8px; border-radius: 30px">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 8px; text-decoration: none; color: var(--text)">
+<span class="logo-mark" aria-hidden="true">FG</span>
+<span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em">Felipe Gorostiaga</span>
+</a>
+<nav aria-label="Primary" style="display: flex; align-items: center; flex-wrap: wrap; gap: 2px">
+<a class="nlink" href="Main.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>Home</a>
+<a class="nlink" href="Library.dc.html">Library</a>
+<a class="nlink on" href="Games.dc.html" aria-current="page">Games</a>
+<button type="button" class="theme-btn" aria-label="{{ themeLabel }}" onClick="{{ toggleTheme }}">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></sc-if>
+</button>
+</nav>
+</header>
+
+<main style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 96px 24px 100px; display: flex; flex-direction: column; gap: 24px">
+<div class="enter" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 40px; margin-bottom: 24px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="eyebrow"><b>/</b>games</span>
+<h1 style="margin: 0; font-size: clamp(52px, 7.4vw, 104px); line-height: 0.92; font-weight: 700; letter-spacing: -0.05em">Play <span class="serif grad" style="font-style: italic; letter-spacing: -0.015em">something</span></h1>
+</div>
+<p style="margin: 0; max-width: 400px; font-size: 17px; line-height: 1.6; color: var(--muted)">Three classics I rebuilt from scratch. The Game of Life is already running — draw on it.</p>
+</div>
+
+<section class="spot enter" aria-labelledby="life-title" style="border-radius: 28px; padding: 24px; display: flex; flex-wrap: wrap; gap: 28px; animation-delay: 120ms">
+<div style="flex: 1 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<div class="board-wrap">
+<canvas class="life" data-life="1" ref="{{ lifeRef }}" aria-label="Game of Life board. Click or drag to draw cells." role="img" onMouseDown="{{ lifeDown }}" onMouseMove="{{ lifeMove }}" onMouseUp="{{ lifeUp }}" onMouseLeave="{{ lifeLeave }}"></canvas>
+</div>
+<span class="mono" style="font-size: 12px; color: var(--faint)">Click or drag on the board to draw · it wraps around the edges</span>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 18px; padding: 8px 8px 8px 0">
+<span class="live"><i aria-hidden="true"></i>{{ statusLabel }}</span>
+<h2 id="life-title" style="margin: 0; font-size: 36px; line-height: 1; font-weight: 600; letter-spacing: -0.035em">Game of Life</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--muted)">A cellular automaton devised by John Horton Conway in 1970. It's Turing complete: set an initial pattern and watch it evolve. This board starts with a Gosper glider gun.</p>
+<ol class="rules">
+<li>Fewer than two neighbours: the cell dies.</li>
+<li>Two or three neighbours: it lives on.</li>
+<li>More than three neighbours: it dies.</li>
+<li>Exactly three around an empty cell: a cell is born.</li>
+</ol>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div class="stat"><span class="lbl">Generation</span><b>{{ gen }}</b></div>
+<div class="stat"><span class="lbl">Population</span><b>{{ pop }}</b></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" class="btn btn-primary" onClick="{{ toggleRun }}">
+<sc-if value="{{ running }}" hint-placeholder-val="{{ true }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg></sc-if>
+<sc-if value="{{ paused }}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"></path></svg></sc-if>
+{{ runLabel }}</button>
+<button type="button" class="btn btn-ghost" onClick="{{ stepOnce }}">Step</button>
+<button type="button" class="btn btn-ghost" onClick="{{ shuffle }}">Shuffle</button>
+<button type="button" class="btn btn-ghost" onClick="{{ gun }}">Glider gun</button>
+<button type="button" class="btn btn-ghost" onClick="{{ clear }}">Clear</button>
+</div>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<article class="spot enter" style="flex: 1 1 460px; min-width: 0; border-radius: 28px; padding: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px; animation-delay: 220ms">
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(9, 26px); gap: 3px; padding: 12px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface)">
+<sc-for list="{{ mines }}" as="m" hint-placeholder-count="81"><span class="{{ m.cls }}">{{ m.txt }}</span></sc-for>
+</div>
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 30px; line-height: 1; font-weight: 600; letter-spacing: -0.03em">Minesweeper</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--muted)">Clear the board without hitting a mine. The numbers tell you how many mines touch each square.</p>
+<a class="btn btn-ghost" href="#" style="width: fit-content; margin-top: 4px">Play Minesweeper <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+</div>
+</article>
+<article class="spot enter" style="flex: 1 1 460px; min-width: 0; border-radius: 28px; padding: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px; animation-delay: 300ms">
+<div aria-hidden="true" style="display: grid; grid-template-columns: repeat(14, 18px); gap: 2px; padding: 12px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface)">
+<sc-for list="{{ snake }}" as="c" hint-placeholder-count="140"><span class="{{ c.cls }}" style="opacity: {{ c.o }}"></span></sc-for>
+</div>
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 30px; line-height: 1; font-weight: 600; letter-spacing: -0.03em">Snake</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--muted)">The arcade classic: eat as many apples as you can without hitting the walls or your own growing tail.</p>
+<a class="btn btn-ghost" href="#" style="width: fit-content; margin-top: 4px">Play Snake <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a>
+</div>
+</article>
+</div>
+</main>
+
+<footer style="position: relative; z-index: 2; border-top: 1px solid var(--line); padding: 28px 24px">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px">
+<span class="mono" style="font-size: 13px; color: var(--faint)">© 2026 Felipe Gorostiaga</span>
+<a class="flink" href="Main.dc.html">← Back home</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Look"},"lifeSpeed":{"editor":"range","min":40,"max":400,"step":10,"unit":"ms","default":110,"section":"Game of Life"},"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this.COLS = 64;
+    this.ROWS = 36;
+    var n = this.COLS * this.ROWS;
+    this._g = new Uint8Array(n);
+    this._age = new Uint16Array(n);
+    this._heat = new Float32Array(n);
+    this._hover = -1;
+    this._last = 0;
+    this._tries = 0;
+    this._running = true;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) this._running = false;
+    this._seedGun();
+    this.setState({ gen: 0, pop: this._count(), running: this._running });
+    this._boot();
+  }
+
+  componentWillUnmount() {
+    this._dead = true;
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._ro) this._ro.disconnect();
+  }
+
+  _boot() {
+    if (this._dead) return;
+    if (!this._canvas) this._canvas = document.querySelector('canvas[data-life]');
+    var c = this._canvas;
+    if (!c || !c.getContext) {
+      this._tries += 1;
+      if (this._tries < 120) this._raf = requestAnimationFrame(() => this._boot());
+      return;
+    }
+    this._ctx = c.getContext('2d');
+    this._resize();
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(() => this._resize());
+      this._ro.observe(c);
+    }
+    var loop = (now) => {
+      if (this._dead) return;
+      if (!document.hidden) {
+        var speed = this._speed || 110;
+        if (this._running && now - this._last >= speed) {
+          this._last = now;
+          this._step();
+          this.setState({ gen: this._gen, pop: this._pop });
+        }
+        this._draw();
+      }
+      this._raf = requestAnimationFrame(loop);
+    };
+    this._raf = requestAnimationFrame(loop);
+  }
+
+  _resize() {
+    var c = this._canvas, ctx = this._ctx;
+    if (!c || !ctx) return;
+    var w = c.clientWidth, h = c.clientHeight;
+    if (!w || !h) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = Math.round(w * dpr);
+    c.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this._w = w;
+    this._h = h;
+  }
+
+  _palette(theme) {
+    var L = theme === 'light';
+    var a1 = L ? [21, 128, 61] : [74, 222, 128];
+    var a2 = L ? [77, 124, 15] : [217, 249, 157];
+    var a3 = L ? [22, 101, 52] : [34, 197, 94];
+    var lut = [];
+    for (var i = 0; i < 64; i++) {
+      var u = i / 63, tri = 1 - Math.abs(2 * u - 1);
+      var A = tri < 0.5 ? a1 : a2, B = tri < 0.5 ? a2 : a3, m = tri < 0.5 ? tri * 2 : (tri - 0.5) * 2;
+      lut.push(Math.round(A[0] + (B[0] - A[0]) * m) + ',' + Math.round(A[1] + (B[1] - A[1]) * m) + ',' + Math.round(A[2] + (B[2] - A[2]) * m));
+    }
+    return { lut: lut, hud: L ? '10,13,11' : '232,240,235' };
+  }
+
+  _clearAll() {
+    this._g = new Uint8Array(this.COLS * this.ROWS);
+    this._age.fill(0);
+    this._heat.fill(0);
+    this._gen = 0;
+  }
+
+  _put(x, y) {
+    var C = this.COLS, R = this.ROWS;
+    var k = ((y % R) + R) % R * C + ((x % C) + C) % C;
+    this._g[k] = 1;
+    this._heat[k] = 1;
+  }
+
+  _seedGun() {
+    this._clearAll();
+    var gun = [[24,0],[22,1],[24,1],[12,2],[13,2],[20,2],[21,2],[34,2],[35,2],[11,3],[15,3],[20,3],[21,3],[34,3],[35,3],[0,4],[1,4],[10,4],[16,4],[20,4],[21,4],[0,5],[1,5],[10,5],[14,5],[16,5],[17,5],[22,5],[24,5],[10,6],[16,6],[24,6],[11,7],[15,7],[12,8],[13,8]];
+    for (var i = 0; i < gun.length; i++) this._put(gun[i][0] + 2, gun[i][1] + 3);
+    var rp = [[1,0],[2,0],[0,1],[1,1],[1,2]];
+    for (var j = 0; j < rp.length; j++) this._put(rp[j][0] + 48, rp[j][1] + 22);
+    this._pop = this._count();
+  }
+
+  _shuffle() {
+    this._clearAll();
+    for (var k = 0; k < this._g.length; k++) {
+      if (Math.random() < 0.22) { this._g[k] = 1; this._heat[k] = 1; }
+    }
+    this._pop = this._count();
+  }
+
+  _count() {
+    var p = 0, g = this._g;
+    for (var k = 0; k < g.length; k++) p += g[k];
+    return p;
+  }
+
+  _step() {
+    var C = this.COLS, R = this.ROWS, g = this._g, nx = new Uint8Array(C * R), age = this._age, heat = this._heat, pop = 0;
+    for (var y = 0; y < R; y++) {
+      var ym = ((y - 1 + R) % R) * C, y0 = y * C, yp = ((y + 1) % R) * C;
+      for (var x = 0; x < C; x++) {
+        var xm = (x - 1 + C) % C, xp = (x + 1) % C;
+        var c = g[ym + xm] + g[ym + x] + g[ym + xp] + g[y0 + xm] + g[y0 + xp] + g[yp + xm] + g[yp + x] + g[yp + xp];
+        var k = y0 + x;
+        var alive = g[k] ? (c === 2 || c === 3) : c === 3;
+        if (alive) {
+          nx[k] = 1;
+          age[k] = g[k] ? Math.min(age[k] + 1, 999) : 0;
+          heat[k] = 1;
+          pop++;
+        } else {
+          age[k] = 0;
+          heat[k] *= 0.78;
+        }
+      }
+    }
+    this._g = nx;
+    this._gen += 1;
+    this._pop = pop;
+  }
+
+  _draw() {
+    var ctx = this._ctx;
+    if (!ctx || !this._w) return;
+    var w = this._w, h = this._h, C = this.COLS, R = this.ROWS, cs = w / C, ch = h / R;
+    var pal = this._pal || this._palette('dark'), g = this._g, age = this._age, heat = this._heat, n = C * R;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(' + pal.hud + ',0.06)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var i = 1; i < C; i++) { var gx = Math.round(i * cs) + 0.5; ctx.moveTo(gx, 0); ctx.lineTo(gx, h); }
+    for (var j = 1; j < R; j++) { var gy = Math.round(j * ch) + 0.5; ctx.moveTo(0, gy); ctx.lineTo(w, gy); }
+    ctx.stroke();
+    for (var k = 0; k < n; k++) {
+      var hv = heat[k];
+      if (g[k] || hv < 0.04) continue;
+      ctx.fillStyle = 'rgba(' + pal.lut[8] + ',' + (hv * 0.32).toFixed(3) + ')';
+      ctx.fillRect((k % C) * cs + 1, ((k / C) | 0) * ch + 1, cs - 2, ch - 2);
+    }
+    for (var m = 0; m < n; m++) {
+      if (!g[m]) continue;
+      var px = (m % C) * cs, py = ((m / C) | 0) * ch, col = pal.lut[Math.max(0, 31 - age[m] * 3)];
+      ctx.fillStyle = 'rgba(' + col + ',0.16)';
+      ctx.fillRect(px - cs * 0.4, py - ch * 0.4, cs * 1.8, ch * 1.8);
+      ctx.fillStyle = 'rgba(' + col + ',0.95)';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(px + 1.5, py + 1.5, cs - 3, ch - 3, 2.5); else ctx.rect(px + 1.5, py + 1.5, cs - 3, ch - 3);
+      ctx.fill();
+    }
+    if (this._hover >= 0) {
+      var hx = (this._hover % C) * cs, hy = ((this._hover / C) | 0) * ch;
+      ctx.strokeStyle = 'rgba(' + pal.lut[20] + ',0.9)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(hx + 1, hy + 1, cs - 2, ch - 2);
+    }
+  }
+
+  _cell(e) {
+    var c = this._canvas;
+    if (!c) return -1;
+    var b = c.getBoundingClientRect();
+    if (!b.width || !b.height) return -1;
+    var x = Math.floor((e.clientX - b.left) / b.width * this.COLS);
+    var y = Math.floor((e.clientY - b.top) / b.height * this.ROWS);
+    if (x < 0 || y < 0 || x >= this.COLS || y >= this.ROWS) return -1;
+    return y * this.COLS + x;
+  }
+
+  _paintAt(k) {
+    if (k < 0 || !this._g) return;
+    this._g[k] = this._paint;
+    this._age[k] = 0;
+    if (this._paint) this._heat[k] = 1;
+    this._pop = this._count();
+    this.setState({ pop: this._pop });
+  }
+
+  _move(e) {
+    var root = e.currentTarget;
+    if (root && root.style) {
+      root.style.setProperty('--mx', e.clientX + 'px');
+      root.style.setProperty('--my', e.clientY + 'px');
+    }
+    var tg = e.target, card = tg && tg.closest ? tg.closest('.spot') : null;
+    if (card) {
+      var b = card.getBoundingClientRect(), s = card.offsetWidth / (b.width || 1);
+      card.style.setProperty('--x', (e.clientX - b.left) * s + 'px');
+      card.style.setProperty('--y', (e.clientY - b.top) * s + 'px');
+    }
+  }
+
+  _toggle(e) {
+    var base = this.props.theme || 'dark';
+    var next = this._theme === 'dark' ? 'light' : 'dark';
+    var set = (done) => this.setState({ theme: next, base: base }, done);
+    var doc = document, btn = e && e.currentTarget;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!doc.startViewTransition || reduce || !btn || !btn.getBoundingClientRect) { set(); return; }
+    var b = btn.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+    var rad = Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy));
+    try {
+      var vt = doc.startViewTransition(() => new Promise((res) => set(res)));
+      vt.ready.then(() => {
+        doc.documentElement.animate(
+          { clipPath: ['circle(0px at ' + cx + 'px ' + cy + 'px)', 'circle(' + rad + 'px at ' + cx + 'px ' + cy + 'px)'] },
+          { duration: 700, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(function () {});
+    } catch (err) { set(); }
+  }
+
+  _sync(extra) {
+    this.setState(Object.assign({ gen: this._gen, pop: this._pop, running: this._running }, extra || {}));
+  }
+
+  renderVals() {
+    var s = this.state || {};
+    var base = this.props.theme || 'dark';
+    var theme = s.theme && s.base === base ? s.theme : base;
+    this._theme = theme;
+    this._pals = this._pals || {};
+    this._pal = this._pals[theme] || (this._pals[theme] = this._palette(theme));
+    this._speed = this.props.lifeSpeed ?? 110;
+
+    if (!this._h0) {
+      this._h0 = {
+        lifeRef: (el) => { if (el) this._canvas = el; },
+        onMove: (e) => this._move(e),
+        toggleTheme: (e) => this._toggle(e),
+        lifeDown: (e) => { var k = this._cell(e); if (k < 0 || !this._g) return; this._paint = this._g[k] ? 0 : 1; this._painting = true; this._paintAt(k); },
+        lifeMove: (e) => { var k = this._cell(e); this._hover = k; if (this._painting) this._paintAt(k); },
+        lifeUp: () => { this._painting = false; },
+        lifeLeave: () => { this._painting = false; this._hover = -1; },
+        toggleRun: () => { this._running = !this._running; this._sync(); },
+        stepOnce: () => { if (!this._g) return; this._running = false; this._step(); this._sync(); },
+        shuffle: () => { if (!this._g) return; this._shuffle(); this._sync(); },
+        gun: () => { if (!this._g) return; this._seedGun(); this._running = true; this._sync(); },
+        clear: () => { if (!this._g) return; this._clearAll(); this._pop = 0; this._running = false; this._sync(); }
+      };
+    }
+
+    var mineRows = ['##1001###', '#F1002F##', '111001221', '000000000', '001110000', '112F10111', '#F21101F#', '##100012#', '##100001#'];
+    var mines = [];
+    for (var r = 0; r < mineRows.length; r++) {
+      for (var c = 0; c < mineRows[r].length; c++) {
+        var ch = mineRows[r].charAt(c);
+        if (ch === '#') mines.push({ cls: 'ms c', txt: '' });
+        else if (ch === 'F') mines.push({ cls: 'ms f', txt: '' });
+        else mines.push({ cls: 'ms r n' + ch, txt: ch === '0' ? '' : ch });
+      }
+    }
+
+    var body = [[1,8],[2,8],[3,8],[4,8],[4,7],[4,6],[5,6],[6,6],[7,6],[8,6],[8,5],[8,4],[8,3],[9,3],[10,3]];
+    var apple = [11, 6];
+    var snake = [];
+    for (var sy = 0; sy < 10; sy++) {
+      for (var sx = 0; sx < 14; sx++) snake.push({ cls: 'sn', o: 1 });
+    }
+    for (var b = 0; b < body.length; b++) {
+      var idx = body[b][1] * 14 + body[b][0];
+      var isHead = b === body.length - 1;
+      snake[idx] = { cls: isHead ? 'sn head' : 'sn body', o: isHead ? 1 : (0.35 + 0.65 * (b / (body.length - 1))).toFixed(2) };
+    }
+    snake[apple[1] * 14 + apple[0]] = { cls: 'sn apple', o: 1 };
+
+    var running = s.running === undefined ? true : s.running;
+    return Object.assign({}, this._h0, {
+      rootClass: theme === 'light' ? 'pf light' : 'pf',
+      isDark: theme === 'dark',
+      isLight: theme === 'light',
+      themeLabel: theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+      gen: (s.gen || 0).toLocaleString('en-US'),
+      pop: (s.pop || 0).toLocaleString('en-US'),
+      running: running,
+      paused: !running,
+      runLabel: running ? 'Pause' : 'Play',
+      statusLabel: running ? 'Live simulation' : 'Paused',
+      mines: mines,
+      snake: snake
+    });
+  }
+}
+</script>
+</body>
+</html>

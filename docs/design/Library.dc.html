@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Felipe Gorostiaga — Library</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+.pf{--bg:#060807;--surface:rgba(255,255,255,0.035);--surface-2:rgba(255,255,255,0.07);--line:rgba(255,255,255,0.09);--line-2:rgba(255,255,255,0.16);--text:#F2F5F3;--muted:#A3ADA7;--faint:#7E8983;--a1:#4ADE80;--a2:#D9F99D;--a3:#22C55E;--btn-text:#04130A;--glow-o:0.5;--blob-o:0.42;--shadow:0 30px 80px -30px rgba(0,0,0,0.8);color-scheme:dark;background:var(--bg);color:var(--text);font-family:'Geist',system-ui,sans-serif;transition:background-color .5s ease,color .5s ease;-webkit-font-smoothing:antialiased}
+.pf.light{--bg:#F6F7F6;--surface:rgba(255,255,255,0.62);--surface-2:rgba(255,255,255,0.92);--line:rgba(15,23,42,0.09);--line-2:rgba(15,23,42,0.17);--text:#0A0D0B;--muted:#3F4842;--faint:#5D6660;--a1:#15803D;--a2:#4D7C0F;--a3:#166534;--btn-text:#FFFFFF;--glow-o:0.22;--blob-o:0.26;--shadow:0 30px 70px -35px rgba(16,24,20,0.28);color-scheme:light}
+.pf a:focus-visible,.pf button:focus-visible,.pf input:focus-visible,.pf select:focus-visible{outline:2px solid var(--a1);outline-offset:3px}
+.mono{font-family:'Geist Mono',ui-monospace,monospace}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+.cursor-glow{position:fixed;left:0;top:0;width:680px;height:680px;margin:-340px 0 0 -340px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--a1) 50%,transparent) 0%,color-mix(in srgb,var(--a2) 22%,transparent) 32%,transparent 66%);opacity:var(--glow-o);transform:translate3d(var(--mx,-2000px),var(--my,-2000px),0);transition:transform .45s cubic-bezier(.16,1,.3,1);pointer-events:none;z-index:1}
+.aurora{position:absolute;left:0;right:0;top:0;height:640px;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--blob-o)}
+.b1{width:560px;height:560px;left:-120px;top:-220px;background:radial-gradient(circle,var(--a2),transparent 62%);animation:drift1 20s ease-in-out infinite alternate}
+.b2{width:520px;height:520px;right:-80px;top:-160px;background:radial-gradient(circle,var(--a1),transparent 62%);animation:drift2 24s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(220px,90px) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-200px,110px) scale(.9)}}
+.nav{background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);box-shadow:var(--shadow)}
+.logo-mark{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;color:var(--btn-text);background:linear-gradient(135deg,var(--a1),var(--a2))}
+.nlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;text-decoration:none;color:var(--muted);font-size:14px;transition:color .2s,background-color .2s}
+.nlink:hover{color:var(--text);background:var(--surface-2)}
+.nlink.on{color:var(--text);background:var(--surface-2)}
+.theme-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);display:grid;place-items:center;cursor:pointer;margin-left:4px;padding:0;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.theme-btn:hover{transform:rotate(25deg)}
+.theme-btn svg{animation:pop .55s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{from{transform:rotate(-120deg) scale(.3);opacity:0}}
+.eyebrow{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.eyebrow b{font-weight:500;color:var(--a1)}
+.enter{animation:fadeup 1s cubic-bezier(.16,1,.3,1) both}
+@keyframes fadeup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.grad{background-image:linear-gradient(100deg,var(--a1),var(--a2),var(--a3),var(--a1));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slide 9s linear infinite}
+@keyframes slide{to{background-position:200% 0}}
+
+.tab-ind{position:absolute;left:5px;top:5px;width:116px;height:44px;border-radius:999px;background-image:linear-gradient(110deg,var(--a1),var(--a2));box-shadow:0 8px 24px -8px color-mix(in srgb,var(--a1) 70%,transparent);transition:translate .55s cubic-bezier(.16,1,.3,1)}
+.tab{position:relative;z-index:1;width:116px;min-height:44px;border:0;padding:0;background:transparent;border-radius:999px;font-family:inherit;font-size:14px;font-weight:500;color:var(--muted);cursor:pointer;transition:color .3s}
+.tab:hover{color:var(--text)}
+.tab.on{color:var(--btn-text)}
+.in{box-sizing:border-box;min-height:48px;padding:0 16px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font-family:inherit;font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s}
+.in::placeholder{color:var(--faint)}
+.in:focus{border-color:var(--a1);box-shadow:0 0 0 4px color-mix(in srgb,var(--a1) 22%,transparent)}
+select.in{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer}
+select.in option{background:var(--bg);color:var(--text)}
+.icon-btn{width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer;padding:0;transition:border-color .2s}
+.icon-btn:hover{border-color:var(--a1)}
+.icon-btn svg{transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.lbl{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+.spot{position:relative;isolation:isolate;background:var(--surface);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);transition:translate .45s cubic-bezier(.16,1,.3,1),border-color .3s,background-color .4s,box-shadow .45s}
+.spot::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(380px circle at var(--x,50%) var(--y,0%),var(--a1),var(--a2) 35%,transparent 65%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(520px circle at var(--x,50%) var(--y,0%),color-mix(in srgb,var(--a1) 13%,transparent),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
+.spot:hover{translate:0 -6px;border-color:color-mix(in srgb,var(--a1) 30%,transparent);background-color:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--a1) 14%,transparent),0 28px 70px -28px color-mix(in srgb,var(--a1) 38%,transparent)}
+.spot:hover::before,.spot:hover::after{opacity:1}
+.card-in{animation:fadeup .8s cubic-bezier(.16,1,.3,1) both}
+
+.cover{position:relative;overflow:hidden;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:14px 12px 14px 16px;color:#FFFFFF;box-shadow:inset 4px 0 0 rgba(0,0,0,.22),inset 5px 0 0 rgba(255,255,255,.12),0 18px 34px -16px rgba(0,0,0,.6)}
+.score{display:inline-flex;align-items:center;gap:6px;font-family:'Geist Mono',monospace;font-size:14px;font-weight:500;color:var(--text)}
+.score svg{color:var(--a1)}
+.meter{height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.meter span{display:block;height:100%;border-radius:inherit;background-image:linear-gradient(90deg,var(--a1),var(--a2),var(--a3))}
+.qmark{font-family:'Instrument Serif',Georgia,serif;font-size:120px;line-height:.6;height:48px;background-image:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.flink{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--muted);font-size:14px}
+.flink:hover{color:var(--text)}
+@media (prefers-reduced-motion:reduce){.pf *,.pf *::before,.pf *::after{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+<div class="{{ rootClass }}" onMouseMove="{{ onMove }}" style="position: relative; min-height: 100%; overflow-x: clip">
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+
+<header class="nav" style="position: sticky; top: 16px; z-index: 50; box-sizing: border-box; width: calc(100% - 32px); max-width: 1180px; margin: 16px auto 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 6px 6px 6px 8px; border-radius: 30px">
+<a href="Main.dc.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 8px; text-decoration: none; color: var(--text)">
+<span class="logo-mark" aria-hidden="true">FG</span>
+<span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em">Felipe Gorostiaga</span>
+</a>
+<nav aria-label="Primary" style="display: flex; align-items: center; flex-wrap: wrap; gap: 2px">
+<a class="nlink" href="Main.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg>Home</a>
+<a class="nlink on" href="Library.dc.html" aria-current="page">Library</a>
+<a class="nlink" href="Games.dc.html">Games</a>
+<button type="button" class="theme-btn" aria-label="{{ themeLabel }}" onClick="{{ toggleTheme }}">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></sc-if>
+</button>
+</nav>
+</header>
+
+<main style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 96px 24px 100px">
+<div class="enter" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 40px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="eyebrow"><b>/</b>library</span>
+<h1 style="margin: 0; font-size: clamp(52px, 7.4vw, 104px); line-height: 0.92; font-weight: 700; letter-spacing: -0.05em">The <span class="serif grad" style="font-style: italic; letter-spacing: -0.015em">library</span></h1>
+</div>
+<p style="margin: 0; max-width: 400px; font-size: 17px; line-height: 1.6; color: var(--muted)">Books, movies and quotes that shaped how I think — rated honestly, out of ten.</p>
+</div>
+
+<div class="enter" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 32px; animation-delay: 120ms">
+<div role="tablist" aria-label="Library sections" style="position: relative; display: inline-flex; padding: 5px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface)">
+<span class="tab-ind" aria-hidden="true" style="translate: {{ tabX }} 0"></span>
+<button type="button" role="tab" class="tab {{ clsBooks }}" aria-selected="{{ selBooks }}" onClick="{{ toBooks }}">Books</button>
+<button type="button" role="tab" class="tab {{ clsMovies }}" aria-selected="{{ selMovies }}" onClick="{{ toMovies }}">Movies</button>
+<button type="button" role="tab" class="tab {{ clsQuotes }}" aria-selected="{{ selQuotes }}" onClick="{{ toQuotes }}">Quotes</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<label style="position: relative; display: flex; align-items: center">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search the library</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 16px; color: var(--faint); pointer-events: none"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+<input class="in" type="search" placeholder="Search by title or author…" value="{{ q }}" onChange="{{ onQ }}" style="width: 280px; padding-left: 42px">
+</label>
+<label style="position: relative; display: flex; align-items: center">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Sort by</span>
+<select class="in" value="{{ sort }}" onChange="{{ onSort }}">
+<option value="rating">Sort: Rating</option>
+<option value="year">Sort: Year</option>
+<option value="title">Sort: Title</option>
+</select>
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; right: 16px; color: var(--faint); pointer-events: none"><path d="M6 9l6 6 6-6"></path></svg>
+</label>
+<button type="button" class="icon-btn" aria-label="{{ orderLabel }}" onClick="{{ flipOrder }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: rotate({{ orderDeg }})"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg></button>
+</div>
+</div>
+
+<sc-if value="{{ showBooks }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<span class="mono" style="font-size: 12px; color: var(--faint)">{{ countLabel }}</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px">
+<sc-for list="{{ items }}" as="b" hint-placeholder-count="6">
+<article class="spot book" style="border-radius: 22px; padding: 18px; display: flex; gap: 20px">
+<div class="cover" aria-hidden="true" style="flex: 0 0 120px; width: 120px; height: 176px; border-radius: 4px 12px 12px 4px; background: linear-gradient(160deg, {{ b.c1 }}, {{ b.c2 }})">
+<span class="mono" style="font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.8)">{{ b.author }}</span>
+<span class="serif" style="font-size: 20px; line-height: 1.02">{{ b.title }}</span>
+<span style="display: block; width: 24px; height: 1px; background: rgba(255, 255, 255, 0.65)"></span>
+</div>
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 4px 4px 2px 0">
+<h2 style="margin: 0; font-size: 19px; line-height: 1.25; font-weight: 600; letter-spacing: -0.015em">{{ b.title }}</h2>
+<p style="margin: 0; font-size: 14px; color: var(--muted)">{{ b.author }} · {{ b.year }}</p>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 9px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">My rating</span><span class="score"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"></path></svg>{{ b.rating }}</span></div>
+<div class="meter"><span style="width: {{ b.pct }}"></span></div>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 24px 0 0; font-size: 16px; color: var(--muted)">Nothing matches that search yet.</p>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ showQuotes }}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px">
+<figure class="spot card-in" style="margin: 0; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px; min-height: 240px; box-sizing: border-box">
+<span class="qmark" aria-hidden="true">“</span>
+<blockquote class="serif" style="margin: 0; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em">[A quote you keep coming back to]</blockquote>
+<figcaption class="mono" style="margin-top: auto; font-size: 13px; color: var(--faint)">— [Author], [Source]</figcaption>
+</figure>
+<figure class="spot card-in" style="margin: 0; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px; min-height: 240px; box-sizing: border-box; animation-delay: 80ms">
+<span class="qmark" aria-hidden="true">“</span>
+<blockquote class="serif" style="margin: 0; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em">[Another line worth remembering]</blockquote>
+<figcaption class="mono" style="margin-top: auto; font-size: 13px; color: var(--faint)">— [Author], [Source]</figcaption>
+</figure>
+<figure class="spot card-in" style="margin: 0; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px; min-height: 240px; box-sizing: border-box; animation-delay: 160ms">
+<span class="qmark" aria-hidden="true">“</span>
+<blockquote class="serif" style="margin: 0; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em">[A third quote]</blockquote>
+<figcaption class="mono" style="margin-top: auto; font-size: 13px; color: var(--faint)">— [Author], [Source]</figcaption>
+</figure>
+</div>
+</sc-if>
+</main>
+
+<footer style="position: relative; z-index: 2; border-top: 1px solid var(--line); padding: 28px 24px">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px">
+<span class="mono" style="font-size: 13px; color: var(--faint)">© 2026 Felipe Gorostiaga</span>
+<a class="flink" href="Main.dc.html">← Back home</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Look"},"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  _move(e) {
+    var root = e.currentTarget;
+    if (root && root.style) {
+      root.style.setProperty('--mx', e.clientX + 'px');
+      root.style.setProperty('--my', e.clientY + 'px');
+    }
+    var tg = e.target, card = tg && tg.closest ? tg.closest('.spot') : null;
+    if (card) {
+      var b = card.getBoundingClientRect(), s = card.offsetWidth / (b.width || 1);
+      card.style.setProperty('--x', (e.clientX - b.left) * s + 'px');
+      card.style.setProperty('--y', (e.clientY - b.top) * s + 'px');
+    }
+  }
+
+  _toggle(e) {
+    var base = this.props.theme || 'dark';
+    var next = this._theme === 'dark' ? 'light' : 'dark';
+    var set = (done) => this.setState({ theme: next, base: base }, done);
+    var doc = document, btn = e && e.currentTarget;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!doc.startViewTransition || reduce || !btn || !btn.getBoundingClientRect) { set(); return; }
+    var b = btn.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+    var rad = Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy));
+    try {
+      var vt = doc.startViewTransition(() => new Promise((res) => set(res)));
+      vt.ready.then(() => {
+        doc.documentElement.animate(
+          { clipPath: ['circle(0px at ' + cx + 'px ' + cy + 'px)', 'circle(' + rad + 'px at ' + cx + 'px ' + cy + 'px)'] },
+          { duration: 700, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(function () {});
+    } catch (err) { set(); }
+  }
+
+  renderVals() {
+    var s = this.state || {};
+    var base = this.props.theme || 'dark';
+    var theme = s.theme && s.base === base ? s.theme : base;
+    this._theme = theme;
+    var tab = s.tab || 'books';
+    var q = s.q || '';
+    var sort = s.sort || 'rating';
+    var desc = s.desc !== false;
+
+    var books = [
+      { title: 'Thus Spoke Zarathustra', author: 'Friedrich Nietzsche', year: 1883, rating: 10, c1: '#166534', c2: '#052E16' },
+      { title: 'Beyond Good and Evil', author: 'Friedrich Nietzsche', year: 1886, rating: 9.4, c1: '#27272A', c2: '#09090B' },
+      { title: 'Sapiens', author: 'Yuval Noah Harari', year: 2011, rating: 9, c1: '#15803D', c2: '#14532D' },
+      { title: 'The Anti-Christ', author: 'Friedrich Nietzsche', year: 1895, rating: 8.2, c1: '#3F3F46', c2: '#18181B' },
+      { title: 'Ecce Homo', author: 'Friedrich Nietzsche', year: 1908, rating: 8.2, c1: '#065F46', c2: '#022C22' },
+      { title: 'When Nietzsche Wept', author: 'Irvin D. Yalom', year: 1992, rating: 8, c1: '#44403C', c2: '#0C0A09' }
+    ];
+    var movies = [
+      { title: '[Movie title]', author: '[Director]', year: '[Year]', rating: '–', c1: '#14532D', c2: '#052E16' },
+      { title: '[Movie title]', author: '[Director]', year: '[Year]', rating: '–', c1: '#27272A', c2: '#09090B' },
+      { title: '[Movie title]', author: '[Director]', year: '[Year]', rating: '–', c1: '#166534', c2: '#022C22' }
+    ];
+
+    var list = tab === 'movies' ? movies.slice() : books.slice();
+    if (tab === 'books') {
+      var needle = q.trim().toLowerCase();
+      if (needle) list = list.filter((b) => (b.title + ' ' + b.author).toLowerCase().indexOf(needle) !== -1);
+      list.sort((a, b) => {
+        var r = sort === 'title' ? a.title.localeCompare(b.title) : (a[sort] - b[sort]);
+        return desc ? -r : r;
+      });
+    }
+    var items = list.map((b, i) => Object.assign({}, b, {
+      pct: typeof b.rating === 'number' ? (b.rating * 10) + '%' : '0%',
+      delay: (i * 70) + 'ms'
+    }));
+
+    var idx = tab === 'books' ? 0 : tab === 'movies' ? 1 : 2;
+    if (!this._h0) {
+      this._h0 = {
+        onMove: (e) => this._move(e),
+        toggleTheme: (e) => this._toggle(e),
+        toBooks: () => this.setState({ tab: 'books' }),
+        toMovies: () => this.setState({ tab: 'movies' }),
+        toQuotes: () => this.setState({ tab: 'quotes' }),
+        onQ: (e) => this.setState({ q: e.target.value }),
+        onSort: (e) => this.setState({ sort: e.target.value }),
+        flipOrder: () => this.setState({ desc: !((this.state || {}).desc !== false) })
+      };
+    }
+    return Object.assign({}, this._h0, {
+      rootClass: theme === 'light' ? 'pf light' : 'pf',
+      isDark: theme === 'dark',
+      isLight: theme === 'light',
+      themeLabel: theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+      tabX: (idx * 116) + 'px',
+      clsBooks: idx === 0 ? 'on' : '',
+      clsMovies: idx === 1 ? 'on' : '',
+      clsQuotes: idx === 2 ? 'on' : '',
+      selBooks: idx === 0,
+      selMovies: idx === 1,
+      selQuotes: idx === 2,
+      showBooks: idx !== 2,
+      showQuotes: idx === 2,
+      q: q,
+      sort: sort,
+      orderDeg: desc ? '0deg' : '180deg',
+      orderLabel: desc ? 'Sorted high to low — switch to low to high' : 'Sorted low to high — switch to high to low',
+      items: items,
+      empty: items.length === 0,
+      countLabel: tab === 'movies' ? 'Placeholders — add your films' : (items.length + (items.length === 1 ? ' book' : ' books'))
+    });
+  }
+}
+</script>
+</body>
+</html>

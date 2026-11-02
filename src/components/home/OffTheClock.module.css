@@ -1,0 +1,123 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.portal {
+  flex: 1 1 460px;
+  min-width: 0;
+  min-height: 380px;
+  box-sizing: border-box;
+  border-radius: 28px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text);
+  overflow: hidden;
+}
+.portal:hover {
+  color: var(--text);
+}
+
+/* On narrow cards the text would run under the spines/board: start it below them. */
+@media (max-width: 600px) {
+  .portal {
+    padding-top: 240px;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.description {
+  margin: 0;
+  max-width: 400px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--a1);
+}
+
+/* Library card: static book spines. */
+.spines {
+  position: absolute;
+  right: 40px;
+  top: 36px;
+  height: 176px;
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+}
+
+.spine {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 36px;
+  padding: 12px 0;
+  color: #ffffff;
+  font-size: 15px;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: inset -3px 0 0 rgba(0, 0, 0, 0.2), 0 14px 28px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* Games card: gliders crossing a small grid. */
+.board {
+  position: absolute;
+  right: 36px;
+  top: 36px;
+  width: 200px;
+  height: 180px;
+  border-radius: 16px;
+  background-color: var(--surface);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border: 1px solid var(--line-2);
+  overflow: hidden;
+}
+
+.glider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  animation: glide 7s steps(14) infinite;
+}
+.glider i {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--a3), var(--a1));
+  box-shadow: 0 0 14px color-mix(in srgb, var(--a3) 60%, transparent);
+}
+
+@keyframes glide {
+  from {
+    transform: translate(-60px, -60px);
+  }
+  to {
+    transform: translate(220px, 220px);
+  }
+}

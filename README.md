@@ -1,55 +1,58 @@
 # Portfolio website
 
-This is a project that showcases my skills, projects, and experience as a developer. It serves as a personal portfolio website to highlight my work and provide information about my background and expertise. This README file provides an overview of the project and instructions for setting it up.
+Felipe Gorostiaga's personal site: who I am, where I've worked, what I build with, and a few things I do outside work.
 
-## Table of Contents
-- [Features](#features)
-- [Technologies](#technologies)
-- [Setup](#setup)
+Live at [felipegorostiaga.com](https://www.felipegorostiaga.com).
 
-## Features
+## What's inside
 
-The developer portfolio project includes the following features:
+- **Home (`/`)**: a one-page scroll with an interactive canvas hero, experience timeline, projects, skills and a contact form.
+- **Library (`/library`)**: books, movies and quotes I keep coming back to, with search and sorting.
+- **Games (`/games`)**: a live Game of Life you can draw on, plus Minesweeper and Snake, all built from scratch.
 
-- **Home**: An introduction to who I am and a summary of my skills and experience.
-- **Experience**: Details about my work experience and past projects.
-- **Skills**: A list of my technical skills and proficiency levels.
-- **Games**: A collection of games I have developed.
-- **Gallery**: Subsections for books, movies, and quotes that I find interesting and want to share.
-- **Contact**: A page that allows visitors to get in touch with me via a contact form or links to my social media profiles.
+## Stack
 
-## Technologies
+- [Next.js 13](https://nextjs.org) (Pages Router) and React 18, written in TypeScript
+- Plain CSS: design tokens and shared classes in `src/styles/globals.css`, component styles in CSS Modules
+- [zod](https://zod.dev) for validating the contact form, [nodemailer](https://nodemailer.com) to deliver it through Gmail
+- [Vitest](https://vitest.dev) for unit tests of everything in `src/lib`
+- Deployed on [Vercel](https://vercel.com)
 
-Developed using the [T3 Stack](https://create.t3.gg/)
+## Project layout
 
-The portfolio website is built using the following technologies:
-
-- **Next.js**: The best fullstack web framework in the market.
-- **Typescript**: Ensure typesafe and clean code.
-- **Tailwind CSS**: CSS made easy.
-- **TRPC**: Provide end-to-end typesafe APIs from back to front.
-- **Planetscale**: Simple and scalable SQL Database
-- **Prisma**: ORM with a great developer experience.
-- **Vercel**: Used to deploy the application and provide analytics.
+```
+src/
+  pages/        routes: /, /library, /games, /games/minesweeper, /games/snake, /api/contact
+  components/   layout (nav, footer, theme), home, library and games components
+  content/      site details, experience, projects and skills as typed data
+  lib/          pure logic (contact validation, library search, game engines, dates, palettes)
+  styles/       global design tokens and shared classes
+data/           books, movies and quotes (read at build time)
+docs/design/    the design handoff the UI is built from
+```
 
 ## Setup
 
-Clone the repository to your local machine.
-
-Run the development server:
+Requirements: Node.js 20+ and npm.
 
 ```bash
-npm run dev
-# or
-yarn dev
+npm ci
+cp .env.example .env.local   # Gmail account + app password for the contact form
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Without the Gmail variables, the contact form still works in development: messages are logged to the terminal instead of being sent.
 
-For an optimized production build:
+Other scripts:
 
 ```bash
-npm run build
-# or
-yarn build
+npm test         # unit tests
+npm run lint
+npm run build    # production build (needs the Gmail variables, or SKIP_ENV_VALIDATION=1)
 ```
+
+## Adding content
+
+- **Jobs:** edit `src/content/experience.ts` (dates are `YYYY-MM`; `end: null` marks the current job).
+- **Projects:** edit `src/content/projects.ts`. A project only appears once it has a `url`, a `description` and a `screenshot` (put screenshots in `public/`).
+- **Library:** edit the JSON files in `data/`.

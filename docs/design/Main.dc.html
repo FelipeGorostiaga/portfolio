@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Felipe Gorostiaga — Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+a{color:inherit}a:hover{color:inherit}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+.pf{--bg:#060807;--surface:rgba(255,255,255,0.035);--surface-2:rgba(255,255,255,0.07);--line:rgba(255,255,255,0.09);--line-2:rgba(255,255,255,0.16);--text:#F2F5F3;--muted:#A3ADA7;--faint:#7E8983;--a1:#4ADE80;--a2:#D9F99D;--a3:#22C55E;--btn-text:#04130A;--glow-o:0.5;--blob-o:0.5;--shadow:0 30px 80px -30px rgba(0,0,0,0.8);color-scheme:dark;background:var(--bg);color:var(--text);font-family:'Geist',system-ui,sans-serif;transition:background-color .5s ease,color .5s ease;-webkit-font-smoothing:antialiased}
+.pf.light{--bg:#F6F7F6;--surface:rgba(255,255,255,0.62);--surface-2:rgba(255,255,255,0.92);--line:rgba(15,23,42,0.09);--line-2:rgba(15,23,42,0.17);--text:#0A0D0B;--muted:#3F4842;--faint:#5D6660;--a1:#15803D;--a2:#4D7C0F;--a3:#166534;--btn-text:#FFFFFF;--glow-o:0.22;--blob-o:0.3;--shadow:0 30px 70px -35px rgba(16,24,20,0.28);color-scheme:light}
+.pf ::selection{background:color-mix(in srgb,var(--a1) 35%,transparent)}
+.pf a:focus-visible,.pf button:focus-visible,.pf input:focus-visible,.pf textarea:focus-visible{outline:2px solid var(--a1);outline-offset:3px}
+.mono{font-family:'Geist Mono',ui-monospace,monospace}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+
+.cursor-glow{position:fixed;left:0;top:0;width:680px;height:680px;margin:-340px 0 0 -340px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--a1) 50%,transparent) 0%,color-mix(in srgb,var(--a2) 22%,transparent) 32%,transparent 66%);opacity:var(--glow-o);transform:translate3d(var(--mx,-2000px),var(--my,-2000px),0);transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .5s;pointer-events:none;z-index:1}
+
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--blob-o);will-change:transform}
+.b1{width:640px;height:640px;left:-160px;top:-140px;background:radial-gradient(circle at 30% 30%,var(--a1),transparent 62%);animation:drift1 18s ease-in-out infinite alternate}
+.b2{width:580px;height:580px;right:-140px;top:60px;background:radial-gradient(circle at 60% 40%,var(--a2),transparent 62%);animation:drift2 22s ease-in-out infinite alternate}
+.b3{width:540px;height:540px;left:36%;bottom:-300px;background:radial-gradient(circle,var(--a3),transparent 60%);animation:drift3 26s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(200px,140px) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-180px,150px) scale(0.9)}}
+@keyframes drift3{to{transform:translate(-140px,-160px) scale(1.2)}}
+.field{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:1}
+.hero-fade{position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(to bottom,transparent,var(--bg));z-index:1;pointer-events:none}
+
+.nav{background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);box-shadow:var(--shadow);transition:background-color .5s,border-color .5s}
+.logo-mark{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;color:var(--btn-text);background:linear-gradient(135deg,var(--a1),var(--a2))}
+.nlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;text-decoration:none;color:var(--muted);font-size:14px;transition:color .2s,background-color .2s}
+.nlink:hover{color:var(--text);background:var(--surface-2)}
+.nsep{width:1px;height:20px;background:var(--line-2);margin:0 6px}
+.theme-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);display:grid;place-items:center;cursor:pointer;margin-left:4px;padding:0;transition:transform .5s cubic-bezier(.16,1,.3,1),background-color .3s}
+.theme-btn:hover{transform:rotate(25deg)}
+.theme-btn svg{animation:pop .55s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{from{transform:rotate(-120deg) scale(.3);opacity:0}}
+
+.chip{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 12px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--muted);width:fit-content}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--a3);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--a3) 60%,transparent)}70%,100%{box-shadow:0 0 0 10px transparent}}
+.line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.enter-up{display:inline-block;animation:up 1.1s cubic-bezier(.16,1,.3,1) both}
+.enter{animation:fadeup 1s cubic-bezier(.16,1,.3,1) both}
+@keyframes up{from{transform:translateY(110%)}to{transform:none}}
+@keyframes fadeup{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.grad{background-image:linear-gradient(100deg,var(--a1),var(--a2),var(--a3),var(--a1));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:up 1.1s cubic-bezier(.16,1,.3,1) both,slide 9s linear infinite}
+@keyframes slide{to{background-position:200% 0}}
+.roles{display:inline-grid;vertical-align:bottom;overflow:hidden;padding:0.06em 0}
+.role-word{grid-area:1 / 1;white-space:nowrap;opacity:0;animation:word 12.5s cubic-bezier(.16,1,.3,1) infinite both}
+.role-word:first-child{opacity:1}
+@keyframes word{0%{opacity:0;transform:translateY(60%);filter:blur(10px)}4%,17%{opacity:1;transform:none;filter:blur(0)}21%,100%{opacity:0;transform:translateY(-60%);filter:blur(10px)}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-family:inherit;font-size:15px;font-weight:500;text-decoration:none;cursor:pointer;border:0;box-sizing:border-box;transition:translate .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .3s,background-color .3s}
+.btn-primary{color:var(--btn-text);background-image:linear-gradient(110deg,var(--a1),var(--a2),var(--a1));background-size:200% 100%;box-shadow:0 12px 40px -12px color-mix(in srgb,var(--a1) 75%,transparent);animation:slide 6s linear infinite}
+.btn-primary:hover{translate:0 -2px;color:var(--btn-text);box-shadow:0 20px 50px -12px color-mix(in srgb,var(--a2) 85%,transparent)}
+.btn-ghost{color:var(--text);background:var(--surface);border:1px solid var(--line-2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.btn-ghost:hover{translate:0 -2px;color:var(--text);border-color:var(--a1)}
+
+.ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--a1),var(--a2),var(--a3),var(--a1));animation:spin 9s linear infinite}
+.ring.soft{filter:blur(30px);opacity:.65}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mouse{width:24px;height:38px;border:1.5px solid var(--line-2);border-radius:14px;display:flex;justify-content:center;padding-top:7px;box-sizing:border-box}
+.wheel{width:3px;height:7px;border-radius:2px;background:var(--a1);animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+.hero-meta{position:absolute;bottom:36px;z-index:3;font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--faint);display:flex;align-items:center;gap:10px}
+.kbd{padding:3px 7px;border-radius:6px;border:1px solid var(--line-2);background:var(--surface)}
+
+.eyebrow{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.eyebrow b{font-weight:500;color:var(--a1)}
+@supports (animation-timeline: view()){
+.reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+}
+@keyframes reveal{from{opacity:0;transform:translateY(48px) scale(.98)}to{opacity:1;transform:none}}
+
+.spot{position:relative;isolation:isolate;background:var(--surface);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);transition:translate .45s cubic-bezier(.16,1,.3,1),border-color .3s,background-color .4s,box-shadow .45s}
+.spot::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(380px circle at var(--x,50%) var(--y,0%),var(--a1),var(--a2) 35%,transparent 65%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(520px circle at var(--x,50%) var(--y,0%),color-mix(in srgb,var(--a1) 13%,transparent),transparent 45%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
+.spot:hover{translate:0 -6px;border-color:color-mix(in srgb,var(--a1) 30%,transparent);background-color:var(--surface-2);box-shadow:0 0 0 1px color-mix(in srgb,var(--a1) 14%,transparent),0 28px 70px -28px color-mix(in srgb,var(--a1) 38%,transparent)}
+.spot.still:hover{translate:none}
+.spot:hover::before,.spot:hover::after{opacity:1}
+
+.tl-line{position:absolute;left:11px;top:12px;bottom:12px;width:2px;border-radius:2px;background:linear-gradient(var(--line-2),var(--line));overflow:hidden}
+.tl-line::after{content:"";position:absolute;left:0;top:-180px;width:2px;height:180px;background:linear-gradient(transparent,var(--a1),var(--a2),transparent);animation:travel 4.5s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes travel{to{top:100%}}
+.tl-dot{position:absolute;left:-40px;top:38px;width:24px;height:24px;box-sizing:border-box;border-radius:50%;background:var(--bg);border:1px solid var(--line-2);display:grid;place-items:center}
+.tl-dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--faint)}
+.tl-dot.live::after{background:var(--a1)}
+.tl-dot.live::before{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--a1);animation:ping 2.2s cubic-bezier(0,0,.2,1) infinite}
+@keyframes ping{75%,100%{transform:scale(2.1);opacity:0}}
+.mark{width:64px;height:64px;flex:0 0 64px;border-radius:18px;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:18px;font-weight:500;color:var(--text);border:1px solid var(--line-2);background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 24%,transparent),color-mix(in srgb,var(--a2) 18%,transparent))}
+.bul li{position:relative;padding-left:22px}
+.bul li::before{content:"";position:absolute;left:2px;top:.72em;width:9px;height:1.5px;background:var(--a1)}
+.tag{font-family:'Geist Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--line-2);color:var(--muted);background:var(--surface)}
+.now{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;color:var(--a1);background:color-mix(in srgb,var(--a1) 12%,transparent)}
+
+.sym{font-size:66px;font-weight:600;letter-spacing:-0.05em;line-height:1;margin-top:6px;background-image:linear-gradient(135deg,var(--text),var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent;transition:filter .35s}
+.el:hover .sym{background-image:linear-gradient(135deg,var(--a1),var(--a2),var(--a3));filter:drop-shadow(0 6px 24px color-mix(in srgb,var(--a1) 45%,transparent))}
+
+.portal{text-decoration:none;color:var(--text);overflow:hidden}
+.portal:hover{color:var(--text)}
+.go{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;color:var(--a1)}
+.spine{display:flex;align-items:center;box-sizing:border-box;width:36px;padding:12px 0;color:#FFFFFF;font-size:15px;writing-mode:vertical-rl;white-space:nowrap;overflow:hidden;border-radius:5px;box-shadow:inset -3px 0 0 rgba(0,0,0,.2),0 14px 28px -12px rgba(0,0,0,.55)}
+.board{background-color:var(--surface);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:20px 20px;border:1px solid var(--line-2);overflow:hidden}
+.glider{position:absolute;left:0;top:0;width:60px;height:60px;animation:glide 7s steps(14) infinite}
+.glider i{position:absolute;width:18px;height:18px;border-radius:4px;background:linear-gradient(135deg,var(--a3),var(--a1));box-shadow:0 0 14px color-mix(in srgb,var(--a3) 60%,transparent)}
+@keyframes glide{from{transform:translate(-60px,-60px)}to{transform:translate(220px,220px)}}
+
+.in{width:100%;box-sizing:border-box;min-height:50px;padding:13px 16px;border-radius:14px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font-family:inherit;font-size:15px;outline:none;transition:border-color .2s,box-shadow .2s}
+.in::placeholder{color:var(--faint)}
+.in:focus{border-color:var(--a1);box-shadow:0 0 0 4px color-mix(in srgb,var(--a1) 22%,transparent)}
+.lbl{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.touch{background-image:linear-gradient(100deg,var(--a1),var(--a2),var(--a3),var(--a1));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slide 9s linear infinite}
+.row-link{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);transition:padding .35s cubic-bezier(.16,1,.3,1),color .2s}
+.row-link:hover{padding-left:10px;color:var(--a1)}
+
+.flink{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--muted);font-size:14px}
+.flink:hover{color:var(--text)}
+.shot{position:relative;display:block;border-radius:18px;overflow:hidden;border:1px solid var(--line-2);background:var(--bg);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);transition:transform .7s cubic-bezier(.16,1,.3,1),box-shadow .7s}
+.proj:hover .shot{transform:perspective(1400px) rotateX(2deg) rotateY(-3deg) scale(1.01);box-shadow:0 40px 90px -30px color-mix(in srgb,var(--a1) 40%,transparent)}
+.proj.flip:hover .shot{transform:perspective(1400px) rotateX(2deg) rotateY(3deg) scale(1.01)}
+.chrome{display:flex;align-items:center;gap:14px;height:40px;padding:0 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.dots{display:flex;gap:6px;width:42px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
+.urlbar{flex:1 1 auto;max-width:340px;margin:0 auto;height:24px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11.5px;color:var(--faint);background:var(--surface)}
+.viewport{position:relative;display:block;aspect-ratio:16 / 10;overflow:hidden}
+.sk{position:absolute;inset:0;box-sizing:border-box;padding:22px 26px;display:flex;flex-direction:column;gap:20px;background:linear-gradient(180deg,color-mix(in srgb,var(--a1) 7%,transparent),transparent 60%)}
+.sk::after{content:"";position:absolute;inset:0;background-image:linear-gradient(100deg,transparent 35%,color-mix(in srgb,var(--text) 7%,transparent) 50%,transparent 65%);background-size:250% 100%;animation:shimmer 2.6s linear infinite}
+@keyframes shimmer{from{background-position:150% 0}to{background-position:-100% 0}}
+.sk .b{display:block;border-radius:8px;background:var(--surface-2)}
+.sk .sk-nav{display:flex;align-items:center;gap:10px}
+.sk .sk-logo{width:28px;height:28px;background:var(--a1);opacity:.85}
+.sk .sk-grow{flex:1 1 auto}
+.sk .sk-pill{width:54px;height:10px}
+.sk .sk-hero{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.sk .sk-split{display:flex;gap:24px;align-items:center;flex:1 1 auto}
+.sk .sk-col{display:flex;flex-direction:column;gap:12px;flex:1 1 0}
+.sk .sk-line{height:22px}
+.sk .w80{width:80%}.sk .w70{width:70%}.sk .w50{width:50%}
+.sk .sk-sub{width:38%;height:11px}
+.sk .sk-btn{width:120px;height:34px;border-radius:999px;background:var(--a1);opacity:.85;margin-top:6px}
+.sk .sk-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:auto}
+.sk .sk-card{height:86px;border-radius:12px}
+.sk .sk-item{height:44px;border-radius:12px}
+.sk .sk-item.on{background:color-mix(in srgb,var(--a1) 22%,transparent)}
+.shot-label{position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:2;padding:8px 14px;border-radius:999px;font-size:12px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line-2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap}
+@media (max-width:720px){.hero-meta{display:none}}
+@media (prefers-reduced-motion:reduce){.pf *,.pf *::before,.pf *::after{animation:none !important;transition:none !important}html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div class="{{ rootClass }}" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" style="position: relative; min-height: 100%; overflow-x: clip">
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<header class="nav" style="position: sticky; top: 16px; z-index: 50; box-sizing: border-box; width: calc(100% - 32px); max-width: 1180px; margin: 16px auto 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 6px 6px 6px 8px; border-radius: 30px">
+<a href="#top" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 8px; text-decoration: none; color: var(--text)">
+<span class="logo-mark" aria-hidden="true">FG</span>
+<span style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em">Felipe Gorostiaga</span>
+</a>
+<nav aria-label="Primary" style="display: flex; align-items: center; flex-wrap: wrap; gap: 2px">
+<a class="nlink" href="#experience">Experience</a>
+<a class="nlink" href="#projects">Projects</a>
+<a class="nlink" href="#skills">Skills</a>
+<a class="nlink" href="#contact">Contact</a>
+<span class="nsep" aria-hidden="true"></span>
+<a class="nlink" href="Library.dc.html">Library <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+<a class="nlink" href="Games.dc.html">Games <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+<button type="button" class="theme-btn" aria-label="{{ themeLabel }}" onClick="{{ toggleTheme }}">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></sc-if>
+</button>
+</nav>
+</header>
+
+<section id="top" onMouseDown="{{ onHeroDown }}" style="position: relative; z-index: 2; min-height: 900px; margin-top: -74px; padding: 150px 24px 120px; box-sizing: border-box; display: flex; align-items: center; overflow: hidden; cursor: crosshair">
+<div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<canvas class="field" data-field="1" ref="{{ canvasRef }}" aria-hidden="true"></canvas>
+<div class="hero-fade" aria-hidden="true"></div>
+<div style="position: relative; z-index: 2; width: 100%; max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 64px">
+<div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<span class="chip enter" style="animation-delay: 80ms"><span class="pulse" aria-hidden="true"></span>Software Engineer &amp; Fullstack Developer</span>
+<h1 style="margin: 0; font-size: clamp(56px, 9.2vw, 132px); line-height: 0.9; font-weight: 700; letter-spacing: -0.05em">
+<span class="line"><span class="enter-up" style="animation-delay: 150ms">Felipe</span></span>
+<span class="line"><span class="grad" style="display: inline-block; animation-delay: 260ms">Gorostiaga</span></span>
+</h1>
+<p class="enter" style="margin: 0; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.15; font-weight: 600; letter-spacing: -0.035em; color: var(--a1); animation-delay: 420ms"><span class="sr-only">Builder, engineer, creator, problem solver, lifelong learner.</span><span class="roles" aria-hidden="true"><span class="role-word">Builder.</span><span class="role-word" style="animation-delay: 2.5s">Engineer.</span><span class="role-word" style="animation-delay: 5s">Creator.</span><span class="role-word" style="animation-delay: 7.5s">Problem solver.</span><span class="role-word" style="animation-delay: 10s">Lifelong learner.</span></span></p>
+<p class="enter" style="margin: 0; max-width: 560px; font-size: 17px; line-height: 1.65; color: var(--muted); animation-delay: 520ms">An engineer driven by curiosity. I make products that are useful to people and help them reach their full potential — for me, creating is where learning and lasting impact meet.</p>
+<div class="enter" style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; animation-delay: 620ms">
+<a class="btn btn-primary" href="#contact">Let's talk <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+<a class="btn btn-ghost" href="#experience">See my work</a>
+</div>
+</div>
+<div class="enter" style="position: relative; flex: 0 0 auto; width: 340px; height: 340px; margin: 0 auto; animation-delay: 380ms">
+<div class="ring soft" aria-hidden="true"></div>
+<div class="ring" aria-hidden="true"></div>
+<div style="position: absolute; inset: 4px; border-radius: 50%; background: var(--bg)"></div>
+<div style="position: absolute; inset: 11px; border-radius: 50%; overflow: hidden">
+<img src="/_blob/c5f2ab3e74b2084cf68420447161a6bc" alt="Portrait of Felipe Gorostiaga" style="display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08)">
+</div>
+</div>
+</div>
+<div class="hero-meta" style="left: 32px"><span class="kbd">move</span>bend the field<span class="kbd">click</span>send a shockwave</div>
+<div class="hero-meta" style="right: 32px">canvas 2D · spring physics</div>
+<a href="#experience" aria-label="Scroll to experience" style="position: absolute; left: 50%; bottom: 30px; translate: -50% 0; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: var(--faint)">
+<span class="mouse" aria-hidden="true"><span class="wheel"></span></span>
+<span class="mono" style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase">Scroll</span>
+</a>
+</section>
+
+<section id="experience" style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 120px 24px 100px">
+<div class="reveal" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 56px">
+<span class="eyebrow">Experience</span>
+<h2 style="margin: 0; font-size: clamp(40px, 5.4vw, 68px); line-height: 1; font-weight: 600; letter-spacing: -0.04em">Where I've been <span class="serif" style="font-style: italic; letter-spacing: -0.01em">building</span></h2>
+</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 28px; padding-left: 40px">
+<div class="tl-line" aria-hidden="true"></div>
+
+<article class="reveal" style="position: relative">
+<span class="tl-dot live" aria-hidden="true"></span>
+<div class="spot" style="border-radius: 24px; padding: 32px; display: flex; flex-wrap: wrap; gap: 24px 28px">
+<div class="mark" aria-hidden="true">hu</div>
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px">
+<h3 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.02em">React Software Engineer</h3>
+<span style="display: inline-flex; align-items: center; gap: 10px"><span class="mono" style="font-size: 13px; color: var(--faint)">Feb 2024 — Now</span><span class="now">Current</span></span>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted)"><strong style="font-weight: 500; color: var(--text)">Humand</strong> · Front-end engineer on the Humand platform</p>
+<ul class="bul" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.55; color: var(--muted)">
+<li>Build responsive, accessible components with React and Material UI.</li>
+<li>Review pull requests and give feedback that keeps the codebase healthy.</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px"><span class="tag">React</span><span class="tag">Material UI</span></div>
+</div>
+</div>
+</article>
+
+<article class="reveal" style="position: relative">
+<span class="tl-dot live" aria-hidden="true"></span>
+<div class="spot" style="border-radius: 24px; padding: 32px; display: flex; flex-wrap: wrap; gap: 24px 28px">
+<div class="mark" aria-hidden="true">sc</div>
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px">
+<h3 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Prompt Engineer</h3>
+<span style="display: inline-flex; align-items: center; gap: 10px"><span class="mono" style="font-size: 13px; color: var(--faint)">Jun 2023 — Now</span><span class="now">Current</span></span>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted)"><strong style="font-weight: 500; color: var(--text)">Scale AI</strong> · Freelance reviewer and task writer</p>
+<ul class="bul" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.55; color: var(--muted)">
+<li>Review LLM responses to computer-science and STEM prompts.</li>
+<li>Rewrite responses so they meet the highest quality bar.</li>
+<li>Pinpoint the weak spots in prompt–response pairs and how to fix them.</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px"><span class="tag">AI</span><span class="tag">Computer Science</span></div>
+</div>
+</div>
+</article>
+
+<article class="reveal" style="position: relative">
+<span class="tl-dot" aria-hidden="true"></span>
+<div class="spot" style="border-radius: 24px; padding: 32px; display: flex; flex-wrap: wrap; gap: 24px 28px">
+<div class="mark" aria-hidden="true">bg</div>
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px">
+<h3 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Senior Fullstack Developer</h3>
+<span class="mono" style="font-size: 13px; color: var(--faint)">[Start] — [End]</span>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted)"><strong style="font-weight: 500; color: var(--text)">Banco Galicia</strong> · Transactional team, B2B web application</p>
+<ul class="bul" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.55; color: var(--muted)">
+<li>[Key achievement or responsibility]</li>
+</ul>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px"><span class="tag">[Stack]</span></div>
+</div>
+</div>
+</article>
+</div>
+</section>
+
+<section id="projects" style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 100px 24px">
+<div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 40px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="eyebrow">Projects</span>
+<h2 style="margin: 0; font-size: clamp(40px, 5.4vw, 68px); line-height: 1; font-weight: 600; letter-spacing: -0.04em">Things I've <span class="serif" style="font-style: italic; letter-spacing: -0.01em">shipped</span></h2>
+</div>
+<p style="margin: 0; max-width: 380px; font-size: 16px; line-height: 1.6; color: var(--muted)">Side projects I've designed and built — live and open to explore.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px">
+
+<article class="spot proj reveal" style="border-radius: 28px; padding: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px 40px">
+<div class="shot" style="flex: 1 1 580px; min-width: 0">
+<div class="chrome" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="urlbar mono">[greenboom.com]</span><span style="width: 42px"></span></div>
+<div class="viewport">
+<div class="sk" aria-hidden="true">
+<div class="sk-nav"><span class="b sk-logo"></span><span class="sk-grow"></span><span class="b sk-pill"></span><span class="b sk-pill"></span><span class="b sk-pill"></span></div>
+<div class="sk-hero"><span class="b sk-line w70"></span><span class="b sk-line w50"></span><span class="b sk-sub"></span><span class="b sk-btn"></span></div>
+<div class="sk-row"><span class="b sk-card"></span><span class="b sk-card"></span><span class="b sk-card"></span></div>
+</div>
+<span class="shot-label mono">[Screenshot of Greenboom]</span>
+</div>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; padding: 10px 18px 10px 0; display: flex; flex-direction: column; gap: 16px">
+<span class="mono" style="font-size: 12.5px; letter-spacing: 0.04em; color: var(--faint)">[greenboom.com] · [Year]</span>
+<h3 style="margin: 0; font-size: 46px; line-height: 1; font-weight: 600; letter-spacing: -0.045em">Greenboom</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted)">[A short explanation of Greenboom: what it does, who it's for and what you built.]</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="tag">[Stack]</span><span class="tag">[Stack]</span></div>
+<a class="btn btn-primary" href="#" style="width: fit-content; margin-top: 6px">Visit Greenboom <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</article>
+
+<article class="spot proj flip reveal" style="border-radius: 28px; padding: 18px; display: flex; flex-direction: row-reverse; flex-wrap: wrap; align-items: center; gap: 28px 40px">
+<div class="shot" style="flex: 1 1 580px; min-width: 0">
+<div class="chrome" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="urlbar mono">[splitsea.com]</span><span style="width: 42px"></span></div>
+<div class="viewport">
+<div class="sk" aria-hidden="true">
+<div class="sk-nav"><span class="b sk-logo"></span><span class="sk-grow"></span><span class="b sk-pill"></span><span class="b sk-pill"></span></div>
+<div class="sk-split">
+<div class="sk-col"><span class="b sk-line w80"></span><span class="b sk-line w50"></span><span class="b sk-sub"></span><span class="b sk-btn"></span></div>
+<div class="sk-col"><span class="b sk-item on"></span><span class="b sk-item"></span><span class="b sk-item"></span><span class="b sk-item"></span></div>
+</div>
+</div>
+<span class="shot-label mono">[Screenshot of Splitsea]</span>
+</div>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; padding: 10px 0 10px 18px; display: flex; flex-direction: column; gap: 16px">
+<span class="mono" style="font-size: 12.5px; letter-spacing: 0.04em; color: var(--faint)">[splitsea.com] · [Year]</span>
+<h3 style="margin: 0; font-size: 46px; line-height: 1; font-weight: 600; letter-spacing: -0.045em">Splitsea</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--muted)">[A short explanation of Splitsea: what it does, who it's for and what you built.]</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="tag">[Stack]</span><span class="tag">[Stack]</span></div>
+<a class="btn btn-primary" href="#" style="width: fit-content; margin-top: 6px">Visit Splitsea <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</article>
+
+</div>
+</section>
+
+<section id="skills" style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 100px 24px">
+<div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 40px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span class="eyebrow">Skills</span>
+<h2 style="margin: 0; font-size: clamp(40px, 5.4vw, 68px); line-height: 1; font-weight: 600; letter-spacing: -0.04em">My weapons <span class="serif" style="font-style: italic; letter-spacing: -0.01em">of choice</span></h2>
+</div>
+<p style="margin: 0; max-width: 380px; font-size: 16px; line-height: 1.6; color: var(--muted)">The periodic table I build with — from the first component to the last API route.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px">
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>01</span><span>Frontend</span></div>
+<div class="sym" aria-hidden="true">Re</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">React</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">Declarative UIs built from small, composable components.</p>
+</article>
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>02</span><span>Framework</span></div>
+<div class="sym" aria-hidden="true">Nx</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">Next.js</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">Full-stack React with nested routing, middleware and multiple rendering strategies.</p>
+</article>
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>03</span><span>Language</span></div>
+<div class="sym" aria-hidden="true">Ts</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">TypeScript</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">JavaScript with types: better tooling and fewer surprises in production.</p>
+</article>
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>04</span><span>Runtime</span></div>
+<div class="sym" aria-hidden="true">No</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">Node.js</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">Event-driven, non-blocking I/O for real-time and streaming apps.</p>
+</article>
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>05</span><span>Backend</span></div>
+<div class="sym" aria-hidden="true">Ns</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">NestJS</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">Modular, scalable server-side apps on top of Express or Fastify.</p>
+</article>
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>06</span><span>Styling</span></div>
+<div class="sym" aria-hidden="true">Tw</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">Tailwind CSS</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">Utility-first styling on a consistent, fully customizable system.</p>
+</article>
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>07</span><span>UI kit</span></div>
+<div class="sym" aria-hidden="true">Mu</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">Material UI</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">Accessible React components, themed to fit the product.</p>
+</article>
+<article class="spot el reveal" style="border-radius: 22px; padding: 22px; min-height: 236px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div class="mono" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--faint)"><span>08</span><span>AI</span></div>
+<div class="sym" aria-hidden="true">Ai</div>
+<h3 style="margin: 4px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em">LLM evaluation</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted)">Reviewing and rewriting model output for CS and STEM.</p>
+</article>
+</div>
+</section>
+
+<section id="elsewhere" style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 100px 24px">
+<div class="reveal" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px">
+<span class="eyebrow">Off the clock</span>
+<h2 style="margin: 0; font-size: clamp(40px, 5.4vw, 68px); line-height: 1; font-weight: 600; letter-spacing: -0.04em">Things I do outside <span class="serif" style="font-style: italic; letter-spacing: -0.01em">work</span></h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<a href="Library.dc.html" class="spot portal reveal" style="flex: 1 1 460px; min-width: 0; min-height: 380px; box-sizing: border-box; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px">
+<div aria-hidden="true" style="position: absolute; right: 40px; top: 36px; height: 176px; display: flex; align-items: flex-end; gap: 7px">
+<span class="spine serif" style="--r: -14deg; height: 150px; background: linear-gradient(180deg, #166534, #052E16)">Zarathustra</span>
+<span class="spine serif" style="--r: -7deg; height: 172px; background: linear-gradient(180deg, #27272A, #09090B)">Beyond Good &amp; Evil</span>
+<span class="spine serif" style="--r: 0deg; height: 138px; background: linear-gradient(180deg, #15803D, #14532D)">Sapiens</span>
+<span class="spine serif" style="--r: 7deg; height: 160px; background: linear-gradient(180deg, #3F3F46, #18181B)">Ecce Homo</span>
+<span class="spine serif" style="--r: 14deg; height: 166px; background: linear-gradient(180deg, #065F46, #022C22)">When Nietzsche Wept</span>
+</div>
+<span class="eyebrow">/library</span>
+<h3 style="margin: 0; font-size: 40px; font-weight: 600; letter-spacing: -0.035em">Library</h3>
+<p style="margin: 0; max-width: 400px; font-size: 16px; line-height: 1.6; color: var(--muted)">Books, movies and the quotes I keep coming back to — rated, sorted and searchable.</p>
+<span class="go">Open the library <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+</a>
+<a href="Games.dc.html" class="spot portal reveal" style="flex: 1 1 460px; min-width: 0; min-height: 380px; box-sizing: border-box; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px">
+<div class="board" aria-hidden="true" style="position: absolute; right: 36px; top: 36px; width: 200px; height: 180px; border-radius: 16px">
+<div class="glider"><i style="left: 21px; top: 1px"></i><i style="left: 41px; top: 21px"></i><i style="left: 1px; top: 41px"></i><i style="left: 21px; top: 41px"></i><i style="left: 41px; top: 41px"></i></div>
+<div class="glider" style="animation-delay: -3.5s"><i style="left: 21px; top: 1px"></i><i style="left: 41px; top: 21px"></i><i style="left: 1px; top: 41px"></i><i style="left: 21px; top: 41px"></i><i style="left: 41px; top: 41px"></i></div>
+</div>
+<span class="eyebrow">/games</span>
+<h3 style="margin: 0; font-size: 40px; font-weight: 600; letter-spacing: -0.035em">Games</h3>
+<p style="margin: 0; max-width: 400px; font-size: 16px; line-height: 1.6; color: var(--muted)">Game of Life, Minesweeper and Snake — built from scratch and playable in the browser.</p>
+<span class="go">Play something <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></span>
+</a>
+</div>
+</section>
+
+<section id="contact" style="position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 100px 24px 120px">
+<div style="display: flex; flex-wrap: wrap; gap: 56px">
+<div class="reveal" style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<span class="eyebrow">Contact</span>
+<h2 style="margin: 0; font-size: clamp(44px, 6vw, 80px); line-height: 0.95; font-weight: 600; letter-spacing: -0.045em">Let's get in <span class="touch">touch.</span></h2>
+<p style="margin: 0; max-width: 420px; font-size: 17px; line-height: 1.6; color: var(--muted)">Looking for a developer — or just want to talk about the meaning of life? Send me a message.</p>
+<div style="display: flex; flex-direction: column; margin-top: 12px; border-top: 1px solid var(--line)">
+<a class="row-link" href="mailto:fgorostiagabraun@gmail.com"><span style="display: flex; flex-direction: column; gap: 2px"><span class="lbl">Email</span><span style="font-size: 16px">fgorostiagabraun@gmail.com</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+<a class="row-link" href="#"><span style="display: flex; flex-direction: column; gap: 2px"><span class="lbl">LinkedIn</span><span style="font-size: 16px">[linkedin.com/in/your-handle]</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+<a class="row-link" href="#"><span style="display: flex; flex-direction: column; gap: 2px"><span class="lbl">GitHub</span><span style="font-size: 16px">[github.com/your-handle]</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</div>
+<form class="spot still reveal" onSubmit="{{ onSubmit }}" style="flex: 1 1 520px; min-width: 0; box-sizing: border-box; border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px">
+<label style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">Name</span><input class="in" type="text" name="first" placeholder="First name" autocomplete="given-name"></label>
+<label style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">Last name</span><input class="in" type="text" name="last" placeholder="Last name" autocomplete="family-name"></label>
+<label style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">Email</span><input class="in" type="email" name="email" placeholder="you@company.com" autocomplete="email"></label>
+<label style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">Phone <span style="text-transform: none; letter-spacing: 0; color: var(--faint)">(optional)</span></span><input class="in" type="tel" name="phone" placeholder="+54 …" autocomplete="tel"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px">
+<span style="display: flex; justify-content: space-between; align-items: baseline"><span class="lbl">Message</span><span class="mono" style="font-size: 12px; color: var(--faint)">{{ msgCount }}</span></span>
+<textarea class="in" name="message" rows="5" maxlength="300" placeholder="What's on your mind?" onInput="{{ onMsg }}" style="resize: vertical; min-height: 140px; line-height: 1.55"></textarea>
+</label>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-top: 4px">
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}"><span role="status" style="font-size: 14px; color: var(--a1)">Thanks — I'll get back to you soon.</span></sc-if>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}"><span class="mono" style="font-size: 12px; color: var(--faint)">I read every message.</span></sc-if>
+<button type="submit" class="btn btn-primary">Send message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+</div>
+</form>
+</div>
+</section>
+
+<footer style="position: relative; z-index: 2; border-top: 1px solid var(--line); padding: 48px 24px 32px; overflow: hidden">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px">
+<span class="mono" style="font-size: 13px; color: var(--faint)">© 2026 Felipe Gorostiaga</span>
+<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 4px 24px">
+<a class="flink" href="#">LinkedIn</a>
+<a class="flink" href="#">GitHub</a>
+<a class="flink" href="mailto:fgorostiagabraun@gmail.com">Email</a>
+<a class="flink" href="#top">Back to top ↑</a>
+</nav>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Look"},"fieldIntensity":{"editor":"range","min":0,"max":2,"step":0.1,"default":1,"section":"Hero field"},"fieldSpacing":{"editor":"int","min":18,"max":48,"step":2,"unit":"px","default":30,"section":"Hero field"},"$preview":{"width":1440,"height":6240}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._t0 = performance.now();
+    this._ptr = { x: -1, y: -1, tx: 0, ty: 0, last: -1e9, inside: false };
+    this._ripples = [];
+    this._reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this._tries = 0;
+    this._boot();
+  }
+
+  componentWillUnmount() {
+    this._dead = true;
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._ro) this._ro.disconnect();
+  }
+
+  _boot() {
+    if (this._dead) return;
+    if (!this._canvas) this._canvas = document.querySelector('canvas[data-field]');
+    var c = this._canvas;
+    if (!c || !c.getContext) {
+      this._tries += 1;
+      if (this._tries < 120) this._raf = requestAnimationFrame(() => this._boot());
+      return;
+    }
+    this._ctx = c.getContext('2d');
+    this._resize();
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(() => this._resize());
+      this._ro.observe(c);
+    }
+    var loop = (now) => {
+      if (this._dead) return;
+      if (!document.hidden) this._frame(now);
+      if (!this._reduce) this._raf = requestAnimationFrame(loop);
+    };
+    this._raf = requestAnimationFrame(loop);
+  }
+
+  _resize() {
+    var c = this._canvas, ctx = this._ctx;
+    if (!c || !ctx) return;
+    var w = c.clientWidth, h = c.clientHeight;
+    if (!w || !h) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = Math.round(w * dpr);
+    c.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this._w = w;
+    this._h = h;
+    if (this._ptr.x < 0) { this._ptr.x = w * 0.6; this._ptr.y = h * 0.45; }
+    this._build();
+    if (this._reduce) this._frame(performance.now());
+  }
+
+  _build() {
+    var g = Math.max(14, this._gap || 30), w = this._w, h = this._h;
+    var cols = Math.ceil(w / g) + 1, rows = Math.ceil(h / g) + 1, n = cols * rows;
+    var ox = (w - (cols - 1) * g) / 2, oy = (h - (rows - 1) * g) / 2;
+    this._cols = cols; this._rows = rows; this._n = n; this._builtGap = g;
+    this._rx = new Float32Array(n); this._ry = new Float32Array(n);
+    this._x = new Float32Array(n); this._y = new Float32Array(n);
+    this._vx = new Float32Array(n); this._vy = new Float32Array(n);
+    this._pr = new Float32Array(n);
+    for (var j = 0; j < rows; j++) {
+      for (var i = 0; i < cols; i++) {
+        var k = j * cols + i;
+        this._rx[k] = ox + i * g; this._x[k] = this._rx[k];
+        this._ry[k] = oy + j * g; this._y[k] = this._ry[k];
+      }
+    }
+  }
+
+  _palette(theme) {
+    var L = theme === 'light';
+    var a1 = L ? [21, 128, 61] : [74, 222, 128];
+    var a2 = L ? [77, 124, 15] : [217, 249, 157];
+    var a3 = L ? [22, 101, 52] : [34, 197, 94];
+    var lut = [];
+    for (var i = 0; i < 64; i++) {
+      var u = i / 63, tri = 1 - Math.abs(2 * u - 1);
+      var A = tri < 0.5 ? a1 : a2, B = tri < 0.5 ? a2 : a3, m = tri < 0.5 ? tri * 2 : (tri - 0.5) * 2;
+      lut.push(Math.round(A[0] + (B[0] - A[0]) * m) + ',' + Math.round(A[1] + (B[1] - A[1]) * m) + ',' + Math.round(A[2] + (B[2] - A[2]) * m));
+    }
+    return {
+      lut: lut,
+      base: L ? '60,68,63' : '150,160,154',
+      baseA: L ? 0.24 : 0.28,
+      hud: L ? '10,13,11' : '232,240,235',
+      chip: L ? '255,255,255' : '8,10,9'
+    };
+  }
+
+  _frame(now) {
+    var ctx = this._ctx;
+    if (!ctx || !this._n) return;
+    if (this._builtGap !== Math.max(14, this._gap || 30)) this._build();
+    var w = this._w, h = this._h, t = (now - this._t0) / 1000, P = this._ptr;
+    var pal = this._pal || this._palette('dark');
+    var live = P.inside && now - P.last < 2600;
+    var tx = live ? P.tx : w * (0.56 + 0.3 * Math.sin(t * 0.37));
+    var ty = live ? P.ty : h * (0.46 + 0.25 * Math.sin(t * 0.61 + 1.1));
+    var ease = live ? 0.22 : 0.035;
+    P.x += (tx - P.x) * ease;
+    P.y += (ty - P.y) * ease;
+
+    var I = this._intensity == null ? 1 : this._intensity;
+    var R = 140, inv2R2 = 1 / (2 * R * R), reach2 = 9 * R * R;
+    var K = 0.05, D = 0.87, S = 2.6 * I, SW = 1.3 * I;
+    var rip = this._ripples;
+    for (var q = rip.length - 1; q >= 0; q--) if (now - rip[q].t > 1700) rip.splice(q, 1);
+    var sweep = ((t * 260) % (w + h * 0.6 + 900)) - 450;
+
+    var n = this._n, rx = this._rx, ry = this._ry, x = this._x, y = this._y, vx = this._vx, vy = this._vy, pr = this._pr;
+    for (var i = 0; i < n; i++) {
+      var dx = rx[i] - P.x, dy = ry[i] - P.y, d2 = dx * dx + dy * dy;
+      var fx = (rx[i] - x[i]) * K, fy = (ry[i] - y[i]) * K, p = 0;
+      if (d2 < reach2) {
+        var d = Math.sqrt(d2) + 0.001, f = Math.exp(-d2 * inv2R2), ux = dx / d, uy = dy / d;
+        fx += (ux * S - uy * SW) * f;
+        fy += (uy * S + ux * SW) * f;
+        p = f;
+      }
+      for (var r = 0; r < rip.length; r++) {
+        var Q = rip[r], age = now - Q.t, rad = age * 0.8;
+        var ex = rx[i] - Q.x, ey = ry[i] - Q.y, dd = Math.sqrt(ex * ex + ey * ey) + 0.001, off = dd - rad;
+        if (off > -120 && off < 120) {
+          var b = Math.exp(-off * off / 1800) * (1 - age / 1700);
+          fx += ex / dd * b * 6 * (I || 0.4);
+          fy += ey / dd * b * 6 * (I || 0.4);
+          if (b > p) p = b;
+        }
+      }
+      vx[i] = (vx[i] + fx) * D;
+      vy[i] = (vy[i] + fy) * D;
+      x[i] += vx[i];
+      y[i] += vy[i];
+      var s = rx[i] + ry[i] * 0.6 - sweep;
+      var sw = s > -220 && s < 220 ? Math.exp(-s * s / 9800) * 0.3 : 0;
+      pr[i] = p > sw ? p : sw;
+    }
+
+    ctx.clearRect(0, 0, w, h);
+
+    var lens = ctx.createRadialGradient(P.x, P.y, 0, P.x, P.y, R * 1.7);
+    lens.addColorStop(0, 'rgba(' + pal.lut[18] + ',0.16)');
+    lens.addColorStop(1, 'rgba(' + pal.lut[18] + ',0)');
+    ctx.fillStyle = lens;
+    ctx.fillRect(P.x - R * 1.7, P.y - R * 1.7, R * 3.4, R * 3.4);
+
+    var cols = this._cols, rows = this._rows, shift = t * 0.04;
+    ctx.lineWidth = 1;
+    for (var jj = 0; jj < rows; jj++) {
+      for (var ii = 0; ii < cols; ii++) {
+        var k = jj * cols + ii, pk = pr[k];
+        if (pk < 0.06) continue;
+        var li = ((((rx[k] / w) * 0.85 + (ry[k] / h) * 0.15 + shift) % 1) * 63) | 0;
+        if (ii + 1 < cols) {
+          var a = (pk + pr[k + 1]) * 0.5;
+          if (a > 0.06) {
+            ctx.strokeStyle = 'rgba(' + pal.lut[li] + ',' + (a * 0.55).toFixed(3) + ')';
+            ctx.beginPath(); ctx.moveTo(x[k], y[k]); ctx.lineTo(x[k + 1], y[k + 1]); ctx.stroke();
+          }
+        }
+        if (jj + 1 < rows) {
+          var a2 = (pk + pr[k + cols]) * 0.5;
+          if (a2 > 0.06) {
+            ctx.strokeStyle = 'rgba(' + pal.lut[li] + ',' + (a2 * 0.55).toFixed(3) + ')';
+            ctx.beginPath(); ctx.moveTo(x[k], y[k]); ctx.lineTo(x[k + cols], y[k + cols]); ctx.stroke();
+          }
+        }
+      }
+    }
+
+    ctx.fillStyle = 'rgba(' + pal.base + ',' + pal.baseA + ')';
+    ctx.beginPath();
+    for (var z = 0; z < n; z++) if (pr[z] < 0.03) ctx.rect(x[z] - 0.8, y[z] - 0.8, 1.6, 1.6);
+    ctx.fill();
+    for (var zz = 0; zz < n; zz++) {
+      var pz = pr[zz];
+      if (pz < 0.03) continue;
+      var lz = ((((rx[zz] / w) * 0.85 + (ry[zz] / h) * 0.15 + shift) % 1) * 63) | 0;
+      ctx.fillStyle = 'rgba(' + pal.lut[lz] + ',' + Math.min(1, pal.baseA + pz * 1.1).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(x[zz], y[zz], 0.9 + pz * 2.6, 0, 6.2832);
+      ctx.fill();
+    }
+
+    for (var rr = 0; rr < rip.length; rr++) {
+      var R0 = rip[rr], ag = now - R0.t, al = (1 - ag / 1700) * 0.5;
+      ctx.strokeStyle = 'rgba(' + pal.lut[40] + ',' + al.toFixed(3) + ')';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(R0.x, R0.y, ag * 0.8, 0, 6.2832); ctx.stroke();
+    }
+
+    var hx = Math.round(P.x), hy = Math.round(P.y);
+    ctx.save();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(' + pal.hud + ',0.12)';
+    ctx.setLineDash([2, 6]);
+    ctx.beginPath();
+    ctx.moveTo(0, hy + 0.5); ctx.lineTo(w, hy + 0.5);
+    ctx.moveTo(hx + 0.5, 0); ctx.lineTo(hx + 0.5, h);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.strokeStyle = 'rgba(' + pal.lut[10] + ',0.9)';
+    ctx.beginPath(); ctx.arc(hx, hy, 14, 0, 6.2832); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(hx - 24, hy); ctx.lineTo(hx - 8, hy);
+    ctx.moveTo(hx + 8, hy); ctx.lineTo(hx + 24, hy);
+    ctx.moveTo(hx, hy - 24); ctx.lineTo(hx, hy - 8);
+    ctx.moveTo(hx, hy + 8); ctx.lineTo(hx, hy + 24);
+    ctx.stroke();
+    var label = 'x ' + hx + '   y ' + hy;
+    ctx.font = '500 11px "Geist Mono", ui-monospace, monospace';
+    var tw = ctx.measureText(label).width;
+    ctx.fillStyle = 'rgba(' + pal.chip + ',0.85)';
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(hx + 18, hy + 18, tw + 18, 24, 7); else ctx.rect(hx + 18, hy + 18, tw + 18, 24);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(' + pal.hud + ',0.14)';
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(' + pal.hud + ',0.92)';
+    ctx.fillText(label, hx + 27, hy + 34);
+    ctx.restore();
+  }
+
+  _move(e) {
+    var root = e.currentTarget;
+    if (root && root.style) {
+      root.style.setProperty('--mx', e.clientX + 'px');
+      root.style.setProperty('--my', e.clientY + 'px');
+    }
+    var tg = e.target, card = tg && tg.closest ? tg.closest('.spot') : null;
+    if (card) {
+      var cb = card.getBoundingClientRect(), cs = card.offsetWidth / (cb.width || 1);
+      card.style.setProperty('--x', (e.clientX - cb.left) * cs + 'px');
+      card.style.setProperty('--y', (e.clientY - cb.top) * cs + 'px');
+    }
+    var c = this._canvas, P = this._ptr;
+    if (c && P) {
+      var b = c.getBoundingClientRect(), sx = c.clientWidth / (b.width || 1), sy = c.clientHeight / (b.height || 1);
+      var px = (e.clientX - b.left) * sx, py = (e.clientY - b.top) * sy;
+      P.inside = px >= 0 && py >= 0 && px <= c.clientWidth && py <= c.clientHeight;
+      if (P.inside) { P.tx = px; P.ty = py; P.last = performance.now(); }
+    }
+  }
+
+  _down(e) {
+    var c = this._canvas;
+    if (!c || this._reduce || !this._ripples) return;
+    var tg = e.target;
+    if (tg && tg.closest && tg.closest('a,button')) return;
+    var b = c.getBoundingClientRect(), sx = c.clientWidth / (b.width || 1), sy = c.clientHeight / (b.height || 1);
+    this._ripples.push({ x: (e.clientX - b.left) * sx, y: (e.clientY - b.top) * sy, t: performance.now() });
+    if (this._ripples.length > 5) this._ripples.shift();
+  }
+
+  _toggle(e) {
+    var base = this.props.theme || 'dark';
+    var next = this._theme === 'dark' ? 'light' : 'dark';
+    var set = (done) => this.setState({ theme: next, base: base }, done);
+    var doc = document, btn = e && e.currentTarget;
+    if (!doc.startViewTransition || this._reduce || !btn || !btn.getBoundingClientRect) { set(); return; }
+    var b = btn.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+    var W = window.innerWidth, H = window.innerHeight;
+    var rad = Math.hypot(Math.max(cx, W - cx), Math.max(cy, H - cy));
+    try {
+      var vt = doc.startViewTransition(() => new Promise((res) => set(res)));
+      vt.ready.then(() => {
+        doc.documentElement.animate(
+          { clipPath: ['circle(0px at ' + cx + 'px ' + cy + 'px)', 'circle(' + rad + 'px at ' + cx + 'px ' + cy + 'px)'] },
+          { duration: 700, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' }
+        );
+      }).catch(function () {});
+    } catch (err) { set(); }
+  }
+
+  renderVals() {
+    var s = this.state || {};
+    var base = this.props.theme || 'dark';
+    var theme = s.theme && s.base === base ? s.theme : base;
+    this._theme = theme;
+    this._pals = this._pals || {};
+    this._pal = this._pals[theme] || (this._pals[theme] = this._palette(theme));
+    this._intensity = this.props.fieldIntensity ?? 1;
+    this._gap = this.props.fieldSpacing ?? 30;
+    if (!this._h0) {
+      this._h0 = {
+        canvasRef: (el) => { if (el) this._canvas = el; },
+        onMove: (e) => this._move(e),
+        onLeave: () => { if (this._ptr) this._ptr.inside = false; },
+        onHeroDown: (e) => this._down(e),
+        toggleTheme: (e) => this._toggle(e),
+        onMsg: (e) => this.setState({ msgLen: ((e.target && e.target.value) || '').length }),
+        onSubmit: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ sent: true }); }
+      };
+    }
+    var msgLen = s.msgLen || 0;
+    return Object.assign({}, this._h0, {
+      rootClass: theme === 'light' ? 'pf light' : 'pf',
+      isDark: theme === 'dark',
+      isLight: theme === 'light',
+      themeLabel: theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+      msgCount: msgLen + ' / 300',
+      sent: !!s.sent,
+      notSent: !s.sent
+    });
+  }
+}
+</script>
+</body>
+</html>

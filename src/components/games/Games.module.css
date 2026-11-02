@@ -1,0 +1,233 @@
+/* Games page — ported from docs/design/Games.dc.html. */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---------- Game of Life panel ---------- */
+
+.panel {
+  border-radius: 28px;
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  animation-delay: 120ms;
+}
+
+/* The board is drawn on with the pointer: drop the spotlight's border sheen and wash that follow it. */
+.panel::before,
+.panel::after {
+  content: none;
+}
+
+.boardColumn {
+  flex: 1 1 640px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.boardWrap {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+
+.life {
+  display: block;
+  width: 100%;
+  aspect-ratio: 64 / 36;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.side {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 8px 8px 8px 0;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--a3);
+  background: color-mix(in srgb, var(--a3) 12%, transparent);
+}
+.live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--a3);
+  animation: blink 1.4s ease-in-out infinite;
+}
+.paused i {
+  animation: none;
+  opacity: 0.4;
+}
+
+.title {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.copy {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.rules {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  counter-reset: rule;
+}
+.rules li {
+  counter-increment: rule;
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.rules li::before {
+  content: counter(rule, decimal-leading-zero);
+  flex: 0 0 auto;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  line-height: 21px;
+  color: var(--a1);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---------- Minesweeper and Snake cards ---------- */
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.card {
+  flex: 1 1 460px;
+  min-width: 0;
+  border-radius: 28px;
+  padding: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+}
+
+.cardText {
+  flex: 1 1 200px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.play {
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.preview {
+  display: grid;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.minesPreview {
+  grid-template-columns: repeat(9, 26px);
+  gap: 3px;
+}
+
+.snakePreview {
+  grid-template-columns: repeat(14, 18px);
+  gap: 2px;
+}
+
+.sn {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--surface);
+}
+.body {
+  background: linear-gradient(135deg, var(--a1), var(--a2));
+}
+.head {
+  background: linear-gradient(135deg, var(--a3), var(--a1));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--a3) 70%, transparent);
+}
+.apple {
+  background: #f43f5e;
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(244, 63, 94, 0.6);
+  animation: beat 1.2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes beat {
+  50% {
+    transform: scale(0.72);
+  }
+}
