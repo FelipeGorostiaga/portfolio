@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import books from '../../data/books.json';
+import movies from '../../data/movies.json';
 import quotes from '../../data/quotes.json';
 import {
   countLabel,
@@ -8,11 +9,27 @@ import {
   filterRated,
   formatYear,
   fromBook,
+  fromMovie,
   parseTab,
   sortRated,
 } from '~/lib/library';
 
 const items = books.map(fromBook);
+
+describe('library data', () => {
+  it.each([
+    ['books', items],
+    ['movies', movies.map(fromMovie)],
+  ])('%s have unique ids, a title, a creator, a year and a score out of ten', (_, list) => {
+    expect(new Set(list.map((item) => item.id)).size).toBe(list.length);
+    for (const item of list) {
+      expect(item.title.trim(), `id ${item.id}`).not.toBe('');
+      expect(item.creator.trim(), item.title).not.toBe('');
+      expect(Number.isInteger(item.year), item.title).toBe(true);
+      expect(item.score >= 0 && item.score <= 10, item.title).toBe(true);
+    }
+  });
+});
 
 describe('filterRated', () => {
   it('ignores case and surrounding spaces', () => {
