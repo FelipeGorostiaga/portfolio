@@ -82,5 +82,383 @@
     "author": "Friedrich Nietzsche",
     "score": 8.2,
     "year": 1908
+  },
+  {
+    "id": 13,
+    "title": "Nexus",
+    "author": "Yuval Noah Harari",
+    "score": 8.5,
+    "year": 2024
+  },
+  {
+    "id": 14,
+    "title": "We Who Wrestle with God",
+    "author": "Jordan Peterson",
+    "score": 9,
+    "year": 2024
+  },
+  {
+    "id": 15,
+    "title": "The Pillars of the Earth",
+    "author": "Ken Follett",
+    "score": 7,
+    "year": 1989
+  },
+  {
+    "id": 16,
+    "title": "Steppenwolf",
+    "author": "Hermann Hesse",
+    "score": 8,
+    "year": 1927
+  },
+  {
+    "id": 17,
+    "title": "Meditations",
+    "author": "Marcus Aurelius",
+    "score": 6,
+    "year": 180
+  },
+  {
+    "id": 18,
+    "title": "Beyond Order",
+    "author": "Jordan Peterson",
+    "score": 9,
+    "year": 2021
+  },
+  {
+    "id": 19,
+    "title": "Mist",
+    "author": "Miguel de Unamuno",
+    "score": 6,
+    "year": 1914
+  },
+  {
+    "id": 20,
+    "title": "The Man Who Mistook His Wife for a Hat",
+    "author": "Oliver Sacks",
+    "score": 8,
+    "year": 1985
+  },
+  {
+    "id": 21,
+    "title": "Of Love and Other Demons",
+    "author": "Gabriel García Márquez",
+    "score": 6,
+    "year": 1994
+  },
+  {
+    "id": 22,
+    "title": "Animal Farm",
+    "author": "George Orwell",
+    "score": 8,
+    "year": 1945
+  },
+  {
+    "id": 23,
+    "title": "The Art of War",
+    "author": "Sun Tzu",
+    "score": 5,
+    "year": -500
+  },
+  {
+    "id": 24,
+    "title": "Los ingenieros del caos",
+    "author": "Giuliano da Empoli",
+    "score": 5,
+    "year": 2019
+  },
+  {
+    "id": 25,
+    "title": "The Dead Zone",
+    "author": "Stephen King",
+    "score": 6,
+    "year": 1979
+  },
+  {
+    "id": 26,
+    "title": "The Psychopathology of Everyday Life",
+    "author": "Sigmund Freud",
+    "score": 5,
+    "year": 1901
+  },
+  {
+    "id": 27,
+    "title": "Behave",
+    "author": "Robert Sapolsky",
+    "score": 9,
+    "year": 2017
+  },
+  {
+    "id": 28,
+    "title": "Siddhartha",
+    "author": "Hermann Hesse",
+    "score": 10,
+    "year": 1922
+  },
+  {
+    "id": 29,
+    "title": "The Aleph",
+    "author": "Jorge Luis Borges",
+    "score": 8,
+    "year": 1949
+  },
+  {
+    "id": 30,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "score": 9,
+    "year": 1932
+  },
+  {
+    "id": 31,
+    "title": "Demian",
+    "author": "Hermann Hesse",
+    "score": 8,
+    "year": 1919
+  },
+  {
+    "id": 32,
+    "title": "The Call of the Wild",
+    "author": "Jack London",
+    "score": 8,
+    "year": 1903
+  },
+  {
+    "id": 33,
+    "title": "Nineteen Eighty-Four",
+    "author": "George Orwell",
+    "score": 8,
+    "year": 1949
+  },
+  {
+    "id": 34,
+    "title": "Man's Search for Meaning",
+    "author": "Viktor Frankl",
+    "score": 8,
+    "year": 1946
+  },
+  {
+    "id": 35,
+    "title": "Spinoza, una introducción",
+    "author": "Diego Tatián",
+    "score": 7,
+    "year": 2009
+  },
+  {
+    "id": 36,
+    "title": "In the Realm of Hungry Ghosts",
+    "author": "Gabor Maté",
+    "score": 6.5,
+    "year": 2008
+  },
+  {
+    "id": 37,
+    "title": "Enchiridion",
+    "author": "Epictetus",
+    "score": 7,
+    "year": 125
+  },
+  {
+    "id": 38,
+    "title": "Death with Interruptions",
+    "author": "José Saramago",
+    "score": 4,
+    "year": 2005
+  },
+  {
+    "id": 39,
+    "title": "Ficciones",
+    "author": "Jorge Luis Borges",
+    "score": 8,
+    "year": 1944
+  },
+  {
+    "id": 40,
+    "title": "The Prince",
+    "author": "Niccolò Machiavelli",
+    "score": 8,
+    "year": 1532
+  },
+  {
+    "id": 41,
+    "title": "Demons",
+    "author": "Fyodor Dostoevsky",
+    "score": 8.5,
+    "year": 1872
+  },
+  {
+    "id": 42,
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "score": 9,
+    "year": 1869
+  },
+  {
+    "id": 43,
+    "title": "The Idiot",
+    "author": "Fyodor Dostoevsky",
+    "score": 8.5,
+    "year": 1869
+  },
+  {
+    "id": 44,
+    "title": "The Brothers Karamazov",
+    "author": "Fyodor Dostoevsky",
+    "score": 10,
+    "year": 1880
+  },
+  {
+    "id": 45,
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "score": 9,
+    "year": 1866
+  },
+  {
+    "id": 46,
+    "title": "The Divine Comedy",
+    "author": "Dante Alighieri",
+    "score": 7,
+    "year": 1320
+  },
+  {
+    "id": 47,
+    "title": "Discipline and Punish",
+    "author": "Michel Foucault",
+    "score": 5,
+    "year": 1975
+  },
+  {
+    "id": 48,
+    "title": "Chocolate sin grasa",
+    "author": "Slavoj Žižek",
+    "score": 4,
+    "year": 2022
+  },
+  {
+    "id": 49,
+    "title": "Neurociencias para presidentes",
+    "author": "Diego Golombek and Nora Bär",
+    "score": 5,
+    "year": 2017
+  },
+  {
+    "id": 50,
+    "title": "A Farewell to Arms",
+    "author": "Ernest Hemingway",
+    "score": 8,
+    "year": 1929
+  },
+  {
+    "id": 51,
+    "title": "Breaking the Habit of Being Yourself",
+    "author": "Joe Dispenza",
+    "score": 6,
+    "year": 2012
+  },
+  {
+    "id": 52,
+    "title": "Point Counter Point",
+    "author": "Aldous Huxley",
+    "score": 8,
+    "year": 1928
+  },
+  {
+    "id": 53,
+    "title": "Narcissus and Goldmund",
+    "author": "Hermann Hesse",
+    "score": 9,
+    "year": 1930
+  },
+  {
+    "id": 54,
+    "title": "The Power of Now",
+    "author": "Eckhart Tolle",
+    "score": 8,
+    "year": 1997
+  },
+  {
+    "id": 55,
+    "title": "The Doors of Perception",
+    "author": "Aldous Huxley",
+    "score": 9,
+    "year": 1954
+  },
+  {
+    "id": 56,
+    "title": "Notes from Underground",
+    "author": "Fyodor Dostoevsky",
+    "score": 9,
+    "year": 1864
+  },
+  {
+    "id": 57,
+    "title": "The Old Man and the Sea",
+    "author": "Ernest Hemingway",
+    "score": 8,
+    "year": 1952
+  },
+  {
+    "id": 58,
+    "title": "The Gambler",
+    "author": "Fyodor Dostoevsky",
+    "score": 7,
+    "year": 1866
+  },
+  {
+    "id": 59,
+    "title": "El arte de conocerse a sí mismo",
+    "author": "Arthur Schopenhauer",
+    "score": 6,
+    "year": 2003
+  },
+  {
+    "id": 60,
+    "title": "Strange Case of Dr Jekyll and Mr Hyde",
+    "author": "Robert Louis Stevenson",
+    "score": 7,
+    "year": 1886
+  },
+  {
+    "id": 61,
+    "title": "The Little Prince",
+    "author": "Antoine de Saint-Exupéry",
+    "score": 9,
+    "year": 1943
+  },
+  {
+    "id": 62,
+    "title": "Rich Dad's Who Took My Money?",
+    "author": "Robert Kiyosaki",
+    "score": 5,
+    "year": 2004
+  },
+  {
+    "id": 63,
+    "title": "Theological-Political Treatise",
+    "author": "Baruch Spinoza",
+    "score": 6,
+    "year": 1670
+  },
+  {
+    "id": 64,
+    "title": "Catching the Big Fish",
+    "author": "David Lynch",
+    "score": 8,
+    "year": 2006
+  },
+  {
+    "id": 65,
+    "title": "The Short Stories of Ernest Hemingway",
+    "author": "Ernest Hemingway",
+    "score": 8,
+    "year": 1938
+  },
+  {
+    "id": 66,
+    "title": "Many Lives, Many Masters",
+    "author": "Brian Weiss",
+    "score": 5,
+    "year": 1988
   }
 ]

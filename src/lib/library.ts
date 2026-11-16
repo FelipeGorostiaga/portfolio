@@ -39,6 +39,11 @@ export function countLabel(tab: LibraryTab, count: number): string {
   return `${count} ${NOUNS[tab][count === 1 ? 0 : 1]}`;
 }
 
+/** Years before the common era are stored as negative numbers and shown as "500 BC". */
+export function formatYear(year: number): string {
+  return year < 0 ? `${-year} BC` : String(year);
+}
+
 export function fromBook(book: RawBook): RatedItem {
   return { id: book.id, title: book.title, creator: book.author, year: book.year, score: book.score };
 }

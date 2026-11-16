@@ -1,7 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import books from '../../data/books.json';
 import quotes from '../../data/quotes.json';
-import { countLabel, coverColors, filterQuotes, filterRated, fromBook, parseTab, sortRated } from '~/lib/library';
+import {
+  countLabel,
+  coverColors,
+  filterQuotes,
+  filterRated,
+  formatYear,
+  fromBook,
+  parseTab,
+  sortRated,
+} from '~/lib/library';
 
 const items = books.map(fromBook);
 
@@ -16,21 +25,30 @@ describe('filterRated', () => {
   });
 
   it('returns everything for an empty query', () => {
-    expect(filterRated(items, '')).toHaveLength(12);
+    expect(filterRated(items, '')).toHaveLength(items.length);
   });
 });
 
 describe('sortRated', () => {
+  const scores = (order: 'asc' | 'desc') => sortRated(items, 'rating', order).map((b) => b.score);
+
   it('sorts by rating, high to low', () => {
+    const sorted = scores('desc');
+    expect(sorted.every((score, i) => i === 0 || sorted[i - 1] >= score)).toBe(true);
+  });
+
+  it('keeps the data order between equal ratings', () => {
+    // Zarathustra is the first 10 in the data, ahead of the later 10s.
     expect(sortRated(items, 'rating', 'desc')[0].title).toBe('Thus Spoke Zarathustra');
   });
 
   it('sorts by rating, low to high', () => {
-    expect(sortRated(items, 'rating', 'asc')[0].title).toBe('21 Lessons for the 21st Century');
+    const sorted = scores('asc');
+    expect(sorted.every((score, i) => i === 0 || sorted[i - 1] <= score)).toBe(true);
   });
 
-  it('sorts by year', () => {
-    expect(sortRated(items, 'year', 'asc')[0].year).toBe(1883);
+  it('sorts by year, with years before the common era first', () => {
+    expect(sortRated(items, 'year', 'asc')[0].title).toBe('The Art of War');
   });
 
   it('sorts by title', () => {
@@ -58,6 +76,14 @@ describe('countLabel', () => {
     expect(countLabel('books', 12)).toBe('12 books');
     expect(countLabel('movies', 1)).toBe('1 movie');
     expect(countLabel('quotes', 0)).toBe('0 quotes');
+  });
+});
+
+describe('formatYear', () => {
+  it('shows negative years as BC', () => {
+    expect(formatYear(-500)).toBe('500 BC');
+    expect(formatYear(180)).toBe('180');
+    expect(formatYear(1883)).toBe('1883');
   });
 });
 
