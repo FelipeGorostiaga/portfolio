@@ -1,4 +1,4 @@
-import { coverColors, type RatedItem } from '~/lib/library';
+import { coverColors, formatYear, type RatedItem } from '~/lib/library';
 import styles from './Library.module.css';
 
 export default function BookCard({ item }: { item: RatedItem }) {
@@ -13,7 +13,7 @@ export default function BookCard({ item }: { item: RatedItem }) {
       <div className={styles.bookBody}>
         <h2 className={styles.bookTitle}>{item.title}</h2>
         <p className={styles.bookMeta}>
-          {item.creator} · {item.year}
+          {item.creator} · {formatYear(item.year)}
         </p>
         <div className={styles.rating}>
           <div className={styles.ratingRow}>
